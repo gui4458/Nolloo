@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+
+
 <th:block th:fragment="headerFragment">
 
   <div class="row">
-    <div class="col">놀루</div>
-    <!-- text-start : 왼쪽 정렬 -->
+    <div class="col h3 header-title">놀루</div>
     <div class="col text-end">
 
       <th:block th:if="${session.loginInfo != null}">
@@ -26,7 +28,7 @@
   </div>
   <div class="row">
     <div class="col text-center">
-      <h1 class="main-title" onclick="location.href='/item/list'">BOOK SHOP</h1>
+      <h1 class="main-title" onclick="location.href='/item/list'"></h1>
     </div>
   </div>
 
@@ -44,7 +46,7 @@
 
 
 
-          <form action="/member/insertMember" class="row g-3" method="post" id="join-form">
+          <form action="/member/join" class="row g-3" method="post" id="join-form">
             <div class="col-12">
               <label for="" class="form-label">Id</label>
               <input type="text" name="memberId" class="form-control" id="memberId" placeholder="Id">
@@ -60,6 +62,10 @@
             <div class="col-12">
               <label for="" class="form-label">Name</label>
               <input type="text" name="memberName" class="form-control" id="" placeholder="">
+            </div>
+            <div class="col-12">
+              <label for="" class="form-label">birth</label>
+              <input type="date" name="memberBirth" class="form-control" id="" placeholder="">
             </div>
             <div class="col-4">
               <label for="" class="form-label">Tel</label>
@@ -89,7 +95,7 @@
             </div>
             <div class="col-8">
               <label for="" class="form-label">Addr</label>
-              <input type="text" name="postCode" class="form-control" id="postCode">
+              <input type="text" class="form-control" id="postCode">
             </div>
             <div class="d-grid col-4 ">
               <label for="" class="form-label">　</label>

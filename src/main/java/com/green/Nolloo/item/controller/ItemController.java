@@ -19,11 +19,15 @@ public class ItemController {
     //item 목록조회
     @GetMapping("/list")
     public String list(Model model){
-        model.addAttribute("itemList",itemService.selectItem());
+//        model.addAttribute("itemList",itemService.selectItem());
         return "content/main";
     }
     //item 등록
-    @RequestMapping("/itemAdd")
+    @GetMapping("/itemAddForm")
+    public String itemAddForm(){
+        return"content/item/item_add_form";
+    }
+    @PostMapping("/itemAdd")
     public String itemAdd(ItemVO itemVO){
         itemService.insertItem(itemVO);
         return "redirect:/item/list";
