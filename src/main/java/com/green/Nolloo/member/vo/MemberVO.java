@@ -1,4 +1,4 @@
-package member.vo;
+package com.green.Nolloo.member.vo;
 
 import lombok.Getter;
 import lombok.Setter;

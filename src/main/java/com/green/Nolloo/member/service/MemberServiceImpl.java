@@ -1,6 +1,6 @@
-package member.service;
+package com.green.Nolloo.member.service;
 
-import member.vo.MemberVO;
+import com.green.Nolloo.member.vo.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

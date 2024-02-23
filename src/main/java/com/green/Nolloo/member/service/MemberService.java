@@ -1,11 +1,12 @@
-package member.service;
+package com.green.Nolloo.member.service;
 
-import member.vo.MemberVO;
+import com.green.Nolloo.member.vo.MemberVO;
 
 public interface MemberService {
 
     //회원가입
     void join(MemberVO memberVO);
+
 
 
 }
