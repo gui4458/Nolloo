@@ -14,7 +14,7 @@
         , MEMBER_EMAIL
         , MEMBER_TEL
         , MEMBER_ADDR
-        , ADDR_DEATIL
+        , ADDR_DETAIL
         )
 
         VALUES(
