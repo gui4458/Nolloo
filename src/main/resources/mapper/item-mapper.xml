@@ -3,7 +3,49 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="itemMapper">
-	
+
+    <resultMap id="item" type="com.green.Nolloo.item.vo.ItemVO">
+        <id column="ITEM_CODE" property="itemCode"/>
+        <result column="ITEM_TITLE" property="itemTitle"/>
+        <result column="ITEM_CONTENT" property="itemContent"/>
+        <result column="ITEM_PRICE" property="itemPrice"/>
+        <result column="ITEM_DATE" property="itemDate"/>
+        <result column="ITEM_PEOPLE" property="itemPeple"/>
+        <result column="ITEM_PLACE" property="itemPlace"/>
+        <result column="PLACE_DETAIL" property="placeDetail"/>
+        <result column="CATE_CODE" property="cateCode"/>
+    </resultMap>
+
+<!--    item 등록쿼리-->
+    <insert id="insertItem">
+        INSERT INTO PARTY_ITEM(
+            ITEM_TITLE
+            , ITEM_CONTENT
+            , ITEM_PRICE
+            , ITEM_PEOPLE
+            , ITEM_PLACE
+            , PLACE_DETAIL
+        )
+        VALUES(
+            #{itemTitle}
+            , #{itemContent}
+            , #{itemPrice}
+            , #{itemPeople}
+            , #{itemPlace}
+            , #{placeDetail}
+        )
+    </insert>
+<!--    item 메인 목록조회-->
+    <select id="selectItem" resultMap="item">
+        SELECT
+            itemCode
+            , itemTitle
+            , itemDate
+            , itemPrice
+            , itemPlace
+            , itemPeople
+        FROM PARTY_ITEM
+    </select>
 </mapper>
 
 
