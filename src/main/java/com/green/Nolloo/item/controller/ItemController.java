@@ -23,7 +23,11 @@ public class ItemController {
         return "content/main";
     }
     //item 등록
-    @RequestMapping("/itemAdd")
+    @GetMapping("/itemAddForm")
+    public String itemAddForm(){
+        return"content/item/item_add_form";
+    }
+    @PostMapping("/itemAdd")
     public String itemAdd(ItemVO itemVO){
         itemService.insertItem(itemVO);
         return "redirect:/item/list";
