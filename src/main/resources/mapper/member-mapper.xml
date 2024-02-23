@@ -4,6 +4,32 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="memberMapper">
 
+    <insert id="Join">
+        INSERT INTO member(
+        MEMBER_ID
+        , MEMBER_PW
+        , MEMBER_NAME
+        , MEMBER_BIRTH
+        , GENDER
+        , MEMBER_EMAIL
+        , MEMBER_TEL
+        , MEMBER_ADDR
+        , ADDR_DEATIL
+        )
+
+        VALUES(
+       #{memberId}
+        ,#{memberPw}
+        ,#{memberName}
+        ,#{memberBirth}
+        ,#{gender}
+        ,#{memberEmail}
+        ,#{memberTel}
+        ,#{memberAddr}
+        ,#{addrDetail}
+        );
+
+    </insert>
 	
 </mapper>
 
