@@ -19,7 +19,7 @@ public class ItemController {
     //item 목록조회
     @GetMapping("/list")
     public String list(Model model){
-        model.addAttribute("itemList",itemService.selectItem());
+//        model.addAttribute("itemList",itemService.selectItem());
         return "content/main";
     }
     //item 등록

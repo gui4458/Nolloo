@@ -5,7 +5,7 @@
 <mapper namespace="memberMapper">
 
     <insert id="join">
-        INSERT INTO member(
+        INSERT INTO MEMBER(
         MEMBER_ID
         , MEMBER_PW
         , MEMBER_NAME
