@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/user_layout}" >
+    layout:decorate="~{fragment/layout파일명기입}" >
 
 <th:block layout:fragment="content_css">
     <!-- html 파일이 열릴때 같이 실행되는 css -->
@@ -10,11 +10,16 @@
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
-    메인페이지
-    <input type="button" onclick="location.href='/itme/itemAddForm'">
+    <form action="/item/itemAdd" method="post">
+        <input type="text" name="itemTitle">
+        <input type="text" name="itemContent">
+        <input type="text" name="itemPrice">
+        <input type="text" name="itemPeople">
+        <input type="text" name="itemPlace">
+        <input type="text" name="placeDetail">
 
-
-
+    </form>
+    
 </th:block>
 
 <th:block layout:fragment="content_js">
