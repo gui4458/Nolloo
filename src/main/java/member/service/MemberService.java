@@ -1,4 +1,11 @@
 package member.service;
 
-public class MemberService {
+import member.vo.MemberVO;
+
+public interface MemberService {
+
+    //회원가입
+    void join(MemberVO memberVO);
+
+
 }

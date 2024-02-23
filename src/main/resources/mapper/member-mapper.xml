@@ -4,7 +4,7 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="memberMapper">
 
-    <insert id="Join">
+    <insert id="join">
         INSERT INTO member(
         MEMBER_ID
         , MEMBER_PW
