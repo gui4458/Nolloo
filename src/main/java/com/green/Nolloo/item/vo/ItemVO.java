@@ -7,14 +7,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class itemVO {
+public class ItemVO {
     private int itemCode;
     private String itemTitle;
     private String itemContent;
-    private int itemPrice;
-    private int itemDate;
-    private int itemPeople;
-    private int itemPlace;
-    private int placeDetail;
+    private String itemPrice;
+    private String itemDate;
+    private String itemPeople;
+    private String itemPlace;
+    private String placeDetail;
     private int cateCode;
 }
