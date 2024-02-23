@@ -46,6 +46,8 @@
             , itemPeople
         FROM PARTY_ITEM
     </select>
+<!--    itemDetail 조회쿼리 -->
+
 </mapper>
 
 
