@@ -12,7 +12,7 @@ public class MemberServiceImpl implements MemberService{
 
 
     @Override
-    public void join(MemberVO memberVO) {
+    public void join(MemberVO memberVO){
         sqlSession.insert("memberMapper.join", memberVO);
     }
 }
