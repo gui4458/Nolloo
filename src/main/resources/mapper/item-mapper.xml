@@ -16,7 +16,7 @@
         <result column="CATE_CODE" property="cateCode"/>
     </resultMap>
 
-
+<!--    item 등록쿼리-->
     <insert id="insertItem">
         INSERT INTO PARTY_ITEM(
             ITEM_TITLE
@@ -35,9 +35,15 @@
             , #{placeDetail}
         )
     </insert>
+<!--    item 메인 목록조회-->
     <select id="selectItem" resultMap="item">
         SELECT
-
+            itemCode
+            , itemTitle
+            , itemDate
+            , itemPrice
+            , itemPlace
+            , itemPeople
         FROM PARTY_ITEM
     </select>
 </mapper>
