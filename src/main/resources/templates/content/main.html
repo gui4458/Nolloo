@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/user_layout}" >
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/user_layout}">
 
 <th:block layout:fragment="content_css">
     <!-- html 파일이 열릴때 같이 실행되는 css -->
@@ -11,8 +10,43 @@
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
     메인페이지
-    [[${itemList}]]
-    <input type="button" onclick="  location.href='/item/itemAddForm';">
+    
+    <table class="table">
+        <tr th:each="board : ${boardList}">
+            <td>메인이미지</td>
+            <td>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <a th:href="@{/board/boardDetailForm(boardNum=${board.boardNum})}">[[${board.boardTitle}]]</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                [[${board.boardPlace}]]
+                            </div>
+                            <div class="col">
+                                [[${board.boardDate}]]
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                [[${board.boardPrice}]]
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                [[${board.boardPeople}]]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    
+    <input type="button" onclick="  location.href='/board/boardAddForm';">
 
 
 
@@ -22,4 +56,5 @@
     <!-- html 파일이 열릴때 같이 실행되는 js -->
     <script src="/"></script>
 </th:block>
+
 </html>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="boardMapper">
+
+    <resultMap id="board" type="com.green.Nolloo.board.vo.BoardVO">
+        <id column="BOARD_NUM" property="boardNum"/>
+        <result column="BOARD_TITLE" property="boardTitle"/>
+        <result column="BOARD_CONTENT" property="boardContent"/>
+        <result column="BOARD_PRICE" property="boardPrice"/>
+        <result column="BOARD_DATE" property="boardDate"/>
+        <result column="BOARD_PEOPLE" property="boardPeople"/>
+        <result column="PEOPLE_CNT" property="PeopleCnt"/>
+        <result column="BOARD_PLACE" property="boardPlace"/>
+        <result column="PLACE_DETAIL" property="placeDetail"/>
+        <result column="CATE_CODE" property="cateCode"/>
+    </resultMap>
+
+<!--    item 등록쿼리-->
+    <insert id="insertBoard">
+        INSERT INTO PARTY_BOARD(
+            BOARD_TITLE
+            , BOARD_CONTENT
+            , BOARD_PRICE
+            , BOARD_PEOPLE
+            , BOARD_PLACE
+            , PLACE_DETAIL
+        )
+        VALUES(
+            #{boardTitle}
+            , #{boardContent}
+            , #{boardPrice}
+            , #{boardPeople}
+            , #{boardPlace}
+            , #{placeDetail}
+        )
+    </insert>
+<!--    item 메인 목록조회-->
+    <select id="selectBoardList" resultMap="board">
+        SELECT
+            BOARD_NUM
+            , BOARD_TITLE
+            , BOARD_DATE
+            , BOARD_PRICE
+            , BOARD_PLACE
+            , BOARD_PEOPLE
+        FROM PARTY_BOARD
+    </select>
+<!--    itemDetail 조회쿼리 -->
+<select id="selectBoardDetail" resultMap="board">
+    SELECT
+        BOARD_NUM
+        , BOARD_TITLE
+        , BOARD_PLACE
+        , BOARD_DATE
+        , BOARD_CONTENT
+        , BOARD_PEOPLE
+    FROM PARTY_BOARD
+    WHERE BOARD_NUM = #{boardNum}
+</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
