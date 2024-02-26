@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/user_layout}" >
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <link rel="stylesheet" href="/">
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+    <form action="/item/itemAdd" method="post">
+        제목<input type="text" name="itemTitle">
+        내용<input type="text" name="itemContent">
+        가격<input type="text" name="itemPrice">
+        인원<input type="text" name="itemPeople">
+        장소<input type="text" name="itemPlace">
+        장소자세히<input type="text" name="placeDetail">
+        <button type="submit">등록</button>
+    </form>
+    
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/"></script>
+</th:block>
+</html>

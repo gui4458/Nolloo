@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/user_layout}" >
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/user_layout}">
 
 <th:block layout:fragment="content_css">
     <!-- html 파일이 열릴때 같이 실행되는 css -->
@@ -11,7 +10,42 @@
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
     메인페이지
-
+    <table class="table">
+        <tr th:each="item : ${itemList}">
+            <td>메인이미지</td>
+            <td>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                [[${item.itemTitle}]]
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                [[item.itemPlace]]
+                            </div>
+                            <div class="col">
+                                [[${item.itemDate}]]
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                [[${item.itemPrice}]]
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                [[${item.itemPeople}]]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    [[${itemList}]]
+    <input type="button" onclick="  location.href='/item/itemAddForm';">
 
 
 
@@ -21,4 +55,5 @@
     <!-- html 파일이 열릴때 같이 실행되는 js -->
     <script src="/"></script>
 </th:block>
+
 </html>
