@@ -11,32 +11,32 @@
     <!-- html 코드 작성 -->
     메인페이지
     <table class="table">
-        <tr th:each="item : ${itemList}">
+        <tr th:each="board : ${boardList}">
             <td>메인이미지</td>
             <td>
                 <div class="row">
                     <div class="col">
                         <div class="row">
                             <div class="col">
-                                [[${item.itemTitle}]]
+                                [[${board.boardTitle}]]
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                [[item.itemPlace]]
+                                [[${board.boardPlace}]]
                             </div>
                             <div class="col">
-                                [[${item.itemDate}]]
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                [[${item.itemPrice}]]
+                                [[${board.boardDate}]]
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                [[${item.itemPeople}]]
+                                [[${board.boardPrice}]]
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                [[${board.boardPeople}]]
                             </div>
                         </div>
                     </div>
@@ -44,8 +44,8 @@
             </td>
         </tr>
     </table>
-    [[${itemList}]]
-    <input type="button" onclick="  location.href='/item/itemAddForm';">
+    
+    <input type="button" onclick="  location.href='/board/boardAddForm';">
 
 
 
