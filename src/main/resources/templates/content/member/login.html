@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/user_layout}" >
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+
+<form action="/member/login" method="post">
+ID <input type="text" name="memberId" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+PW <input type="text" name="memberPw" class="form-control"  aria-label="Username" aria-describedby="basic-addon1">
+<input type="submit" value="login">
+</form>
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+<!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/"></script> -->
+</th:block>
+</html>
