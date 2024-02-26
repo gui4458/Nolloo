@@ -10,6 +10,7 @@
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
     메인페이지
+    
     <table class="table">
         <tr th:each="board : ${boardList}">
             <td>메인이미지</td>
@@ -18,7 +19,7 @@
                     <div class="col">
                         <div class="row">
                             <div class="col">
-                                [[${board.boardTitle}]]
+                                <a th:href="@{/board/boardDetailForm(boardNum=${board.boardNum})}">[[${board.boardTitle}]]</a>
                             </div>
                         </div>
                         <div class="row">

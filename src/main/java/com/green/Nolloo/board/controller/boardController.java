@@ -24,13 +24,18 @@ public class boardController {
     }
     //item 등록
     @GetMapping("/boardAddForm")
-    public String itemAddForm(){
+    public String boardAddForm(){
         return"content/board/board_add_form";
     }
     @PostMapping("/boardAdd")
-    public String itemAdd(BoardVO boardVO){
+    public String boardAdd(BoardVO boardVO){
         boardService.insertBoard(boardVO);
         return "redirect:/board/list";
+    }
+    @GetMapping("/boardDetailForm")
+    public String boardDetailForm(BoardVO boardVO, Model model){
+        model.addAttribute("board",boardService.selectBoardDetail(boardVO));
+        return "content/board/board_detail";
     }
 
 }

@@ -10,5 +10,5 @@ public interface BoardService {
     // board 목록 조회 메소드
     List<BoardVO> selectBoardList();
     // board 디테일
-
+    BoardVO selectBoardDetail(BoardVO boardVO);
 }

@@ -5,12 +5,13 @@
 <mapper namespace="boardMapper">
 
     <resultMap id="board" type="com.green.Nolloo.board.vo.BoardVO">
-        <id column="BOARD_CODE" property="itemCode"/>
+        <id column="BOARD_NUM" property="boardNum"/>
         <result column="BOARD_TITLE" property="boardTitle"/>
         <result column="BOARD_CONTENT" property="boardContent"/>
         <result column="BOARD_PRICE" property="boardPrice"/>
         <result column="BOARD_DATE" property="boardDate"/>
         <result column="BOARD_PEOPLE" property="boardPeople"/>
+        <result column="PEOPLE_CNT" property="PeopleCnt"/>
         <result column="BOARD_PLACE" property="boardPlace"/>
         <result column="PLACE_DETAIL" property="placeDetail"/>
         <result column="CATE_CODE" property="cateCode"/>
@@ -47,7 +48,7 @@
         FROM PARTY_BOARD
     </select>
 <!--    itemDetail 조회쿼리 -->
-<select id="selectBoard" resultMap="board">
+<select id="selectBoardDetail" resultMap="board">
     SELECT
         BOARD_NUM
         , BOARD_TITLE
@@ -56,7 +57,7 @@
         , BOARD_CONTENT
         , BOARD_PEOPLE
     FROM PARTY_BOARD
-    WHERE
+    WHERE BOARD_NUM = #{boardNum}
 </select>
 </mapper>
 
