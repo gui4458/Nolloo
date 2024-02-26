@@ -2,32 +2,39 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="userMenuFragment">
-    <div class="row">
-      <div class="col">
-        <nav class="navbar navbar-expand-lg "  >
-          <div class="container-fluid" >
-            
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">파티</a>
-                </li>
-                
-                <li class="nav-item">
-                  <a class="nav-link disabled" aria-disabled="true">축제</a>
-                </li>
-              </ul>
-              <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </form>
-            </div>
-          </div>
-        </nav>
+  <div class="row g-4">
+
+      <div class="col-md">
+          <select class="form-select" id="floatingSelectGrid">
+            <option selected>지역</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>        
       </div>
-    </div>
+      <div class="col-md">
+          <select class="form-select" id="floatingSelectGrid">
+            <option selected>카테고리</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+      </div>      
+      <div class="col-md">
+        
+          <input type="date" name="" class="form-select">
+          
+      </div>      
+      <div class="col-md">
+        <div class="form-floating d-block d-flex">
+          <button type="button" class="btn btn-secondary me-2">Secondary</button>
+          <button type="button" class="btn btn-secondary">Reset</button>
+        </div>
+      </div>
+
+  </div>
+
+
+
 </th:block>
 </html>
