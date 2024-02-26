@@ -59,6 +59,11 @@
     FROM PARTY_BOARD
     WHERE BOARD_NUM = #{boardNum}
 </select>
+    <delete id="deleteBoard">
+        DELETE
+        FROM PARTY_BOARD
+        WHERE BOARD_NUM = #{boardNum}
+    </delete>
 </mapper>
 
 

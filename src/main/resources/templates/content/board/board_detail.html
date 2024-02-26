@@ -50,7 +50,7 @@
                     <button type="button"onclick="updateForm()">수정</button>
                 </div>
                 <div class="col">
-                    <button type="button"onclick="location.href='/board/deleteboard'">삭제</button>
+                    <button type="button" th:onclick="|location.href='@{/board/deleteBoard(boardNum=${board.boardNum})}'|">삭제</button>
                 </div>
             </div>
         </div>

@@ -11,4 +11,6 @@ public interface BoardService {
     List<BoardVO> selectBoardList();
     // board 디테일
     BoardVO selectBoardDetail(BoardVO boardVO);
+    //board 삭제하는 메소드
+    void deleteBoard(BoardVO boardVO);
 }
