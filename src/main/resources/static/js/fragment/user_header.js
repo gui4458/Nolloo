@@ -63,7 +63,7 @@ function searchAddress(){
 
   // 클릭 시 로그인 페이지로 이동
   function goLoginForm(){
-      location.href = '/member/login';
+      location.href = '/member/loginPage';
   }
   
 

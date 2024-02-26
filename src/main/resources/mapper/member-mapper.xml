@@ -4,6 +4,13 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="memberMapper">
 
+    <resultMap id="member" type="com.green.Nolloo.member.vo.MemberVO">
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="MEMBER_PW" property="memberPw"/>
+        <result column="MEMBER_ROLL" property="memberRoll"/>
+
+    </resultMap>
+
     <insert id="join">
         INSERT INTO MEMBER(
         MEMBER_ID
@@ -30,6 +37,15 @@
         );
 
     </insert>
+
+    <select id="login" resultMap="member">
+        SELECT
+        MEMBER_ID
+        ,MEMBER_PW
+        ,MEMBER_ROLL
+        FROM MEMBER
+        WHERE MEMBER_ID=#{memberId} AND MEMBER_PW=#{memberPw}
+    </select>
 	
 </mapper>
 
