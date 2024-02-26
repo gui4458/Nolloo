@@ -29,4 +29,9 @@ public class BoardServiceImpl implements BoardService {
     public BoardVO selectBoardDetail(BoardVO boardVO) {
         return sqlSession.selectOne("boardMapper.selectBoardDetail", boardVO);
     }
+
+    @Override
+    public void deleteBoard(BoardVO boardVO) {
+        sqlSession.delete("boardMapper.deleteBoard",boardVO);
+    }
 }

@@ -16,13 +16,13 @@ public class boardController {
     @Resource(name = "boardService")
     private BoardService boardService;
 
-    //item 목록조회
+    //파티게시글 목록조회
     @GetMapping("/list")
     public String list(Model model){
         model.addAttribute("boardList",boardService.selectBoardList());
         return "content/main";
     }
-    //item 등록
+    //게시글 등록
     @GetMapping("/boardAddForm")
     public String boardAddForm(){
         return"content/board/board_add_form";
@@ -32,10 +32,16 @@ public class boardController {
         boardService.insertBoard(boardVO);
         return "redirect:/board/list";
     }
+    //boardDetail 조회
     @GetMapping("/boardDetailForm")
     public String boardDetailForm(BoardVO boardVO, Model model){
         model.addAttribute("board",boardService.selectBoardDetail(boardVO));
         return "content/board/board_detail";
     }
-
+    //게시글 삭제
+    @GetMapping("/deleteBoard")
+    public String deleteBoard(BoardVO boardVO){
+        boardService.deleteBoard(boardVO);
+        return "redirect:/board/list";
+    }
 }
