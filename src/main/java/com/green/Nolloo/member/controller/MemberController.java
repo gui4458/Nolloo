@@ -17,7 +17,7 @@ public class MemberController {
     @PostMapping("/join")
     public String join(MemberVO memberVO){
         memberService.join(memberVO);
-        return "redirect:/item/list";
+        return "redirect:/board/list";
     }
 
 }
