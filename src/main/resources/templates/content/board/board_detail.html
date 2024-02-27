@@ -9,7 +9,6 @@
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드작성-->
-<<<<<<< HEAD
 
     <div class="row justify-content-center ">
         <div class="col-10 align-item-center text-start">
@@ -119,51 +118,6 @@
                     </td>
                 </tr>
 
-=======
-    <div class="row">
-        <div class="col">
-            <div class="row">
-                <div class="col">
-                    메인이미지
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    [[${board.boardPlace}]]
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    [[${board.boardTitle}]]
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    [[${board.boardDate}]]
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    [[${board.boardContent}]]
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    위치/지도
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <button type="button" onclick="goParty()">참여</button>
-                </div>
-                <div class="col">
-                    <button type="button" th:onclick="|location.href='@{/board/updateBoard(boardNum=${board.boardNum})}'|">수정</button>
-                </div>
-                <div class="col">
-                    <button type="button" th:onclick="|location.href='@{/board/deleteBoard(boardNum=${board.boardNum})}'|">삭제</button>
-                </div>
-            </div>
->>>>>>> e7474d800183e7b1a4ec90dfbaabdcdec9576d83
         </div>
     </div>
     </table>
