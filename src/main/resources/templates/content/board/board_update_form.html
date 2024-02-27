@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/user_layout}" >
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <link rel="stylesheet" href="/">
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <div class="row align-middle">
+                    <div class="col text-center">
+                        <form action="/board/updateBoard" method="post">
+                            <input type="hidden" name="boardNum" th:value="${board.boardNum}" style="justify-content: center;">
+                            <h2 class="mt-5">글 수정</h2>
+                            [[${board}]]
+                            <div style="width: 100%; margin: 0 auto;">
+                                <table class="table">
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1">제목</span>
+                                                <input type="text" name="boardTitle" class="form-control">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="input-group">
+                                                <span class="input-group-text">내용</span>
+                                                <textarea class="form-control" name="boardContent" aria-label="With textarea" style="height: 350px;"></textarea>
+                                            </div>
+                                        
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="input-group-text" id="basic-addon1">참가비</span>
+                                            <input type="text" name="boardPrice" class="form-control" >
+                                            
+                                        </td>
+                                        <td>
+                                            <span class="input-group-text" id="basic-addon1">최대인원</span>
+                                            <input type="text" name="boardPeople" class="form-control" >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="input-group-text" id="basic-addon1">장소</span>
+                                            <input type="text" name="boardPlace" class="form-control" >
+                                            
+                                        </td>
+                                        <td>
+                                            <span class="input-group-text" id="basic-addon1">자세한 장소</span>
+                                            <input type="text" name="placeDetail" class="form-control" >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button type="submit" class="btn btn-outline-primary">수정</button>
+                                            <button type="button" th:onclick="|location.href='@{/board/boardDetailForm(boardNum=${board.boardNum})}'|" class="btn btn-outline-primary">취소</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            
+                            
+                            
+                        </form>
+                        
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    
+    </div>
+    
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/"></script>
+</th:block>
+</html>

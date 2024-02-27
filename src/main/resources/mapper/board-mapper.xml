@@ -64,6 +64,17 @@
         FROM PARTY_BOARD
         WHERE BOARD_NUM = #{boardNum}
     </delete>
+
+    <update id="updateBoard">
+        UPDATE PARTY_BOARD
+        SET BOARD_TITLE = #{boardTitle}
+        ,BOARD_CONTENT = #{boardContent}
+        ,BOARD_PRICE = #{boardPrice}
+        ,BOARD_PEOPLE = #{boardPeople}
+        ,BOARD_PLACE = #{boardPlace}
+        ,PLACE_DETAIL = #{placeDetail}
+        WHERE BOARD_NUM = #{boardNum}
+    </update>
 </mapper>
 
 
