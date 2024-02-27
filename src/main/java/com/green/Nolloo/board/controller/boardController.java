@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/board")
@@ -43,5 +44,18 @@ public class boardController {
     public String deleteBoard(BoardVO boardVO){
         boardService.deleteBoard(boardVO);
         return "redirect:/board/list";
+    }
+
+    @GetMapping("/updateForm")
+    public String updateForm(Model model, @RequestParam(name="boardNum")int boardNum){
+        System.out.println(boardNum);
+        model.addAttribute(boardNum);
+        return "content/board/board_update_form";
+    }
+
+    @PostMapping("/updateBoard")
+    public String updateBoard(BoardVO boardVO){
+        boardService.updateBoard(boardVO);
+        return "redirect:/board/boardDetailForm";
     }
 }
