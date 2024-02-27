@@ -9,7 +9,10 @@
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
-    메인페이지
+
+
+
+    
     
     <table class="table">
         <tr th:each="board : ${boardList}">
@@ -45,6 +48,9 @@
             </td>
         </tr>
     </table>
+
+
+
     
     <input type="button" onclick="  location.href='/board/boardAddForm';">
 
