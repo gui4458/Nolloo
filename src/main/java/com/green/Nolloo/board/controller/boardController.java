@@ -47,15 +47,16 @@ public class boardController {
     }
 
     @GetMapping("/updateForm")
-    public String updateForm(Model model, @RequestParam(name="boardNum")int boardNum){
-        System.out.println(boardNum);
-        model.addAttribute(boardNum);
+    public String updateForm(Model model, BoardVO boardVO){
+
+        model.addAttribute("board",boardVO);
         return "content/board/board_update_form";
     }
 
     @PostMapping("/updateBoard")
     public String updateBoard(BoardVO boardVO){
         boardService.updateBoard(boardVO);
-        return "redirect:/board/boardDetailForm";
+
+        return "redirect:/board/boardDetailForm?boardNum="+boardVO.getBoardNum();
     }
 }
