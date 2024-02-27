@@ -1,0 +1,24 @@
+
+.card-body {
+    background-size: cover;
+    color: white;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0, 0,0, 0.7);
+    cursor: pointer;
+}
+.card-body .title {
+    color: white;
+    font-weight: 700;
+}
+.card-body .area {
+    color: white;
+    font-weight: 600;
+}
+.card-body .date {
+    color: white;
+    font-weight: 600;
+}
+.card-body .text-body-secondary {
+    color: #FFF !important;
+    min-height: 31px;
+}
