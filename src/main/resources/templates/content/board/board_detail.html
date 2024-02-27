@@ -47,7 +47,7 @@
                     <button type="button" onclick="goParty()">참여</button>
                 </div>
                 <div class="col">
-                    <button type="button" th:onclick="|location.href='@{/board/updateBoard(boardNum=${board.boardNum})}'|">수정</button>
+                    <button type="button" th:onclick="|location.href='@{/board/updateForm(boardNum=${board.boardNum})}'|">수정</button>
                 </div>
                 <div class="col">
                     <button type="button" th:onclick="|location.href='@{/board/deleteBoard(boardNum=${board.boardNum})}'|">삭제</button>
