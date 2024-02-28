@@ -15,10 +15,10 @@ public class MemberVO {
     private String gender;
     private String memberEmail;
     private String memberTel;
+    private String memberPost;
     private String memberAddr;
     private String addrDetail;
     private String joinDate;
     private String memberRoll;
-
 
 }

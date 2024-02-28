@@ -7,7 +7,16 @@
     <resultMap id="member" type="com.green.Nolloo.member.vo.MemberVO">
         <result column="MEMBER_ID" property="memberId"/>
         <result column="MEMBER_PW" property="memberPw"/>
+        <result column="MEMBER_NAME" property="memberName"/>
+        <result column="MEMBER_BIRTH" property="memberBirth"/>
+        <result column="MEMBER_EMAIL" property="memberEmail"/>
+        <result column="MEMBER_TEL" property="memberTel"/>
+        <result column="GENDER" property="gender"/>
+        <result column="MEMBER_POST" property="memberPost"/>
+        <result column="MEMBER_ADDR" property="memberAddr"/>
+        <result column="ADDR_DETAIL" property="addrDetail"/>
         <result column="MEMBER_ROLL" property="memberRoll"/>
+        <result column="JOIN_DATE" property="joinDate"/>
 
     </resultMap>
 
@@ -47,10 +56,21 @@
         WHERE MEMBER_ID=#{memberId} AND MEMBER_PW=#{memberPw}
     </select>
 
-    <update id="revise">
 
-
-    </update>
+    <select id="memberInfo" resultMap="member">
+        SELECT MEMBER_ID
+        , MEMBER_PW
+        , MEMBER_NAME
+        , MEMBER_BIRTH
+        , MEMBER_EMAIL
+        , MEMBER_TEL
+        , GENDER
+        , MEMBER_POST
+        , MEMBER_ADDR
+        , ADDR_DETAIL
+        FROM MEMBER
+        WHERE MEMBER_ID=#{memberId}
+    </select>
 	
 </mapper>
 
