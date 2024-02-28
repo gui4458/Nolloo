@@ -3,6 +3,28 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="wishMapper">
+    <resultMap id="wish" type="com.green.Nolloo.wish.vo.WishViewVO">
+        <result column="BOARD_NUM" property="boardNum"/>
+        <result column="BOARD_TITLE" property="boardTitle"/>
+        <result column="BOARD_CONTENT" property="boardContent"/>
+        <result column="BOARD_PRICE" property="boardPrice"/>
+        <result column="BOARD_DATE" property="boardDate"/>
+        <result column="BOARD_PEOPLE" property="boardPeople"/>
+        <result column="PEOPLE_CNT" property="peopleCnt"/>
+        <result column="BOARD_PLACE" property="boardPlace"/>
+        <result column="PLACE_DETAIL" property="placeDetail"/>
+        <result column="CATE_CODE" property="cateCode"/>
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="MEMBER_NAME" property="memberName"/>
+        <result column="ADDRESS" property="address"/>
+        <result column="MEMBER_BIRTH" property="memberBirth"/>
+        <result column="GENDER" property="gender"/>
+        <result column="MEMBER_EMAIL" property="memberEmail"/>
+        <result column="MEMBER_TEL" property="memberTel"/>
+        <result column="JOIN_DATE" property="joinDate"/>
+        <result column="WISH_CODE" property="wishCode"/>
+        <result column="WISH_DATE" property="wishDate"/>
+    </resultMap>
 	<insert id="insertWish">
         INSERT INTO ITEM_WISH(
             BOARD_NUM
@@ -12,6 +34,22 @@
             ,#{memberId}
         )
     </insert>
+
+    <select id="selectWish" resultMap="wish">
+        SELECT WISH_CODE
+            ,BOARD_NUM
+            ,WISH_DATE
+            ,BOARD_TITLE
+            ,BOARD_CONTENT
+            ,BOARD_PRICE
+            ,BOARD_PEOPLE
+            ,PEOPLE_CNT
+            ,BOARD_PLACE
+            ,PLACE_DETAIL
+            ,WISH_DATE
+        FORM WISH_VIEW
+        WHERE MEMBER_ID = #{memberId}
+    </select>
 </mapper>
 
 
