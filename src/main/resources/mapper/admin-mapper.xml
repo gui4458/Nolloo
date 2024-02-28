@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="adminMapper">
+	<insert id="insertFestival">
+        INSERT INTO ITEM_INFO(
+        ITEM_TITLE
+        , ITEM_PLACE
+        , ITEM_START_DATE
+        , ITEM_END_DATE
+        , ITEM_CONTENT
+        , ITEM_TEL
+        , ITEM_URL
+        , ITEM_ROAD_PLACE
+        , ITEM_NUM_PLACE
+        , ITEM_X
+        , ITEM_Y
+        )
+        VALUES
+        <foreach collection="itemList" item="item" separator=",">
+            (
+                #{itemTitle}
+                , #{itemPlace}
+                , #{itemStartDate}
+                , #{itemEndDate}
+                , #{itemContent}
+                , #{itemTel}
+                , #{itemUrl}
+                , #{itemRoadPlace}
+                , #{itemNumPlace}
+                , #{itemX}
+                , #{itemY}
+            )
+        </foreach>
+
+    </insert>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
