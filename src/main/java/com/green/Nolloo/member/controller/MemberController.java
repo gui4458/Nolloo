@@ -5,6 +5,7 @@ import com.green.Nolloo.member.vo.MemberVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +50,14 @@ public class MemberController {
     }
 
     @GetMapping("/myPage")
-    public String myPage(){
+    public String myPage(MemberVO memberVO, Model model, HttpSession session){
+        //세션에 있는 로그인한 사람의 id를 가져온다.
+        MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
+        memberVO.setMemberId(loginInfo.getMemberId());
+
+
+        MemberVO memberInfo = memberService.memberInfo(memberVO);
+        model.addAttribute("memberInfo",memberInfo);
         return "content/member/my_page";
     }
 

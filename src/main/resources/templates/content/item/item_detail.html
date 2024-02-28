@@ -35,7 +35,7 @@
                         <div class="row-mb-3">
                             <div class="col" style="font-size: 13px;">
                                 <!-- 동만 나오게 설정 예정 -->
-                                [[${board.boardPlace}]]
+                                [[${item.itemPlace}]]
                             </div>
                         </div>
                     </td>
@@ -45,13 +45,13 @@
                         <!------------ 제목 ---------->
                         <div class="row">
                             <div class="col ">
-                                <b>[[${board.boardTitle}]]</b>
+                                <b>[[${item.itemTitle}]]</b>
                             </div>
                         </div>
                         <!---------- 올린시간 --------->
                         <div class="row-mb-3 ">
                             <div class="col date-div">
-                                [[${board.boardDate}]]
+                                [[${item.itemDate}]]
                             </div>
                         </div>
                     </td>
@@ -61,7 +61,7 @@
                         <!------------ 내용 ------------>
                         <div class="row">
                             <div class="col-8"style="font-size: 18px;">
-                                [[${board.boardContent}]]
+                                [[${item.itemContent}]]
                             </div>
                         </div>
                     </td>
@@ -97,12 +97,12 @@
                             </div>
                             
                             <div class="col">
-                                <button type="button" th:onclick="|location.href='@{/board/updateForm(boardNum=${board.boardNum})}'|" class="btn btn-outline-primary">
+                                <button type="button" th:onclick="|location.href='@{/item/updateForm(itemCode=${item.itemCode})}'|" class="btn btn-outline-primary">
                                     수정</button>
                             </div>
                             <div class="col">
                                 <button type="button"
-                                    th:onclick="|location.href='@{/board/deleteBoard(boardNum=${board.boardNum})}'|"
+                                    th:onclick="|location.href='@{/item/deleteItem(itemCode=${item.itemCode})}'|"
                                     class="btn btn-outline-danger">
                                     삭제</button>
                             </div>
@@ -113,6 +113,12 @@
                             <div class="col">
                                 <button type="button" class="btn btn-outline-info">
                                     목록</button>
+                            </div>
+                            <div class="col">
+                                <button type="button"
+                                    th:onclick="goWish([[${item.itemCode}]],[[${session.loginInfo}]])"
+                                    class="btn btn-outline-info">
+                                    찜</button>
                             </div>
                         </div>
                     </td>
@@ -125,7 +131,7 @@
 
 <th:block layout:fragment="content_js">
     <!-- html 파일이 열릴때 같이 실행되는 js -->
-    <script src="/"></script>
+    <script src="/js/content/board/board_detail.js"></script>
 </th:block>
 
 </html>

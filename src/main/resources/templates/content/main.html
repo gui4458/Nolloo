@@ -88,34 +88,39 @@
     
     
     <table class="table">
-        <tr th:each="board : ${boardList}">
+        <tr th:each="item : ${itemList}">
             <td>메인이미지</td>
             <td>
                 <div class="row">
                     <div class="col">
                         <div class="row">
                             <div class="col">
-                                <a th:href="@{/board/boardDetailForm(boardNum=${board.boardNum})}">[[${board.boardTitle}]]</a>
+                                <a th:href="@{/item/itemDetailForm(itemCode=${item.itemCode})}">[[${item.itemTitle}]]</a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                [[${board.boardPlace}]]
+                                [[${item.itemPlace}]]
                             </div>
                             <div class="col">
-                                [[${board.boardDate}]]
+                                [[${item.itemDate}]]
+                            </div>
+                            <div class="col wishInChk">
+                              🤍❤
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                [[${board.boardPrice}]]
+                                [[${item.itemPrice}]]
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
-                                [[${board.boardPeople}]]
+                                [[${item.itemPeople}]]
                             </div>
                         </div>
+                        
+                  
                         
                     </div>
                 </div>
@@ -126,7 +131,7 @@
 
 
     
-    <input type="button" onclick="  location.href='/board/boardAddForm';">
+    <input type="button" onclick="  location.href='/item/itemAddForm';">
 
 
 
