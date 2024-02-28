@@ -9,6 +9,6 @@ import lombok.ToString;
 @ToString
 public class WishVO {
     private int wishCode;
-    private int boardNum;
+    private int itemCode;
     private String memberId;
 }
