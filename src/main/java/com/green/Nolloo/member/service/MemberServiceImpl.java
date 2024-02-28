@@ -20,4 +20,9 @@ public class MemberServiceImpl implements MemberService{
     public MemberVO login(MemberVO memberVO) {
         return sqlSession.selectOne("memberMapper.login",memberVO);
     }
+
+    @Override
+    public MemberVO memberInfo(MemberVO memberVO) {
+        return sqlSession.selectOne("memberMapper.memberInfo",memberVO);
+    }
 }
