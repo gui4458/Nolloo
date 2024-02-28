@@ -114,6 +114,12 @@
                                 <button type="button" class="btn btn-outline-info">
                                     목록</button>
                             </div>
+                            <div class="col">
+                                <button type="button"
+                                    th:onclick="goWish([[${board.boardNum}]],[[${session.loginInfo}]])"
+                                    class="btn btn-outline-info">
+                                    찜</button>
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -125,7 +131,7 @@
 
 <th:block layout:fragment="content_js">
     <!-- html 파일이 열릴때 같이 실행되는 js -->
-    <script src="/"></script>
+    <script src="/js/content/board/board_detail.js"></script>
 </th:block>
 
 </html>

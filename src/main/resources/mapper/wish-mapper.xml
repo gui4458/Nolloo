@@ -46,17 +46,20 @@
             ,PEOPLE_CNT
             ,BOARD_PLACE
             ,PLACE_DETAIL
-            ,WISH_DATE
-        FORM WISH_VIEW
+        FROM WISH_VIEW
         WHERE MEMBER_ID = #{memberId}
     </select>
 
+<<<<<<< HEAD
     <select id="wishChk" resultType="int">
         SELECT COUNT(BOARD_NUM)
         FROM item_wish
         WHERE BOARD_NUM = #{boardNum}
         AND MEMBER_ID = #{memberId}
     </select>
+=======
+
+>>>>>>> jeon
 
 </mapper>
 
