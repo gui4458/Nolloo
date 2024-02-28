@@ -25,6 +25,7 @@ dependencies {
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16' //쿼리 로그 라이브러리 추가
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect' //fragment 사용을 위해 추가
 	compileOnly("org.springframework.boot:spring-boot-devtools") //html새로고침
+	implementation group: 'com.opencsv', name: 'opencsv', version: '5.7.1' //csv 파일 로딩 라이브러리
 
 
 
