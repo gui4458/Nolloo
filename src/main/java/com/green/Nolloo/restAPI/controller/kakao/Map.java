@@ -1,16 +1,24 @@
-package com.green.Nolloo.restAPI.controller;
+package com.green.Nolloo.restAPI.controller.kakao;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/map")
-public class KakaoMap {
+public class Map {
 
-    @GetMapping("/kakaoMap")
-    public String kakaoMap() {
-        return "/content/restAPI/map";
+    @GetMapping("/position")
+    public String pos() {
+
+        return "/content/restAPI/position";
     }
+
+    @GetMapping("/find-items")
+    public String findItems() {
+
+        return "/content/restAPI/find-items";
+    }
+
+
 
 }
