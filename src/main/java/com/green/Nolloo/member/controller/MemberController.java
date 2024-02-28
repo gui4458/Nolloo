@@ -5,6 +5,7 @@ import com.green.Nolloo.member.vo.MemberVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +50,9 @@ public class MemberController {
     }
 
     @GetMapping("/myPage")
-    public String myPage(){
+    public String myPage(MemberVO memberVO, Model model){
+        MemberVO memberInfo = memberService.memberInfo(memberVO);
+        model.addAttribute("memberInfo",memberInfo);
         return "content/member/my_page";
     }
 
