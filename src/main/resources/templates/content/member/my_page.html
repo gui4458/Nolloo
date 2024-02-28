@@ -93,10 +93,10 @@
                         </div>
 
                         <div class="col">
-                            <input type="text" name="memberAddr" class="form-control" id="roadAddress" readonly>
+                            <input type="text" name="memberAddr" class="form-control" id="roadAddress"  th:value="${memberInfo.memberAddr}">
                         </div>
                         <div class="col">
-                            <input type="text" name="addrDetail" class="form-control" id="">
+                            <input type="text" name="addrDetail" class="form-control" id="" th:value="${memberInfo.addrDetail}">
                         </div>
 
                     </td>

@@ -12,8 +12,9 @@
         <result column="MEMBER_EMAIL" property="memberEmail"/>
         <result column="MEMBER_TEL" property="memberTel"/>
         <result column="GENDER" property="gender"/>
+        <result column="MEMBER_POST" property="memberPost"/>
         <result column="MEMBER_ADDR" property="memberAddr"/>
-        <result column="MEMBER_DETAIL" property="memberDetail"/>
+        <result column="ADDR_DETAIL" property="addrDetail"/>
         <result column="MEMBER_ROLL" property="memberRoll"/>
         <result column="JOIN_DATE" property="joinDate"/>
 
@@ -64,6 +65,7 @@
         , MEMBER_EMAIL
         , MEMBER_TEL
         , GENDER
+        , MEMBER_POST
         , MEMBER_ADDR
         , ADDR_DETAIL
         FROM MEMBER
