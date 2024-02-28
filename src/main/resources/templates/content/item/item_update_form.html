@@ -16,8 +16,8 @@
             <div class="col-8">
                 <div class="row align-middle">
                     <div class="col text-center">
-                        <form action="/board/updateBoard" method="post">
-                            <input type="hidden" name="boardNum" th:value="${board.boardNum}" style="justify-content: center;">
+                        <form action="/item/updateParty" method="post">
+                            <input type="hidden" name="itemCode" th:value="${item.itemCode}" style="justify-content: center;">
                             <h2 class="mt-5">글 수정</h2>
                             <div style="width: 100%; margin: 0 auto;">
                                 <table class="table">
@@ -25,7 +25,7 @@
                                         <td colspan="2">
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon1">제목</span>
-                                                <input type="text" name="boardTitle" class="form-control">
+                                                <input type="text" name="itemTitle" class="form-control">
                                             </div>
                                         </td>
                                     </tr>
@@ -33,7 +33,7 @@
                                         <td colspan="2">
                                             <div class="input-group">
                                                 <span class="input-group-text">내용</span>
-                                                <textarea class="form-control" name="boardContent" aria-label="With textarea" style="height: 350px;"></textarea>
+                                                <textarea class="form-control" name="itemContent" aria-label="With textarea" style="height: 350px;"></textarea>
                                             </div>
                                         
                                             
@@ -42,18 +42,18 @@
                                     <tr>
                                         <td>
                                             <span class="input-group-text" id="basic-addon1">참가비</span>
-                                            <input type="text" name="boardPrice" class="form-control" >
+                                            <input type="text" name="itemPrice" class="form-control" >
                                             
                                         </td>
                                         <td>
                                             <span class="input-group-text" id="basic-addon1">최대인원</span>
-                                            <input type="text" name="boardPeople" class="form-control" >
+                                            <input type="text" name="itemPeople" class="form-control" >
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
                                             <span class="input-group-text" id="basic-addon1">장소</span>
-                                            <input type="text" name="boardPlace" class="form-control" >
+                                            <input type="text" name="itemPlace" class="form-control" >
                                             
                                         </td>
                                         <td>
@@ -64,7 +64,7 @@
                                     <tr>
                                         <td colspan="2">
                                             <button type="submit" class="btn btn-outline-primary">수정</button>
-                                            <button type="button" th:onclick="|location.href='@{/board/boardDetailForm(boardNum=${board.boardNum})}'|" class="btn btn-outline-primary">취소</button>
+                                            <button type="button" th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|" class="btn btn-outline-primary">취소</button>
                                         </td>
                                     </tr>
                                 </table>

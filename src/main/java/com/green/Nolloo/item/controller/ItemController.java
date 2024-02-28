@@ -39,7 +39,7 @@ public class ItemController {
         return "content/item/item_detail";
     }
     //게시글 삭제
-    @GetMapping("/deleteitem")
+    @GetMapping("/deleteItem")
     public String deletePartt(ItemVO itemVO){
         itemService.deleteParty(itemVO);
         return "redirect:/item/list";
