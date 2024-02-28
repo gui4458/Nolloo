@@ -26,6 +26,7 @@
             , ITEM_PEOPLE
             , ITEM_PLACE
             , PLACE_DETAIL
+            , ITEM_START_DATE
         )
         VALUES(
             #{itemTitle}
@@ -34,6 +35,7 @@
             , #{itemPeople}
             , #{itemPlace}
             , #{placeDetail}
+            , #{itemStartDate}
         )
     </insert>
 <!--    item 메인 목록조회-->
@@ -57,7 +59,7 @@
         , ITEM_CONTENT
         , ITEM_PEOPLE
     FROM ITEM_INFO
-    WHERE ITEM_CODE = #{boardcode}
+    WHERE ITEM_CODE = #{itemCode}
 </select>
     <delete id="deleteParty">
         DELETE

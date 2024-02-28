@@ -25,7 +25,7 @@ public class ItemController {
     //게시글 등록
     @GetMapping("/itemAddForm")
     public String boardAddForm(){
-        return"content/board/board_add_form";
+        return"content/item/item_add_form";
     }
     @PostMapping("/itemAdd")
     public String boardAdd(ItemVO itemVO){
@@ -48,7 +48,7 @@ public class ItemController {
     @GetMapping("/updateForm")
     public String updateForm(Model model, ItemVO itemVO){
 
-        model.addAttribute("board",itemVO);
+        model.addAttribute("item",itemVO);
         return "content/item/item_update_form";
     }
 
