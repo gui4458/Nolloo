@@ -1,15 +1,12 @@
-package com.green.Nolloo.board.controller;
+package com.green.Nolloo.item.controller;
 
 import com.opencsv.CSVReader;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @Controller
 @RequestMapping("/csv")
