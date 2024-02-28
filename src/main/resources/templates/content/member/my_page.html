@@ -18,28 +18,27 @@
             <table class="table table-bordered">
                 <tr>
                     <td>아이디</td>
-                    <td><input type="text" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
-                    </td>
+                    <td style="text-align: left;">[[${memberInfo.memberId}]]</td>
                 </tr>
                 <tr>
                     <td>비밀번호</td>
-                    <td><input type="text" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
+                    <td><input type="password" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" th:value="${memberInfo.memberPw}" >
                     </td>
                 </tr>
                 <tr>
                     <td>비밀번호 확인</td>
-                    <td><input type="text" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
+                    <td><input type="password" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" th:value="${memberInfo.memberPw}">
                     </td>
                 </tr>
                 <tr>
                     <td>이름</td>
-                    <td><input type="text" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
+                    <td><input type="text" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" th:value="${memberInfo.memberName}">
                     </td>
                 </tr>
                 <tr>
                     <td>생년월일</td>
                     <td>
-                        <input type="date" class="form-control" aria-label="Username" aria-describedby="addon-wrapping">
+                        <input type="date" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" th:value="${memberInfo.memberBirth}">
                     </td>
                 </tr>
 
@@ -49,17 +48,17 @@
                         <div class="row">
                             <div class="col">
                                 <select class="form-select" aria-label="Default select example">
-                                    <option selected>010</option>
-                                    <option>011</option>
+                                    <option th:selected="${#strings.arraySplit(memberInfo.memberTel,',')[0] == '010'}">010</option>
+                                    <option th:selected="${#strings.arraySplit(memberInfo.memberTel,',')[0] == '011'}">011</option>
                                 </select>
                             </div>
                             <div class="col">
                                 <input type="text" class="form-control" aria-label="Username"
-                                    aria-describedby="addon-wrapping">
+                                    aria-describedby="addon-wrapping" th:value="${#strings.arraySplit(memberInfo.memberTel,',')[1]}">
                             </div>
                             <div class="col">
                                 <input type="text" class="form-control" aria-label="Username"
-                                    aria-describedby="addon-wrapping">
+                                    aria-describedby="addon-wrapping"th:value="${#strings.arraySplit(memberInfo.memberTel,',')[2]}">
                             </div>
                         </div>
                 </tr>
@@ -69,7 +68,7 @@
                         <div class="row">
                             <div class="col">
                                 <input type="text" class="form-control" aria-label="Username"
-                                    aria-describedby="addon-wrapping">
+                                    aria-describedby="addon-wrapping" th:value="${#strings.arraySplit(memberInfo.memberEmail,',')[0]}">
                             </div>
                             <div class="col">
                                 <select class="form-select" aria-label="Default select example">
@@ -109,7 +108,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender">
+                                    <input class="form-check-input" type="radio" name="gender" th:checked="${memberInfo.gender == 'male'}">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         남성
                                     </label>
@@ -117,7 +116,7 @@
                             </div>
                             <div class="col">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gender" checked>
+                                    <input class="form-check-input" type="radio" name="gender" th:checked="${memberInfo.gender == 'female'}">
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         여성
                                     </label>

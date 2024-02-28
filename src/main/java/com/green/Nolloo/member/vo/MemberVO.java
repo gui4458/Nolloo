@@ -20,5 +20,4 @@ public class MemberVO {
     private String joinDate;
     private String memberRoll;
 
-
 }
