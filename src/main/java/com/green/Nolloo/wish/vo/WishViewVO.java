@@ -8,14 +8,14 @@ import lombok.ToString;
 @Setter
 @ToString
 public class WishViewVO {
-    private int boardNum;
-    private String boardTitle;
-    private String boardContent;
-    private int boardPrice;
-    private String boardDate;
-    private int boardPeople;
+    private int itemCode;
+    private String itemTitle;
+    private String itemContent;
+    private int itemPrice;
+    private String itemDate;
+    private int itemPeople;
     private int peopleCnt;
-    private String boardPlace;
+    private String itemPlace;
     private String placeDetail;
     private int cateCode;
     private String memberId;

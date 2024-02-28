@@ -104,10 +104,16 @@
                             </div>
                             <div class="col">
                                 [[${item.itemDate}]]
+                              
                             </div>
-                            <div class="col wishInChk">
-                              🤍❤
+                            <div class="col" th:if="${#lists.contains(wishCodeList,item.itemCode)}">
+                              ❤
                             </div>
+                            <div class="col" th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
+                              🤍
+                            </div>
+                            
+                          
                         </div>
                         <div class="row">
                             <div class="col">
