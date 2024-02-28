@@ -46,9 +46,11 @@
             ,PEOPLE_CNT
             ,BOARD_PLACE
             ,PLACE_DETAIL
-            ,WISH_DATE
-        FORM WISH_VIEW
+        FROM WISH_VIEW
         WHERE MEMBER_ID = #{memberId}
+
+
+
     </select>
 </mapper>
 
