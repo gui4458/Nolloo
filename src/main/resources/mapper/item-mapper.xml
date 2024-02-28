@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="itemMapper">
+
+    <resultMap id="item" type="com.green.Nolloo.item.vo.ItemVO">
+        <id column="ITEM_CODE" property="itemCode"/>
+        <result column="ITEM_TITLE" property="itemTitle"/>
+        <result column="ITEM_CONTENT" property="itemContent"/>
+        <result column="ITEM_PRICE" property="itemPrice"/>
+        <result column="ITEM_DATE" property="itemDate"/>
+        <result column="ITEM_PEOPLE" property="itemPeople"/>
+        <result column="PEOPLE_CNT" property="PeopleCnt"/>
+        <result column="ITEM_PLACE" property="itemPlace"/>
+        <result column="PLACE_DETAIL" property="placeDetail"/>
+        <result column="CATE_CODE" property="cateCode"/>
+    </resultMap>
+
+<!--    item 등록쿼리-->
+    <insert id="insertParty">
+        INSERT INTO ITEM_INFO(
+            ITEM_TITLE
+            , ITEM_CONTENT
+            , ITEM_PRICE
+            , ITEM_PEOPLE
+            , ITEM_PLACE
+            , PLACE_DETAIL
+        )
+        VALUES(
+            #{itemTitle}
+            , #{itemContent}
+            , #{itemPrice}
+            , #{itemPeople}
+            , #{itemPlace}
+            , #{placeDetail}
+        )
+    </insert>
+<!--    item 메인 목록조회-->
+    <select id="selectPartyList" resultMap="item">
+        SELECT
+            ITEM_CODE
+            , ITEM_TITLE
+            , ITEM_DATE
+            , ITEM_PRICE
+            , ITEM_PLACE
+            , ITEM_PEOPLE
+        FROM ITEM_INFO
+    </select>
+<!--    itemDetail 조회쿼리 -->
+<select id="selectPartyDetail" resultMap="item">
+    SELECT
+        ITEM_CODE
+        , ITEM_TITLE
+        , ITEM_PLACE
+        , ITEM_DATE
+        , ITEM_CONTENT
+        , ITEM_PEOPLE
+    FROM ITEM_INFO
+    WHERE ITEM_CODE = #{boardcode}
+</select>
+    <delete id="deleteParty">
+        DELETE
+        FROM ITEM_INFO
+        WHERE ITEM_CODE = #{itemCode}
+    </delete>
+
+    <update id="updateParty">
+        UPDATE ITEM_INFO
+        SET ITEM_TITLE = #{itemTitle}
+        , ITEM_CONTENT = #{itemContent}
+        , ITEM_PRICE = #{itemPrice}
+        , ITEM_PEOPLE = #{itemPeople}
+        , ITEM_PLACE = #{itemPlace}
+        , PLACE_DETAIL = #{placeDetail}
+        WHERE ITEM_CODE = #{itemCode}
+    </update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
