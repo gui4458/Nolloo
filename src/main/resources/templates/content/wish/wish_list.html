@@ -19,8 +19,8 @@
             </div>
             <div>
             </div>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" th:each="wish : ${wishList}">
-                <div class="col">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col-3" th:each="wish : ${wishList}" th:onclick="goWishDetail([[${wish.boardNum}]])">
                     <div class="card shadow-sm" >
                 
                         <div class="card-body" style="background-image: url('https://cdn.visitkorea.or.kr/kfes/upload/nationwide/2024/02/26/3fa43c9e-126a-43de-87ad-44e0d25bb86f.jpg');">
@@ -47,6 +47,6 @@
 
 <th:block layout:fragment="content_js">
     <!-- html 파일이 열릴때 같이 실행되는 js -->
-    <script src="/"></script>
+    <script src="/js/content/wish/wish_list.js"></script>
 </th:block>
 </html>

@@ -48,10 +48,10 @@
             ,PLACE_DETAIL
         FROM WISH_VIEW
         WHERE MEMBER_ID = #{memberId}
-
-
-
     </select>
+
+
+
 </mapper>
 
 

@@ -3,7 +3,8 @@ function goWish(boardNum,loginInfo){
 
     if (loginInfo == null) {
         alert('로그인 해주세요.');
-    } else if (loginInfo != null) {
+    } 
+    else if (loginInfo != null) {
         fetch('/wish/WishListChk', { //요청경로
             method: 'POST',
             cache: 'no-cache',
@@ -22,30 +23,19 @@ function goWish(boardNum,loginInfo){
         .then((data) => {//data -> controller에서 리턴되는 데이터!
             let cnt = 0;
             data.forEach(e => {
-                if(e.boardNum != boardNum){
+                if(e.boardNum == boardNum){
                     cnt++;
                 }
             });
-            if(data.lenth == cnt){
+            if(cnt == 1){
+                alert('관심목록에 해당 상품이 존재 합니다.')
+                
+            }else{
                 const result = confirm('관심목록에 상품을 등록했습니다.\n관심목록 페이지로 이동할까요?')
                 if (result == true) {
                     location.href = `/wish/insertWish?boardNum=${boardNum}`;
                 }
-            }else{
-                alert('관심목록에 해당 상품이 존재 합니다.')
-
             }
-
-            data.forEach(e => {
-                if(e.boardNum != boardNum){
-                    const result = confirm('관심목록에 상품을 등록했습니다.\n관심목록 페이지로 이동할까요?')
-                    if (result == true) {
-                        location.href = `/wish/insertWish?boardNum=${boardNum}`;
-                    }
-                }
-            });
-            
-            
         })
         //fetch 통신 실패 시 실행 영역
         .catch(err=>{
@@ -53,15 +43,5 @@ function goWish(boardNum,loginInfo){
             console.log(err);
         });
     }
-
-
-
-
-
-
-
-    
-
-
-
 }
+
