@@ -50,6 +50,14 @@
         FORM WISH_VIEW
         WHERE MEMBER_ID = #{memberId}
     </select>
+
+    <select id="wishChk" resultType="int">
+        SELECT COUNT(BOARD_NUM)
+        FROM item_wish
+        WHERE BOARD_NUM = #{boardNum}
+        AND MEMBER_ID = #{memberId}
+    </select>
+
 </mapper>
 
 
