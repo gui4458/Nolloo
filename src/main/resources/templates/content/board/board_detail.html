@@ -97,7 +97,7 @@
                             </div>
                             
                             <div class="col">
-                                <button type="button" onclick="updateForm()" class="btn btn-outline-primary">
+                                <button type="button" th:onclick="|location.href='@{/board/updateForm(boardNum=${board.boardNum})}'|" class="btn btn-outline-primary">
                                     수정</button>
                             </div>
                             <div class="col">

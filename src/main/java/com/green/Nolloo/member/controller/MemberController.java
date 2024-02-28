@@ -48,4 +48,9 @@ public class MemberController {
         return "redirect:/board/list";
     }
 
+    @GetMapping("/myPage")
+    public String myPage(){
+        return "content/member/my_page";
+    }
+
 }
