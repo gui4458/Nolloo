@@ -18,6 +18,109 @@ function searchAddress() {
     }).open();
 }
 
-function reviseChk(){
-    alert('수정되었습니다.')
+function reviseChk() {
+
+    const memberPw_tag = document.querySelector('#update_memberPw');
+
+
+    if (memberPw_tag.value == '') {
+        //현재 input 태그에 에러메세지가 있는지 검사
+        const error_span = memberPw_tag.closest('tr').querySelector('.error');
+
+        //만약 기존의 에러메세지가 있다면 지워줌
+        if (error_span != null) {
+            error_span.remove();
+        }
+
+        const error_str = '<span class="error" style="color:red; font-style:italic; font-size:0.8rem;">비밀번호는 필수입력입니다.</span>';
+        memberPw_tag.insertAdjacentHTML('afterend', error_str);
+    }
+
+
+    const memberPwChk=document.querySelector('#update_memberPwChk')
+
+    if(memberPwChk.value==''){
+        const error_span=memberPwChk.closest('tr').querySelector('.error')
+
+        if (error_span != null) {
+            error_span.remove();
+        }
+
+        const error_str = '<span class="error" style="color:red; font-style:italic; font-size:0.8rem;">비밀번호 확인은 필수입력입니다.</span>';
+        memberPwChk.insertAdjacentHTML('afterend', error_str);
+
+    }
+
+    const memberName= document.querySelector('#update_memberName')
+
+    if(memberName.value==''){
+        const error_span=memberName.closest('tr').querySelector('.error')
+
+        if (error_span != null) {
+            error_span.remove();
+        }
+
+        const error_str = '<span class="error" style="color:red; font-style:italic; font-size:0.8rem;">이름은 필수입력입니다.</span>';
+        memberName.insertAdjacentHTML('afterend', error_str);
+
+    }
+    // const memberBirth= document.querySelector('#update_memberBirth')
+
+    // if(memberBirth.value==){
+    //     const error_span=memberBirth.closest('tr').querySelector('.error')
+
+    //     if (error_span != null) {
+    //         error_span.remove();
+    //     }
+
+    //     const error_str = '<span class="error" style="color:red; font-style:italic; font-size:0.8rem;">생년월일은 필수입력입니다.</span>';
+    //     memberBirth.insertAdjacentHTML('afterend', error_str);
+
+    // }
+    const memberEmail= document.querySelector('#update_memberEmail')
+
+    if(memberEmail.value==''){
+        const error_span=memberEmail.closest('tr').querySelector('.error')
+
+        if (error_span != null) {
+            error_span.remove();
+        }
+
+        const error_str = '<span class="error" style="color:red; font-style:italic; font-size:0.8rem;">이메일은 필수입력입니다.</span>';
+        memberEmail.insertAdjacentHTML('afterend', error_str);
+
+    }
+    const memberTel1= document.querySelector('#update_memberTel1')
+
+    if(memberTel1.value==''){
+        const error_span=memberTel1.closest('tr').querySelector('.error')
+
+        if (error_span != null) {
+            error_span.remove();
+        }
+
+        const error_str = '<span class="error" style="color:red; font-style:italic; font-size:0.8rem;">전화번호는 필수입력입니다.</span>';
+        memberTel1.insertAdjacentHTML('afterend', error_str);
+
+    }
+
+    const member_address= document.querySelector('#roadAddress')
+
+    if(member_address.value==''){
+        const error_span=member_address.closest('tr').querySelector('.error')
+
+        if (error_span != null) {
+            error_span.remove();
+        }
+
+        const error_str = '<span class="error" style="color:red; font-style:italic; font-size:0.8rem;">주소는 필수입력입니다.</span>';
+        member_address.insertAdjacentHTML('afterend', error_str);
+
+    }
+
+    else{
+        alert('수정되었습니다')
+    }
+
+    
 }
