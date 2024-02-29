@@ -14,6 +14,14 @@
         <result column="PEOPLE_CNT" property="PeopleCnt"/>
         <result column="ITEM_PLACE" property="itemPlace"/>
         <result column="PLACE_DETAIL" property="placeDetail"/>
+        <result column="ITEM_START_DATE" property="itemStartDate"/>
+        <result column="ITEM_END_DATE" property="itemEndDate"/>
+        <result column="ITEM_TEL" property="itemTel"/>
+        <result column="ITEM_URL" property="itemUrl"/>
+        <result column="ITEM_ROAD_PLACE" property="itemRoadPlace"/>
+        <result column="ITEM_NUM_PLACE" property="itemNumPlace"/>
+        <result column="ITEM_X" property="itemX"/>
+        <result column="ITEM_Y" property="itemY"/>
         <result column="CATE_CODE" property="cateCode"/>
     </resultMap>
 
@@ -47,7 +55,9 @@
             , ITEM_PRICE
             , ITEM_PLACE
             , ITEM_PEOPLE
+            , CATE_CODE
         FROM ITEM_INFO
+        WHERE CATE_CODE=1
     </select>
 <!--    itemDetail 조회쿼리 -->
 <select id="selectPartyDetail" resultMap="item">

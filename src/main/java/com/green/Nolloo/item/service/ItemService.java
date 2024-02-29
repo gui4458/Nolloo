@@ -8,7 +8,7 @@ public interface ItemService {
     // board 등록하는 메소드
     void insertParty(ItemVO itemVO);
     // board 목록 조회 메소드
-    List<ItemVO> selectPartyList();
+    List<ItemVO> selectPartyList(ItemVO itemVO);
     // board 디테일
     ItemVO selectPartyDetail(ItemVO itemVO);
     //board 삭제하는 메소드

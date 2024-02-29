@@ -28,8 +28,8 @@ public class ItemController {
 
     //파티게시글 목록조회
     @GetMapping("/list")
-    public String list(Model model, HttpSession session){
-        model.addAttribute("itemList",itemService.selectPartyList());
+    public String list(Model model, HttpSession session, ItemVO itemVO){
+        model.addAttribute("itemList",itemService.selectPartyList(itemVO));
         MemberVO loginInfo =(MemberVO)session.getAttribute("loginInfo");
         List<Integer> wishCodeList = new ArrayList<>();
         if (loginInfo != null){
