@@ -17,3 +17,7 @@ function searchAddress() {
         }
     }).open();
 }
+
+function reviseChk(){
+    alert('수정되었습니다.')
+}

@@ -13,5 +13,7 @@ public interface MemberService {
     //회원정보조회
     MemberVO memberInfo(MemberVO memberVO);
 
+    void revise(MemberVO memberVO);
+
 
 }

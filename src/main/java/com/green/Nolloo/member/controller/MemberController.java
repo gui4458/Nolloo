@@ -58,6 +58,17 @@ public class MemberController {
 
         MemberVO memberInfo = memberService.memberInfo(memberVO);
         model.addAttribute("memberInfo",memberInfo);
+
+        return "content/member/my_page";
+    }
+
+    @PostMapping("/myPage")
+    public String myPage1(MemberVO memberVO,HttpSession session,Model model){
+        MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
+        memberVO.setMemberId(loginInfo.getMemberId());
+        memberService.revise(memberVO);
+        MemberVO memberInfo = memberService.memberInfo(memberVO);
+        model.addAttribute("memberInfo",memberInfo);
         return "content/member/my_page";
     }
 
