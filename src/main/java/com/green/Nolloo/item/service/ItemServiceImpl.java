@@ -21,8 +21,8 @@ public class ItemServiceImpl implements ItemService {
     }
     //item 목록조회
     @Override
-    public List<ItemVO> selectPartyList() {
-        return sqlSession.selectList("itemMapper.selectPartyList");
+    public List<ItemVO> selectPartyList(ItemVO itemVO) {
+        return sqlSession.selectList("itemMapper.selectPartyList", itemVO);
     }
 
     @Override
