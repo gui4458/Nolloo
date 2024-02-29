@@ -36,7 +36,7 @@ public class AdminController {
 
         try{
             //utf-8 형태로 csv 파일 파싱
-            CSVReader csvReader = new CSVReader(new InputStreamReader(new FileInputStream("D:\\01-STUDY\\dev\\Nolloo\\src\\main\\resources\\csv\\festival_1.csv"), StandardCharsets.UTF_8));
+            CSVReader csvReader = new CSVReader(new InputStreamReader(new FileInputStream("D:\\01-STUDY\\dev\\download\\OneDrive\\Nolloo\\src\\main\\resources\\csv\\festival_1.csv"), StandardCharsets.UTF_8));
             // 컬럼명은 저장되지 않도록 한 줄 읽기
             csvReader.readNext();
             do{
