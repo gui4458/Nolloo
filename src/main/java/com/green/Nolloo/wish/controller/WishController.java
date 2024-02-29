@@ -57,7 +57,6 @@ public class WishController {
         MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
         wishVO.setMemberId(loginInfo.getMemberId());
         wishService.wishDelete(wishVO);
-
     }
 
 }
