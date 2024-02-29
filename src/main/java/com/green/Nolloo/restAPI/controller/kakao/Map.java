@@ -32,7 +32,6 @@ public class Map {
 
     @GetMapping("/position")
     public String pos(@RequestParam(name="itemCode") int itemCode, Model model) {
-        String apiKey = mapService.getkakao-js-key();
         MapVO LatLng = restAPIService.selectMapLatLnt(itemCode);
         model.addAttribute("LatLng",LatLng);
         return "/content/restAPI/position";
