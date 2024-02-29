@@ -1,11 +1,18 @@
 package com.green.Nolloo.restAPI.controller.kakao;
 
+import com.green.Nolloo.restAPI.service.restAPIService;
+import com.green.Nolloo.restAPI.vo.MapVO;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class Map {
+
+    @Resource(name = "restAPIService")
+    private restAPIService restAPIService;
 
     public double getDistanceBetweenPointsNew(double latitude1, double longitude1, double latitude2, double longitude2, String unit) {
         double theta = longitude1 - longitude2;
@@ -24,10 +31,14 @@ public class Map {
 
 
     @GetMapping("/position")
-    public String pos() {
-
+    public String pos(@RequestParam(name="itemCode") int itemCode, Model model) {
+        String apiKey = mapService.getkakao-js-key();
+        MapVO LatLng = restAPIService.selectMapLatLnt(itemCode);
+        model.addAttribute("LatLng",LatLng);
         return "/content/restAPI/position";
     }
+
+
 
     @GetMapping("/find-items")
     public String findItems() {
