@@ -17,6 +17,16 @@
         FROM ITEM_INFO
         WHERE ITEM_CODE = #{itemCode}
     </select>
+
+    <select id="selectAllMapLatLng" resultMap="kakaoMap">
+        SELECT
+        ITEM_CODE
+        , ITEM_X
+        , ITEM_Y
+        FROM ITEM_INFO
+    </select>
+
+
 	
 </mapper>
 

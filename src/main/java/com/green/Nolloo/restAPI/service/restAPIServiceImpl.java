@@ -5,6 +5,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("restAPIService")
 public class restAPIServiceImpl implements restAPIService {
 
@@ -15,4 +17,11 @@ public class restAPIServiceImpl implements restAPIService {
     public MapVO selectMapLatLnt(int itemCode) {
         return sqlSession.selectOne("mapMapper.selectMapLatLng",itemCode);
     }
+
+    @Override
+    public List<MapVO> selectAllMapLatLnt() {
+        return sqlSession.selectList("mapMapper.selectAllMapLatLng");
+    }
+
+
 }

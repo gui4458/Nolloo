@@ -6,8 +6,11 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 public class Map {
@@ -30,21 +33,32 @@ public class Map {
         }
     }
 
-    @ResponseBody
+
     @GetMapping("/position")
+    public String pos() {
+        return "/content/restAPI/position";
+    }
+
+    @ResponseBody
+    @PostMapping("/position")
     public MapVO pos(@RequestParam(name="itemCode") int itemCode, Model model) {
         MapVO LatLng = restAPIService.selectMapLatLnt(itemCode);
-        model.addAttribute("LatLng",LatLng);
         return LatLng;
     }
 
 
-
     @GetMapping("/find-items")
     public String findItems() {
-
         return "/content/restAPI/find-items";
     }
+
+    @ResponseBody
+    @PostMapping("/find-items")
+    public List<MapVO> allPos() {
+        List<MapVO> allPos = restAPIService.selectAllMapLatLnt();
+        return allPos;
+    }
+
 
     @GetMapping("/circle")
     public String circle() {
