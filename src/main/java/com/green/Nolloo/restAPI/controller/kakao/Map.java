@@ -46,24 +46,16 @@ public class Map {
         return LatLng;
     }
 
-
-    @GetMapping("/find-items")
-    public String findItems() {
-        return "/content/restAPI/find-items";
+    @GetMapping("/now")
+    public String circle() {
+        return "/content/restAPI/now-pos";
     }
 
     @ResponseBody
-    @PostMapping("/find-items")
-    public List<MapVO> allPos() {
-        List<MapVO> allPos = restAPIService.selectAllMapLatLnt();
-        return allPos;
-    }
-
-
-    @GetMapping("/circle")
-    public String circle() {
-
-        return "/content/restAPI/circle";
+    @PostMapping("/now")
+    public List<MapVO> nowPos() {
+        List<MapVO> nowPos = restAPIService.selectAllMapLatLnt();
+        return nowPos;
     }
 
 
