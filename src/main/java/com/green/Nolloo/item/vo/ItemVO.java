@@ -23,7 +23,22 @@ public class ItemVO {
     private String itemUrl;
     private String itemRoadPlace;
     private String itemNumPlace;
-    private int item_x;
-    private int item_y;
+    private double itemX;
+    private double itemY;
     private int cateCode;
+
+    //매개변수로 전달되는 csv 행 데이터를  vo의 객 변수에 매핑
+    public void setCsvData(String[] rowData){
+        setItemTitle(rowData[0]);
+        setItemPlace(rowData[1]);
+        setItemStartDate(rowData[2]);
+        setItemEndDate(rowData[3]);
+        setItemContent(rowData[4]);
+        setItemTel(rowData[5]);
+        setItemUrl(rowData[6]);
+        setItemRoadPlace(rowData[7]);
+        setItemNumPlace(rowData[8]);
+        setItemX(Double.parseDouble(rowData[9]));
+        setItemY(Double.parseDouble(rowData[10]));
+    }
 }
