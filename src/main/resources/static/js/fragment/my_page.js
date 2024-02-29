@@ -104,10 +104,10 @@ function reviseChk() {
 
     }
 
-    const member_address= document.querySelector('#roadAddress')
+    const member_address= document.querySelector('#roadAddress');
 
     if(member_address.value==''){
-        const error_span=member_address.closest('tr').querySelector('.error')
+        const error_span=member_address.closest('tr').querySelector('.error');
 
         if (error_span != null) {
             error_span.remove();
@@ -118,9 +118,11 @@ function reviseChk() {
 
     }
 
-    else{
-        alert('수정되었습니다')
-    }
+    //위의 조건이 다 맞다면 submit
+    document.querySelector('#update-member-form').submit();
+
+    
+    
 
     
 }
