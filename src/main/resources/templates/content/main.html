@@ -105,23 +105,33 @@
                                 [[${item.itemDate}]]
                               
                             </div>
-                            <th:block th:if="${session.loginInfo != null}">
-                              <div class="col" 
-                              th:onclick="wishDelete([[${item.itemCode}]])"
-                              th:if="${#lists.contains(wishCodeList,item.itemCode)}">
-                                ❤
-                              </div>
-                              <div class="col" 
-                              th:onclick="wishAdd([[${item.itemCode}]])"
-                              th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
-                                🤍
-                              </div>
-                            </th:block>
-                            <th:block th:if="${session.loginInfo == null}">
-                              <div class="col">
-                                🤍
-                              </div>
-                            </th:block>
+                            <div class="col">
+                              <th:block th:if="${session.loginInfo != null}">
+                                
+                                <div class="col" 
+                                th:onclick="wishDelete(this,[[${item.itemCode}]])"
+                                th:if="${#lists.contains(wishCodeList,item.itemCode)}">
+                                  ❤
+                                </div>
+                            
+                              
+                                <div class="col" 
+                                th:onclick="wishAdd(this,[[${item.itemCode}]])"
+                                th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
+                                  🤍
+                                </div>
+                              </th:block>
+                              <th:block th:if="${session.loginInfo == null}">
+                                <div class="col"
+                                onclick="gologin()">
+                                  🤍
+                                </div>
+                              </th:block>
+
+                            </div>
+                              
+                            
+                            
                             
                             
                           

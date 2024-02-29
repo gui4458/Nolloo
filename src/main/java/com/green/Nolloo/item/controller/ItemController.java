@@ -37,7 +37,6 @@ public class ItemController {
             for (WishViewVO e : wishList){
                 wishCodeList.add(e.getItemCode());
             }
-            System.out.println(wishCodeList);
             model.addAttribute("wishCodeList",wishCodeList);
         }
         return "content/main";

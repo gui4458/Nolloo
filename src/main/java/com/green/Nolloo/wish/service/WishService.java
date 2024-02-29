@@ -12,4 +12,6 @@ public interface WishService {
     List<WishViewVO> selectWish(String memberId);
 
     void wishDelete(WishVO wishVO);
+
+    int check(WishVO wishVO);
 }

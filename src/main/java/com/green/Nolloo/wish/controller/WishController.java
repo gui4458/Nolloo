@@ -25,37 +25,39 @@ public class WishController {
         MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
         List<WishViewVO> wishList = wishService.selectWish(loginInfo.getMemberId());
         model.addAttribute("wishList",wishList);
-        System.out.println(wishList);
         return "content/wish/wish_list";
     }
 
 
-//  관심목록에 같은 상품이 있는지 체크
+//  관심목록에 같은 상품이 있는지 체크 후 아이템 추가
     @ResponseBody
-    @PostMapping("/WishListChk")
-    public List<WishViewVO> WishListChk(HttpSession session){
+    @PostMapping("/insertWish")
+    public List<WishViewVO> insertWish(HttpSession session,@RequestBody WishVO wishVO){
         MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
+        wishVO.setMemberId(loginInfo.getMemberId());
         List<WishViewVO> wishList = wishService.selectWish(loginInfo.getMemberId());
+        int chk = wishService.check(wishVO);
+        if (chk == 0){
+            wishService.insertWish(wishVO);
+        }
+
+
+
+
+
+
         return wishList;
     }
 
-//  관심목록에 아이템 추가
-    @GetMapping("/insertWish")
-    public String insertWish(WishVO wishVO, HttpSession session){
-        MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
-        wishVO.setMemberId(loginInfo.getMemberId());
-        wishService.insertWish(wishVO);
-
-        return "redirect:/wish/goWishList";
-    }
 
 //  관심목록에서 아이템 삭제
-    @GetMapping("/wishDelete")
-    public String wishDelete(WishVO wishVO,HttpSession session){
+    @ResponseBody
+    @PostMapping("/wishDelete")
+    public void wishDelete(@RequestBody WishVO wishVO,HttpSession session){
         MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
         wishVO.setMemberId(loginInfo.getMemberId());
         wishService.wishDelete(wishVO);
-        return "redirect:/item/list";
+
     }
 
 }
