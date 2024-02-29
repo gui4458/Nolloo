@@ -65,7 +65,7 @@
         , MEMBER_EMAIL
         , MEMBER_TEL
         , GENDER
-        , MEMBER_POST
+
         , MEMBER_ADDR
         , ADDR_DETAIL
         FROM MEMBER

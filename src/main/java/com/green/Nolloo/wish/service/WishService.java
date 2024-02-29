@@ -10,4 +10,6 @@ public interface WishService {
     void insertWish(WishVO wishVO);
 
     List<WishViewVO> selectWish(String memberId);
+
+    void wishDelete(WishVO wishVO);
 }

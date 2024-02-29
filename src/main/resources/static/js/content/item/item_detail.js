@@ -1,4 +1,4 @@
-function goWish(boardNum,loginInfo){
+function goWish(itemCode,loginInfo){
 
 
     if (loginInfo == null) {
@@ -23,7 +23,7 @@ function goWish(boardNum,loginInfo){
         .then((data) => {//data -> controller에서 리턴되는 데이터!
             let cnt = 0;
             data.forEach(e => {
-                if(e.boardNum == boardNum){
+                if(e.itemCode == itemCode){
                     cnt++;
                 }
             });
@@ -31,9 +31,9 @@ function goWish(boardNum,loginInfo){
                 alert('관심목록에 해당 상품이 존재 합니다.')
                 
             }else{
-                const result = confirm('관심목록에 상품을 등록했습니다.\n관심목록 페이지로 이동할까요?')
-                if (result == true) {
-                    location.href = `/wish/insertWish?boardNum=${boardNum}`;
+                const result1 = confirm('관심목록에 상품을 등록했습니다.\n관심목록 페이지로 이동할까요?')
+                if (result1 == true) {
+                    location.href = `/wish/insertWish?itemCode=${itemCode}`;
                 }
             }
         })

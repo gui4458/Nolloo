@@ -1,4 +1,4 @@
-function goWishDetail(boardNum){
-    alert(boardNum)
+// function goWishDetail(itemCode){
+//     alert(itemCode)
 
-}
+// }
