@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="mapMapper">
+    <resultMap id="kakaoMap" type="com.green.Nolloo.restAPI.vo.MapVO">
+        <id column="ITEM_CODE" property="itemCode"/>
+        <result column="ITEM_X" property="itemX"/>
+        <result column="ITEM_Y" property="itemY"/>
+    </resultMap>
+
+    <select id="selectMapLatLng" resultMap="kakaoMap">
+        SELECT
+        ITEM_CODE
+        , ITEM_X
+        , ITEM_Y
+        FROM ITEM_INFO
+        WHERE ITEM_CODE = #{itemCode}
+    </select>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
