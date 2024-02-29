@@ -11,7 +11,6 @@
     <!-- html 코드 작성 -->
 
     <div class="py-3">
-   
     
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     
@@ -106,12 +105,24 @@
                                 [[${item.itemDate}]]
                               
                             </div>
-                            <div class="col" th:if="${#lists.contains(wishCodeList,item.itemCode)}">
-                              ❤
-                            </div>
-                            <div class="col" th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
-                              🤍
-                            </div>
+                            <th:block th:if="${session.loginInfo != null}">
+                              <div class="col" 
+                              th:onclick="wishDelete([[${item.itemCode}]])"
+                              th:if="${#lists.contains(wishCodeList,item.itemCode)}">
+                                ❤
+                              </div>
+                              <div class="col" 
+                              th:onclick="wishAdd([[${item.itemCode}]])"
+                              th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
+                                🤍
+                              </div>
+                            </th:block>
+                            <th:block th:if="${session.loginInfo == null}">
+                              <div class="col">
+                                🤍
+                              </div>
+                            </th:block>
+                            
                             
                           
                         </div>

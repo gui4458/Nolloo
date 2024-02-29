@@ -9,10 +9,7 @@ import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +25,7 @@ public class WishController {
         MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
         List<WishViewVO> wishList = wishService.selectWish(loginInfo.getMemberId());
         model.addAttribute("wishList",wishList);
+        System.out.println(wishList);
         return "content/wish/wish_list";
     }
 
@@ -47,7 +45,17 @@ public class WishController {
         MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
         wishVO.setMemberId(loginInfo.getMemberId());
         wishService.insertWish(wishVO);
+
         return "redirect:/wish/goWishList";
+    }
+
+//  관심목록에서 아이템 삭제
+    @GetMapping("/wishDelete")
+    public String wishDelete(WishVO wishVO,HttpSession session){
+        MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
+        wishVO.setMemberId(loginInfo.getMemberId());
+        wishService.wishDelete(wishVO);
+        return "redirect:/item/list";
     }
 
 }

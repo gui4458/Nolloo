@@ -50,6 +50,12 @@
         WHERE MEMBER_ID = #{memberId}
     </select>
 
+    <delete id="wishDelete">
+        DELETE
+        FROM ITEM_WISH
+        WHERE ITEM_CODE = #{itemCode}
+        AND MEMBER_ID = #{memberId}
+    </delete>
 
 
 </mapper>

@@ -20,7 +20,7 @@ public class MemberController {
     @PostMapping("/join")
     public String join(MemberVO memberVO){
         memberService.join(memberVO);
-        return "redirect:/board/list";
+        return "redirect:/item/list";
     }
 
     //로그인 화면으로 이동
@@ -46,7 +46,7 @@ public class MemberController {
     @GetMapping("logout")
     public String logout(HttpSession session){
     session.removeAttribute("loginInfo");
-        return "redirect:/board/list";
+        return "redirect:/item/list";
     }
 
     @GetMapping("/myPage")

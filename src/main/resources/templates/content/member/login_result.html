@@ -9,7 +9,7 @@
 <th:block th:if="${session.loginInfo != null}">
 <script>
     alert(`[[${session.loginInfo.memberId}]]님 환영합니다.`)
-    location.href="/board/list"
+    location.href="/item/list"
 </script>
 </th:block>
 <th:block th:if="${session.loginInfo == null}">
