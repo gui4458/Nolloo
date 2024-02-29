@@ -40,5 +40,6 @@ public class ItemVO {
         setItemNumPlace(rowData[8]);
         setItemX(Double.parseDouble(rowData[9]));
         setItemY(Double.parseDouble(rowData[10]));
+        setCateCode(Integer.parseInt(rowData[11]));
     }
 }

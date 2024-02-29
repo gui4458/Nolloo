@@ -5,17 +5,18 @@
 <mapper namespace="adminMapper">
 	<insert id="insertFestival">
         INSERT INTO ITEM_INFO(
-        ITEM_TITLE
-        , ITEM_PLACE
-        , ITEM_START_DATE
-        , ITEM_END_DATE
-        , ITEM_CONTENT
-        , ITEM_TEL
-        , ITEM_URL
-        , ITEM_ROAD_PLACE
-        , ITEM_NUM_PLACE
-        , ITEM_X
-        , ITEM_Y
+            ITEM_TITLE
+            , ITEM_PLACE
+            , ITEM_START_DATE
+            , ITEM_END_DATE
+            , ITEM_CONTENT
+            , ITEM_TEL
+            , ITEM_URL
+            , ITEM_ROAD_PLACE
+            , ITEM_NUM_PLACE
+            , ITEM_X
+            , ITEM_Y
+            , CATE_CODE
         )
         VALUES
         (
@@ -30,6 +31,7 @@
             , #{itemNumPlace}
             , #{itemX}
             , #{itemY}
+            , #{cateCode}
         )
 
     </insert>
