@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class Map {
@@ -29,12 +30,12 @@ public class Map {
         }
     }
 
-
+    @ResponseBody
     @GetMapping("/position")
-    public String pos(@RequestParam(name="itemCode") int itemCode, Model model) {
+    public MapVO pos(@RequestParam(name="itemCode") int itemCode, Model model) {
         MapVO LatLng = restAPIService.selectMapLatLnt(itemCode);
         model.addAttribute("LatLng",LatLng);
-        return "/content/restAPI/position";
+        return LatLng;
     }
 
 
