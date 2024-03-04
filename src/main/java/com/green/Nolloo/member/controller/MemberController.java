@@ -81,7 +81,9 @@ public class MemberController {
         memberVO.setMemberId(loginInfo.getMemberId());
 
         memberService.deleteMember(memberVO);
-        return "item/list";
+        session.removeAttribute("loginInfo");
+
+        return "redirect:/item/list";
     }
 
 }
