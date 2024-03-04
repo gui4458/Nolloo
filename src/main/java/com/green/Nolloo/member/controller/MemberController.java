@@ -67,9 +67,23 @@ public class MemberController {
         MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
         memberVO.setMemberId(loginInfo.getMemberId());
         memberService.revise(memberVO);
-        MemberVO memberInfo = memberService.memberInfo(memberVO);
-        model.addAttribute("memberInfo",memberInfo);
-        return "content/member/my_page";
+
+//        MemberVO memberInfo = memberService.memberInfo(memberVO);
+//        model.addAttribute("memberInfo",memberInfo);
+//        return "content/member/my_page";
+
+        return "redirect:/member/myPage";
+
+    }
+    @GetMapping("deleteMember")
+    public String deleteMember(MemberVO memberVO,HttpSession session){
+        MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
+        memberVO.setMemberId(loginInfo.getMemberId());
+
+        memberService.deleteMember(memberVO);
+        session.removeAttribute("loginInfo");
+
+        return "redirect:/item/list";
     }
 
 }

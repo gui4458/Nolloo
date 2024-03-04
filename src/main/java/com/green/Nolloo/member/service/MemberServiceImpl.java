@@ -30,4 +30,9 @@ public class MemberServiceImpl implements MemberService{
     public void revise(MemberVO memberVO) {
         sqlSession.update("memberMapper.revise",memberVO);
     }
+
+    @Override
+    public void deleteMember(MemberVO memberVO) {
+        sqlSession.delete("memberMapper.deleteMember",memberVO);
+    }
 }

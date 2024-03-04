@@ -13,7 +13,10 @@ public interface MemberService {
     //회원정보조회
     MemberVO memberInfo(MemberVO memberVO);
 
+    //회원정보수정
     void revise(MemberVO memberVO);
 
+    //회원탈퇴
+    void deleteMember(MemberVO memberVO);
 
 }
