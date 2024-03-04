@@ -91,7 +91,7 @@
 
     <delete id="deleteMember">
         DELETE FROM MEMBER
-        WHERE
+        WHERE MEMBER_ID=#{memberId}
 
     </delete>
 

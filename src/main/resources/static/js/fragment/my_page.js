@@ -22,7 +22,7 @@ function reviseChk() {
 
     const memberPw_tag = document.querySelector('#update_memberPw');
 
-
+    //validation 처리 (데이터 유효성 검사)
     if (memberPw_tag.value == '') {
         //현재 input 태그에 에러메세지가 있는지 검사
         const error_span = memberPw_tag.closest('tr').querySelector('.error');
@@ -104,22 +104,29 @@ function reviseChk() {
 
     }
 
-    const member_address= document.querySelector('#roadAddress');
+    // const member_address= document.querySelector('#roadAddress');
 
-    if(member_address.value==''){
-        const error_span=member_address.closest('tr').querySelector('.error');
+    // if(member_address.value==''){
+    //     const error_span=member_address.closest('tr').querySelector('.error');
 
-        if (error_span != null) {
-            error_span.remove();
-        }
+    //     if (error_span != null) {
+    //         error_span.remove();
+    //     }
 
-        const error_str = '<span class="error" style="color:red; font-style:italic; font-size:0.8rem;">주소는 필수입력입니다.</span>';
-        member_address.insertAdjacentHTML('afterend', error_str);
+    //     const error_str = '<span class="error" style="color:red; font-style:italic; font-size:0.8rem;">주소는 필수입력입니다.</span>';
+    //     member_address.insertAdjacentHTML('afterend', error_str);
 
-    }
+    // }
 
     //위의 조건이 다 맞다면 submit
-    document.querySelector('#update-member-form').submit();
+
+    if (memberName.value != '' && memberPw_tag.value != '' && memberEmail.value !='') {
+        document.querySelector('#update-member-form').submit();    
+    }
+
+
+        // document.querySelector('#update-member-form').submit();
+    
 
     
     
