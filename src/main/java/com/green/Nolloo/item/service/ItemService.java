@@ -16,4 +16,6 @@ public interface ItemService {
 
     void updateParty(ItemVO itemVO);
 
+    int selectNextItemCode();
+
 }

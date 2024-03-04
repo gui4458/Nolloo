@@ -26,7 +26,7 @@ public class UploadUtil {
             String fileName =getUUID()+extension;
             try {
                 //파일경로+랜덤명.확장자
-                File file1 = new File(PathVariable.ITEM_UPLOAD_PATH);
+                File file1 = new File(PathVariable.ITEM_UPLOAD_PATH+fileName);
                 uploadFile.transferTo(file1);
                 //메인 네임
                 imgVO.setAttachedFileName(fileName);

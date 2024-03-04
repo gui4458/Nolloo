@@ -24,7 +24,7 @@
         <result column="ITEM_Y" property="itemY"/>
         <result column="CATE_CODE" property="cateCode"/>
     </resultMap>
-    <resultMap id="" type="">
+    <resultMap id="img" type="com.green.Nolloo.item.vo.ImgVO">
         <id column="IMG_CODE" property="imgCode"/>
         <result column="ORIGIN_FILE_NAME" property="originFileName"/>
         <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
@@ -94,6 +94,11 @@
         , PLACE_DETAIL = #{placeDetail}
         WHERE ITEM_CODE = #{itemCode}
     </update>
+
+    <select id="selectNextItemCode" resultType="int">
+        SELECT IFNULL(MAX(ITEM_CODE),0)+1 FROM ITEM_IMAGE
+    </select>
+
     <insert id="insertImgs">
         INSERT INTO ITEM_IMAGE(
             ORIGIN_FILE_NAME
