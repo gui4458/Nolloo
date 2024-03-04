@@ -63,6 +63,7 @@
             , ITEM_PLACE
             , ITEM_PEOPLE
             , CATE_CODE
+            , ITEM_START_DATE
         FROM ITEM_INFO
     </select>
 <!--    itemDetail 조회쿼리 -->
