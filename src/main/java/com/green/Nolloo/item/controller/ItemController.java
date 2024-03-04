@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +29,11 @@ public class ItemController {
 
     //파티게시글 목록조회
     @GetMapping("/list")
-    public String list(Model model, HttpSession session, ItemVO itemVO){
+    public String list(Model model, HttpSession session, ItemVO itemVO,@RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode){
         model.addAttribute("itemList",itemService.selectPartyList(itemVO));
         MemberVO loginInfo =(MemberVO)session.getAttribute("loginInfo");
         List<Integer> wishCodeList = new ArrayList<>();
+        model.addAttribute("chkCode",chkCode);
         if (loginInfo != null){
             List<WishViewVO> wishList = wishService.selectWish(loginInfo.getMemberId());
             for (WishViewVO e : wishList){

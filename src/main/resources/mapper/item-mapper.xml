@@ -57,7 +57,6 @@
             , ITEM_PEOPLE
             , CATE_CODE
         FROM ITEM_INFO
-        WHERE CATE_CODE=1
     </select>
 <!--    itemDetail 조회쿼리 -->
 <select id="selectPartyDetail" resultMap="item">

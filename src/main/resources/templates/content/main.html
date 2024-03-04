@@ -9,7 +9,7 @@
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
-
+    
     <div class="py-3">
     
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -85,9 +85,9 @@
 
 
     
-    
-    <table class="table">
-        <tr th:each="item : ${itemList}">
+    <th:block th:if="${chkCode == 1}">
+      <table class="table">
+        <tr th:each="item : ${itemList}" th:if="${item.cateCode == 1}">
             <td>메인이미지</td>
             <td>
                 <div class="row">
@@ -127,14 +127,7 @@
                                   🤍
                                 </div>
                               </th:block>
-
                             </div>
-                              
-                            
-                            
-                            
-                            
-                          
                         </div>
                         <div class="row">
                             <div class="col">
@@ -146,14 +139,73 @@
                                 [[${item.itemPeople}]]
                             </div>
                         </div>
-                        
-                  
-                        
                     </div>
                 </div>
             </td>
         </tr>
     </table>
+    </th:block>
+    <th:block th:if="${chkCode == 2}">
+      <table class="table">
+        <tr th:each="item : ${itemList}" th:if="${item.cateCode == 2}">
+            <td>메인이미지</td>
+            <td>
+                <div class="row">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col">
+                                <a th:href="@{/item/itemDetailForm(itemCode=${item.itemCode})}">[[${item.itemTitle}]]</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                [[${item.itemPlace}]]
+                            </div>
+                            <div class="col">
+                                [[${item.itemDate}]]
+                              
+                            </div>
+                            <div class="col">
+                              <th:block th:if="${session.loginInfo != null}">
+                                
+                                <div class="col" 
+                                th:onclick="wishDelete(this,[[${item.itemCode}]])"
+                                th:if="${#lists.contains(wishCodeList,item.itemCode)}">
+                                  ❤
+                                </div>
+                            
+                              
+                                <div class="col" 
+                                th:onclick="wishAdd(this,[[${item.itemCode}]])"
+                                th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
+                                  🤍
+                                </div>
+                              </th:block>
+                              <th:block th:if="${session.loginInfo == null}">
+                                <div class="col"
+                                onclick="gologin()">
+                                  🤍
+                                </div>
+                              </th:block>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                [[${item.itemPrice}]]
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                [[${item.itemPeople}]]
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    </th:block>
+    
 
 
 

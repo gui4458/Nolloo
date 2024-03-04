@@ -1,6 +1,11 @@
-function goParty(){
-    alert(123)
+function goParty(num){
+    num = parseInt(num)
+    location.href=`/item/list?chkCode=${num}`
+    
+    
+    
 }
-function goFestival(){
-    alert(333)
+function goFestival(num){
+    num = parseInt(num)
+    location.href=`/item/list?chkCode=${num}`
 }
