@@ -133,3 +133,12 @@ function reviseChk() {
 
     
 }
+
+function deleteMember(){
+    location.href='/member/deleteMember'
+
+    if (memberId!=null) {
+        alert('회원 탈퇴되었습니다.')    
+    }
+    
+}
