@@ -24,6 +24,13 @@
         <result column="ITEM_Y" property="itemY"/>
         <result column="CATE_CODE" property="cateCode"/>
     </resultMap>
+    <resultMap id="img" type="com.green.Nolloo.item.vo.ImgVO">
+        <id column="IMG_CODE" property="imgCode"/>
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
+        <result column="IS_MAIN" property="isMain"/>
+        <result column="ITEM_CODE" property="itemCode"/>
+    </resultMap>
 
 <!--    item 등록쿼리-->
     <insert id="insertParty">
@@ -86,6 +93,27 @@
         , PLACE_DETAIL = #{placeDetail}
         WHERE ITEM_CODE = #{itemCode}
     </update>
+
+    <select id="selectNextItemCode" resultType="int">
+        SELECT IFNULL(MAX(ITEM_CODE),0)+1 FROM ITEM_IMAGE
+    </select>
+
+    <insert id="insertImgs">
+        INSERT INTO ITEM_IMAGE(
+            ORIGIN_FILE_NAME
+            , ATTACHED_FILE_NAME
+            , IS_MAIN
+            , ITEM_CODE
+        )VALUES
+        <foreach collection="imgList" item="img" separator=",">
+            (
+                #{img.originFileName}
+                , #{img.attachedFileName}
+                , #{img.isMain}
+                , #{img.itemCode}
+            )
+        </foreach>
+    </insert>
 </mapper>
 
 

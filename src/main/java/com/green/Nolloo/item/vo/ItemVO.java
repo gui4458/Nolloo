@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -26,6 +28,7 @@ public class ItemVO {
     private double itemX;
     private double itemY;
     private int cateCode;
+    private List<ImgVO> imgList;
 
     //매개변수로 전달되는 csv 행 데이터를  vo의 객 변수에 매핑
     public void setCsvData(String[] rowData){

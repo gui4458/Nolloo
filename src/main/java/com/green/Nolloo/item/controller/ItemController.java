@@ -1,8 +1,10 @@
 package com.green.Nolloo.item.controller;
 
 import com.green.Nolloo.item.service.ItemService;
+import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.member.vo.MemberVO;
+import com.green.Nolloo.util.UploadUtil;
 import com.green.Nolloo.wish.service.WishService;
 import com.green.Nolloo.wish.vo.WishViewVO;
 import jakarta.annotation.Resource;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,10 +48,32 @@ public class ItemController {
     //게시글 등록
     @GetMapping("/itemAddForm")
     public String boardAddForm(){
+
+
         return"content/item/item_add_form";
     }
     @PostMapping("/itemAdd")
-    public String boardAdd(ItemVO itemVO){
+    public String boardAdd(ItemVO itemVO
+                            , @RequestParam(name = "img") MultipartFile img
+                            , @RequestParam(name = "imgs") MultipartFile[] imgs){
+        //메인이미지 업로드
+        ImgVO mainImg = UploadUtil.uploadFile(img);
+        //상세이미지 업로드
+        List<ImgVO> imgList =UploadUtil.multiUploadFile(imgs);
+
+        int itemCode = itemService.selectNextItemCode();
+
+        itemVO.setItemCode(itemCode);
+
+        mainImg.setItemCode(itemCode);
+
+        for (ImgVO subImg : imgList){
+            subImg.setItemCode(itemCode);
+        }
+        imgList.add(mainImg);
+        itemVO.setImgList(imgList);
+
+
         itemService.insertParty(itemVO);
         return "redirect:/item/list";
     }
