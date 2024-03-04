@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+    <body>
+        <h2>Enter Coordinates</h2>
+        <form action="#" th:action="@{/getAddress}" th:object="${addressVO}" method="get">
+            Longitude: <input type="text" name="longitude"/><br/>
+            Latitude: <input type="text" name="latitude"/><br/>
+            <input type="submit" value="Find Address"/>
+        </form>
+        <h2 th:if="${addressVO != null}">Address Details</h2>
+        <div th:if="${addressVO != null}">
+            <p th:text="'Region 1: ' + ${addressVO.region1depthName}"></p>
+            <p th:text="'Region 2: ' + ${addressVO.region2depthName}"></p>
+            <p th:text="'Region 3: ' + ${addressVO.region3depthName}"></p>
+        </div>
+    </body>
+
+</body>
+</html>
