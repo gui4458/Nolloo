@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/layout파일명기입}" >
+    layout:decorate="~{fragment/my_page/my_layout}" >
 
 <th:block layout:fragment="content_css">
     <!-- html 파일이 열릴때 같이 실행되는 css -->
@@ -10,6 +10,23 @@
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
+
+    <div class="row" style="justify-content: center; margin-top: 5%;">
+        <div class="col">
+            <h4>예약내역</h4>
+        </div>
+    </div>
+    <div class="row" style="text-align: left;">
+        <div class="col">
+            <table class="table table-bordered text-center">
+                <!-- <tr th:each="reserve:${reserveList}">
+                    <td>[[${reserve.reserveCode}]]</td>
+                    <td></td>
+                    <td>[[${reserve.reserveDate}]]</td>
+                </tr> -->
+            </table>
+        </div>
+    </div>
 </th:block>
 
 <th:block layout:fragment="content_js">

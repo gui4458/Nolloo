@@ -3,18 +3,41 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="reserveMapper">
-    <insert id="reserve">
+
+    <resultMap id="reserve" type="com.green.Nolloo.reserve.vo.ReserveVO">
+        <result column="RESERVE_CODE" property="reserveCode"/>
+        <result column="MEMBER_ID" property="memberId"/>
+        <result column="RESERVE_DATE" property="reserveDate"/>
+        <result column="RESERVE_PRICE" property="reservePrice"/>
+        <result column="ITEM_CODE" property="itemCode"/>
+    </resultMap>
+
+    <insert id="insertReserve">
         INSERT INTO RESERVE(
          RESERVE_CODE
         , MEMBER_ID
         , RESERVE_PRICE
+        , ITEM_CODE
         )
         VALUES(
          #{reserveCode}
          , #{memberId}
          , #{reservePrice}
+         , #{itemCode}
         )
     </insert>
+
+    <select id="selectReserve" resultMap="reserve">
+        SELECT
+        RESERVE_CODE
+        , RESERVE_DATE
+        , MEMBER_ID
+        , RESERVE.ITEM_CODE
+        , ITEM_PRICE
+        FROM reserve INNER JOIN item_info
+        ON reserve.ITEM_CODE = item_info.ITEM_CODE
+        WHERE MEMBER_ID=#{memberId}
+    </select>
 
 	
 </mapper>
