@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/reserve")
 public class ReserveController{
@@ -23,24 +25,20 @@ public class ReserveController{
     @ResponseBody
     @PostMapping("/partyReserve")
     public void reserve(HttpSession session
-                        , @RequestBody ReserveVO reserveVO, ItemVO itemVO){
+                        , @RequestBody ReserveVO reserveVO){
         MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
         reserveVO.setMemberId(loginInfo.getMemberId());
-
-        itemVO.setItemCode(reserveVO.getItemCode());
-        itemVO = itemService.selectPartyDetail(itemVO);
-        System.out.println(reserveVO);
-        System.out.println(itemVO);
         reserveService.insertReserve(reserveVO);
-        return ;
+
     }
 
     @GetMapping("/reserveList")
     public String reserveList(ReserveVO reserveVO, HttpSession session, Model model){
         MemberVO loginInfo= (MemberVO)session.getAttribute("loginInfo");
         reserveVO.setMemberId(loginInfo.getMemberId());
-
-        model.addAttribute("reserveList",reserveService.selectReserve(reserveVO));
+        List<ReserveVO> reserveList = reserveService.selectReserve(reserveVO);
+        System.out.println(reserveList);
+        model.addAttribute("reserveList",reserveList);
         return "content/member/reserve";
     }
 }
