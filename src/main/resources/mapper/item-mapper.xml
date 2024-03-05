@@ -23,6 +23,7 @@
         <result column="ITEM_X" property="itemX"/>
         <result column="ITEM_Y" property="itemY"/>
         <result column="CATE_CODE" property="cateCode"/>
+        <collection property="imgList"  resultMap="img"/>
     </resultMap>
     <resultMap id="img" type="com.green.Nolloo.item.vo.ImgVO">
         <id column="IMG_CODE" property="imgCode"/>
@@ -35,7 +36,8 @@
 <!--    item 등록쿼리-->
     <insert id="insertParty">
         INSERT INTO ITEM_INFO(
-            ITEM_TITLE
+            ITEM_CODE
+            , ITEM_TITLE
             , ITEM_CONTENT
             , ITEM_PRICE
             , ITEM_PEOPLE
@@ -44,7 +46,8 @@
             , ITEM_START_DATE
         )
         VALUES(
-            #{itemTitle}
+            #{itemCode}
+            , #{itemTitle}
             , #{itemContent}
             , #{itemPrice}
             , #{itemPeople}
@@ -56,7 +59,7 @@
 <!--    item 메인 목록조회-->
     <select id="selectPartyList" resultMap="item">
         SELECT
-            ITEM_CODE
+            INFO.ITEM_CODE
             , ITEM_TITLE
             , ITEM_DATE
             , ITEM_PRICE
@@ -64,7 +67,12 @@
             , ITEM_PEOPLE
             , CATE_CODE
             , ITEM_START_DATE
-        FROM ITEM_INFO
+            , ATTACHED_FILE_NAME
+        FROM ITEM_INFO INFO
+        INNER JOIN ITEM_IMAGE IMG
+        ON INFO.ITEM_CODE = IMG.ITEM_CODE
+        WHERE IS_MAIN='Y'
+        ORDER BY ITEM_DATE DESC
     </select>
 <!--    itemDetail 조회쿼리 -->
 <select id="selectPartyDetail" resultMap="item">
@@ -115,6 +123,7 @@
             )
         </foreach>
     </insert>
+
 </mapper>
 
 

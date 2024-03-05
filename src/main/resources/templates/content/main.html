@@ -1,201 +1,200 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/user_layout}">
+  layout:decorate="~{fragment/user_layout}">
 
 <th:block layout:fragment="content_css">
-    <!-- html 파일이 열릴때 같이 실행되는 css -->
-    <link rel="stylesheet" href="/css/fragment/item_list.css">
+  <!-- html 파일이 열릴때 같이 실행되는 css -->
+  <link rel="stylesheet" href="/css/fragment/item_list.css">
 </th:block>
 
 <th:block layout:fragment="contentFragment">
-    <!-- html 코드 작성 -->
-    
-    <div class="py-3">
-    
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    
-    
-            <div class="col" onclick="alert('clicked')">
-              <div class="card shadow-sm" >
-                
-                <div class="card-body" style="background-image: url('https://cdn.visitkorea.or.kr/kfes/upload/nationwide/2024/02/26/3fa43c9e-126a-43de-87ad-44e0d25bb86f.jpg');">
-                  <h3 class="title">This is Title</h3>
-                  <h6 class="area">Daegu</h6>
-                  <h6 class="date">2024.06.27</h6>
-    
-                  <div class="d-flex" style="height:290px;" >
-                  </div>
-    
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
-                    </div>
-                    <small class="text-body-secondary">9 people</small>
-                  </div>
-                </div>
-              </div>
+  <!-- html 코드 작성 -->
+
+  <div class="py-3">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+
+      <div class="col" onclick="alert('clicked')">
+        <div class="card shadow-sm">
+
+          <div class="card-body"
+            style="background-image: url('https://cdn.visitkorea.or.kr/kfes/upload/nationwide/2024/02/26/3fa43c9e-126a-43de-87ad-44e0d25bb86f.jpg');">
+            <h3 class="title">This is Title</h3>
+            <h6 class="area">Daegu</h6>
+            <h6 class="date">2024.06.27</h6>
+
+            <div class="d-flex" style="height:290px;">
             </div>
-    
-            <div class="col" onclick="alert('clicked')">
-              <div class="card shadow-sm" >
-                
-                <div class="card-body" style="background-image: url('https://cdn.visitkorea.or.kr/kfes/upload/nationwide/2024/02/26/d60db693-6eca-47ac-a32c-743e70c7ab5a.jpg');">
-                  <h3 class="title">This is Title</h3>
-                  <h6 class="area">Daegu</h6>
-                  <h6 class="date">2024.06.27</h6>
-    
-                  <div class="d-flex" style="height:290px;" >
-                  </div>
-    
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
-                    </div>
-                    <small class="text-body-secondary">9 people</small>
-                  </div>
-                </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
               </div>
+              <small class="text-body-secondary">9 people</small>
             </div>
-    
-            <div class="col" onclick="alert('clicked')">
-              <div class="card shadow-sm" >
-                
-                <div class="card-body" style="background-image: url('https://cdn.visitkorea.or.kr/kfes/upload/nationwide/2024/02/26/45669c4b-690a-4e9c-879c-b3b29c7bf39b.jpeg');">
-                  <h3 class="title">This is Title</h3>
-                  <h6 class="area">Daegu</h6>
-                  <h6 class="date">2024.06.27</h6>
-    
-                  <div class="d-flex" style="height:290px;" >
-                  </div>
-    
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
-                    </div>
-                    <small class="text-body-secondary">9 people</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-    
-    
           </div>
-  
+        </div>
+      </div>
+
+      <div class="col" onclick="alert('clicked')">
+        <div class="card shadow-sm">
+
+          <div class="card-body"
+            style="background-image: url('https://cdn.visitkorea.or.kr/kfes/upload/nationwide/2024/02/26/d60db693-6eca-47ac-a32c-743e70c7ab5a.jpg');">
+            <h3 class="title">This is Title</h3>
+            <h6 class="area">Daegu</h6>
+            <h6 class="date">2024.06.27</h6>
+
+            <div class="d-flex" style="height:290px;">
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
+              </div>
+              <small class="text-body-secondary">9 people</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col" onclick="alert('clicked')">
+        <div class="card shadow-sm">
+
+          <div class="card-body"
+            style="background-image: url('https://cdn.visitkorea.or.kr/kfes/upload/nationwide/2024/02/26/45669c4b-690a-4e9c-879c-b3b29c7bf39b.jpeg');">
+            <h3 class="title">This is Title</h3>
+            <h6 class="area">Daegu</h6>
+            <h6 class="date">2024.06.27</h6>
+
+            <div class="d-flex" style="height:290px;">
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
+              </div>
+              <small class="text-body-secondary">9 people</small>
+            </div>
+          </div>
+        </div>
       </div>
 
 
+    </div>
 
+  </div>
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <th:block th:if="${chkCode == 1}">
-    
-          <div class="col" th:each="item : ${itemList}" th:if="${item.cateCode == 1}" onclick="alert('clicked')">
-            <div class="card shadow-sm" >
-              
-              <div class="card-body" style="background-image: url('https://cdn.visitkorea.or.kr/kfes/upload/nationwide/2024/02/26/3fa43c9e-126a-43de-87ad-44e0d25bb86f.jpg'); position: relative;">
-                <div class="title h3">[[${item.itemTitle}]]
-                  <span class="ht text-end" style="position: absolute; left: 95%; transform: translate(-90%);">
-                    <th:block th:if="${session.loginInfo != null}">
-                                  
-                      <div class="col" 
-                      th:onclick="wishDelete(this,[[${item.itemCode}]])"
-                      th:if="${#lists.contains(wishCodeList,item.itemCode)}">
-                        ❤
-                      </div>
-                  
-                    
-                      <div class="col" 
-                      th:onclick="wishAdd(this,[[${item.itemCode}]])"
-                      th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
-                        🤍
-                      </div>
-                    </th:block>
-                    <th:block th:if="${session.loginInfo == null}">
-                      <div class="col"
-                      onclick="gologin()">
-                        🤍
-                      </div>
-                    </th:block>
-                  </span>
-                </div>
-                <h6 class="area">[[${item.itemPlace}]]</h6>
-                <h6 class="date">[[${item.itemStartDate}]]</h6>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <th:block th:if="${chkCode == 1}">
 
-                <div class="d-flex" style="height:290px;" >
-                </div>
+      <div class="col" th:each="item : ${itemList}" th:if="${item.cateCode == 1}" onclick="alert('clicked')">
+        <div class="card shadow-sm">
+          
+          <div class="card-body" th:style="'background-image:url(/upload/itemSolo/' + ${item.imgList[0].attachedFileName} + ');'">
+            <div class="title h3">[[${item.itemTitle}]]
+              <span class="ht text-end" style="position: absolute; left: 95%; transform: translate(-90%);">
+                <th:block th:if="${session.loginInfo != null}">
 
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
+                  <div class="col" th:onclick="wishDelete(this,[[${item.itemCode}]])"
+                    th:if="${#lists.contains(wishCodeList,item.itemCode)}">
+                    ❤
                   </div>
-                  <small class="text-body-secondary">[[${item.itemPeople}]]명</small>
-                </div>
+
+
+                  <div class="col" th:onclick="wishAdd(this,[[${item.itemCode}]])"
+                    th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
+                    🤍
+                  </div>
+                </th:block>
+                <th:block th:if="${session.loginInfo == null}">
+                  <div class="col" onclick="gologin()">
+                    🤍
+                  </div>
+                </th:block>
+              </span>
+            </div>
+            <h6 class="area">[[${item.itemPlace}]]</h6>
+            <h6 class="date">[[${item.itemStartDate}]]</h6>
+
+            <div class="d-flex" style="height:290px;">
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
               </div>
+              <small class="text-body-secondary">[[${item.itemPeople}]]명</small>
             </div>
           </div>
-        </th:block>
-
-
-        <th:block th:if="${chkCode == 2}">
-    
-          <div class="col" th:each="item : ${itemList}" th:if="${item.cateCode == 2}" onclick="alert('clicked')">
-            <div class="card shadow-sm" >
-              
-              <div class="card-body" style="background-image: url('https://cdn.visitkorea.or.kr/kfes/upload/nationwide/2024/02/26/3fa43c9e-126a-43de-87ad-44e0d25bb86f.jpg'); position: relative;">
-                <div class="title h3">[[${item.itemTitle}]]
-                  <span class="ht text-end" style="position: absolute; left: 95%; transform: translate(-90%);">
-                    <th:block th:if="${session.loginInfo != null}">
-                                  
-                      <div class="col" 
-                      th:onclick="wishDelete(this,[[${item.itemCode}]])"
-                      th:if="${#lists.contains(wishCodeList,item.itemCode)}">
-                        ❤
-                      </div>
-                  
-                    
-                      <div class="col" 
-                      th:onclick="wishAdd(this,[[${item.itemCode}]])"
-                      th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
-                        🤍
-                      </div>
-                    </th:block>
-                    <th:block th:if="${session.loginInfo == null}">
-                      <div class="col"
-                      onclick="gologin()">
-                        🤍
-                      </div>
-                    </th:block>
-                  </span>
-                </div>
-                <h6 class="area">[[${item.itemPlace}]]</h6>
-                <h6 class="date">[[${item.itemStartDate}]]</h6>
-
-                <div class="d-flex" style="height:290px;" >
-                </div>
-
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
-                  </div>
-                  <small class="text-body-secondary">[[${item.itemPeople}]]명</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </th:block>
-
+        </div>
       </div>
+    </th:block>
+
+
+    <th:block th:if="${chkCode == 2}">
+
 
     
-    <input type="button" onclick="location.href='/item/itemAddForm';" value="글쓰기">
+      <div class="col" th:each="item : ${itemList}" th:if="${item.cateCode == 2}" onclick="alert('clicked')">
+
+
+        <div class="card shadow-sm">
+          
+          <div class="card-body" th:style="'background-image:url(/upload/item/' + ${item.imgList[0].attachedFileName} + ');'">
+            
+            <div class="title h3">[[${item.itemTitle}]]
+              <span class="ht text-end" style="position: absolute; left: 95%; transform: translate(-90%);">
+                <th:block th:if="${session.loginInfo != null}">
+
+                  <div class="col" th:onclick="wishDelete(this,[[${item.itemCode}]])"
+                    th:if="${#lists.contains(wishCodeList,item.itemCode)}">
+                    ❤
+                  </div>
+
+
+                  <div class="col" th:onclick="wishAdd(this,[[${item.itemCode}]])"
+                    th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
+                    🤍
+                  </div>
+                </th:block>
+                <th:block th:if="${session.loginInfo == null}">
+                  <div class="col" onclick="gologin()">
+                    🤍
+                  </div>
+                </th:block>
+              </span>
+            </div>
+            <h6 class="area">[[${item.itemPlace}]]</h6>
+            <h6 class="date">[[${item.itemStartDate}]]</h6>
+
+            <div class="d-flex" style="height:290px;">
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
+              </div>
+              <small class="text-body-secondary">[[${item.itemPeople}]]명</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </th:block>
+
+  </div>
+
+
+  <input type="button" onclick="location.href='/item/itemAddForm';" value="글쓰기">
 
 
 
 </th:block>
 
 <th:block layout:fragment="content_js">
-    <!-- html 파일이 열릴때 같이 실행되는 js -->
-    <script src="/js/content/main.js"></script>
+  <!-- html 파일이 열릴때 같이 실행되는 js -->
+  <script src="/js/content/main.js"></script>
 </th:block>
 
 </html>

@@ -23,8 +23,8 @@ public class ItemServiceImpl implements ItemService {
     @Override
     @Transactional(rollbackFor =  Exception.class)
     public void insertParty(ItemVO itemVO) {
-
         sqlSession.insert("itemMapper.insertParty",itemVO);
+
         sqlSession.insert("itemMapper.insertImgs",itemVO);
     }
     //item 목록조회
