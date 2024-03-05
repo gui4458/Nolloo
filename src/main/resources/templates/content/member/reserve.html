@@ -19,6 +19,11 @@
         <div class="col">
             <table class="table table-bordered text-center">
 
+                <tr>
+                    <td style="font-weight: bold;">No</td>
+                    <td style="font-weight: bold;">Party</td>
+                    <td style="font-weight: bold;">Date</td>
+                </tr>
                 <tr th:each="reserve:${reserveList}">
                     <td>[[${reserve.reserveCode}]]</td>
                     <td> <span data-bs-toggle="modal" data-bs-target="#exampleModal">[[${reserve.itemVO.itemTitle}]]</span></td>
@@ -34,7 +39,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">예약상세내역</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -42,7 +47,7 @@
                         <div class="col">
                             <table class="table table-bordered text-center">
                                 <tr>
-                                    <td>d</td>
+                                    <td></td>
                                     <td></td>
                                     <td></td>
                                 </tr>

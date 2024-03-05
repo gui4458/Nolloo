@@ -37,6 +37,10 @@
         WHERE MEMBER_ID=#{memberId}
     </select>
 
+<!--    <select id="selectDetail">-->
+<!--        -->
+<!--    </select>-->
+
 	
 </mapper>
 
