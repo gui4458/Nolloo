@@ -11,7 +11,6 @@ public class ReserveVO {
     private int reserveCode;
     private String memberId;
     private String reserveDate;
-    private int reservePrice;
     private int itemCode;
 
 

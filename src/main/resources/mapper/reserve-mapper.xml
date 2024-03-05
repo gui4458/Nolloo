@@ -8,21 +8,16 @@
         <result column="RESERVE_CODE" property="reserveCode"/>
         <result column="MEMBER_ID" property="memberId"/>
         <result column="RESERVE_DATE" property="reserveDate"/>
-        <result column="RESERVE_PRICE" property="reservePrice"/>
         <result column="ITEM_CODE" property="itemCode"/>
     </resultMap>
 
     <insert id="insertReserve">
         INSERT INTO RESERVE(
-         RESERVE_CODE
-        , MEMBER_ID
-        , RESERVE_PRICE
+         MEMBER_ID
         , ITEM_CODE
         )
         VALUES(
-         #{reserveCode}
-         , #{memberId}
-         , #{reservePrice}
+          #{memberId}
          , #{itemCode}
         )
     </insert>

@@ -67,6 +67,7 @@
         , ITEM_DATE
         , ITEM_CONTENT
         , ITEM_PEOPLE
+        , ITEM_PRICE
     FROM ITEM_INFO
     WHERE ITEM_CODE = #{itemCode}
 </select>
