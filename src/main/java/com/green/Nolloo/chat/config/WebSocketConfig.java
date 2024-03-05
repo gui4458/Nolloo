@@ -1,7 +1,7 @@
-package com.example.Chat.config;
+package com.green.Nolloo.chat.config;
 
 
-import com.example.Chat.hendler.ChatHandler;
+import com.green.Nolloo.chat.hendler.ChatHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;

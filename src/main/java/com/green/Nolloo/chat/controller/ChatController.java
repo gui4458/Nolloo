@@ -1,4 +1,4 @@
-package com.example.Chat.controller;
+package com.green.Nolloo.chat.controller;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -13,6 +13,6 @@ public class ChatController {
 
         log.info("@ChatController, chat GET()");
 
-        return "chat";
+        return "content/chat/chat";
     }
 }

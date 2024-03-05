@@ -1,4 +1,4 @@
-package com.example.Chat.hendler;
+package com.green.Nolloo.chat.hendler;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
