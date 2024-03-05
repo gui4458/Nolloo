@@ -1,0 +1,78 @@
+.container{
+    
+    height: 100%;
+    
+}
+.send-btn {
+    position:absolute;
+    right:1rem;
+    top:50%;
+    transform:translateY(-50%);
+    padding:10px;
+    background-color:#fdf01b;
+    padding:10px;
+    color:#bfb73d;
+    border-radius:3px;
+    font-size:1.3rem;
+    box-shadow:0 1px 10px rgba(0,0,0,0.2);
+    user-select:none;
+}
+#msg {
+    width:100%;
+    display:block;
+    border:0;
+    outline:none;
+    padding-right:8.5rem;
+    padding-left:4.8rem;
+    padding-top:0.1rem;
+    font-size:1.4rem;
+    line-height:4rem;
+    font-weight:bold;
+    box-sizing:border-box;
+}
+.input-group{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    
+}
+.my-msg{
+    text-align: end;
+}
+.other-msg{
+    text-align: start;
+}
+#chat-room{
+    background-color:#6884b3;
+    width: 60%;
+    margin: 0 auto;
+    
+}
+.chat-title{
+    padding-top: 10px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 2.0rem;
+}
+#chat-room #msgArea {
+    padding:0 0.7rem;
+    overflow-y:scroll;
+    height:calc(100% - 4.4rem);
+}
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    overflow-y:hidden;
+}
+
+body, html {
+    height:100%;
+}
+
+#chat-room {
+    height:100%;
+    background-color:#6884b3;
+    /* 임시 */
+    outline:2px solid black;
+    position:relative;
+}
