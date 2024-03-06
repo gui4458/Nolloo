@@ -26,7 +26,9 @@
                 </tr>
                 <tr th:each="reserve:${reserveList}">
                     <td>[[${reserve.reserveCode}]]</td>
-                    <td> <span data-bs-toggle="modal" data-bs-target="#exampleModal">[[${reserve.itemVO.itemTitle}]]</span></td>
+                    <td> <span
+                            th:onclick="getReserveDetail([[${reserve.itemCode}]])">[[${reserve.itemVO.itemTitle}]]</span>
+                    </td>
                     <td>[[${reserve.reserveDate}]]</td>
                 </tr>
             </table>
@@ -35,25 +37,58 @@
 
 
     <!-- Modal -->
-    <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-lg" id="reserveModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">예약상세내역</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-weight: bold;">예약상세내역</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <table class="table table-bordered text-center">
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
+                            <table class="table table-bordered align-middle text-center">
+                                <colgroup>
+                                    <col width="20%">
+                                    <col width="20%">
+                                    <col width="20%">
+                                    <col width="20%">
+                                    <col width="20%">
+                                    <col width="20%">
+                                </colgroup>
+
+                                <thead>
+                                    <tr>
+                                        <td>party</td>
+                                        <td>content</td>
+                                        <td>가격</td>
+                                        <td>날짜</td>
+                                        <td>인원수</td>
+                                        <td>장소</td>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="modal_tbody">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+
+
                             </table>
                         </div>
                     </div>
+
+
+
+
 
 
                 </div>
@@ -68,7 +103,7 @@
 
 <th:block layout:fragment="content_js">
     <!-- html 파일이 열릴때 같이 실행되는 js -->
-    <!-- <script src="/"></script> -->
+    <script src="/js/content/member/reserve.js"></script>
 </th:block>
 
 </html>

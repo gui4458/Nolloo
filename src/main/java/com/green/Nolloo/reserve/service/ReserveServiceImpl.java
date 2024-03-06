@@ -1,6 +1,7 @@
 package com.green.Nolloo.reserve.service;
 
 
+import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.reserve.vo.ReserveVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class ReserveServiceImpl implements ReserveService{
     @Override
     public List<ReserveVO> selectReserve(ReserveVO reserveVO) {
         return sqlSession.selectList("reserveMapper.selectReserve",reserveVO);
+    }
+
+    @Override
+    public ItemVO selectDetail(ReserveVO reserveVO) {
+        return sqlSession.selectOne("reserveMapper.selectDetail",reserveVO);
     }
 
 
