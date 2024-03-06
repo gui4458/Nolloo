@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/my_page/my_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <!-- <link rel="stylesheet" href="/"> -->
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+
+    <div class="row" style="justify-content: center; margin-top: 5%;">
+        <div class="col">
+            <h4>예약내역</h4>
+        </div>
+    </div>
+    <div class="row" style="text-align: left;">
+        <div class="col">
+            <table class="table table-bordered text-center">
+
+                <tr>
+                    <td style="font-weight: bold;">No</td>
+                    <td style="font-weight: bold;">Party</td>
+                    <td style="font-weight: bold;">Date</td>
+                </tr>
+                <tr th:each="reserve:${reserveList}">
+                    <td>[[${reserve.reserveCode}]]</td>
+                    <td> <span data-bs-toggle="modal" data-bs-target="#exampleModal">[[${reserve.itemVO.itemTitle}]]</span></td>
+                    <td>[[${reserve.reserveDate}]]</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">예약상세내역</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <table class="table table-bordered text-center">
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/"></script> -->
+</th:block>
+
+</html>
