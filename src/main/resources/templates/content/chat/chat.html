@@ -8,14 +8,16 @@
                 <div class="row" style="width: 100%;">
                     <div class="col-6 chat-title">
                         <label><b>채팅방</b></label>
-                        <span onclick="goPopup()">팝업</span>
+                        
                     
                     </div>
                     <div>
-                        <div id="msgArea" class="col"></div>
+                        <div id="msgArea" class="col">
+
+                        </div>
                         <div class="col-6">
                             <div class="input-group mb-3">
-                                <input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <input type="text" id="msg" onkeypress="enterkey(this)" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary send-btn" type="button" id="button-send">전송</button>
                                 </div>

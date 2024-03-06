@@ -1,4 +1,4 @@
-const username = '';
+const username = '홍';
 
 // $("#disconn").on("click", (e) => {
 //     disconnect();
@@ -16,6 +16,14 @@ const username = '';
 document.querySelector('#button-send').addEventListener('click', (e) => {
     send();
 });
+const msg = document.querySelector('#msg')
+msg.addEventListener("keyup", function(e){
+    if(e.keyCode == 13){
+        e.preventDefault();
+        document.querySelector(".send-btn").click();
+    }
+});
+
 
 const websocket = new WebSocket("ws://192.168.30.107:8081/ws/chat");
 
@@ -23,9 +31,8 @@ websocket.onmessage = onMessage;
 websocket.onopen = onOpen;
 websocket.onclose = onClose;
 
-function send(str){
+function send(){
     console.log('send 함수 실행');
-    console.log('11111' + str);
 
     let msg = document.getElementById("msg");
 
@@ -81,8 +88,8 @@ function onMessage(msg) {
     if(sessionId == cur_session){
     //if(sessionId == 'admin'){
         var str = "<div class='col-6 my-msg'>";
-        str += "<div class='alert alert-secondary'>";
-        str += "<b>" + sessionId + " : " + message + "</b>";
+        str += "<div class='alert alert-secondary justify-content-center;'>";
+        str += "<span class='msg-span'>" + sessionId + " : " + message + "</span>";
         str += "</div></div>";
         //$("#msgArea").append(str);
         document.querySelector('#msgArea').insertAdjacentHTML('beforeend', str);
@@ -90,23 +97,11 @@ function onMessage(msg) {
     else{
         var str = "<div class='col-6 other-msg'>";
         str += "<div class='alert alert-warning'>";
-        str += "<b>" + "son" + " : " + message + "</b>";
+        str += "<span>" + "son" + " : " + message + "</span>";
         str += "</div></div>";
         //$("#msgArea").append(str);
         document.querySelector('#msgArea').insertAdjacentHTML('beforeend', str);
     }
-
+    document.querySelector('#msgArea').scrollTop = document.querySelector('#msgArea').scrollHeight;
     console.log('onMessage 함수 끝');
-}
-
-function goPopup(){
-    
-    // window.open("http://192.168.30.107:8081/chat", "mozillaWindow", "popup");
-    const windowFeatures = "left=1500,top=100,width=600,height=600";
-const handle = window.open(
-    "http://192.168.30.107:8081/chat",
-    "mozillaWindow",
-    windowFeatures,
-    "popup"
-);
 }
