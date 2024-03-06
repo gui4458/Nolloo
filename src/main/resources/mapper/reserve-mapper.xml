@@ -37,9 +37,18 @@
         WHERE MEMBER_ID=#{memberId}
     </select>
 
-<!--    <select id="selectDetail">-->
-<!--        -->
-<!--    </select>-->
+    <select id="selectDetail" resultMap="itemMapper.item">
+        SELECT
+        ITEM_CODE
+        , ITEM_TITLE
+        , ITEM_CONTENT
+        , ITEM_PRICE
+        , ITEM_START_DATE
+        , ITEM_PEOPLE
+        , ITEM_PLACE
+        FROM item_info
+        WHERE ITEM_CODE=#{itemCode}
+    </select>
 
 	
 </mapper>

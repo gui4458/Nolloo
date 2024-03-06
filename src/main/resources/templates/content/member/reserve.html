@@ -26,7 +26,7 @@
                 </tr>
                 <tr th:each="reserve:${reserveList}">
                     <td>[[${reserve.reserveCode}]]</td>
-                    <td> <span data-bs-toggle="modal" data-bs-target="#exampleModal">[[${reserve.itemVO.itemTitle}]]</span></td>
+                    <td> <span th:onclick="getReserveDetail([[${reserve.itemCode}]])">[[${reserve.itemVO.itemTitle}]]</span></td>
                     <td>[[${reserve.reserveDate}]]</td>
                 </tr>
             </table>
@@ -35,26 +35,32 @@
 
 
     <!-- Modal -->
-    <div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-lg" id="reserveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">예약상세내역</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-weight: bold;">예약상세내역</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+
                     <div class="row">
                         <div class="col">
                             <table class="table table-bordered text-center">
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                <tr th:each="detail:${reserveDetail}">
+                                    <td>[[${detail.itemTitle}]]</td>
+                                    <td>[[${detail.itemContent}]]</td>
+                                    <td>[[${detail.itemPrice}]]</td>
+                                    <td>[[${detail.itemStartDate}]]</td>
+                                    <td>[[${detail.itemPeople}]]</td>
+                                    <td>[[${detail.itemPlace}]]</td>
                                 </tr>
                             </table>
                         </div>
                     </div>
 
+
+            
 
                 </div>
                 <div class="modal-footer">
@@ -68,7 +74,7 @@
 
 <th:block layout:fragment="content_js">
     <!-- html 파일이 열릴때 같이 실행되는 js -->
-    <!-- <script src="/"></script> -->
+    <script src="/js/content/member/reserve.js"></script>
 </th:block>
 
 </html>
