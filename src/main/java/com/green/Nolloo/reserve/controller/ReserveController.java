@@ -39,6 +39,22 @@ public class ReserveController{
         List<ReserveVO> reserveList = reserveService.selectReserve(reserveVO);
         System.out.println(reserveList);
         model.addAttribute("reserveList",reserveList);
+
+
+//        List<ReserveVO> reserveDetail = reserveService.selectDetail(reserveVO);
+//        model.addAttribute("reserveDetail",reserveDetail);
         return "content/member/reserve";
     }
+    @ResponseBody
+    @PostMapping("/reserveDetail")
+    public ItemVO reserveDetail(@RequestBody ReserveVO reserveVO){
+
+        ItemVO reserveDetail = reserveService.selectDetail(reserveVO);
+
+        return reserveDetail;
+
+    }
+
+
+
 }

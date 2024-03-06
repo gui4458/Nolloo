@@ -78,14 +78,14 @@ function reserve(itemCode){
         alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
         console.log(err);
     });
-    
-    
-
-
-
-
-
-
-
 }  
+function goChat(){
+    const windowFeatures = "left=1500,top=100,width=750,height=750";
+    window.open(
+        `http://192.168.30.107:8081/chat`,
+        "mozillaWindow",
+        windowFeatures,
+        "popup"
+    );
+}
 
