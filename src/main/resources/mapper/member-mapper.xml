@@ -17,9 +17,15 @@
         <result column="ADDR_DETAIL" property="addrDetail"/>
         <result column="MEMBER_ROLL" property="memberRoll"/>
         <result column="JOIN_DATE" property="joinDate"/>
-
+        <association property="memberImageVO" resultMap="memberImg"/>
     </resultMap>
 
+    <resultMap id="memberImg" type="com.green.Nolloo.member.vo.MemberImageVO">
+        <id column="MEMBER_IMG_CODE" property="memberImgCode"/>
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
+        <result column="MEMBER_ID" property="memberId"/>
+    </resultMap>
     <insert id="join">
         INSERT INTO MEMBER(
         MEMBER_ID
@@ -47,6 +53,18 @@
         ,#{addrDetail}
         );
 
+    </insert>
+<!--    프로필 이미지 쿼리-->
+    <insert id="profileImageInsert">
+        INSERT INTO MEMBER_IMAGE(
+            ORIGIN_FILE_NAME
+            , ATTACHED_FILE_NAME
+            , MEMBER_ID
+        )VALUES(
+             #{originFileName}
+            , #{attachedFileName}
+            , #{memberId}
+        )
     </insert>
 
     <select id="login" resultMap="member">
@@ -94,6 +112,7 @@
         WHERE MEMBER_ID=#{memberId}
 
     </delete>
+
 
 
 	

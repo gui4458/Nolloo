@@ -1,5 +1,6 @@
 package com.green.Nolloo.member.service;
 
+import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.member.vo.MemberVO;
 
 public interface MemberService {

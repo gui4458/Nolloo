@@ -77,15 +77,17 @@
 <!--    itemDetail 조회쿼리 -->
 <select id="selectPartyDetail" resultMap="item">
     SELECT
-        ITEM_CODE
+        INFO.ITEM_CODE
         , ITEM_TITLE
         , ITEM_PLACE
         , ITEM_DATE
         , ITEM_CONTENT
         , ITEM_PEOPLE
         , ITEM_PRICE
-    FROM ITEM_INFO
-    WHERE ITEM_CODE = #{itemCode}
+    FROM ITEM_INFO INFO
+    INNER JOIN ITEM_IMAGE IMG
+    ON INFO.ITEM_CODE=IMG.ITEM_CODE
+    WHERE INFO.ITEM_CODE = #{itemCode}
 </select>
     <delete id="deleteParty">
         DELETE

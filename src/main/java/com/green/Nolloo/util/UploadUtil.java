@@ -1,6 +1,7 @@
 package com.green.Nolloo.util;
 
 import com.green.Nolloo.item.vo.ImgVO;
+import com.green.Nolloo.member.vo.MemberImageVO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -53,6 +54,31 @@ public class UploadUtil {
             }
         }
         return imgList;
+    }
+    public static MemberImageVO memberUploadFile(MultipartFile memberUploadFile){
+        MemberImageVO memberImageVO = null;
+        if (!memberUploadFile.isEmpty()){
+            memberImageVO =new MemberImageVO();
+            //확장자 추출
+            String memberExtension = getExtension(memberUploadFile.getOriginalFilename());
+            //중복되지 않는 파일명 생성
+            String memberFileName =getUUID()+memberExtension;
+            try {
+                //파일경로+랜덤명.확장자
+                File file2 = new File(PathVariable.PROFILE_UPLOAD_PATH+memberFileName);
+                memberUploadFile.transferTo(file2);
+                //메인 네임
+                memberImageVO.setAttachedFileName(memberFileName);
+                //첨부파일
+                memberImageVO.setOriginFileName(memberImageVO.getOriginFileName());
+
+
+            } catch (Exception e) {
+                System.out.println("파일첨부중 예외발생");
+                e.printStackTrace();
+            }
+        }
+        return memberImageVO;
     }
 
 }

@@ -1,9 +1,11 @@
 package com.green.Nolloo.member.service;
 
+import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.member.vo.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -11,9 +13,12 @@ public class MemberServiceImpl implements MemberService{
     private SqlSessionTemplate sqlSession;
 
 
+    //프로필 이미지+가입 메소드
     @Override
+    @Transactional(rollbackFor =  Exception.class)
     public void join(MemberVO memberVO){
         sqlSession.insert("memberMapper.join", memberVO);
+        sqlSession.insert("memberMapper.profileImageInsert",memberVO);
     }
 
     @Override

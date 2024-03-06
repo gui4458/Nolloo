@@ -20,5 +20,6 @@ public class MemberVO {
     private String addrDetail;
     private String joinDate;
     private String memberRoll;
+    private MemberImageVO memberImageVO;
 
 }

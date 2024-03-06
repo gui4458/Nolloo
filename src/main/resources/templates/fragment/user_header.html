@@ -9,7 +9,9 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Nolloo"><use xlink:href="#Nolloo"/></svg>
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Nolloo">
+            <use xlink:href="#Nolloo" />
+          </svg>
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
@@ -21,7 +23,8 @@
         </form> -->
 
         <div class="dropdown text-end">
-          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+            aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
@@ -38,16 +41,21 @@
 
 
               <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><input class="btn joinhover" type="button" value="장바구니" onclick="location.href='/wish/goWishList'" style="cursor: pointer;"></li>
-              <li><input class="btn joinhover" type="button" value="내정보관리" onclick="location.href='/member/myPage'" style="cursor: pointer;"></li>
-              <li><hr class="dropdown-divider"></li>
+              <li><input class="btn joinhover" type="button" value="장바구니" onclick="location.href='/wish/goWishList'"
+                  style="cursor: pointer;"></li>
+              <li><input class="btn joinhover" type="button" value="내정보관리" onclick="location.href='/member/myPage'"
+                  style="cursor: pointer;"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><input class="btn" type="button" value="LOGOUT" onclick="goLogout()" style="cursor: pointer;"></li>
 
 
             </th:block>
 
             <th:block th:if="${session.loginInfo == null}">
-              <li> <span class="dropdown-item" onclick="goLoginForm()" data-bs-toggle="modal" data-bs-target="#join-modal">LOGIN</span></li>
+              <li> <span class="dropdown-item" onclick="goLoginForm()" data-bs-toggle="modal"
+                  data-bs-target="#join-modal">LOGIN</span></li>
               <li> <span class="dropdown-item" data-bs-toggle="modal" data-bs-target="#join-modal">JOIN</span></li>
             </th:block>
 
@@ -79,7 +87,8 @@
 
 
 
-          <form action="/member/join" class="row g-3" method="post" id="join-form">
+          <form action="/member/join" class="row g-3" method="post" id="join-form" enctype="multipart/form-data">
+
             <div class="col-12">
               <label for="" class="form-label">ID</label>
               <input type="text" name="memberId" class="form-control" id="memberId" placeholder="ID">
@@ -150,7 +159,11 @@
               <input class="form-check-input" type="radio" name="gender" id="" value="female">
               <label class="form-check-label" for="">여성</label>
             </span>
-
+            
+            <div class="col-sm-8">
+              <label for="" class="form-label">프로필 이미지 선택</label>
+              <input class="form-control" type="file" name="img">
+            </div>
 
           </form>
         </div>
