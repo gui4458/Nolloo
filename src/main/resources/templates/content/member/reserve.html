@@ -26,7 +26,9 @@
                 </tr>
                 <tr th:each="reserve:${reserveList}">
                     <td>[[${reserve.reserveCode}]]</td>
-                    <td> <span th:onclick="getReserveDetail([[${reserve.itemCode}]])">[[${reserve.itemVO.itemTitle}]]</span></td>
+                    <td> <span
+                            th:onclick="getReserveDetail([[${reserve.itemCode}]])">[[${reserve.itemVO.itemTitle}]]</span>
+                    </td>
                     <td>[[${reserve.reserveDate}]]</td>
                 </tr>
             </table>
@@ -35,7 +37,8 @@
 
 
     <!-- Modal -->
-    <div class="modal fade modal-lg" id="reserveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal-lg" id="reserveModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -43,24 +46,50 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
                     <div class="row">
                         <div class="col">
-                            <table class="table table-bordered text-center">
-                                <tr th:each="detail:${reserveDetail}">
-                                    <td>[[${detail.itemTitle}]]</td>
-                                    <td>[[${detail.itemContent}]]</td>
-                                    <td>[[${detail.itemPrice}]]</td>
-                                    <td>[[${detail.itemStartDate}]]</td>
-                                    <td>[[${detail.itemPeople}]]</td>
-                                    <td>[[${detail.itemPlace}]]</td>
-                                </tr>
+                            <table class="table table-bordered align-middle text-center">
+                                <colgroup>
+                                    <col width="20%">
+                                    <col width="20%">
+                                    <col width="20%">
+                                    <col width="20%">
+                                    <col width="20%">
+                                    <col width="20%">
+                                </colgroup>
+
+                                <thead>
+                                    <tr>
+                                        <td>party</td>
+                                        <td>content</td>
+                                        <td>가격</td>
+                                        <td>날짜</td>
+                                        <td>인원수</td>
+                                        <td>장소</td>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="modal_tbody">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+
+
                             </table>
                         </div>
                     </div>
 
 
-            
+
+
+
 
                 </div>
                 <div class="modal-footer">

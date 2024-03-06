@@ -14,15 +14,34 @@ function getReserveDetail(itemCode){
         })
     })
     .then((response) => {
-        return response.text();
-        //return response.json(); //나머지 경우에 사용
+        //return response.text();
+        return response.json(); //나머지 경우에 사용
     })
     //fetch 통신 후 실행 영역
     .then((data) => {//data -> controller에서 리턴되는 데이터!
         //조회한 데이터를 모달에 적용
         console.log(data);
 
+        const modal_tbody= document.querySelector('#modal_tbody');
+        modal_tbody.innerHTML=' ';
+        let str='';
+
         
+            str+=`
+            <tr>
+                <td>${data.itemTitle}</td>
+            </tr>
+            <tr>
+                
+            </tr>
+            `;
+        modal_tbody.insertAdjacentHTML("afterbegin",str)
+
+
+
+
+
+
         
         //모달을 띄움
         const reserve_modal =  new bootstrap.Modal('#reserveModal');
