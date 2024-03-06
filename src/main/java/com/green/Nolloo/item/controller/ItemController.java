@@ -85,7 +85,7 @@ public class ItemController {
     }
     //게시글 삭제
     @GetMapping("/deleteItem")
-    public String deletePartt(ItemVO itemVO){
+    public String deleteParty(ItemVO itemVO){
         itemService.deleteParty(itemVO);
         return "redirect:/item/list";
     }
