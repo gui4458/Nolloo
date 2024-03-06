@@ -87,7 +87,6 @@ public class ItemController {
     @GetMapping("/deleteItem")
     public String deleteParty(ItemVO itemVO){
         itemService.deleteParty(itemVO);
-        itemService.deleteImg(itemVO);
         return "redirect:/item/list";
     }
 

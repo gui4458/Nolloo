@@ -19,6 +19,9 @@ public class ItemServiceImpl implements ItemService {
         return sqlSession.selectOne("itemMapper.selectNextItemCode");
     }
 
+
+
+
     // item 등록
     @Override
     @Transactional(rollbackFor =  Exception.class)
@@ -40,9 +43,10 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    @Transactional(rollbackFor =  Exception.class)
     public void deleteParty(ItemVO itemVO) {
-        sqlSession.delete("itemMapper.deleteParty",itemVO);
         sqlSession.delete("itemMapper.deleteImg",itemVO);
+        sqlSession.delete("itemMapper.deleteParty",itemVO);
     }
 
     @Override

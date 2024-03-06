@@ -93,6 +93,12 @@
         WHERE ITEM_CODE = #{itemCode}
     </delete>
 
+    <delete id="deleteImg">
+        DELETE
+        FROM ITEM_IMAGE
+        WHERE ITEM_CODE = #{itemCode}
+    </delete>
+
     <update id="updateParty">
         UPDATE ITEM_INFO
         SET ITEM_TITLE = #{itemTitle}
@@ -124,10 +130,7 @@
             )
         </foreach>
     </insert>
-    <delete id="deleteImg">
-        DELETE FROM ITEM_IMAGE
-        WHERE ITEM_CODE = #{itemCode}
-    </delete>
+
 
 </mapper>
 
