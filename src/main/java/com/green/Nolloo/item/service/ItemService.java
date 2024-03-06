@@ -18,4 +18,5 @@ public interface ItemService {
 
     int selectNextItemCode();
 
+    int deleteImg(ItemVO itemVO);
 }

@@ -123,6 +123,10 @@
             )
         </foreach>
     </insert>
+    <delete id="deleteImg">
+        DELETE FROM ITEM_IMAGE
+        WHERE ITEM_CODE = #{itemCode}
+    </delete>
 
 </mapper>
 

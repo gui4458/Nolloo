@@ -42,6 +42,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public void deleteParty(ItemVO itemVO) {
         sqlSession.delete("itemMapper.deleteParty",itemVO);
+        sqlSession.delete("itemMapper.deleteImg",itemVO);
     }
 
     @Override

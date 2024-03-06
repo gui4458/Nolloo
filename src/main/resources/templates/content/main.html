@@ -89,7 +89,7 @@
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     <th:block th:if="${chkCode == 1}">
 
-      <div class="col" th:each="item : ${itemList}" th:if="${item.cateCode == 1}" onclick="alert('clicked')">
+      <div class="col" th:each="item : ${itemList}" th:if="${item.cateCode == 1}" th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|">
         <div class="card shadow-sm">
           
           <div class="card-body" th:style="'background-image:url(/upload/itemSolo/' + ${item.imgList[0].attachedFileName} + ');'">
