@@ -29,5 +29,10 @@ public class ReserveServiceImpl implements ReserveService{
         return sqlSession.selectOne("reserveMapper.selectDetail",reserveVO);
     }
 
+    @Override
+    public ReserveVO reserveDone(ReserveVO reserveVO) {
+        return sqlSession.selectOne("reserveMapper.reserveDone",reserveVO);
+    }
+
 
 }
