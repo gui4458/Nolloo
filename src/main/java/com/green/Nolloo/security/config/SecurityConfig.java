@@ -1,9 +1,11 @@
-package com.green.Nolloo.security;
+package com.green.Nolloo.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -20,16 +22,14 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity security) throws Exception{
-        //csrf 공격에 대한 방어를 해지 하겠다.
         security.csrf(AbstractHttpConfigurer::disable)
-                //authorizeHttpRequests 메소드 안에서 인증 및 인가 관리
                 .authorizeHttpRequests(
+//                        c -> {
+//                            c.anyRequest().permitAll();
+//                        }
                         c -> {
                             c.requestMatchers(
-                                            // new AntPathRequestMatcher("/member/*")
-                                            // ex > /member/a, /member/b, /member/c(가능) /member/abc/a (불가능)
-                                            // new AntPathRequestMatcher("/member/**")
-                                            // ex > /member/a, /member/b, /member/c, /member/abc/a (모두가능)
+                                            new AntPathRequestMatcher("/"),
                                             new AntPathRequestMatcher("/item/list"),
                                             new AntPathRequestMatcher("/member/join"),
                                             new AntPathRequestMatcher("/member/loginPage")
@@ -81,5 +81,17 @@ public class SecurityConfig {
 //                );
 
         return security.build();
+    }
+
+
+    // 시큐리티 무시하기
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer()  {
+        return web -> web.ignoring().requestMatchers(
+                new AntPathRequestMatcher("/js/**"),
+                //new AntPathRequestMatcher("/**"),
+                new AntPathRequestMatcher("/css/**"),
+                new AntPathRequestMatcher("/upload/**")
+        );
     }
 }
