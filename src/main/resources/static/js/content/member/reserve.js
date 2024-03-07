@@ -30,9 +30,11 @@ function getReserveDetail(itemCode){
             str+=`
             <tr>
                 <td>${data.itemTitle}</td>
-            </tr>
-            <tr>
-                
+                <td>${data.itemContent}</td>
+                <td>${data.itemPrice}</td>
+                <td>${data.itemStartDate}</td>
+                <td>${data.itemPeople}</td>
+                <td>${data.itemPlace}</td>
             </tr>
             `;
         modal_tbody.insertAdjacentHTML("afterbegin",str)
