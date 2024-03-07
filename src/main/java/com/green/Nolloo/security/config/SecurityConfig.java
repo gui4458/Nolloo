@@ -24,25 +24,25 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity security) throws Exception{
         security.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
-//                        c -> {
-//                            c.anyRequest().permitAll();
-//                        }
                         c -> {
-                            c.requestMatchers(
-                                            new AntPathRequestMatcher("/"),
-                                            new AntPathRequestMatcher("/item/list"),
-                                            new AntPathRequestMatcher("/member/join"),
-                                            new AntPathRequestMatcher("/member/loginPage")
-
-                                    ).permitAll()
-                                    .requestMatchers(
-                                            new AntPathRequestMatcher("/admin")
-                                    ).hasRole("ADMIN")
-                                    .requestMatchers(
-                                            new AntPathRequestMatcher("/itemAddForm")
-                                    ).hasAnyRole("USER","ADMIN")
-                                    .anyRequest().authenticated();
+                            c.anyRequest().permitAll();
                         }
+//                        c -> {
+//                            c.requestMatchers(
+//                                            new AntPathRequestMatcher("/"),
+//                                            new AntPathRequestMatcher("/item/list"),
+//                                            new AntPathRequestMatcher("/member/join"),
+//                                            new AntPathRequestMatcher("/member/loginPage")
+//
+//                                    ).permitAll()
+//                                    .requestMatchers(
+//                                            new AntPathRequestMatcher("/admin")
+//                                    ).hasRole("ADMIN")
+//                                    .requestMatchers(
+//                                            new AntPathRequestMatcher("/itemAddForm")
+//                                    ).hasAnyRole("USER","ADMIN")
+//                                    .anyRequest().authenticated();
+//                        }
                 )
                 // 로그인 form을 활용해서 할 것이고,
                 // 로그인 설정내용도 포함
