@@ -61,8 +61,8 @@
             , ATTACHED_FILE_NAME
             , MEMBER_ID
         )VALUES(
-             #{originFileName}
-            , #{attachedFileName}
+             #{memberImageVO.originFileName}
+            , #{memberImageVO.attachedFileName}
             , #{memberId}
         )
     </insert>

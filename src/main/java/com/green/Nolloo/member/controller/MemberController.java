@@ -26,6 +26,7 @@ public class MemberController {
     public String join(MemberVO memberVO
             , @RequestParam(name = "img")MultipartFile img){
 
+        System.out.println(memberVO);
         MemberImageVO mainImg = UploadUtil.memberUploadFile(img);
 
         memberVO.setMemberImageVO(mainImg);

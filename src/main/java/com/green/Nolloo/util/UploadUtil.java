@@ -70,7 +70,7 @@ public class UploadUtil {
                 //메인 네임
                 memberImageVO.setAttachedFileName(memberFileName);
                 //첨부파일
-                memberImageVO.setOriginFileName(memberImageVO.getOriginFileName());
+                memberImageVO.setOriginFileName(memberUploadFile.getOriginalFilename());
 
 
             } catch (Exception e) {
