@@ -46,6 +46,7 @@
             , ITEM_Y
             , PLACE_DETAIL
             , ITEM_START_DATE
+            , ITEM_END_DATE
         )
         VALUES(
             #{itemCode}
@@ -58,6 +59,7 @@
             , #{itemY}
             , #{placeDetail}
             , #{itemStartDate}
+            , #{itemEndDate}
         )
     </insert>
 <!--    item 메인 목록조회-->
@@ -70,13 +72,14 @@
             , ITEM_PLACE
             , ITEM_PEOPLE
             , CATE_CODE
-            , ITEM_START_DATE
+            , LEFT(ITEM_START_DATE,10) ITEM_START_DATE
+            , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
             , ATTACHED_FILE_NAME
         FROM ITEM_INFO INFO
         INNER JOIN ITEM_IMAGE IMG
         ON INFO.ITEM_CODE = IMG.ITEM_CODE
         WHERE IS_MAIN='Y'
-        ORDER BY ITEM_DATE DESC
+        ORDER BY ITEM_START_DATE DESC
     </select>
 <!--    itemDetail 조회쿼리 -->
 <select id="selectPartyDetail" resultMap="item">
@@ -88,6 +91,8 @@
         , ITEM_CONTENT
         , ITEM_PEOPLE
         , ITEM_PRICE
+        , LEFT(ITEM_START_DATE,10) ITEM_START_DATE
+        , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
 
         , ATTACHED_FILE_NAME
         , IS_MAIN
