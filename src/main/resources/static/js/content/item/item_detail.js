@@ -1,3 +1,4 @@
+
 function goWish(itemCode,loginInfo){
 
 
@@ -80,12 +81,16 @@ function reserve(itemCode){
     });
 }  
 function goChat(){
-    const windowFeatures = "left=1500,top=100,width=750,height=750";
+
+    const windowFeatures = "left=1500,top=100,width=750,height=750,popup";
+
+	
     window.open(
         `http://192.168.30.107:8081/chat`,
-        "mozillaWindow",
-        windowFeatures,
-        "popup"
+        "_blank",
+        windowFeatures
+        
+    
     );
 }
 

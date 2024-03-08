@@ -7,6 +7,8 @@ import com.green.Nolloo.member.vo.MemberVO;
 import com.green.Nolloo.util.UploadUtil;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,16 +23,18 @@ public class MemberController {
 @Resource(name="memberService")
     private MemberServiceImpl memberService;
 
+    @Autowired
+    private BCryptPasswordEncoder encoder;
+
     //회원가입
     @PostMapping("/join")
     public String join(MemberVO memberVO
             , @RequestParam(name = "img")MultipartFile img){
+        memberVO.setMemberPw(encoder.encode(memberVO.getMemberPw()));
 
-        System.out.println(memberVO);
         MemberImageVO mainImg = UploadUtil.memberUploadFile(img);
 
         memberVO.setMemberImageVO(mainImg);
-
 
         memberService.join(memberVO);
         return "redirect:/item/list";
@@ -43,24 +47,24 @@ public class MemberController {
     }
 
     //로그인
-    @PostMapping("/login")
-    public String login(MemberVO memberVO, HttpSession session){
-    MemberVO loginInfo = memberService.login(memberVO);
+//    @PostMapping("/login")
+//    public String login(MemberVO memberVO, HttpSession session){
+//    MemberVO loginInfo = memberService.login(memberVO);
+//
+//    if(loginInfo != null){
+//        session.setAttribute("loginInfo",loginInfo);
+//
+//    }
+//    return "content/member/login_result";
+//
+//    }
 
-    if(loginInfo != null){
-        session.setAttribute("loginInfo",loginInfo);
-
-    }
-    return "content/member/login_result";
-
-    }
-
-    //로그아웃
-    @GetMapping("logout")
-    public String logout(HttpSession session){
-    session.removeAttribute("loginInfo");
-        return "redirect:/item/list";
-    }
+//    //로그아웃
+//    @GetMapping("logout")
+//    public String logout(HttpSession session){
+//    session.removeAttribute("loginInfo");
+//        return "redirect:/item/list";
+//    }
 
     @GetMapping("/myPage")
     public String myPage(MemberVO memberVO, Model model, HttpSession session){
