@@ -30,7 +30,7 @@ public class ReserveController{
     @PostMapping("/partyReserve")
     public void reserve(Authentication authentication
                         , @RequestBody ReserveVO reserveVO){
-        reserveService.reserveDone(reserveVO);
+        //reserveService.reserveDone(reserveVO);
 
         User user = (User)authentication.getPrincipal();
         reserveVO.setMemberId(user.getUsername());
