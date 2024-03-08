@@ -1,6 +1,7 @@
 package com.green.Nolloo.member.service;
 
 import com.green.Nolloo.item.vo.ImgVO;
+import com.green.Nolloo.member.vo.MemberImageVO;
 import com.green.Nolloo.member.vo.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,10 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public void deleteMember(MemberVO memberVO) {
         sqlSession.delete("memberMapper.deleteMember",memberVO);
+    }
+
+    @Override
+    public MemberImageVO selectProfile(String memberId) {
+        return sqlSession.selectOne("memberMapper.selectProfile",memberId);
     }
 }
