@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -63,6 +64,13 @@ public class ReserveController{
 
         return reserveDetail;
 
+    }
+
+    @GetMapping("/reserveDelete")
+    public String reserveDelete(@RequestParam(name = "reserveCodeList") ArrayList<Integer> reserveCodeList){
+        System.out.println(reserveCodeList);
+        //return "";
+        return "redirect:/reserve/reserveList";
     }
 
 
