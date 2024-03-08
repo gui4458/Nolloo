@@ -42,6 +42,8 @@
             , ITEM_PRICE
             , ITEM_PEOPLE
             , ITEM_PLACE
+            , ITEM_X
+            , ITEM_Y
             , PLACE_DETAIL
             , ITEM_START_DATE
         )
@@ -52,6 +54,8 @@
             , #{itemPrice}
             , #{itemPeople}
             , #{itemPlace}
+            , #{itemX}
+            , #{itemY}
             , #{placeDetail}
             , #{itemStartDate}
         )
@@ -84,6 +88,8 @@
         , ITEM_CONTENT
         , ITEM_PEOPLE
         , ITEM_PRICE
+        , ITEM_X
+        , ITEM_Y
     FROM ITEM_INFO INFO
     INNER JOIN ITEM_IMAGE IMG
     ON INFO.ITEM_CODE=IMG.ITEM_CODE
