@@ -23,12 +23,8 @@
         </form> -->
 
         <div class="dropdown text-end">
-<<<<<<< HEAD
-          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-            aria-expanded="false">
-=======
           <a href="javascript:void(0);" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
->>>>>>> jeon
+
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small">
@@ -56,15 +52,8 @@
 
 
             </th:block>
-
-<<<<<<< HEAD
-            <th:block th:if="${session.loginInfo == null}">
-              <li> <span class="dropdown-item" onclick="goLoginForm()" data-bs-toggle="modal"
-                  data-bs-target="#join-modal">LOGIN</span></li>
-=======
             <th:block sec:authorize="isAnonymous()">
               <li> <span class="dropdown-item" onclick="goLoginForm()">LOGIN</span></li>
->>>>>>> jeon
               <li> <span class="dropdown-item" data-bs-toggle="modal" data-bs-target="#join-modal">JOIN</span></li>
             </th:block>
 
