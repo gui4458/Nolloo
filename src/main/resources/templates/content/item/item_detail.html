@@ -113,7 +113,9 @@
                                     삭제</button>
                             </div>
                             <div class="col">
-                                <button type="button" th:onclick="reserve([[${item.itemCode}]])" class="btn btn-outline-success">
+                                <button type="button" th:if="${reserveCnt == 0}" th:onclick="reserveInsert([[${item.itemCode}]])" class="btn btn-outline-success">
+                                    참여</button>
+                                <button type="button" th:if="${reserveCnt != 0}" th:onclick="reserveAlert([[${item.itemCode}]])" class="btn btn-outline-success">
                                     참여</button>
                             </div>
                             <div class="col">

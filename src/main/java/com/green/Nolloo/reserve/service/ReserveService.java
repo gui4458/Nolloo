@@ -15,5 +15,5 @@ public interface ReserveService {
     ItemVO selectDetail(ReserveVO reserveVO);
 
 
-    List<ReserveVO> reserveDone(ReserveVO reserveVO);
+    int reserveDone(ReserveVO reserveVO);
 }
