@@ -90,11 +90,11 @@
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
     <th:block th:if="${chkCode == 1}">
 
-      <div class="col" th:each="item : ${itemList}" th:if="${item.cateCode == 1}" th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|">
+      <div class="col" th:each="item : ${itemList}" th:if="${item.cateCode == 1}" >
         <div class="card shadow-sm">
           
-          <div class="card-body" th:style="'background-image:url(/upload/itemSolo/' + ${item.imgList[0].attachedFileName} + ');'">
-            <div class="title h3">[[${item.itemTitle}]]
+          <div class="card-body" th:style="'background-image:url(/upload/itemSolo/' + ${item.imgList[0].attachedFileName} + ');'"  >
+            <div class="title h3"><span th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|" >[[${item.itemTitle}]]</span> 
               <span class="ht text-end" style="position: absolute; left: 95%; transform: translate(-90%);">
                 <th:block sec:authorize="isAuthenticated()">
 
@@ -138,14 +138,14 @@
 
 
     
-      <div class="col" th:each="item : ${itemList}" th:if="${item.cateCode == 2}" onclick="alert('clicked')">
+      <div class="col" th:each="item : ${itemList}" th:if="${item.cateCode == 2}" >
 
 
         <div class="card shadow-sm">
           
-          <div class="card-body" th:style="'background-image:url(/upload/item/' + ${item.imgList[0].attachedFileName} + ');'">
+          <div class="card-body" th:style="'background-image:url(/upload/item/' + ${item.imgList[0].attachedFileName} + ');'"  >
             
-            <div class="title h3">[[${item.itemTitle}]]
+            <div class="title h3"><span th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|" >[[${item.itemTitle}]]</span> 
               <span class="ht text-end" style="position: absolute; left: 95%; transform: translate(-90%);">
                 <th:block sec:authorize="isAuthenticated()">
 
