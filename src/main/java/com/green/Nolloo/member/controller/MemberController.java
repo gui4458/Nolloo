@@ -28,6 +28,10 @@ public class MemberController {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
+    @GetMapping("")
+    public String selectProfile(){
+        return "";
+    }
     //회원가입
     @PostMapping("/join")
     public String join(MemberVO memberVO

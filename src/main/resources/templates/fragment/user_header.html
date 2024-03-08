@@ -23,15 +23,21 @@
         </form> -->
 
         <div class="dropdown text-end">
+          <th:block sec:authorize="isAnonymous()">
           <a href="javascript:void(0);" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
+          </th:block>
+
+          <th:block sec:authorize="isAuthenticated()">
+          <a href="javascript:void(0);" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          </th:block>
           <ul class="dropdown-menu text-small">
 
 
             <th:block sec:authorize="isAuthenticated()">
-
               [[${#authentication.name}]]님 환영합니다.
               <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                 <li><span class="dropdown-item" href="/admin/regItemForm">Settings</span></li>
@@ -53,6 +59,7 @@
 
             </th:block>
             <th:block sec:authorize="isAnonymous()">
+              
               <li> <span class="dropdown-item" onclick="goLoginForm()">LOGIN</span></li>
               <li> <span class="dropdown-item" data-bs-toggle="modal" data-bs-target="#join-modal">JOIN</span></li>
             </th:block>
