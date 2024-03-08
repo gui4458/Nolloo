@@ -84,6 +84,8 @@
         , ITEM_CONTENT
         , ITEM_PEOPLE
         , ITEM_PRICE
+        , ATTACHED_FILE_NAME
+        , IS_MAIN
     FROM ITEM_INFO INFO
     INNER JOIN ITEM_IMAGE IMG
     ON INFO.ITEM_CODE=IMG.ITEM_CODE
@@ -132,6 +134,20 @@
             )
         </foreach>
     </insert>
+    <select id="selectPartyDetail" resultMap="item">
+        SELECT
+        INFO.ITEM_CODE
+        , ITEM_TITLE
+        , ITEM_PLACE
+        , ITEM_DATE
+        , ITEM_CONTENT
+        , ITEM_PEOPLE
+        , ITEM_PRICE
+        FROM ITEM_INFO INFO
+        INNER JOIN ITEM_IMAGE IMG
+        ON INFO.ITEM_CODE=IMG.ITEM_CODE
+        WHERE INFO.ITEM_CODE = #{itemCode}
+    </select>
 
 
 </mapper>
