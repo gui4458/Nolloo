@@ -1,9 +1,13 @@
-getMapData();
+var urlParams = new URLSearchParams(window.location.search);
+var ic = urlParams.get('itemCode');
+console.log(ic)
+
+getMapData(ic);
 
 
-function getMapData() {
-    fetch('/position', { //요청경로
-        method: 'POST',
+function getMapData(ic) {
+    fetch('/itemDetailForm', { //요청경로
+        method: 'GET',
         cache: 'no-cache',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
@@ -11,7 +15,7 @@ function getMapData() {
         //컨트롤러로 전달할 데이터
         body: new URLSearchParams({
            // 데이터명 : 데이터값
-           itemCode : 11
+           itemCode : ic
         })
     })
     .then((response) => {
