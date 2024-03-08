@@ -5,18 +5,28 @@
 <title></title>
 </head>
 <body>
+    <input class="userId" type="hidden" th:value="${#authentication.name}">
+    
 <!-- 로그인 성공 -->
 <th:block sec:authorize="isAuthenticated()">
+    
 <script>
-    alert(`님 환영합니다.`)
+    let a = document.querySelector('.userId').value;
+    alert(`${a}님 환영합니다.`)
     location.href="/item/list"
 </script>
 </th:block>
 <th:block sec:authorize="isAnonymous()">
     <script>
+        
         alert('ID 혹은 PW를 확인하세요.');
         location.href = '/member/loginPage';
     </script>
 </th:block>
 </body>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/js/content/member/login_result.js"></script> -->
+</th:block>
 </html>

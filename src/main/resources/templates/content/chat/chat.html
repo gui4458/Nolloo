@@ -5,7 +5,7 @@
     
         <div class="container">
             <div>
-                
+                <input class="chatId" type="hidden" th:value="${#authentication.name}">
             </div>
             <div id="chat-room">
                 <div class="row" style="width: 100%;">
@@ -22,7 +22,7 @@
                             <div class="input-group mb-3">
                                 <input type="text" id="msg" onkeypress="enterkey(this)" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary send-btn" type="button" id="button-send">전송</button>
+                                    <button class="btn btn-outline-secondary send-btn" type="button" id="button-send"><img width="100%" src="/upload/chat/send.jpg" alt=""></button>
                                 </div>
                             </div>
                         </div>

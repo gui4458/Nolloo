@@ -1,4 +1,6 @@
-const username = '홍';
+
+
+const username = document.querySelector('.chatId').value;
 
 // $("#disconn").on("click", (e) => {
 //     disconnect();
@@ -97,7 +99,7 @@ function onMessage(msg) {
     else{
         var str = "<div class='col-6 other-msg'>";
         str += "<div class='alert alert-warning'>";
-        str += "<span>" + "son" + " : " + message + "</span>";
+        str += "<span>" + sessionId + " : " + message + "</span>";
         str += "</div></div>";
         //$("#msgArea").append(str);
         document.querySelector('#msgArea').insertAdjacentHTML('beforeend', str);

@@ -71,7 +71,9 @@
                         <!------------- 조회수 ------------>
                         <div class="row">
                             <div class="col ">
-                                조회수/<span onclick="goChat()">채팅바로가기</span>
+                                조회수/
+                                <span sec:authorize="isAuthenticated()" onclick="goChat()">채팅바로가기</span>
+                                <span sec:authorize="isAnonymous()" onclick="goLogin()">채팅바로가기</span>
                             </div>
                         </div>
                     </td>
