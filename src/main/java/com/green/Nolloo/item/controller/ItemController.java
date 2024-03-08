@@ -3,6 +3,7 @@ package com.green.Nolloo.item.controller;
 import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
+import com.green.Nolloo.member.service.MemberService;
 import com.green.Nolloo.member.vo.MemberVO;
 import com.green.Nolloo.util.UploadUtil;
 import com.green.Nolloo.wish.service.WishService;
@@ -29,11 +30,15 @@ public class ItemController {
     private ItemService itemService;
     @Resource(name = "wishService")
     private WishService wishService;
+    @Resource(name = "memberService")
+    private MemberService memberService;
+
 
 
     //파티게시글 목록조회
     @GetMapping("/list")
-    public String list(Model model, HttpSession session, ItemVO itemVO, @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode){
+    public String list(Model model, HttpSession session, ItemVO itemVO, @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode
+                       ){
         model.addAttribute("itemList",itemService.selectPartyList(itemVO));
 
 
