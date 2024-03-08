@@ -17,9 +17,7 @@
 <!-- 이전 예약 내역 조회-->
     <select id="reserveDone" resultMap="reserve">
         SELECT RESERVE_CODE
-        , MEMBER_ID
-        , RESERVE_DATE
-        , ITEM_CODE
+         ITEM_CODE
         FROM RESERVE
         WHERE MEMBER_ID=#{memberId}
         AND ITEM_CODE=#{itemCode}
