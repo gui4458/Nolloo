@@ -116,7 +116,7 @@
                             </div>
                             <div class="col">
                                 <button type="button"
-                                    th:onclick="goWish([[${item.itemCode}]],[[${session.loginInfo}]])"
+                                    th:onclick="goWish([[${item.itemCode}]],[[${#authentication.name}]])"
                                     class="btn btn-outline-info">
                                     찜</button>
                             </div>

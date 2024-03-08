@@ -8,6 +8,8 @@ import com.green.Nolloo.util.UploadUtil;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,7 +50,7 @@ public class MemberController {
 
     //로그인
 //    @PostMapping("/login")
-//    public String login(MemberVO memberVO, HttpSession session){
+//    public String login(HttpSession session){
 //    MemberVO loginInfo = memberService.login(memberVO);
 //
 //    if(loginInfo != null){
@@ -67,10 +69,11 @@ public class MemberController {
 //    }
 
     @GetMapping("/myPage")
-    public String myPage(MemberVO memberVO, Model model, HttpSession session){
+    public String myPage(MemberVO memberVO, Model model, Authentication authentication){
+        User user = (User)authentication.getPrincipal();
+
         //세션에 있는 로그인한 사람의 id를 가져온다.
-        MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
-        memberVO.setMemberId(loginInfo.getMemberId());
+        memberVO.setMemberId(user.getUsername());
 
 
         MemberVO memberInfo = memberService.memberInfo(memberVO);
@@ -80,9 +83,10 @@ public class MemberController {
     }
 
     @PostMapping("/myPage")
-    public String myPage1(MemberVO memberVO,HttpSession session,Model model){
-        MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
-        memberVO.setMemberId(loginInfo.getMemberId());
+    public String myPage1(MemberVO memberVO,Authentication authentication,Model model){
+        User user = (User)authentication.getPrincipal();
+
+        memberVO.setMemberId(user.getUsername());
         memberService.revise(memberVO);
 
 //        MemberVO memberInfo = memberService.memberInfo(memberVO);
@@ -93,12 +97,12 @@ public class MemberController {
 
     }
     @GetMapping("deleteMember")
-    public String deleteMember(MemberVO memberVO,HttpSession session){
-        MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
-        memberVO.setMemberId(loginInfo.getMemberId());
+    public String deleteMember(MemberVO memberVO,Authentication authentication){
+        User user = (User)authentication.getPrincipal();
+
+        memberVO.setMemberId(user.getUsername());
 
         memberService.deleteMember(memberVO);
-        session.removeAttribute("loginInfo");
 
         return "redirect:/item/list";
     }

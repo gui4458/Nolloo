@@ -9,6 +9,8 @@ import com.green.Nolloo.wish.service.WishService;
 import com.green.Nolloo.wish.vo.WishViewVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,8 +33,10 @@ public class ItemController {
 
     //파티게시글 목록조회
     @GetMapping("/list")
-    public String list(Model model, HttpSession session, ItemVO itemVO,@RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode){
+    public String list(Model model, HttpSession session, ItemVO itemVO, @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode){
         model.addAttribute("itemList",itemService.selectPartyList(itemVO));
+
+
         MemberVO loginInfo =(MemberVO)session.getAttribute("loginInfo");
         List<Integer> wishCodeList = new ArrayList<>();
         model.addAttribute("chkCode",chkCode);
