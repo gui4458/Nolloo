@@ -24,8 +24,8 @@
                     <td style="font-weight: bold;">Party</td>
                     <td style="font-weight: bold;">Date</td>
                 </tr>
-                <tr th:each="reserve:${reserveList}">
-                    <td>[[${reserve.reserveCode}]]</td>
+                <tr th:each="reserve, state:${reserveList}">
+                    <td>[[${state.index + 1}]]</td> 
                     <td> <span
                             th:onclick="getReserveDetail([[${reserve.itemCode}]])">[[${reserve.itemVO.itemTitle}]]</span>
                     </td>

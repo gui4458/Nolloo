@@ -101,11 +101,16 @@ public class ItemController {
     }
     //itemDetail 조회
     @GetMapping("/itemDetailForm")
-    public String boardDetailForm(ItemVO itemVO, ReserveVO reserveVO, Model model){
+    public String boardDetailForm(ItemVO itemVO, ReserveVO reserveVO, Model model, Authentication authentication){
         Model item = model.addAttribute("item",itemService.selectPartyDetail(itemVO));
 
-        model.addAttribute("reserveDone",reserveService.reserveDone(reserveVO));
-        System.out.println(reserveService.reserveDone(reserveVO));
+        if (authentication != null){
+            User user = (User)authentication.getPrincipal();
+            System.out.println(user.getUsername());
+            reserveVO.setMemberId(user.getUsername());
+            model.addAttribute("reserveCnt",reserveService.reserveDone(reserveVO));
+        }
+
         return "content/item/item_detail";
     }
     //게시글 삭제
