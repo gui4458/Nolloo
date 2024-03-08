@@ -59,7 +59,7 @@ public class SecurityConfig {
                                     // 두번째 매개변수로 true 를 넣으면 항상 지정한 url 로 이동!
                                     // 두번째 매개변수가 없으면 이전 페이지로 이동.
                                     // 이전페이지가 없다면 지정한 url로 이동
-                                    .defaultSuccessUrl("/item/list")
+                                    .defaultSuccessUrl("/member/loginResult")
                                     .failureUrl("/member/loginPage");
 
                         }
