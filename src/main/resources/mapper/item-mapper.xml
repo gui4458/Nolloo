@@ -84,6 +84,8 @@
         , ITEM_CONTENT
         , ITEM_PEOPLE
         , ITEM_PRICE
+        , ATTACHED_FILE_NAME
+        , IS_MAIN
     FROM ITEM_INFO INFO
     INNER JOIN ITEM_IMAGE IMG
     ON INFO.ITEM_CODE=IMG.ITEM_CODE
@@ -132,7 +134,6 @@
             )
         </foreach>
     </insert>
-
 
 </mapper>
 

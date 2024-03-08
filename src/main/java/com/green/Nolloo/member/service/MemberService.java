@@ -9,7 +9,7 @@ public interface MemberService {
     void join(MemberVO memberVO);
 
     //로그인
-    MemberVO login(MemberVO memberVO);
+    MemberVO login(String memberId);
 
     //회원정보조회
     MemberVO memberInfo(MemberVO memberVO);
