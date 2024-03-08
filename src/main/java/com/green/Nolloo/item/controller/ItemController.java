@@ -33,14 +33,13 @@ public class ItemController {
     private ItemService itemService;
     @Resource(name = "wishService")
     private WishService wishService;
-<<<<<<< HEAD
+
     @Resource(name="reserveService")
     private ReserveService reserveService;
-=======
+
     @Resource(name = "memberService")
     private MemberService memberService;
 
->>>>>>> 08327f3b1a5e8bc77761c188f2f6e4d88e03b1f0
 
 
     //파티게시글 목록조회
