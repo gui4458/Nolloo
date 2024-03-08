@@ -21,5 +21,5 @@ public interface MemberService {
     //회원탈퇴
     void deleteMember(MemberVO memberVO);
 
-    MemberImageVO selectProfile(String memberId);
+    String selectProfile(String memberId);
 }

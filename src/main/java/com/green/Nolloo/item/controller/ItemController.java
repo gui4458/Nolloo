@@ -3,6 +3,7 @@ package com.green.Nolloo.item.controller;
 import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
+import com.green.Nolloo.member.service.MemberService;
 import com.green.Nolloo.member.vo.MemberVO;
 import com.green.Nolloo.reserve.service.ReserveService;
 import com.green.Nolloo.reserve.vo.ReserveVO;
@@ -10,6 +11,7 @@ import com.green.Nolloo.util.UploadUtil;
 import com.green.Nolloo.wish.service.WishService;
 import com.green.Nolloo.wish.vo.WishViewVO;
 import jakarta.annotation.Resource;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
@@ -31,16 +33,28 @@ public class ItemController {
     private ItemService itemService;
     @Resource(name = "wishService")
     private WishService wishService;
+<<<<<<< HEAD
     @Resource(name="reserveService")
     private ReserveService reserveService;
+=======
+    @Resource(name = "memberService")
+    private MemberService memberService;
+
+>>>>>>> 08327f3b1a5e8bc77761c188f2f6e4d88e03b1f0
 
 
     //파티게시글 목록조회
     @GetMapping("/list")
-    public String list(Model model,Authentication authentication, ItemVO itemVO, @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode){
+
+    public String list(Model model,Authentication authentication, ItemVO itemVO, @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode
+                    ){
         model.addAttribute("itemList",itemService.selectPartyList(itemVO));
         List<Integer> wishCodeList = new ArrayList<>();
         model.addAttribute("chkCode",chkCode);
+
+
+
+
         if (authentication != null){
             User user = (User)authentication.getPrincipal();
 
@@ -49,7 +63,9 @@ public class ItemController {
                 wishCodeList.add(e.getItemCode());
             }
             model.addAttribute("wishCodeList",wishCodeList);
+            model.addAttribute("memberImg",memberService.selectProfile(user.getUsername()));
         }
+
         return "content/main";
     }
     //게시글 등록
