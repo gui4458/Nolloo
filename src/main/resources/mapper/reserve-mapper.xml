@@ -15,14 +15,11 @@
     </resultMap>
 
 <!-- 이전 예약 내역 조회-->
-    <select id="reserveDone" resultMap="reserve">
-        SELECT RESERVE_CODE
-        , MEMBER_ID
-        , RESERVE_DATE
-        , ITEM_CODE
+    <select id="reserveDone" resultType="int">
+        SELECT COUNT(ITEM_CODE)
         FROM RESERVE
         WHERE MEMBER_ID=#{memberId}
-        AND ITEM_CODE=#{itemCode}
+        AND ITEM_CODE = #{itemCode}
     </select>
 
 
@@ -63,6 +60,16 @@
         FROM item_info
         WHERE ITEM_CODE=#{itemCode}
     </select>
+
+    <delete id="deleteReserve">
+
+        DELETE
+        FROM RESERVE
+        WHERE RESERVE_CODE IN (1,2,3)
+
+
+
+    </delete>
 
 	
 </mapper>

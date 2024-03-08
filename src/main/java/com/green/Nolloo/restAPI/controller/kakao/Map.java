@@ -58,6 +58,4 @@ public class Map {
         return nowPos;
     }
 
-
-
 }

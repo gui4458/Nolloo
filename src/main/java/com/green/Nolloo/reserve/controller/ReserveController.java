@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -26,6 +27,7 @@ public class ReserveController{
     private ItemService itemService;
 
 
+    //예약하기
     @ResponseBody
     @PostMapping("/partyReserve")
     public void reserve(Authentication authentication
@@ -38,6 +40,7 @@ public class ReserveController{
 
     }
 
+    //예약 조회
     @GetMapping("/reserveList")
     public String reserveList(ReserveVO reserveVO, Authentication authentication, Model model){
         User user = (User)authentication.getPrincipal();
@@ -51,6 +54,8 @@ public class ReserveController{
 //        model.addAttribute("reserveDetail",reserveDetail);
         return "content/member/reserve";
     }
+
+    //예약 상세 내역 조회
     @ResponseBody
     @PostMapping("/reserveDetail")
     public ItemVO reserveDetail(@RequestBody ReserveVO reserveVO){
@@ -59,6 +64,13 @@ public class ReserveController{
 
         return reserveDetail;
 
+    }
+
+    @GetMapping("/reserveDelete")
+    public String reserveDelete(@RequestParam(name = "reserveCodeList") ArrayList<Integer> reserveCodeList){
+        System.out.println(reserveCodeList);
+        //return "";
+        return "redirect:/reserve/reserveList";
     }
 
 

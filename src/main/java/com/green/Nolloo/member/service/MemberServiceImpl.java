@@ -43,7 +43,7 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public MemberImageVO selectProfile(String memberId) {
+    public String selectProfile(String memberId) {
         return sqlSession.selectOne("memberMapper.selectProfile",memberId);
     }
 }

@@ -30,7 +30,7 @@ public class ReserveServiceImpl implements ReserveService{
     }
 
     @Override
-    public ReserveVO reserveDone(ReserveVO reserveVO) {
+    public int reserveDone(ReserveVO reserveVO) {
         return sqlSession.selectOne("reserveMapper.reserveDone",reserveVO);
     }
 

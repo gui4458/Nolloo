@@ -18,4 +18,6 @@ public interface ItemService {
 
     int selectNextItemCode();
 
+    void itemListUpdateCnt(ItemVO itemVO);
+
 }

@@ -20,12 +20,14 @@
             <table class="table table-bordered text-center">
 
                 <tr>
+                    <td><input type="checkbox" id="checkAll" onclick="checkAll()"></td>
                     <td style="font-weight: bold;">No</td>
                     <td style="font-weight: bold;">Party</td>
                     <td style="font-weight: bold;">Date</td>
                 </tr>
-                <tr th:each="reserve:${reserveList}">
-                    <td>[[${reserve.reserveCode}]]</td>
+                <tr th:each="reserve, state:${reserveList}">
+                    <td><input type="checkbox" class="chk" th:value="${reserve.reserveCode}"></td>
+                    <td>[[${state.index + 1}]]</td> 
                     <td> <span
                             th:onclick="getReserveDetail([[${reserve.itemCode}]])">[[${reserve.itemVO.itemTitle}]]</span>
                     </td>
@@ -34,6 +36,13 @@
             </table>
         </div>
     </div>
+    <div class="row">
+        <div class="col-4 d-grid">
+            <input type="button" class="btn btn-primary" value="삭제" onclick="deleteReserve()" >
+        </div>
+    </div>
+
+
 
 
     <!-- Modal -->

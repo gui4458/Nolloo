@@ -19,7 +19,10 @@ public class ItemServiceImpl implements ItemService {
         return sqlSession.selectOne("itemMapper.selectNextItemCode");
     }
 
-
+    @Override
+    public void itemListUpdateCnt(ItemVO itemVO) {
+        sqlSession.update("itemMapper.itemListUpdateCnt",itemVO);
+    }
 
 
     // item 등록

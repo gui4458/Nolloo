@@ -17,6 +17,7 @@ public class ItemVO {
     private String itemDate;
     private String itemPeople;
     private int peopleCnt;
+    private int readCnt;
     private String itemPlace;
     private String placeDetail;
     private String itemStartDate;
