@@ -1,6 +1,7 @@
 package com.green.Nolloo.member.service;
 
 import com.green.Nolloo.item.vo.ImgVO;
+import com.green.Nolloo.member.vo.MemberImageVO;
 import com.green.Nolloo.member.vo.MemberVO;
 
 public interface MemberService {
@@ -20,4 +21,5 @@ public interface MemberService {
     //회원탈퇴
     void deleteMember(MemberVO memberVO);
 
+    MemberImageVO selectProfile(String memberId);
 }
