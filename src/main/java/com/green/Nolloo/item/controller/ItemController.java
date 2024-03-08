@@ -33,15 +33,14 @@ public class ItemController {
 
     //파티게시글 목록조회
     @GetMapping("/list")
-    public String list(Model model, HttpSession session, ItemVO itemVO, @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode){
+    public String list(Model model,Authentication authentication, ItemVO itemVO, @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode){
         model.addAttribute("itemList",itemService.selectPartyList(itemVO));
-
-
-        MemberVO loginInfo =(MemberVO)session.getAttribute("loginInfo");
         List<Integer> wishCodeList = new ArrayList<>();
         model.addAttribute("chkCode",chkCode);
-        if (loginInfo != null){
-            List<WishViewVO> wishList = wishService.selectWish(loginInfo.getMemberId());
+        if (authentication != null){
+            User user = (User)authentication.getPrincipal();
+
+            List<WishViewVO> wishList = wishService.selectWish(user.getUsername());
             for (WishViewVO e : wishList){
                 wishCodeList.add(e.getItemCode());
             }
