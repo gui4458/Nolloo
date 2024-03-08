@@ -2,8 +2,7 @@ package com.green.Nolloo.restAPI.controller.kakao;
 
 import com.green.Nolloo.restAPI.service.KakaoApiService;
 import com.green.Nolloo.restAPI.vo.AddressVO;
-import jakarta.annotation.Resource;
-import jakarta.annotation.Resources;
+import com.green.Nolloo.restAPI.vo.MapVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class AddressControl {
+public class Address {
 
 
     @Autowired
@@ -27,4 +26,16 @@ public class AddressControl {
     public AddressVO getAddress(@RequestParam(name="latitude") double latitude, @RequestParam(name="longitude") double longitude) {
         return kakaoApiService.getAddressFromGeolocation(latitude, longitude);
     }
+
+    @GetMapping("/location")
+    public String loc() {
+        return "/content/restAPI/location";
+    }
+
+    @GetMapping("/getLocation")
+    @ResponseBody
+    public MapVO getAddress(@RequestParam(name="query") String addr) {
+        return kakaoApiService.getGeoFromAddress(addr);
+    }
+
 }

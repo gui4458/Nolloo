@@ -1,6 +1,7 @@
 package com.green.Nolloo.restAPI.service;
 
 import com.green.Nolloo.restAPI.vo.AddressVO;
+import com.green.Nolloo.restAPI.vo.MapVO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.awt.*;
 import java.util.List;
@@ -53,6 +56,59 @@ public class KakaoApiService {
             } else {
                 System.out.println("Error: Unexpected response status - " + response.getStatusCodeValue());
             }
+        } catch (HttpClientErrorException e) {
+            System.out.println("Error: HTTP client exception - " + e.getRawStatusCode() + ": " + e.getStatusText());
+        } catch (Exception e) {
+            System.out.println("Error: Exception - " + e.getMessage());
+        }
+        return null;
+    }
+
+    public MapVO getGeoFromAddress(String addr) {
+        String url = String.format("https://dapi.kakao.com/v2/local/search/address.json");
+
+        UriComponents uriComponents = UriComponentsBuilder
+                .fromHttpUrl(url)
+                .queryParam("query",addr)
+                .build();
+
+
+        MapVO mapVO = new MapVO();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "KakaoAK " + apiKey);
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        try {
+       //     ResponseEntity<String> response = restTemplate.exchange(uriComponents.toString(), HttpMethod.GET, new HttpEntity<>(headers), String.class);
+
+            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(uriComponents.toString(), HttpMethod.GET, new HttpEntity<>(headers), new ParameterizedTypeReference<Map<String, Object>>() {});
+
+           // System.out.println("Response : "response);
+
+            if (response.getStatusCode() == HttpStatus.OK) {
+                Map<String, Object> responseBody = response.getBody();
+
+             //   System.out.println("ResponseBody : "+responseBody);
+
+                List<Map<String, Object>> documents = (List<Map<String, Object>>) responseBody.get("documents");
+                if (!documents.isEmpty()) {
+                    Map<String, Object> firstDocument = documents.get(0);
+
+                    System.out.println("FirstDocument : "+firstDocument);
+
+                    mapVO.setItemX( Double.parseDouble((String)firstDocument.get("y")));
+                    mapVO.setItemY( Double.parseDouble((String)firstDocument.get("x")));
+
+                    return mapVO;
+
+                } else {
+                    System.out.println("Error: No documents found in the response");
+                }
+                  } else {
+                System.out.println("Error: Unexpected response status - " + response.getStatusCodeValue());
+                }
         } catch (HttpClientErrorException e) {
             System.out.println("Error: HTTP client exception - " + e.getRawStatusCode() + ": " + e.getStatusText());
         } catch (Exception e) {

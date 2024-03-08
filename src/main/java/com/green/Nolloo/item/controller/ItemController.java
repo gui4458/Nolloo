@@ -5,22 +5,26 @@ import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.member.service.MemberService;
 import com.green.Nolloo.member.vo.MemberVO;
+
 import com.green.Nolloo.reserve.service.ReserveService;
 import com.green.Nolloo.reserve.vo.ReserveVO;
+
+import com.green.Nolloo.restAPI.service.KakaoApiService;
+import com.green.Nolloo.restAPI.vo.AddressVO;
+import com.green.Nolloo.restAPI.vo.MapVO;
+
 import com.green.Nolloo.util.UploadUtil;
 import com.green.Nolloo.wish.service.WishService;
 import com.green.Nolloo.wish.vo.WishViewVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,13 +38,16 @@ public class ItemController {
     @Resource(name = "wishService")
     private WishService wishService;
 
+
     @Resource(name="reserveService")
     private ReserveService reserveService;
+
 
     @Resource(name = "memberService")
     private MemberService memberService;
 
-
+    @Autowired
+    private KakaoApiService kakaoApiService;
 
     //파티게시글 목록조회
     @GetMapping("/list")
@@ -77,7 +84,7 @@ public class ItemController {
     @PostMapping("/itemAdd")
     public String boardAdd(ItemVO itemVO
                             , @RequestParam(name = "img") MultipartFile img
-                            , @RequestParam(name = "imgs") MultipartFile[] imgs){
+                            , @RequestParam(name = "imgs") MultipartFile[] imgs, @RequestParam(name="itemPlace") String addr){
         //메인이미지 업로드
         ImgVO mainImg = UploadUtil.uploadFile(img);
         //상세이미지 업로드
@@ -95,10 +102,22 @@ public class ItemController {
         imgList.add(mainImg);
         itemVO.setImgList(imgList);
 
+        MapVO mapVO = kakaoApiService.getGeoFromAddress(addr);
+
+        System.out.println(mapVO);
+
+        double lat = mapVO.getItemX();
+        double lng = mapVO.getItemY();
+
+        System.out.println("Lat:" + lat +" Lng:"+ lng);
+
+        itemVO.setItemX(lat);
+        itemVO.setItemY(lng);
 
         itemService.insertParty(itemVO);
         return "redirect:/item/list";
     }
+
     //itemDetail 조회
     @GetMapping("/itemDetailForm")
     public String boardDetailForm(ItemVO itemVO, ReserveVO reserveVO, Model model, Authentication authentication){
@@ -133,4 +152,5 @@ public class ItemController {
 
         return "redirect:/item/itemDetailForm?itemCode="+itemVO.getItemCode();
     }
+
 }
