@@ -3,6 +3,7 @@ package com.green.Nolloo.reserve.controller;
 import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.member.vo.MemberVO;
+import com.green.Nolloo.reserve.service.ReserveService;
 import com.green.Nolloo.reserve.service.ReserveServiceImpl;
 import com.green.Nolloo.reserve.vo.ReserveVO;
 import jakarta.annotation.Resource;
@@ -22,12 +23,15 @@ public class ReserveController{
     @Resource(name = "itemService")
     private ItemService itemService;
 
+
     @ResponseBody
     @PostMapping("/partyReserve")
     public void reserve(HttpSession session
                         , @RequestBody ReserveVO reserveVO){
         MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
         reserveVO.setMemberId(loginInfo.getMemberId());
+
+        reserveService.reserveDone(reserveVO);
         reserveService.insertReserve(reserveVO);
 
     }
