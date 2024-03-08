@@ -54,6 +54,8 @@ public class ItemController {
 
     public String list(Model model,Authentication authentication, ItemVO itemVO, @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode
                     ){
+
+
         model.addAttribute("itemList",itemService.selectPartyList(itemVO));
         List<Integer> wishCodeList = new ArrayList<>();
         model.addAttribute("chkCode",chkCode);
@@ -121,6 +123,8 @@ public class ItemController {
     //itemDetail 조회
     @GetMapping("/itemDetailForm")
     public String boardDetailForm(ItemVO itemVO, ReserveVO reserveVO, Model model, Authentication authentication){
+
+        itemService.itemListUpdateCnt(itemVO);
         Model item = model.addAttribute("item",itemService.selectPartyDetail(itemVO));
 
         if (authentication != null){
@@ -152,5 +156,6 @@ public class ItemController {
 
         return "redirect:/item/itemDetailForm?itemCode="+itemVO.getItemCode();
     }
+
 
 }
