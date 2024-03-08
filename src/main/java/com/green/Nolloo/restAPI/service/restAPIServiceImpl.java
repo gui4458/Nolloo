@@ -13,15 +13,14 @@ public class restAPIServiceImpl implements restAPIService {
     @Autowired
     private SqlSessionTemplate sqlSession;
 
-    @Override
-    public MapVO selectMapLatLnt(int itemCode) {
-        return sqlSession.selectOne("mapMapper.selectMapLatLng",itemCode);
-    }
+//    @Override
+//    public MapVO selectMapLatLnt(int itemCode) {
+//        return sqlSession.selectOne("mapMapper.selectMapLatLng",itemCode);
+//    }
 
     @Override
     public List<MapVO> selectAllMapLatLnt() {
         return sqlSession.selectList("mapMapper.selectAllMapLatLng");
     }
-
 
 }
