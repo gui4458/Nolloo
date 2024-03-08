@@ -6,13 +6,13 @@
 </head>
 <body>
 <!-- 로그인 성공 -->
-<th:block th:if="${session.loginInfo != null}">
+<th:block th:if="${#authentication.name != 'anonymousUser'}">
 <script>
-    alert(`[[${session.loginInfo.memberId}]]님 환영합니다.`)
+    alert(`[[${authentication.name}]]님 환영합니다.`)
     location.href="/item/list"
 </script>
 </th:block>
-<th:block th:if="${session.loginInfo == null}">
+<th:block th:if="${#authentication.name == 'anonymousUser'}">
     <script>
         alert('ID 혹은 PW를 확인하세요.');
         location.href = '/member/loginPage';

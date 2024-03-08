@@ -9,6 +9,8 @@ import com.green.Nolloo.reserve.vo.ReserveVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,20 +28,25 @@ public class ReserveController{
 
     @ResponseBody
     @PostMapping("/partyReserve")
-    public void reserve(HttpSession session
+    public void reserve(Authentication authentication
                         , @RequestBody ReserveVO reserveVO){
+<<<<<<< HEAD
         MemberVO loginInfo = (MemberVO)session.getAttribute("loginInfo");
         reserveVO.setMemberId(loginInfo.getMemberId());
 
         reserveService.reserveDone(reserveVO);
+=======
+        User user = (User)authentication.getPrincipal();
+        reserveVO.setMemberId(user.getUsername());
+>>>>>>> dev
         reserveService.insertReserve(reserveVO);
 
     }
 
     @GetMapping("/reserveList")
-    public String reserveList(ReserveVO reserveVO, HttpSession session, Model model){
-        MemberVO loginInfo= (MemberVO)session.getAttribute("loginInfo");
-        reserveVO.setMemberId(loginInfo.getMemberId());
+    public String reserveList(ReserveVO reserveVO, Authentication authentication, Model model){
+        User user = (User)authentication.getPrincipal();
+        reserveVO.setMemberId(user.getUsername());
         List<ReserveVO> reserveList = reserveService.selectReserve(reserveVO);
         System.out.println(reserveList);
         model.addAttribute("reserveList",reserveList);

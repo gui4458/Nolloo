@@ -2,10 +2,10 @@
 function goWish(itemCode,loginInfo){
 
 
-    if (loginInfo == null) {
+    if (loginInfo == 'anonymousUser') {
         alert('로그인 해주세요.');
     } 
-    else if (loginInfo != null) {
+    else if (loginInfo != 'anonymousUser') {
         fetch('/wish/insertWish', { //요청경로
             method: 'POST',
             cache: 'no-cache',

@@ -11,7 +11,7 @@ function getMapData() {
         //컨트롤러로 전달할 데이터
         body: new URLSearchParams({
            // 데이터명 : 데이터값
-           itemCode : 1
+           itemCode : 11
         })
     })
     .then((response) => {
