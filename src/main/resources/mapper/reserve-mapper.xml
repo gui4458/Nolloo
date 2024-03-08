@@ -61,6 +61,16 @@
         WHERE ITEM_CODE=#{itemCode}
     </select>
 
+    <delete id="deleteReserve">
+
+        DELETE
+        FROM RESERVE
+        WHERE RESERVE_CODE IN (1,2,3)
+
+
+
+    </delete>
+
 	
 </mapper>
 
