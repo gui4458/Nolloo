@@ -4,6 +4,8 @@ import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.member.vo.MemberVO;
+import com.green.Nolloo.reserve.service.ReserveService;
+import com.green.Nolloo.reserve.vo.ReserveVO;
 import com.green.Nolloo.util.UploadUtil;
 import com.green.Nolloo.wish.service.WishService;
 import com.green.Nolloo.wish.vo.WishViewVO;
@@ -29,6 +31,8 @@ public class ItemController {
     private ItemService itemService;
     @Resource(name = "wishService")
     private WishService wishService;
+    @Resource(name="reserveService")
+    private ReserveService reserveService;
 
 
     //파티게시글 목록조회
@@ -82,9 +86,11 @@ public class ItemController {
     }
     //itemDetail 조회
     @GetMapping("/itemDetailForm")
-    public String boardDetailForm(ItemVO itemVO, Model model){
+    public String boardDetailForm(ItemVO itemVO, ReserveVO reserveVO, Model model){
         Model item = model.addAttribute("item",itemService.selectPartyDetail(itemVO));
-        System.out.println(item);
+
+        model.addAttribute("reserveDone",reserveService.reserveDone(reserveVO));
+        System.out.println(reserveService.reserveDone(reserveVO));
         return "content/item/item_detail";
     }
     //게시글 삭제
