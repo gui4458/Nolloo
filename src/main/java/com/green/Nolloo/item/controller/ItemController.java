@@ -84,7 +84,8 @@ public class ItemController {
     //itemDetail 조회
     @GetMapping("/itemDetailForm")
     public String boardDetailForm(ItemVO itemVO, Model model){
-        model.addAttribute("item",itemService.selectPartyDetail(itemVO));
+        Model item = model.addAttribute("item",itemService.selectPartyDetail(itemVO));
+        System.out.println(item);
         return "content/item/item_detail";
     }
     //게시글 삭제
