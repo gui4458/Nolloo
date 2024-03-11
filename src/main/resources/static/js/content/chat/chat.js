@@ -1,6 +1,7 @@
 
 
 const username = document.querySelector('.chatId').value;
+const userImg = document.querySelector('.userImg').value;
 
 // $("#disconn").on("click", (e) => {
 //     disconnect();
