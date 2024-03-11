@@ -1,8 +1,6 @@
 
 
 const username = document.querySelector('.chatId').value;
-const userImg = document.querySelector('.userImg').value;
-
 // $("#disconn").on("click", (e) => {
 //     disconnect();
 // })
@@ -85,23 +83,53 @@ function onMessage(msg) {
 
     console.log("sessionID : " + sessionId);
     console.log("cur_session : " + cur_session);
-    //console.log("cur_session : ");
+    // console.log("cur_session : ");
 
     //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
     if(sessionId == cur_session){
     //if(sessionId == 'admin'){
         var str = "<div class='col-6 my-msg'>";
         str += "<div class='alert alert-secondary justify-content-center;'>";
-        str += "<span class='msg-span'>" + sessionId + " : " + message + "</span>";
+        str += "<span> </span><span class='msg-span'>" + sessionId + " : " + message + "</span>";
         str += "</div></div>";
         //$("#msgArea").append(str);
         document.querySelector('#msgArea').insertAdjacentHTML('beforeend', str);
     }
     else{
-        var str = "<div class='col-6 other-msg'>";
-        str += "<div class='alert alert-warning'>";
-        str += "<span>" + sessionId + " : " + message + "</span>";
-        str += "</div></div>";
+
+
+
+        fetch('/chatProfile', { //요청경로
+            method: 'POST',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            },
+            //컨트롤러로 전달할 데이터
+            body: JSON.stringify({
+               // 데이터명 : 데이터값
+            })
+        })
+        .then((response) => {
+            return response.json(); //나머지 경우에 사용
+        })
+        //fetch 통신 후 실행 영역
+        .then((data) => {//data -> controller에서 리턴되는 데이터!
+            
+        })
+        //fetch 통신 실패 시 실행 영역
+        .catch(err=>{
+            alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+            console.log(err);
+        });
+        
+        
+        
+
+        var str = `<div class='col-6 other-msg'>
+        <div class='alert alert-warning'>`
+        str += `<span class='msg-span'> ${sessionId}  :  ${message} </span>
+        </div></div>`
         //$("#msgArea").append(str);
         document.querySelector('#msgArea').insertAdjacentHTML('beforeend', str);
     }

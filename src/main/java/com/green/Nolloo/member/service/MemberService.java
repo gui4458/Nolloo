@@ -4,6 +4,8 @@ import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.member.vo.MemberImageVO;
 import com.green.Nolloo.member.vo.MemberVO;
 
+import java.util.List;
+
 public interface MemberService {
 
     //회원가입
@@ -22,4 +24,6 @@ public interface MemberService {
     void deleteMember(MemberVO memberVO);
 
     String selectProfile(String memberId);
+
+    List<MemberImageVO> selectAllProfile();
 }
