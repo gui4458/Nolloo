@@ -81,7 +81,7 @@ public class MemberController {
     @PostMapping("/myPage")
     public String myPage1(MemberVO memberVO,Authentication authentication,Model model){
         User user = (User)authentication.getPrincipal();
-
+        memberVO.setMemberPw(encoder.encode(memberVO.getMemberPw()));
         memberVO.setMemberId(user.getUsername());
         memberService.revise(memberVO);
 
