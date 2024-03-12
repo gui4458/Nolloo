@@ -68,7 +68,14 @@ public class ReserveController{
 
     @GetMapping("/reserveDelete")
     public String reserveDelete(@RequestParam(name = "reserveCodeList") ArrayList<Integer> reserveCodeList){
+        //삭제하려는 reserveCode 들
         System.out.println(reserveCodeList);
+
+        //삭제 쿼리가 실행될때 위에서 받은 데이타를 같이 넘겨준다 (쿼리의 빈값을 채우기 위해서)
+
+
+
+
         //return "";
         return "redirect:/reserve/reserveList";
     }
