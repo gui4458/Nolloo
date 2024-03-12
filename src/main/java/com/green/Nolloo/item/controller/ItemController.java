@@ -55,8 +55,6 @@ public class ItemController {
     public String list(Model model, Authentication authentication, ItemVO itemVO
                         , @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode
                         ,SearchVO searchVO){
-        System.out.println(itemVO);
-        System.out.println(searchVO);
         model.addAttribute("itemList",itemService.selectPartyList(searchVO));
         List<Integer> wishCodeList = new ArrayList<>();
         model.addAttribute("chkCode",chkCode);
