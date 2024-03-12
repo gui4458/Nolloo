@@ -20,13 +20,12 @@
             <div>
             </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    [[${wishList}]]
-                <div class="col-3" th:if='${wishList == null}'>
+                <div class="col-3" th:if='${#lists.isEmpty(wishList)}'>
                     <div>
                         관심목록이 비었습니다.
                     </div>
                 </div>
-                <div class="col-3" th:if="${wishList != null}" th:each="wish : ${wishList}" th:onclick="goWishDetail([[${wish.itemCode}]])">
+                <div class="col-3" th:if="${!#lists.isEmpty(wishList)}" th:each="wish : ${wishList}" th:onclick="goWishDetail([[${wish.itemCode}]])">
                     <div class="card shadow-sm" >
                 
                         <div class="card-body" style="background-image: url('https://cdn.visitkorea.or.kr/kfes/upload/nationwide/2024/02/26/3fa43c9e-126a-43de-87ad-44e0d25bb86f.jpg');">
