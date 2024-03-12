@@ -13,6 +13,7 @@ import com.green.Nolloo.restAPI.service.KakaoApiService;
 import com.green.Nolloo.restAPI.vo.AddressVO;
 import com.green.Nolloo.restAPI.vo.MapVO;
 
+import com.green.Nolloo.search.vo.SearchVO;
 import com.green.Nolloo.util.UploadUtil;
 import com.green.Nolloo.wish.service.WishService;
 import com.green.Nolloo.wish.vo.WishViewVO;
@@ -50,13 +51,13 @@ public class ItemController {
     private KakaoApiService kakaoApiService;
 
     //파티게시글 목록조회
-    @GetMapping("/list")
-
-    public String list(Model model,Authentication authentication, ItemVO itemVO, @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode
-                    ){
-
-
-        model.addAttribute("itemList",itemService.selectPartyList(itemVO));
+    @RequestMapping("/list")
+    public String list(Model model, Authentication authentication, ItemVO itemVO
+                        , @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode
+                        ,SearchVO searchVO){
+        System.out.println(itemVO);
+        System.out.println(searchVO);
+        model.addAttribute("itemList",itemService.selectPartyList(searchVO));
         List<Integer> wishCodeList = new ArrayList<>();
         model.addAttribute("chkCode",chkCode);
 

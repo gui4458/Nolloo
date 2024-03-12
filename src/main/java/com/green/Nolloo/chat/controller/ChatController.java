@@ -22,18 +22,11 @@ public class ChatController {
     @Resource(name = "memberService")
     private MemberService memberService;
     @GetMapping("/chat")
-    public String chatGET(){
-
-        log.info("@ChatController, chat GET()");
-
-        return "content/chat/chat";
-    }
-    @ResponseBody
-    @PostMapping("/chatProfile")
-    public List<MemberImageVO> chatProfile(){
+    public String chatGET(Model model){
         List<MemberImageVO> allProfile = memberService.selectAllProfile();
-        System.out.println(allProfile);
-        return allProfile;
+        log.info("@ChatController, chat GET()");
+        model.addAttribute("allProfile",allProfile);
+        return "content/chat/chat";
     }
 
 }
