@@ -61,7 +61,8 @@ public class ItemController {
     @PostMapping("/itemAdd")
     public String boardAdd(ItemVO itemVO
                             , @RequestParam(name = "img") MultipartFile img
-                            , @RequestParam(name = "imgs") MultipartFile[] imgs, @RequestParam(name="itemPlace") String addr){
+                            , @RequestParam(name = "imgs") MultipartFile[] imgs
+                            , @RequestParam(name="itemPlace") String addr){
         //메인이미지 업로드
         ImgVO mainImg = UploadUtil.uploadFile(img);
         //상세이미지 업로드
@@ -111,7 +112,6 @@ public class ItemController {
 
     @GetMapping("/updateForm")
     public String updateForm(Model model, ItemVO itemVO){
-
         model.addAttribute("item",itemVO);
         return "content/item/item_update_form";
     }
@@ -119,7 +119,6 @@ public class ItemController {
     @PostMapping("/updateParty")
     public String updateParty(ItemVO itemVO){
         itemService.updateParty(itemVO);
-
         return "redirect:/item/itemDetailForm?itemCode="+itemVO.getItemCode();
     }
 

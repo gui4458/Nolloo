@@ -81,8 +81,7 @@ public class KakaoApiService {
         RestTemplate restTemplate = new RestTemplate();
 
         try {
-       //     ResponseEntity<String> response = restTemplate.exchange(uriComponents.toString(), HttpMethod.GET, new HttpEntity<>(headers), String.class);
-
+           // ResponseEntity<String> response = restTemplate.exchange(uriComponents.toString(), HttpMethod.GET, new HttpEntity<>(headers), String.class);
             ResponseEntity<Map<String, Object>> response = restTemplate.exchange(uriComponents.toString(), HttpMethod.GET, new HttpEntity<>(headers), new ParameterizedTypeReference<Map<String, Object>>() {});
 
            // System.out.println("Response : "response);
@@ -103,11 +102,11 @@ public class KakaoApiService {
 
                     return mapVO;
 
+                    } else {
+                        System.out.println("Error: No documents found in the response");
+                    }
                 } else {
-                    System.out.println("Error: No documents found in the response");
-                }
-                  } else {
-                System.out.println("Error: Unexpected response status - " + response.getStatusCodeValue());
+                    System.out.println("Error: Unexpected response status - " + response.getStatusCodeValue());
                 }
         } catch (HttpClientErrorException e) {
             System.out.println("Error: HTTP client exception - " + e.getRawStatusCode() + ": " + e.getStatusText());

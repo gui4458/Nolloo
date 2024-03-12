@@ -9,6 +9,17 @@
 
 <th:block layout:fragment="contentFragment">
   <!-- html 코드 작성 -->
+  <div class="row header-div">
+    <div class="col">
+        <th:block  th:replace="~{fragment/user_menu :: userMenuFragment}"></th:block>
+    </div>
+  </div>
+
+  <div class="row header-div">
+    <div class="col">
+        <th:block  th:replace="~{fragment/user_search :: userSearchFragment}"></th:block>
+    </div>
+  </div>
 
   <div class="py-3">
 
