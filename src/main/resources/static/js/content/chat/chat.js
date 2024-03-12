@@ -1,5 +1,7 @@
-const username = '홍';
 
+
+const username = document.querySelector('.chatId').value;
+const allProfile = document.querySelector('.allProfile').value;
 // $("#disconn").on("click", (e) => {
 //     disconnect();
 // })
@@ -53,7 +55,7 @@ function onClose(evt) {
 //채팅창에 들어왔을 때
 function onOpen(evt) {
     console.log('onOpen 함수 실행');
-    var str = username +  ": 님이 입장하셨습니다.";
+    var str =`<div class="welcome">${username} : 님이 입장하셨습니다.</div>`; 
     websocket.send(str);
     console.log('onOpen 함수 끝');
 }
@@ -82,7 +84,7 @@ function onMessage(msg) {
 
     console.log("sessionID : " + sessionId);
     console.log("cur_session : " + cur_session);
-    //console.log("cur_session : ");
+    // console.log("cur_session : ");
 
     //로그인 한 클라이언트와 타 클라이언트를 분류하기 위함
     if(sessionId == cur_session){
@@ -95,10 +97,10 @@ function onMessage(msg) {
         document.querySelector('#msgArea').insertAdjacentHTML('beforeend', str);
     }
     else{
-        var str = "<div class='col-6 other-msg'>";
-        str += "<div class='alert alert-warning'>";
-        str += "<span>" + "son" + " : " + message + "</span>";
-        str += "</div></div>";
+        var str = `<div class='col-6 other-msg'>
+        <div class='alert alert-warning'>`
+        str += `<span class='msg-span'> ${sessionId}  :  ${message} </span>
+        </div></div>`
         //$("#msgArea").append(str);
         document.querySelector('#msgArea').insertAdjacentHTML('beforeend', str);
     }

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
     @Autowired
@@ -43,7 +45,12 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public MemberImageVO selectProfile(String memberId) {
+    public String selectProfile(String memberId) {
         return sqlSession.selectOne("memberMapper.selectProfile",memberId);
+    }
+
+    @Override
+    public List<MemberImageVO> selectAllProfile() {
+        return sqlSession.selectList("memberMapper.selectAllProfile");
     }
 }

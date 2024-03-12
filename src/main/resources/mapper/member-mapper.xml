@@ -115,9 +115,13 @@
     <select id="selectProfile" resultType="String">
         SELECT
         ATTACHED_FILE_NAME
-        ,MEMBER_ID
         FROM MEMBER_IMAGE
-        WHERE MEMBER_ID = #{member_id}
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+    <select id="selectAllProfile" resultMap="memberImg">
+        SELECT MEMBER_ID
+            ,ATTACHED_FILE_NAME
+        FROM MEMBER_IMAGE
     </select>
 
 

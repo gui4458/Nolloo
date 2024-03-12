@@ -28,10 +28,7 @@ public class MemberController {
     @Autowired
     private BCryptPasswordEncoder encoder;
 
-    @GetMapping("")
-    public String selectProfile(){
-        return "";
-    }
+
     //회원가입
     @PostMapping("/join")
     public String join(MemberVO memberVO
@@ -52,18 +49,13 @@ public class MemberController {
         return "/content/member/login";
     }
 
-    //로그인
-//    @PostMapping("/login")
-//    public String login(HttpSession session){
-//    MemberVO loginInfo = memberService.login(memberVO);
-//
-//    if(loginInfo != null){
-//        session.setAttribute("loginInfo",loginInfo);
-//
-//    }
-//    return "content/member/login_result";
-//
-//    }
+//    로그인 결과 화면
+    @GetMapping("/loginResult")
+    public String login(){
+
+    return "content/member/login_result";
+
+    }
 
 //    //로그아웃
 //    @GetMapping("logout")

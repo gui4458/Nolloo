@@ -56,3 +56,34 @@ function getReserveDetail(itemCode){
         console.log(err);
     });
 }
+
+function checkAll(){
+    const checkAll = document.querySelector('#checkAll')
+    const chks= document.querySelectorAll('.chk')
+
+    if (checkAll.checked){
+        for(const chk of chks){
+            chk.checked=true;
+        }
+    }
+    else{
+        for(const chk of chks){
+            chk.checked=false;
+        }
+    }
+
+}
+function deleteReserve(){
+    //체크박스들
+    const chks = document.querySelectorAll('.chk:checked');
+    
+    //선택한 체크박스를 담을 배열 통
+    const reserveCodeList = [];
+    
+    for(const chk of chks){
+        reserveCodeList.push(chk.value);
+    }
+
+    location.href=`/reserve/reserveDelete?reserveCodeList=${reserveCodeList}`;
+}
+

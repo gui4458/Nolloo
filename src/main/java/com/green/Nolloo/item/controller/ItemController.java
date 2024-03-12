@@ -3,14 +3,22 @@ package com.green.Nolloo.item.controller;
 import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
+import com.green.Nolloo.member.service.MemberService;
 import com.green.Nolloo.member.vo.MemberVO;
+
+import com.green.Nolloo.reserve.service.ReserveService;
+import com.green.Nolloo.reserve.vo.ReserveVO;
+
 import com.green.Nolloo.restAPI.service.KakaoApiService;
 import com.green.Nolloo.restAPI.vo.AddressVO;
 import com.green.Nolloo.restAPI.vo.MapVO;
+
+import com.green.Nolloo.search.vo.SearchVO;
 import com.green.Nolloo.util.UploadUtil;
 import com.green.Nolloo.wish.service.WishService;
 import com.green.Nolloo.wish.vo.WishViewVO;
 import jakarta.annotation.Resource;
+import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -30,25 +38,41 @@ public class ItemController {
     private ItemService itemService;
     @Resource(name = "wishService")
     private WishService wishService;
+
+
+    @Resource(name="reserveService")
+    private ReserveService reserveService;
+
+
+    @Resource(name = "memberService")
+    private MemberService memberService;
+
     @Autowired
     private KakaoApiService kakaoApiService;
 
     //파티게시글 목록조회
-    @GetMapping("/list")
-    public String list(Model model, HttpSession session, ItemVO itemVO, @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode){
-        model.addAttribute("itemList",itemService.selectPartyList(itemVO));
-
-
-        MemberVO loginInfo =(MemberVO)session.getAttribute("loginInfo");
+    @RequestMapping("/list")
+    public String list(Model model, Authentication authentication, ItemVO itemVO
+                        , @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode
+                        ,SearchVO searchVO){
+        model.addAttribute("itemList",itemService.selectPartyList(searchVO));
         List<Integer> wishCodeList = new ArrayList<>();
         model.addAttribute("chkCode",chkCode);
-        if (loginInfo != null){
-            List<WishViewVO> wishList = wishService.selectWish(loginInfo.getMemberId());
+
+
+
+
+        if (authentication != null){
+            User user = (User)authentication.getPrincipal();
+
+            List<WishViewVO> wishList = wishService.selectWish(user.getUsername());
             for (WishViewVO e : wishList){
                 wishCodeList.add(e.getItemCode());
             }
             model.addAttribute("wishCodeList",wishCodeList);
+            model.addAttribute("memberImg",memberService.selectProfile(user.getUsername()));
         }
+
         return "content/main";
     }
     //게시글 등록
@@ -98,9 +122,18 @@ public class ItemController {
 
     //itemDetail 조회
     @GetMapping("/itemDetailForm")
-    public String boardDetailForm(ItemVO itemVO, Model model){
+    public String boardDetailForm(ItemVO itemVO, ReserveVO reserveVO, Model model, Authentication authentication){
+
+        itemService.itemListUpdateCnt(itemVO);
         Model item = model.addAttribute("item",itemService.selectPartyDetail(itemVO));
-        System.out.println(item);
+
+        if (authentication != null){
+            User user = (User)authentication.getPrincipal();
+            System.out.println(user.getUsername());
+            reserveVO.setMemberId(user.getUsername());
+            model.addAttribute("reserveCnt",reserveService.reserveDone(reserveVO));
+        }
+
         return "content/item/item_detail";
     }
     //게시글 삭제
@@ -121,5 +154,6 @@ public class ItemController {
         itemService.updateParty(itemVO);
         return "redirect:/item/itemDetailForm?itemCode="+itemVO.getItemCode();
     }
+
 
 }

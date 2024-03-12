@@ -1,6 +1,7 @@
 package com.green.Nolloo.item.service;
 
 import com.green.Nolloo.item.vo.ItemVO;
+import com.green.Nolloo.search.vo.SearchVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,10 @@ public class ItemServiceImpl implements ItemService {
         return sqlSession.selectOne("itemMapper.selectNextItemCode");
     }
 
-
+    @Override
+    public void itemListUpdateCnt(ItemVO itemVO) {
+        sqlSession.update("itemMapper.itemListUpdateCnt",itemVO);
+    }
 
 
     // item 등록
@@ -32,8 +36,8 @@ public class ItemServiceImpl implements ItemService {
     }
     //item 목록조회
     @Override
-    public List<ItemVO> selectPartyList(ItemVO itemVO) {
-        return sqlSession.selectList("itemMapper.selectPartyList", itemVO);
+    public List<ItemVO> selectPartyList(SearchVO searchVO) {
+        return sqlSession.selectList("itemMapper.selectPartyList", searchVO);
 
     }
 

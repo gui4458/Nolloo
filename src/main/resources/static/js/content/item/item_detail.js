@@ -51,10 +51,7 @@ function goWish(itemCode,loginInfo){
     }
 }
 
-
-
-function reserve(itemCode){
-
+function reserveInsert(itemCode){
     fetch('/reserve/partyReserve', { //요청경로
         method: 'POST',
         cache: 'no-cache',
@@ -79,7 +76,12 @@ function reserve(itemCode){
         alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
         console.log(err);
     });
-}  
+}
+function reserveAlert(){
+    alert('이미 예약되어있는 파티입니다.')
+}
+
+
 function goChat(){
 
     const windowFeatures = "left=1500,top=100,width=750,height=750,popup";
@@ -92,5 +94,9 @@ function goChat(){
         
     
     );
+}
+
+function goLogin(){
+    alert('로그인 후 이용해주세요.')
 }
 
