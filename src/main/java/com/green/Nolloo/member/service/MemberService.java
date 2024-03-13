@@ -23,6 +23,7 @@ public interface MemberService {
     //회원탈퇴
     void deleteMember(MemberVO memberVO);
 
+    //프로필 이미지
     String selectProfile(String memberId);
 
     List<MemberImageVO> selectAllProfile();

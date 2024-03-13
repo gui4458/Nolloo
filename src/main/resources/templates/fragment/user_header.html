@@ -29,7 +29,7 @@
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </th:block>
           <th:block sec:authorize="isAuthenticated()">
-          <img th:src="@{'/upload/profile/'}+${memberImg}" alt="mdo" width="32" height="32" class="rounded-circle">
+          <img th:src="@{'/upload/profile/'}+${session.memberImage}" alt="mdo" width="32" height="32" class="rounded-circle">
         </th:block>
 
 

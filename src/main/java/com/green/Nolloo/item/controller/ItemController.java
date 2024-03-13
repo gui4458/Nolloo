@@ -4,6 +4,7 @@ import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.member.service.MemberService;
+import com.green.Nolloo.member.vo.MemberImageVO;
 import com.green.Nolloo.member.vo.MemberVO;
 
 import com.green.Nolloo.reserve.service.ReserveService;
@@ -54,11 +55,10 @@ public class ItemController {
     @RequestMapping("/list")
     public String list(Model model, Authentication authentication, ItemVO itemVO
                         , @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode
-                        ,SearchVO searchVO){
+                        ,SearchVO searchVO,HttpSession session, MemberVO memberVO){
         model.addAttribute("itemList",itemService.selectPartyList(searchVO));
         List<Integer> wishCodeList = new ArrayList<>();
         model.addAttribute("chkCode",chkCode);
-
 
 
 
@@ -70,7 +70,7 @@ public class ItemController {
                 wishCodeList.add(e.getItemCode());
             }
             model.addAttribute("wishCodeList",wishCodeList);
-            model.addAttribute("memberImg",memberService.selectProfile(user.getUsername()));
+        session.setAttribute("memberImage",memberService.selectProfile(user.getUsername()));
         }
 
         return "content/main";
