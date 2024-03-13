@@ -72,6 +72,9 @@ public class ReserveController{
         System.out.println(reserveCodeList);
 
         //삭제 쿼리가 실행될때 위에서 받은 데이타를 같이 넘겨준다 (쿼리의 빈값을 채우기 위해서)
+        ReserveVO vo = new ReserveVO();
+        vo.setReserveCodeList(reserveCodeList);;
+        reserveService.deleteReserve(vo);
 
 
 
