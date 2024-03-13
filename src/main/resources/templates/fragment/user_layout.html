@@ -47,10 +47,17 @@
                 <th:block layout:fragment="contentFragment"></th:block>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col">
+                <th:block th:replace="~{fragment/footer::footerFragment}"></th:block>
+            </div>
+        </div>
+    
         
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <th:block layout:fragment="content_js"></th:block>
 </body>
-</html>
+</html> 

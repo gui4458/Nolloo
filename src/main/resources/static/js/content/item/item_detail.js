@@ -69,7 +69,11 @@ function reserveInsert(itemCode){
     })
     //fetch 통신 후 실행 영역
     .then((data) => {//data -> controller에서 리턴되는 데이터!
-        location.href = `/reserve/reserveList`;
+        const chk = confirm('예약되었습니다.\n예약페이지로 이동 하시겠습니까?')
+        if(chk){
+            location.href = `/reserve/reserveList`;
+        }
+        
     })
     //fetch 통신 실패 시 실행 영역
     .catch(err=>{
