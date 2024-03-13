@@ -5,6 +5,7 @@
 <th:block layout:fragment="content_css">
   <!-- html 파일이 열릴때 같이 실행되는 css -->
   <link rel="stylesheet" href="/css/fragment/item_list.css">
+  <link rel="stylesheet" href="/css/content/main.css">
 </th:block>
 
 <th:block layout:fragment="contentFragment">
@@ -267,7 +268,22 @@
 
   <input type="button" onclick="location.href='/item/itemAddForm';" value="글쓰기">
 
+  <div class="page-div">
+    <!-- ${searchVO.beginPage} -->
+    <!-- ${searchVO.endPage} -->
+    
+    <th:block th:if="${searchVO.prev}">
+        <a th:href="@{/item/list(nowPage=${searchVO.beginPage-1}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})}"> 이전 </a>
+    </th:block>
 
+    <th:block th:each="i : ${#numbers.sequence(searchVO.beginPage, searchVO.endPage)}">
+        <a th:href="@{/item/list(nowPage=${i}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})}"> [[${i}]] </a>
+    </th:block>
+    
+    <th:block th:if="${searchVO.next}">
+        <a th:href="@{/item/list(nowPage=${searchVO.endPage+1}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})}"> 다음 </a>
+    </th:block>
+</div>
 
 </th:block>
 

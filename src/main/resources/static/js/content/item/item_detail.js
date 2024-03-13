@@ -82,7 +82,7 @@ function reserveAlert(){
 }
 
 
-function goChat(){
+function goChat(itemCode){
 
     const windowFeatures = "left=1500,top=100,width=750,height=750,popup";
 

@@ -21,4 +21,6 @@ public interface ItemService {
 
     void itemListUpdateCnt(ItemVO itemVO);
 
+    int itemAllCnt(int cateCode);
+
 }

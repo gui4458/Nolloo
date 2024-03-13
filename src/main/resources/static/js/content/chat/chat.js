@@ -27,7 +27,7 @@ msg.addEventListener("keyup", function(e){
 });
 
 
-const websocket = new WebSocket("ws://192.168.30.107:8081/ws/chat");
+const websocket = new WebSocket(`ws://192.168.30.107:8081/ws/chat`);
 
 websocket.onmessage = onMessage;
 websocket.onopen = onOpen;
