@@ -168,7 +168,6 @@
         WHERE ITEM_CODE = #{itemCode}
     </update>
 
-
     <select id="itemAllCnt" resultType="int">
         SELECT COUNT(ITEM_CODE)
         FROM ITEM_INFO
@@ -206,3 +205,6 @@
 
 
 
+=======
+</mapper>
+>>>>>>> wss-dev
