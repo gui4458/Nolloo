@@ -16,6 +16,7 @@ public class ReserveVO {
     private String reserveDate;
     private int itemCode;
     private ItemVO itemVO;
+    private List<Integer> reserveCodeList;
 
 
 }

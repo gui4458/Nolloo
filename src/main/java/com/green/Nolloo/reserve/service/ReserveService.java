@@ -16,4 +16,6 @@ public interface ReserveService {
 
 
     int reserveDone(ReserveVO reserveVO);
+
+    void deleteReserve(ReserveVO reserveVO);
 }

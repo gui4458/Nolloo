@@ -34,5 +34,11 @@ public class ReserveServiceImpl implements ReserveService{
         return sqlSession.selectOne("reserveMapper.reserveDone",reserveVO);
     }
 
+    @Override
+    public void deleteReserve(ReserveVO reserveVO) {
+        sqlSession.delete("reserveMapper.deleteReserve", reserveVO);
+
+    }
+
 
 }

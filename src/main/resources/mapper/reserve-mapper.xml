@@ -65,7 +65,19 @@
 
         DELETE
         FROM RESERVE
+        WHERE RESERVE_CODE IN
+        <!--collection : 무엇으로 반복할래?-->
+        <!--item : 하나씩 빼서 뭐라고 할래?-->
+        <!--open : 반복이 시작되기 전에 딱 한번 실행하는 문자-->   [1,2,3]
+        <!--separator : 반복이 한번 돌때마다 실행하는 문자-->
+        <foreach collection="reserveCodeList" item="reserveCode" open="(" separator=", " close=")">
+            #{reserveCode}       reserveVO.getReserveCodeList()
+        </foreach>
+
+        DELETE
+        FROM RESERVE
         WHERE RESERVE_CODE IN (1,2,3)
+
 
 
 
