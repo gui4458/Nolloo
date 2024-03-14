@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="min-h-full">
+        <nav class="bg-gray-800">
+          <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+              <div class="flex items-center">
+                <div class="flex-shrink-0">
+                  <img class="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
+                </div>
+                <div class="hidden md:block">
+                  <div class="ml-10 flex items-baseline space-x-4">
+                    <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                    <a href="#" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
+                    <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Team</a>
+                    <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Projects</a>
+                    <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Calendar</a>
+                    <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Reports</a>
+                  </div>
+                </div>
+              </div>
+              <div class="hidden md:block">
+                <div class="ml-4 flex items-center md:ml-6">
+                  <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                    <span class="absolute -inset-1.5"></span>
+                    <span class="sr-only">View notifications</span>
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                    </svg>
+                  </button>
+      
+                  <!-- Profile dropdown -->
+                  <div class="relative ml-3">
+                    <div>
+                      <button type="button" class="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                        <span class="absolute -inset-1.5"></span>
+                        <span class="sr-only">Open user menu</span>
+                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                      </button>
+                    </div>
+      
+                    <!--
+                      Dropdown menu, show/hide based on menu state.
+      
+                      Entering: "transition ease-out duration-100"
+                        From: "transform opacity-0 scale-95"
+                        To: "transform opacity-100 scale-100"
+                      Leaving: "transition ease-in duration-75"
+                        From: "transform opacity-100 scale-100"
+                        To: "transform opacity-0 scale-95"
+                    -->
+                    <div class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                      <!-- Active: "bg-gray-100", Not Active: "" -->
+                      <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                      <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
+                      <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="-mr-2 flex md:hidden">
+                <!-- Mobile menu button -->
+                <button type="button" class="relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" aria-controls="mobile-menu" aria-expanded="false">
+                  <span class="absolute -inset-0.5"></span>
+                  <span class="sr-only">Open main menu</span>
+                  <!-- Menu open: "hidden", Menu closed: "block" -->
+                  <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                  </svg>
+                  <!-- Menu open: "block", Menu closed: "hidden" -->
+                  <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Mobile menu, show/hide based on menu state. -->
+          <div class="md:hidden" id="mobile-menu">
+            <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+              <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+              <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
+              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
+              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
+              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
+              <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Reports</a>
+            </div>
+            <div class="border-t border-gray-700 pb-3 pt-4">
+              <div class="flex items-center px-5">
+                <div class="flex-shrink-0">
+                  <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                </div>
+                <div class="ml-3">
+                  <div class="text-base font-medium leading-none text-white">Tom Cook</div>
+                  <div class="text-sm font-medium leading-none text-gray-400">tom@example.com</div>
+                </div>
+                <button type="button" class="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                  <span class="absolute -inset-1.5"></span>
+                  <span class="sr-only">View notifications</span>
+                  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                  </svg>
+                </button>
+              </div>
+              <div class="mt-3 space-y-1 px-2">
+                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Your Profile</a>
+                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Settings</a>
+                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">Sign out</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      
+        <header class="bg-white shadow">
+          <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h1 class="text-xl font-bold tracking-tight text-gray-900">Category button for Search</h1>
+          </div>
+        </header>
+
+
+
+        <main>
+          <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+            <div class="border-b border-slate-300 ">
+                <a href="">
+                    <div class="flex flex-row p-3">
+                        <img class="w-24 h-24 rounded-full" src="https://kfescdn.visitkorea.or.kr/kfes/upload/contents/db/400_cbac674e-f76a-45f9-9955-21e3726aa0c8_3.jpg" alt="" width="384" height="512">
+                        <div class="ml-3">
+                            <figcaption class="font-medium">
+                                
+                                <div class="text-dark-600">
+                                    <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">축제</span><strong class="inline-flex text-xs py-1 pl-1">경기도 수원</strong>
+                                </div>
+                                <div class="text-dark-600">
+                                    제목                    
+                                </div>
+                                <div class="text-slate-600 text-sm">
+                                    Description
+                                </div>
+                                <div class="text-green-500 text-sm">
+                                    3월 25일 - 4월 30일
+                                </div>
+                            </figcaption>
+                        </div>
+                    </div>
+                </a>
+            </div> 
+            
+            <div class="border-b border-slate-300 ">
+                <a href="">
+                    <div class="flex flex-row p-3">
+                        <img class="w-24 h-24 rounded-full" src="https://kfescdn.visitkorea.or.kr/kfes/upload/contents/db/3b8dbc13-03f8-4719-874f-deb8609618a6_2.jpg" alt="" width="384" height="512">
+                        <div class="ml-3">
+                            <figcaption class="font-medium">
+                                
+                                <div class="text-dark-600">
+                                    <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">운동</span><strong class="inline-flex text-xs py-1 pl-1">신정동</strong>
+                                </div>
+                                <div class="text-dark-600">
+                                    제목                    
+                                </div>
+                                <div class="text-slate-600 text-sm">
+                                    Description
+                                </div>
+                                <div class="text-violet-500 text-sm">
+                                    정기모임
+                                </div>
+                            </figcaption>
+                        </div>
+                        
+                        <div class="btn">
+                            <!-- <button type="button" class="inline-flex items-center w-4 h-4 rounded-full bg-red-50 text-xs font-medium text-red-700 ring-1 ring-inset ring-green-600/20"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="hm nz sb"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"></path></svg><p class="blind">찜</p></button>
+                                <button type="button" class="inline-flex items-center w-4 h-4 rounded-full bg-green-50 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="hm nz sb"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd"></path></svg><p class="blind">참가중</p></button> -->
+                                <div class="flex-1 w-4 h-4">
+                                    <div class="flex items-center justify-center flex-1 h-full p-2 bg-red-500 text-white shadow rounded-full">
+                                        <div class="relative">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                            </svg>
+                                            <p class="blind">찜</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex-1 w-4 h-4">
+                                    <div class="flex items-center justify-center flex-1 h-full p-2 bg-green-500 text-white shadow rounded-full">
+                                        <div class="relative">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                            </svg>
+                                            <p class="blind">참가</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="border-b border-slate-300 ">
+                    <a href="">
+                        <div class="flex flex-row p-3">
+                            <img class="w-24 h-24 rounded-full" src="https://kfescdn.visitkorea.or.kr/kfes/upload/contents/db/87dfeda1-084e-41a9-b76e-09f2d502443a_2.jpeg" alt="" width="384" height="512">
+                            <div class="ml-3">
+                                <figcaption class="font-medium">
+                                    
+                                    <div class="text-dark-600">
+                                        <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">파티</span><strong class="inline-flex text-xs py-1 pl-1">삼산동</strong>
+                                    </div>
+                                    <div class="text-dark-600">
+                                        제목                    
+                                    </div>
+                                    <div class="text-slate-600 text-sm">
+                                        Description
+                                    </div>
+                                    <div class="text-green-500 text-sm">
+                                        3월 25일 16:00 - 18:00
+                                    </div>
+                                </figcaption>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                
+                
+                
+                
+                
+                <footer>        
+                    <div id="sticky_bar" class="wrap_bottom_menu">
+                        <!-- <div class="wrap_bottom_career">
+                            <strong class="title_career">커리어성장</strong>
+                            <a class="service" href="https://mentor-match.saramin.co.kr/" data-nav-track="ga_lead|tab-bar|career|mentoring">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g stroke="#6B768B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M13.5932 13.5697L15.4231 15.4853M15.4231 15.4853C16.3303 16.7847 18.3831 17.6348 16.3303 19.0438C15.6092 19.5388 14.916 19.1884 14.1511 18.4123M15.4231 15.4853L16.6724 16.7847L17.3567 17.3332C18.0195 17.9139 18.7252 17.6753 19.4095 16.991C20.3302 16.0704 19.8721 15.0805 18.3831 13.5697C12.6132 7.71554 12.907 7.01584 9.82973 4.67419C8.48781 3.65305 7.06548 3.59927 5.75516 3.99819C2.60767 4.95644 0.695042 8.70729 1.61478 11.8663V11.8663C2.20417 13.8906 3.36218 15.325 4.71305 16.9437L8.3812 21.3394C9.34285 22.3151 10.4968 22.1199 11.2661 21.3394C12.4004 20.1886 10.9456 19.0628 10.3045 18.4123L9.34285 17.4366L12.2278 20.3637C12.5483 20.6889 13.3818 21.1443 14.1511 20.3637C14.9204 19.5832 14.4716 18.7376 14.1511 18.4123M14.1511 18.4123C12.6125 16.8512 11.5867 15.8105 11.2661 15.4853"></path>
+                                        <path d="M10.7092 3.52627C13.1619 2.58535 13.8217 2.62142 17.0146 6.0427C19.4095 8.60905 22.155 11.0523 22.155 12.5433C22.155 13.8899 21.1903 15.3418 19.917 14.9038C19.0517 14.6062 18.6205 13.8727 18.0672 13.2845L12.3445 7.29001L10.2777 8.60905C9.46025 9.23633 7.30411 9.71949 6.62145 8.23094C6.18995 7.29001 6.46201 6.41359 7.00725 5.78629C7.55229 5.15899 8.74709 4.279 10.7092 3.52627Z" fill="white"></path>
+                                    </g>
+                                </svg>
+                                <span class="title">멘토링매치</span>
+                                <span class="copy">현직자와 직접 대화해보세요</span>
+                            </a>
+                            <a class="service" href="/career-chat/main" data-nav-track="ga_lead|tab-bar|career|careerchat">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M17.4601 22.0211C13.8481 22.0211 10.9201 19.093 10.9201 15.4811C10.9201 11.8692 13.8481 8.94116 17.4601 8.94116C21.072 8.94116 24 11.8692 24 15.4811C24 16.8185 23.5986 18.0621 22.9097 19.098C22.8179 19.236 22.8545 19.4228 22.9716 19.54C23.8872 20.4555 23.2388 22.0209 21.944 22.0209H17.5004C17.487 22.021 17.4735 22.0211 17.4601 22.0211Z" fill="white"></path>
+                                        <path d="M17.4914 20.5209L17.4601 20.521C16.5151 20.521 15.631 20.261 14.8752 19.8085C14.6196 19.6556 14.3039 19.6225 14.0367 19.754C13.536 20.0005 13.4413 20.6709 13.9096 20.9743C14.9321 21.6365 16.1512 22.021 17.4601 22.021L17.5004 22.0209H21.944C23.2388 22.0209 23.8872 20.4554 22.9716 19.5399C22.8545 19.4227 22.8179 19.2359 22.9097 19.0979C23.5986 18.062 24 16.8184 24 15.481C24 13.2023 22.8346 11.1958 21.0672 10.025C20.5873 9.70707 20 10.0897 20 10.6653C20 10.9512 20.1547 11.2116 20.3873 11.3779C21.6663 12.292 22.5 13.7891 22.5 15.481C22.5 16.5138 22.191 17.4699 21.6606 18.2673C21.1235 19.0749 21.3674 19.9892 21.8362 20.5209L17.4914 20.5209Z" fill="#6B768B"></path>
+                                        <mask id="path-3-inside-1_1539_14165" fill="white">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.456 19.8034C14.6784 19.8034 18.912 15.5698 18.912 10.3474C18.912 5.12495 14.6784 0.891357 9.456 0.891357C4.23359 0.891357 0 5.12495 0 10.3474C0 12.0697 0.460452 13.6844 1.26497 15.0752C1.57719 15.615 1.40706 16.3303 0.950737 16.7553C0.913397 16.7901 0.876613 16.8256 0.840408 16.8618C-0.244939 17.9471 0.523745 19.8029 2.05866 19.8029H9.36158C9.39302 19.8032 9.42449 19.8034 9.456 19.8034Z"></path>
+                                        </mask>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M9.456 19.8034C14.6784 19.8034 18.912 15.5698 18.912 10.3474C18.912 5.12495 14.6784 0.891357 9.456 0.891357C4.23359 0.891357 0 5.12495 0 10.3474C0 12.0697 0.460452 13.6844 1.26497 15.0752C1.57719 15.615 1.40706 16.3303 0.950737 16.7553C0.913397 16.7901 0.876613 16.8256 0.840408 16.8618C-0.244939 17.9471 0.523745 19.8029 2.05866 19.8029H9.36158C9.39302 19.8032 9.42449 19.8034 9.456 19.8034Z" fill="white"></path>
+                                        <path d="M0.840408 16.8618L1.90107 17.9224H1.90107L0.840408 16.8618ZM9.36158 19.8029L9.37624 18.303L9.36891 18.3029H9.36158V19.8029ZM0.950737 16.7553L1.97301 17.853L0.950737 16.7553ZM17.412 10.3474C17.412 14.7413 13.85 18.3034 9.456 18.3034V21.3034C15.5068 21.3034 20.412 16.3982 20.412 10.3474H17.412ZM9.456 2.39136C13.85 2.39136 17.412 5.95338 17.412 10.3474H20.412C20.412 4.29652 15.5068 -0.608643 9.456 -0.608643V2.39136ZM1.5 10.3474C1.5 5.95338 5.06202 2.39136 9.456 2.39136V-0.608643C3.40517 -0.608643 -1.5 4.29652 -1.5 10.3474H1.5ZM2.56339 14.3242C1.88738 13.1555 1.5 11.7989 1.5 10.3474H-1.5C-1.5 12.3404 -0.966473 14.2133 -0.0334491 15.8263L2.56339 14.3242ZM1.90107 17.9224C1.92468 17.8988 1.94867 17.8757 1.97301 17.853L-0.0715365 15.6576C-0.121874 15.7045 -0.171456 15.7523 -0.220252 15.8011L1.90107 17.9224ZM2.05866 18.3029C1.98791 18.3029 1.95322 18.2847 1.93219 18.2698C1.90435 18.2502 1.87351 18.2154 1.85276 18.1653C1.832 18.1152 1.8292 18.0688 1.83502 18.0352C1.83941 18.0099 1.85104 17.9725 1.90107 17.9224L-0.220252 15.8011C-2.25054 17.8314 -0.812619 21.3029 2.05866 21.3029V18.3029ZM9.36158 18.3029H2.05866V21.3029H9.36158V18.3029ZM9.456 18.3034C9.42939 18.3034 9.40281 18.3032 9.37624 18.303L9.34693 21.3028C9.38323 21.3032 9.41959 21.3034 9.456 21.3034V18.3034ZM-0.0334491 15.8263C-0.0856078 15.7361 -0.0756193 15.6681 -0.0741873 15.661C-0.0732297 15.6563 -0.0728114 15.657 -0.0745795 15.6602C-0.0762732 15.6633 -0.0764191 15.6621 -0.0715365 15.6576L1.97301 17.853C2.84212 17.0436 3.28922 15.5789 2.56339 14.3242L-0.0334491 15.8263Z" fill="#6B768B" mask="url(#path-3-inside-1_1539_14165)"></path>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.13217 12.1557C5.75746 12.1557 6.26435 11.6488 6.26435 11.0235C6.26435 10.3982 5.75746 9.89136 5.13217 9.89136C4.50689 9.89136 4 10.3982 4 11.0235C4 11.6488 4.50689 12.1557 5.13217 12.1557ZM10.3101 11.0235C10.3101 11.6488 9.80322 12.1557 9.17793 12.1557C8.55265 12.1557 8.04576 11.6488 8.04576 11.0235C8.04576 10.3982 8.55265 9.89136 9.17793 9.89136C9.80322 9.89136 10.3101 10.3982 10.3101 11.0235ZM14.1658 11.0235C14.1658 11.6488 13.6589 12.1557 13.0337 12.1557C12.4084 12.1557 11.9015 11.6488 11.9015 11.0235C11.9015 10.3982 12.4084 9.89136 13.0337 9.89136C13.6589 9.89136 14.1658 10.3982 14.1658 11.0235Z" fill="#6B768B"></path>
+                                    </g>
+                                </svg>
+                                <span class="title">커리어챗</span>
+                                <span class="copy">나와 같은 직무, 함께 소통해요</span>
+                            </a>
+                            <a class="service" href="/career-tip" data-nav-track="ga_lead|tab-bar|career|careertip">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                                    <path d="M1.85867 8.13611L11.3702 2.58773C11.7594 2.3607 12.2406 2.3607 12.6298 2.58773L22.1413 8.13611C22.3067 8.23258 22.3067 8.47153 22.1413 8.568L12.6298 14.1164C12.2406 14.3434 11.7594 14.3434 11.3702 14.1164L1.85867 8.56799C1.69329 8.47153 1.69329 8.23258 1.85867 8.13611Z" stroke="#6B768B" stroke-width="1.5"></path>
+                                    <ellipse cx="12" cy="7.85205" rx="2" ry="1" fill="#6B768B"></ellipse>
+                                    <path d="M5.5 10.3521L4.53261 19.0585C4.51133 19.2501 4.54488 19.443 4.65694 19.5998C5.17033 20.3183 7.05984 22.3521 12 22.3521C16.9402 22.3521 18.8297 20.3183 19.3431 19.5998C19.4551 19.443 19.4887 19.2501 19.4674 19.0585L18.5 10.3521" stroke="#6B768B" stroke-width="1.5"></path>
+                                    <path d="M21.25 16.3521C21.25 16.7663 21.5858 17.1021 22 17.1021C22.4142 17.1021 22.75 16.7663 22.75 16.3521H21.25ZM21.25 8.35205V16.3521H22.75V8.35205H21.25Z" fill="#6B768B"></path>
+                                </svg>
+                                <span class="title">클래스</span>
+                                <span class="copy">클래스 듣고 직무역량 키워봐요</span>
+                            </a>
+                            <a class="service" href="javascript:openCafein()" data-nav-track="ga_lead|tab-bar|career|saramincafe">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g stroke="#6B768B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3.34634 6.30212C3.14989 5.51345 3.74651 4.75 4.55928 4.75H18.2311C19.0439 4.75 19.6405 5.51345 19.4441 6.30212L17.8057 12.8798C17.112 15.6646 14.6109 17.6191 11.741 17.6191H11.0494C8.17949 17.6191 5.67838 15.6646 4.98472 12.8798L3.34634 6.30212Z"></path>
+                                        <path d="M18.979 8.42139H20.3195C21.8002 8.42139 23.0005 9.62171 23.0005 11.1024V11.1024C23.0005 12.583 21.8002 13.7834 20.3195 13.7834H18.0271"></path>
+                                        <path d="M4.20996 20.4744H18.5791"></path>
+                                    </g>
+                                </svg>
+                                <span class="title">사람인 카페</span>
+                                <span class="copy">취준생을 위한 아지트</span>
+                            </a>
+                        </div> -->
+                        <div class="inner common">
+                            <div class="box_bottom_menu">
+                                <a href="/location-job/recently-list">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.50979 6.3501C6.17842 6.3501 5.90979 6.61873 5.90979 6.9501C5.90979 7.28147 6.17842 7.5501 6.50979 7.5501H15.3098C15.6412 7.5501 15.9098 7.28147 15.9098 6.9501C15.9098 6.61873 15.6412 6.3501 15.3098 6.3501H6.50979ZM6.50979 10.2002C6.17842 10.2002 5.90979 10.4688 5.90979 10.8002C5.90979 11.1316 6.17842 11.4002 6.50979 11.4002H10.9098C11.2412 11.4002 11.5098 11.1316 11.5098 10.8002C11.5098 10.4688 11.2412 10.2002 10.9098 10.2002H6.50979Z" fill="currentColor"></path>
+                                        <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M18.6 9.64255V3.55C18.6 2.91487 18.0851 2.4 17.45 2.4H3.55C2.91487 2.4 2.4 2.91487 2.4 3.55V20.45C2.4 21.0851 2.91487 21.6 3.55 21.6H15.5864H17.45C18.0851 21.6 18.6 21.0851 18.6 20.45V9.64255Z"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M18.4014 21.7C18.4014 21.7 14.0014 19.225 14.0014 15.21C13.9717 14.0241 14.4222 12.8764 15.2506 12.0273C16.079 11.1782 17.2151 10.6996 18.4014 10.7C19.5876 10.6996 20.7238 11.1782 21.5522 12.0273C22.3806 12.8764 22.831 14.0241 22.8014 15.21C22.8014 19.225 18.4014 21.7 18.4014 21.7Z" fill="#FFFFFF"></path>
+                                            <circle cx="18.401" cy="15.1" r="1.65"></circle>
+                                        </g>
+                                    </svg>
+                                    <span>홈</span>
+                                </a>
+                                <a href="/avatar/list">
+                                    <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M11.4001 3.9819C10.7753 3.93074 10.1361 3.94033 9.48935 4.01603C4.24853 4.62944 0.494508 9.35165 1.10451 14.5634C1.71452 19.7751 6.45756 23.5028 11.6984 22.8893C16.9392 22.2759 20.6932 17.5537 20.0832 12.342C19.9876 11.5254 19.7906 10.7452 19.5061 10.0125"></path>
+                                            <path d="M11.8876 8.12657C11.5079 8.04368 11.1135 8 10.709 8C7.67142 8 5.20898 10.4624 5.20898 13.5C5.20898 16.5376 7.67142 19 10.709 19C13.7466 19 16.209 16.5376 16.209 13.5C16.209 12.7772 16.0696 12.087 15.8161 11.4547"></path>
+                                            <path d="M11.208 13.0001L17.7656 4.72046"></path>
+                                            <path d="M14.5095 4.61746L17.3187 1.28396L17.8369 3.35575C17.9569 3.83575 18.3711 4.18477 18.8645 4.22173L20.9941 4.38124L18.1849 7.71474L15.2288 7.49332L14.5095 4.61746ZM18.2116 7.71674L18.2115 7.71673L18.2116 7.71674Z" fill="#ffffff"></path>
+                                        </g>
+                                    </svg>
+                                    <span>검색</span>
+                                </a>
+                            </div>
+                            <div class="box_bottom_menu">
+                                <a href="/service/talent-pool" data-nav-track="ga_lead|tab-bar|m_massmarketing|">
+                                    <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M9.5479 21.6559L7.9628 13.271L15.4918 14.5258L9.5479 21.6559Z" fill="#ffffff"></path>
+                                            <path d="M2.94903 11.7209L21.971 2.66278C22.727 2.30276 23.5643 2.97586 23.3751 3.7916L19.8932 18.8029C19.756 19.3942 19.1281 19.7279 18.5613 19.5108L3.02122 13.5575C2.20043 13.2431 2.15544 12.0988 2.94903 11.7209Z" fill="#ffffff"></path>
+                                            <path d="M8.51074 16.0091L19.8438 6"></path>
+                                        </g>
+                                    </svg>
+                                    <span>채팅</span>
+                                </a>
+                                <a href="/login?url=%2Fmy-service" data-nav-track="ga_lead|tab-bar|my-bt|">
+                                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+                                            <path d="M5.53113 8.90916C5.53113 5.09334 8.62447 2 12.4403 2V2C16.2561 2 19.3495 5.09334 19.3495 8.90916V8.90916C19.3495 12.725 16.2561 15.8183 12.4403 15.8183V15.8183C8.62447 15.8183 5.53113 12.725 5.53113 8.90916V8.90916Z"></path>
+                                            <path d="M11 10.5273C11.6918 11.8597 13.3061 11.8597 13.9979 10.5273"></path>
+                                            <rect x="4.6" y="17.4694" width="15.7835" height="6.23026" rx="3.11513"></rect>
+                                        </g>
+                                    </svg>
+                                    <span>내계정</span>
+                                </a>
+                            </div>
+                            <button type="button" class="btn_sticky">
+                                <span class="blind">내위치</span>
+                            </button>
+                        </div>
+                    </div>
+                </footer>
+          </div>
+        </main>
+      </div>
+
+
+
+    
+    
+        
+    </body>
+    </html>
