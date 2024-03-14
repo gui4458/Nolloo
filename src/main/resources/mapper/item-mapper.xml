@@ -101,6 +101,7 @@
         INFO.ITEM_CODE
         , ITEM_TITLE
         , ITEM_PLACE
+        , PLACE_DETAIL
         , ITEM_DATE
         , ITEM_CONTENT
         , ITEM_PEOPLE
@@ -114,6 +115,7 @@
         , ITEM_X
         , ITEM_Y
         , READ_CNT
+        , CATE_CODE
     FROM ITEM_INFO INFO
     INNER JOIN ITEM_IMAGE IMG
     ON INFO.ITEM_CODE=IMG.ITEM_CODE
