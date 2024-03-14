@@ -29,6 +29,7 @@ public class ItemVO {
     private double itemX;
     private double itemY;
     private int cateCode;
+    private String memberId;
     private List<ImgVO> imgList;
 
     //매개변수로 전달되는 csv 행 데이터를  vo의 객 변수에 매핑

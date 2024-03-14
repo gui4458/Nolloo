@@ -93,7 +93,10 @@ public class ItemController {
     public String boardAdd(ItemVO itemVO
                             , @RequestParam(name = "img") MultipartFile img
                             , @RequestParam(name = "imgs") MultipartFile[] imgs
-                            , @RequestParam(name="itemPlace") String addr){
+                            , @RequestParam(name="itemPlace") String addr
+                            ,Authentication authentication){
+        User user = (User)authentication.getPrincipal();
+        itemVO.setMemberId(user.getUsername());
         //메인이미지 업로드
         ImgVO mainImg = UploadUtil.uploadFile(img);
         //상세이미지 업로드

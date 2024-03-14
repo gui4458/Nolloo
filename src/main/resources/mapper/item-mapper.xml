@@ -48,6 +48,7 @@
             , PLACE_DETAIL
             , ITEM_START_DATE
             , ITEM_END_DATE
+            , MEMBER_ID
         )
         VALUES(
             #{itemCode}
@@ -61,6 +62,7 @@
             , #{placeDetail}
             , #{itemStartDate}
             , #{itemEndDate}
+            , #{memberId}
         )
     </insert>
 <!--    item 메인 목록조회-->
