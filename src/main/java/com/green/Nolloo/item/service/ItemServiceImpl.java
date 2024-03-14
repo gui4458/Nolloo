@@ -45,12 +45,13 @@ public class ItemServiceImpl implements ItemService {
         return sqlSession.selectList("itemMapper.selectPartyList", searchVO);
 
     }
-
+    //itemDetail 목록조회
     @Override
     public ItemVO selectPartyDetail(ItemVO itemVO) {
         return sqlSession.selectOne("itemMapper.selectPartyDetail", itemVO);
     }
 
+    // item 삭제 쿼리
     @Override
     @Transactional(rollbackFor =  Exception.class)
     public void deleteParty(ItemVO itemVO) {

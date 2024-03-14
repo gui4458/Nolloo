@@ -17,8 +17,29 @@
                 <tr class="main-img-tr">
                     <td>
                         <div class="row">
-                            <div class="col text-center main-img-div align-middle">
-                                메인이미지
+                            <div class="offset-3 col-6 text-center main-img-div align-middle justify-content-center">
+                                <span>
+                                    <th:block th:if="${item.cateCode == 1}" >
+                                        <th:block th:each="img : ${item.imgList}">
+                                            <th:block th:if="${img.isMain=='Y'}">
+                                                <img width="100%" th:src="@{'/upload/itemSolo/'+${img.attachedFileName}}" class="" alt="..."
+                                                >
+                                            </th:block>
+                                        </th:block>
+                                    </th:block>
+                                </span>
+                                
+                                <span>
+                                    <th:block th:if="${item.cateCode == 2}" >
+                                        <th:block th:each="img : ${item.imgList}">
+                                            <th:block th:if="${img.isMain=='Y'}">
+                                                <img width="100%" th:src="@{'/upload/item/'+${img.attachedFileName}}" class="" alt="..."
+                                                >
+                                            </th:block>
+                                        </th:block>
+                                    </th:block>
+                                </span>
+                                
                             </div>
                         </div>
                     </td>
@@ -71,7 +92,7 @@
                         <!------------- 조회수 ------------>
                         <div class="row">
                             <div class="col ">
-                                조회수/
+                                [[${item.readCnt}]]/
                                 <span sec:authorize="isAuthenticated()" onclick="goChat()">채팅바로가기</span>
                                 <span sec:authorize="isAnonymous()" onclick="goLogin()">채팅바로가기</span>
                             </div>
@@ -97,6 +118,7 @@
                 <tr>
                     <td>
                         <!------------ 버튼 -------------->
+
                         <div class="row">
                             <!-- 글 올린사람이 마감 올릴 수 있게 마감된 게시글 -->
                             <div class="col">
