@@ -175,37 +175,3 @@
         WHERE CATE_CODE = #{cateCode}
     </select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
-</mapper>
->>>>>>> wss-dev
