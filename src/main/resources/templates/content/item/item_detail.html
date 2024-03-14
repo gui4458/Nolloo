@@ -11,7 +11,7 @@
     <!-- html 코드작성-->
 
     <div class="row justify-content-center ">
-        <div class="col-10 align-item-center text-start">
+        <div class="col-10 align-item-center text-start" th:style="'background-image:url(/upload/itemSolo/' + ${item.imgList[0].attachedFileName} + ');'">
             <!-------- 메인이미지 ------->
             <table class="table">
                 <tr class="main-img-tr">
@@ -22,8 +22,8 @@
                                     <th:block th:if="${item.cateCode == 1}" >
                                         <th:block th:each="img : ${item.imgList}">
                                             <th:block th:if="${img.isMain=='Y'}">
-                                                <img width="100%" th:src="@{'/upload/itemSolo/'+${img.attachedFileName}}" class="" alt="..."
-                                                >
+                                                
+                                                <!-- <img width="100%" th:src="@{'/upload/itemSolo/'+${img.attachedFileName}}" class="" alt="..."> -->
                                             </th:block>
                                         </th:block>
                                     </th:block>

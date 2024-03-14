@@ -1,3 +1,22 @@
 .page-div{
     text-align: center;
 }
+.ht{
+    font-size: 1.5rem;
+}
+.card-body{
+    border: none;
+    text-align: start;
+    margin: 0px;
+    padding: 0px;
+}
+.card-item{
+    
+}
+.card-img-main{
+    border-radius: 5%;
+    height: 28vh;
+}
+.img-div{
+}
+
