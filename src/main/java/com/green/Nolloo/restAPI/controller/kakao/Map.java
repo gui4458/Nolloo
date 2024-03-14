@@ -33,22 +33,9 @@ public class Map {
         }
     }
 
-
-//    @GetMapping("/position")
-//    public String pos() {
-//        return "/content/restAPI/position";
-//    }
-//
-//    @ResponseBody
-//    @PostMapping("/position")
-//    public MapVO pos(@RequestParam(name="itemCode") int itemCode, Model model) {
-//        MapVO LatLng = restAPIService.selectMapLatLnt(itemCode);
-//        return LatLng;
-//    }
-
     @GetMapping("/now")
     public String circle() {
-        return "/content/restAPI/now-pos";
+        return "/content/member/my-pos";
     }
 
     @ResponseBody

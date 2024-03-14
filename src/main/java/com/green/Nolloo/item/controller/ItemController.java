@@ -56,12 +56,11 @@ public class ItemController {
     public String list(Model model, Authentication authentication, ItemVO itemVO
                         , @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode
                         ,SearchVO searchVO,HttpSession session){
-
+        searchVO.setCateCode(chkCode);
         model.addAttribute("itemList",itemService.selectPartyList(searchVO));
         //        전체 데이터 수
         searchVO.setCateCode(chkCode);
         int totalDataCnt = itemService.itemAllCnt(searchVO.getCateCode());
-        System.out.println(totalDataCnt);
         searchVO.setTotalDataCnt(totalDataCnt);
 //        페이지 정보 세팅
         searchVO.setPageInfo();
@@ -93,7 +92,8 @@ public class ItemController {
     @PostMapping("/itemAdd")
     public String boardAdd(ItemVO itemVO
                             , @RequestParam(name = "img") MultipartFile img
-                            , @RequestParam(name = "imgs") MultipartFile[] imgs, @RequestParam(name="itemPlace") String addr){
+                            , @RequestParam(name = "imgs") MultipartFile[] imgs
+                            , @RequestParam(name="itemPlace") String addr){
         //메인이미지 업로드
         ImgVO mainImg = UploadUtil.uploadFile(img);
         //상세이미지 업로드
@@ -155,7 +155,6 @@ public class ItemController {
 
     @GetMapping("/updateForm")
     public String updateForm(Model model, ItemVO itemVO){
-
         model.addAttribute("item",itemVO);
         return "content/item/item_update_form";
     }
@@ -163,7 +162,6 @@ public class ItemController {
     @PostMapping("/updateParty")
     public String updateParty(ItemVO itemVO){
         itemService.updateParty(itemVO);
-
         return "redirect:/item/itemDetailForm?itemCode="+itemVO.getItemCode();
     }
 

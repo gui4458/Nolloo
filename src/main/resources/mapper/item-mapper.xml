@@ -81,6 +81,7 @@
         INNER JOIN ITEM_IMAGE IMG
         ON INFO.ITEM_CODE = IMG.ITEM_CODE
         WHERE IS_MAIN='Y'
+        AND CATE_CODE = #{cateCode}
 <!--        <if test='searchText != null and !searchText.equals("")'>-->
 <!--            AND ${searchOption} LIKE CONCAT('%',#{searchText},'%')-->
 <!--        </if>-->
@@ -168,21 +169,12 @@
         WHERE ITEM_CODE = #{itemCode}
     </update>
 
-
     <select id="itemAllCnt" resultType="int">
         SELECT COUNT(ITEM_CODE)
         FROM ITEM_INFO
         WHERE CATE_CODE = #{cateCode}
     </select>
 </mapper>
-
-
-
-
-
-
-
-
 
 
 

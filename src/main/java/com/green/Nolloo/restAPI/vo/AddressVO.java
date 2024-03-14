@@ -8,6 +8,5 @@ public class AddressVO {
     private String region1depthName;
     private String region2depthName;
     private String region3depthName;
-
 }
 
