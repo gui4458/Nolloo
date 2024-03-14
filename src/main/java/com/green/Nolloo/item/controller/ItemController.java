@@ -56,12 +56,11 @@ public class ItemController {
     public String list(Model model, Authentication authentication, ItemVO itemVO
                         , @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode
                         ,SearchVO searchVO,HttpSession session, MemberVO memberVO){
-
+        searchVO.setCateCode(chkCode);
         model.addAttribute("itemList",itemService.selectPartyList(searchVO));
         //        전체 데이터 수
         searchVO.setCateCode(chkCode);
         int totalDataCnt = itemService.itemAllCnt(searchVO.getCateCode());
-        System.out.println(totalDataCnt);
         searchVO.setTotalDataCnt(totalDataCnt);
 //        페이지 정보 세팅
         searchVO.setPageInfo();
