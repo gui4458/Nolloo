@@ -154,7 +154,7 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <th:block th:if="${chkCode == 1}">
     
-          <div class="col" th:each="item : ${itemList}" th:if="${item.cateCode == 1}">
+          <div class="col-4" th:each="item : ${itemList}" th:if="${item.cateCode == 1}">
             <div class="card shadow-sm">
     
               <div class="card-body"
@@ -208,7 +208,7 @@
     
     
     
-          <div class="col" th:each="item : ${itemList}" th:if="${item.cateCode == 2}">
+          <div class="col-4" th:each="item : ${itemList}" th:if="${item.cateCode == 2}">
     
     
             <div class="card shadow-sm">
@@ -273,15 +273,15 @@
     <!-- ${searchVO.endPage} -->
     
     <th:block th:if="${searchVO.prev}">
-        <a th:href="@{/item/list(nowPage=${searchVO.beginPage-1}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})}"> 이전 </a>
+        <a th:href="@{/item/list(nowPage=${searchVO.beginPage-1}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})},chkCode=${chkCode}"> 이전 </a>
     </th:block>
 
     <th:block th:each="i : ${#numbers.sequence(searchVO.beginPage, searchVO.endPage)}">
-        <a th:href="@{/item/list(nowPage=${i}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})}"> [[${i}]] </a>
+        <a th:href="@{/item/list(nowPage=${i},chkCode=${chkCode}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})}"> [[${i}]] </a>
     </th:block>
     
     <th:block th:if="${searchVO.next}">
-        <a th:href="@{/item/list(nowPage=${searchVO.endPage+1}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})}"> 다음 </a>
+        <a th:href="@{/item/list(nowPage=${searchVO.endPage+1},chkCode=${chkCode}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})}"> 다음 </a>
     </th:block>
 </div>
 
