@@ -92,6 +92,7 @@ public class MemberController {
         return "redirect:/member/myPage";
 
     }
+    //회원탈퇴
     @GetMapping("deleteMember")
     public String deleteMember(MemberVO memberVO,Authentication authentication){
         User user = (User)authentication.getPrincipal();
