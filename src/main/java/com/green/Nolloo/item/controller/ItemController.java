@@ -55,7 +55,7 @@ public class ItemController {
     @RequestMapping("/list")
     public String list(Model model, Authentication authentication, ItemVO itemVO
                         , @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode
-                        ,SearchVO searchVO,HttpSession session, MemberVO memberVO){
+                        ,SearchVO searchVO,HttpSession session){
 
         model.addAttribute("itemList",itemService.selectPartyList(searchVO));
         //        전체 데이터 수
@@ -129,10 +129,13 @@ public class ItemController {
 
     //itemDetail 조회
     @GetMapping("/itemDetailForm")
-    public String boardDetailForm(ItemVO itemVO, ReserveVO reserveVO, Model model, Authentication authentication){
+    public String boardDetailForm(ItemVO itemVO, ReserveVO reserveVO, Model model, Authentication authentication
+            , @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode){
 
         itemService.itemListUpdateCnt(itemVO);
-        Model item = model.addAttribute("item",itemService.selectPartyDetail(itemVO));
+        model.addAttribute("item",itemService.selectPartyDetail(itemVO));
+
+        model.addAttribute("chkCode",chkCode);
 
         if (authentication != null){
             User user = (User)authentication.getPrincipal();

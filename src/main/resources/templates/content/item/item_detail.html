@@ -18,7 +18,20 @@
                     <td>
                         <div class="row">
                             <div class="col text-center main-img-div align-middle">
-                                메인이미지
+                                <th:block th:if="${chkCode == 1}">
+                                    <th:block th:each="item : ${item}" th:if="${item.cateCode == 1}">
+                                        <th:block th:if="${item.imgList.isMain=='Y'}">
+                                            <img th:src="@{'/upload/itemSolo'+${item.imgList.attachedFileName}}" class="" alt="...">
+                                        </th:block>
+                                    </th:block>
+                                </th:block>
+                                <th:block th:if="${chkCode == 2}">
+                                    <th:block th:each="item : ${item}" th:if="${item.cateCode == 2}">
+                                        <th:block th:if="${img.isMain=='Y'}">
+                                            <img th:src="@{'/upload/item'+${img.attachedFileName}}" class="" alt="...">
+                                        </th:block>
+                                    </th:block>
+                                </th:block>
                             </div>
                         </div>
                     </td>
@@ -71,7 +84,7 @@
                         <!------------- 조회수 ------------>
                         <div class="row">
                             <div class="col ">
-                                조회수/
+                                [[${item.readCnt}]]/
                                 <span sec:authorize="isAuthenticated()" onclick="goChat()">채팅바로가기</span>
                                 <span sec:authorize="isAnonymous()" onclick="goLogin()">채팅바로가기</span>
                             </div>
