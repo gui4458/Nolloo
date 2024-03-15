@@ -103,9 +103,6 @@
               
                 <img th:src="@{'/upload/itemSolo/' + ${item.imgList[0].attachedFileName}}" 
                 th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|" class="card-img-main" alt="...">
-              
-              
-              
             
               <span class="ht text-end" style="position: absolute; left: 95%; transform: translate(-90%);">
                 <th:block sec:authorize="isAuthenticated()">
@@ -147,8 +144,8 @@
 
           <div class="card-body"
             th:style="'background-image:url(/upload/itemSolo/' + ${item.imgList[0].attachedFileName} + ');'">
-            <div class="title h3"><span
-                th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|">[[${item.itemTitle}]]</span>
+            <div class="title h3">
+              <span th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|">[[${item.itemTitle}]]</span>
               <span class="ht text-end" style="position: absolute; left: 95%; transform: translate(-90%);">
                 <th:block sec:authorize="isAuthenticated()">
 
@@ -163,10 +160,10 @@
                     🤍
                   </div>
                 </th:block>
-                <th:block sec:authorize="isAnonymous()">
-                  <div class="col" onclick="gologin()">
+                <th:block sec:authorize="isAnonymous()" >
+                  <span class="col" onclick="gologin()">
                     🤍
-                  </div>
+                  </span>
                 </th:block>
               </span>
             </div>
