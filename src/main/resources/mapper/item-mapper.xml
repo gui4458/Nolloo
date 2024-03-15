@@ -71,7 +71,7 @@
             INFO.ITEM_CODE
             , ITEM_TITLE
             , ITEM_DATE
-            , ITEM_PRICE
+            , cITEM_PRICE
             , ITEM_PLACE
             , ITEM_PEOPLE
             , CATE_CODE
