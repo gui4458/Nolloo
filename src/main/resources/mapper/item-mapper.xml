@@ -24,6 +24,7 @@
         <result column="ITEM_X" property="itemX"/>
         <result column="ITEM_Y" property="itemY"/>
         <result column="CATE_CODE" property="cateCode"/>
+        <result column="MEMBER_ID" property="memberId"/>
         <collection property="imgList"  resultMap="img"/>
     </resultMap>
     <resultMap id="img" type="com.green.Nolloo.item.vo.ImgVO">
@@ -178,4 +179,14 @@
         FROM ITEM_INFO
         WHERE CATE_CODE = #{cateCode}
     </select>
+
+<!--    나의 파티 조회-->
+    <select id="selectMyParty" resultMap="item">
+        SELECT ITEM_CODE
+        , ITEM_TITLE
+        , ITEM_PEOPLE
+        FROM ITEM_INFO
+        WHERE MEMBER_ID=#{memberId}
+    </select>
+
 </mapper>

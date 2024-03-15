@@ -78,6 +78,7 @@ public class ItemController {
             }
             model.addAttribute("wishCodeList",wishCodeList);
         session.setAttribute("memberImage",memberService.selectProfile(user.getUsername()));
+        session.setAttribute("memberId",user.getUsername());
         }
 
         return "content/main";
@@ -169,5 +170,17 @@ public class ItemController {
     }
 
 
+
+
+
+    @GetMapping("/myParty")
+    public String myParty(ItemVO itemVO, Model model,HttpSession session){
+
+        String memberId = (String)session.getAttribute("memberId");
+        itemVO.setMemberId(memberId);
+        List<ItemVO> myPartyList = itemService.selectMyParty(itemVO);
+        model.addAttribute("myPartyList",myPartyList);
+        return "content/member/my_party";
+    }
 
 }

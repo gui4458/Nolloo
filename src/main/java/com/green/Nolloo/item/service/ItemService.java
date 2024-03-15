@@ -23,4 +23,6 @@ public interface ItemService {
 
     int itemAllCnt(int cateCode);
 
+    List<ItemVO> selectMyParty(ItemVO itemVO);
+
 }
