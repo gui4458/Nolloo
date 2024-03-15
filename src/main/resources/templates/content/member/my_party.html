@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/my_page/my_layout}">
+
 
 <th:block layout:fragment="contentFragment">
-    <div class="row">
-        <div class="col">
+    <div class="row" style="margin-top: 8%; margin-bottom: 20%;">
+        <div class="col-6">
             <table class="table table-bordered">
+                <colgroup>
+                    <col width="10%">
+                    <col width="20%">
+                    <col width="10%">
+                </colgroup>
                 <tr>
                     <td>No</td>
                     <td>제목</td>
                     <td>인원수</td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr th:each="myPart, state:${myPartyList}">
+                    <td>[[${state.index + 1}]]</td>
+                    <td>[[${myPart.itemTitle}]]</td>
+                    <td>[[${myPart.itemPeople}]]</td>
                 </tr>
             </table>
         </div>

@@ -30,6 +30,12 @@ public class ItemServiceImpl implements ItemService {
         return sqlSession.selectOne("itemMapper.itemAllCnt",cateCode);
     }
 
+    //나의 파티 조회
+    @Override
+    public List<ItemVO> selectMyParty(ItemVO itemVO) {
+        return sqlSession.selectList("itemMapper.selectMyParty",itemVO);
+    }
+
 
     // item 등록
     @Override
@@ -63,6 +69,7 @@ public class ItemServiceImpl implements ItemService {
     public void updateParty(ItemVO itemVO) {
         sqlSession.update("itemMapper.updateParty",itemVO);
     }
+
 
 
 }
