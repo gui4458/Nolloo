@@ -211,3 +211,13 @@ a:-webkit-any-link {
 .hm {
     margin-left: -0.125rem;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
