@@ -27,7 +27,7 @@
         <result column="MEMBER_ID" property="memberId"/>
     </resultMap>
     <insert id="join">
-        INSERT INTO MEMBER(
+        INSERT INTO NOLLOO_MEMBER(
         MEMBER_ID
         , MEMBER_PW
         , MEMBER_NAME
@@ -72,7 +72,7 @@
         MEMBER_ID
         ,MEMBER_PW
         ,MEMBER_ROLL
-        FROM MEMBER
+        FROM NOLLOO_MEMBER
         WHERE MEMBER_ID=#{memberId}
     </select>
 
@@ -88,12 +88,12 @@
         , MEMBER_POST
         , MEMBER_ADDR
         , ADDR_DETAIL
-        FROM MEMBER
+        FROM NOLLOO_MEMBER
         WHERE MEMBER_ID=#{memberId}
     </select>
 
     <update id="revise">
-        UPDATE MEMBER SET
+        UPDATE NOLLOO_MEMBER SET
         MEMBER_PW= #{memberPw}
         , MEMBER_NAME= #{memberName}
         , MEMBER_BIRTH= #{memberBirth}
@@ -108,7 +108,7 @@
     </update>
 
     <delete id="deleteMember">
-        DELETE FROM MEMBER
+        DELETE FROM NOLLOO_MEMBER
         WHERE MEMBER_ID=#{memberId}
 
     </delete>
