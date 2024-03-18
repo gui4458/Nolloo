@@ -25,11 +25,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/item")
@@ -181,6 +183,15 @@ public class ItemController {
         List<ItemVO> myPartyList = itemService.selectMyParty(itemVO);
         model.addAttribute("myPartyList",myPartyList);
         return "content/member/my_party";
+    }
+
+    @ResponseBody
+    @PostMapping("/selectItemDetail")
+    private ItemVO selectItemDetail(@RequestParam(name="itemCode") int itemCode){
+        ItemVO detail=itemService.selectItemDetail(itemCode);
+        System.out.println(itemCode);
+        System.out.println(detail);
+        return detail;
     }
 
 }
