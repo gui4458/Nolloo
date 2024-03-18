@@ -1,7 +1,6 @@
 
 
 const username = document.querySelector('.chatId').value;
-const allProfile = document.querySelector('.allProfile').value;
 // $("#disconn").on("click", (e) => {
 //     disconnect();
 // })
@@ -26,8 +25,10 @@ msg.addEventListener("keyup", function(e){
     }
 });
 
-
-const websocket = new WebSocket(`ws://192.168.30.107:8081/ws/chat`);
+const chatCode = document.querySelector("#chatCode").value;
+const itemCode = document.querySelector(".itemCode").value;
+const websocket = new WebSocket(`ws://192.168.30.107:8081/ws/chat/${chatCode}`);
+// const websocket = new WebSocket(`ws://192.168.30.107:8081/ws/chat`);
 
 websocket.onmessage = onMessage;
 websocket.onopen = onOpen;

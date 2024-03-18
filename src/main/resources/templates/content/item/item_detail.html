@@ -11,7 +11,7 @@
     <!-- html 코드작성-->
 
     <div class="row justify-content-center ">
-        <div class="col-10 align-item-center text-start" th:style="'background-image:url(/upload/itemSolo/' + ${item.imgList[0].attachedFileName} + ');'">
+        <div class="col-10 align-item-center text-start back-img" th:style="'background-image:url(/upload/itemSolo/' + ${item.imgList[0].attachedFileName} + ');'">
             <!-------- 메인이미지 ------->
             <table class="table">
                 <tr class="main-img-tr">
@@ -93,7 +93,7 @@
                         <div class="row">
                             <div class="col ">
                                 [[${item.readCnt}]]/
-                                <span sec:authorize="isAuthenticated()" onclick="goChat()">채팅바로가기</span>
+                                <span sec:authorize="isAuthenticated()" th:onclick="goChat([[${item.itemCode}]])">채팅바로가기</span>
                                 <span sec:authorize="isAnonymous()" onclick="goLogin()">채팅바로가기</span>
                             </div>
                         </div>

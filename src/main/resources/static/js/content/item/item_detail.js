@@ -86,13 +86,13 @@ function reserveAlert(){
 }
 
 
-function goChat(itemCode){
+function goChat(test){
 
     const windowFeatures = "left=1500,top=100,width=750,height=750,popup";
 
 	
     window.open(
-        `http://192.168.30.107:8081/chat`,
+        `http://192.168.30.107:8081/chat/${test}`,
         "_blank",
         windowFeatures
         

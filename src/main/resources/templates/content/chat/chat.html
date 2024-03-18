@@ -6,7 +6,10 @@
         <div class="container">
             <div>
                 <input class="chatId" type="hidden" th:value="${#authentication.name}">
-                <input class="allProfile" type="hidden" th:value="${allProfile}">
+                <input class="itemCode" type="hidden" th:value="${itemCode}">
+            </div>
+            <div>
+                [[${itemCode}]]
             </div>
             <div id="chat-room">
                 <div class="row" style="width: 100%;">
@@ -34,7 +37,7 @@
             
         </div>
         
-    
+        <input type="hidden" th:value="${test}" id="chatCode">
 
 
     <script src="/js/content/chat/chat.js"></script>
