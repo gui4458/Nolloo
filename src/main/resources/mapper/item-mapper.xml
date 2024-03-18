@@ -185,8 +185,37 @@
         SELECT ITEM_CODE
         , ITEM_TITLE
         , ITEM_PEOPLE
+        , date_format(ITEM_START_DATE,'%Y-%m-%d') ITEM_START_DATE
         FROM ITEM_INFO
         WHERE MEMBER_ID=#{memberId}
     </select>
+
+<!--    나의 파티 상세 -->
+    <select id="selectItemDetail" resultMap="item">
+        SELECT
+        ITEM_INFO.ITEM_CODE
+        , ITEM_CONTENT
+        , ITEM_PLACE
+        , date_format(ITEM_START_DATE,'%Y-%m-%d') ITEM_START_DATE
+        , date_format(ITEM_END_DATE,'%Y-%m-%d') ITEM_END_DATE
+        , ITEM_TEL
+        , ITEM_PRICE
+        , IMG_CODE
+        , ATTACHED_FILE_NAME
+
+        FROM item_info JOIN ITEM_IMAGE
+        ON ITEM_INFO.ITEM_CODE = ITEM_IMAGE.ITEM_CODE
+        WHERE ITEM_INFO.ITEM_CODE=#{itemCode}
+    </select>
+
+    <update id="updateItemDetail">
+        UPDATE ITEM_INFO
+        SET
+         ITEM_CONTENT=#{itemContent}
+        , ITEM_PLACE=#{itemPlace}
+        , ITEM_PRICE=#{itemPrice}
+        , ITEM_TEL=#{itemTel}
+        WHERE ITEM_CODE=#{itemCode}
+    </update>
 
 </mapper>

@@ -25,4 +25,6 @@ public interface ItemService {
 
     List<ItemVO> selectMyParty(ItemVO itemVO);
 
+    ItemVO selectItemDetail(int itemCode);
+
 }
