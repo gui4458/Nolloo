@@ -1,0 +1,96 @@
+.btn_sticky {
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 4;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #fff;
+    border-radius: 21px;
+    box-shadow: 2px 4px 16px rgba(41,46,65,0.15);
+}
+
+
+.btn_sticky:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-image:radial-gradient(100% 100% at 50% 100%, #b2f5ea 0%, rgba(153, 245, 243, 0.75) 25%, rgba(171, 238, 246, 0.5) 50%, rgba(190, 227, 248, 0) 100%), linear-gradient(90deg, #314cce 0%, #9835e0 14.29%, #cb34d8 28.57%, #f537cf 42.86%, #f96eb4 57.14%, #fc92a4 71.43%, #ffcca8 100%);    
+    -o-animation: rotating 3s linear infinite;
+    animation: rotating 3s linear infinite;
+    content: "";
+}
+
+.btn_sticky:after {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    width: 24px;
+    height: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath opacity='0.7' d='M2.22745 11.0827L1.83433 11.2807C1.08968 11.6559 1.10417 12.724 1.85873 13.0788L11.8013 17.7537C12.0757 17.8827 12.3937 17.8802 12.6661 17.747L22.2258 13.0724C22.9619 12.7125 22.9764 11.6685 22.2506 11.2883L21.8582 11.0827' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3Cpath opacity='0.5' d='M2.22745 16.125L1.83433 16.323C1.08968 16.6982 1.10417 17.7663 1.85873 18.1211L11.8013 22.7959C12.0757 22.925 12.3937 22.9225 12.6661 22.7893L22.2258 18.1147C22.9619 17.7548 22.9764 16.7108 22.2506 16.3306L21.8582 16.125' stroke='white' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M1.83433 6.23971L11.7764 1.23116C12.0644 1.08607 12.4048 1.08878 12.6904 1.23845L22.2506 6.24724C22.9764 6.6275 22.9619 7.67142 22.2258 8.03137L12.6661 12.706C12.3937 12.8392 12.0757 12.8416 11.8013 12.7126L1.85873 8.03774C1.10417 7.68296 1.08968 6.61484 1.83433 6.23971Z' stroke='white' stroke-width='2'/%3E%3C/svg%3E%0A");
+    content: "";
+}
+
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    to {
+        transform: rotate(360deg);
+        opacity: 1;
+    }
+}
+ 
+
+.wrap_job_list .item {
+    position: relative;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #e5e5e7;
+}
+.wrap_job_list .item .link_box {
+    display: block;
+    padding: 15px 0;
+    overflow: hidden;
+    color: initial;
+}
+
+a:-webkit-any-link {
+    cursor: pointer;
+}
+
+.wrap_job_list .wrap_thumb {
+    position: relative;
+    height: 64px;
+    border-radius: 14px;
+    background: #efefef no-repeat 50% 0;
+    background-size: cover;
+}
+
+.wrap_job_list .wrap_thumb {
+    float: left;
+    margin-right: 15px;
+    width: 80px;
+    height: 100px;
+    background-size: cover;
+}
+
+.wrap_job_list .item .link_box {
+    display: block;
+    padding: 15px 0;
+    overflow: hidden;
+    color: initial;
+}
+ 

@@ -36,6 +36,12 @@ public class ItemServiceImpl implements ItemService {
         return sqlSession.selectList("itemMapper.selectMyParty",itemVO);
     }
 
+    //나의 파티 상세
+    @Override
+    public ItemVO selectItemDetail(int itemCode) {
+        return sqlSession.selectOne("itemMapper.selectItemDetail",itemCode);
+    }
+
 
     // item 등록
     @Override

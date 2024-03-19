@@ -4,29 +4,42 @@
 
 
 <th:block layout:fragment="contentFragment">
-    <div class="row" style="margin-top: 8%; margin-bottom: 20%;">
+    <div class="row" style="margin-top: 7.2%; margin-bottom: 20%;">
         <div class="col-6">
             <table class="table table-bordered">
                 <colgroup>
-                    <col width="10%">
+                    <col width="8%">
                     <col width="20%">
                     <col width="10%">
+                    <col width="20%">
                 </colgroup>
                 <tr>
                     <td>No</td>
                     <td>제목</td>
                     <td>인원수</td>
+                    <td>시작 날짜</td>
                 </tr>
-                <tr th:each="myPart, state:${myPartyList}">
+                <tr th:each="myPart, state:${myPartyList}" th:onclick="getDetail([[${myPart.itemCode}]])">
                     <td>[[${state.index + 1}]]</td>
                     <td>[[${myPart.itemTitle}]]</td>
                     <td>[[${myPart.itemPeople}]]</td>
+                    <td>[[${myPart.itemStartDate}]]</td>
                 </tr>
             </table>
         </div>
+        <div class="col-6 detail-div">
+    
+        </div>
+
+    
+        
     </div>
 </th:block>
 
 </body>
 
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/js/content/member/my_party.js"></script>
+</th:block>
 </html>
