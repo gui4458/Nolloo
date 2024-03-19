@@ -24,10 +24,15 @@ public class ChatService {
     }
 
     public List<ChatRoom> findAllRoom() {
+        System.out.println("findAllRoom ~");
+        System.out.println(chatRooms.values());
         return new ArrayList<>(chatRooms.values());
     }
 
     public ChatRoom findRoomById(String roomId) {
+        System.out.println("findRoomById ~");
+        System.out.println(chatRooms);
+        System.out.println(roomId);
         return chatRooms.get(roomId);
     }
 

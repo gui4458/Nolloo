@@ -2,9 +2,11 @@ package com.green.Nolloo.chat.Test;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class ChatMessage {
     // 메시지 타입 : 입장, 채팅, 나감
     public enum MessageType {

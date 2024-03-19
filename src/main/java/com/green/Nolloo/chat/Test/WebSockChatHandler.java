@@ -29,11 +29,11 @@ public class WebSockChatHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String payload = message.getPayload();
+        System.out.println(payload);
         ChatMessage chatMessage = objectMapper.readValue(payload, ChatMessage.class);
+        System.out.println(chatMessage);
         ChatRoom room = chatService.findRoomById(chatMessage.getRoomId());
         System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
-        System.out.println(objectMapper.readValue(payload, ChatMessage.class));
-        System.out.println(chatService.findRoomById(chatMessage.getRoomId()));
         Set<WebSocketSession> sessions=room.getSessions();   //방에 있는 현재 사용자 한명이 WebsocketSession
         System.out.println("rrrrrrrrrrrr" + sessions);
         if (chatMessage.getType().equals(ChatMessage.MessageType.ENTER)) {

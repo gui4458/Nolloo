@@ -7,7 +7,8 @@
 </head>
 
 <body>
-    <input type="hidden" class="roomId" th:value="${roomId}">
+    <input type="hidden" class="roomId" th:value="${room.roomId}">
+    <input type="hidden" class="memberId" th:value="${memberId}">
     <input type="text" placeholder="보낼 메세지를 입력하세요." class="content">
     <button type="button" value="전송" class="sendBtn" onclick="sendMsg()">전송</button>
     <button type="button" value="방나가기" class="quit" onclick="quit()">방 나가기 </button>
@@ -19,12 +20,13 @@
 
 <script th:inline="javascript">
     const roomId = document.querySelector('.roomId').value;
+    const memberId = document.querySelector('.memberId').value;
     function enterRoom(socket) {
-        var enterMsg = { "type": "ENTER", "roomId": roomId, "sender": "chee", "msg": "" }; //sender는  글쓸때 수정하자.
+        var enterMsg = { "type": "ENTER", "roomId": roomId, "sender": memberId, "msg": "" }; //sender는  글쓸때 수정하자.
         // var enterMsg = { "type": "ENTER", "roomId": [[${ room.roomId }]], "sender": "chee", "msg": "" }; //sender는  글쓸때 수정하자.
         socket.send(JSON.stringify(enterMsg));
     }
-    let socket = new WebSocket("ws://192.168.30.107:8081/ws/chat");
+    let socket = new WebSocket("ws://localhost:8081/ws/chat");
 
     socket.onopen = function (e) {
         console.log('open server!')
@@ -51,13 +53,13 @@
     //메세지 보내기 버튼 눌렀을 떄..
     function sendMsg() {
         let content = document.querySelector('.content').value;
-        var talkMsg = { "type": "TALK", "roomId": roomId, "sender": "chee", "msg": content };
+        var talkMsg = { "type": "TALK", "roomId": roomId, "sender": memberId, "msg": content };
         // var talkMsg = { "type": "TALK", "roomId": [[${ room.roomId }]], "sender": "chee", "msg": content };
         socket.send(JSON.stringify(talkMsg));
     }
 
     function quit() {
-        var quitMsg = { "type": "QUIT", "roomId": roomId, "sender": "chee", "msg": "" };
+        var quitMsg = { "type": "QUIT", "roomId": roomId, "sender": memberId, "msg": "" };
         // var quitMsg = { "type": "QUIT", "roomId": [[${ room.roomId }]], "sender": "chee", "msg": "" };
         socket.send(JSON.stringify(quitMsg));
         socket.close();
