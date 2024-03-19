@@ -1,5 +1,9 @@
 .main-img-div{
-    width: 100%;
+    
+    width:1000px;
+    height:1000px;
+    overflow:hidden;
+    margin:0 auto;
     
 }
 .main-img-tr{
@@ -17,4 +21,14 @@ b{
 .id-div{
     font-size: 18px; 
     font-weight: bold;
+}
+.img-div{
+    
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    background-size:contain;
+    background-attachment: fixed;
+    background-position: center;
+
 }
