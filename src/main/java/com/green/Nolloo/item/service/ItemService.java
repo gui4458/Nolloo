@@ -27,4 +27,5 @@ public interface ItemService {
 
     ItemVO selectItemDetail(int itemCode);
 
+    void updateItemDetail(ItemVO itemVO);
 }

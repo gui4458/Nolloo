@@ -193,16 +193,17 @@
 <!--    나의 파티 상세 -->
     <select id="selectItemDetail" resultMap="item">
         SELECT
-        ITEM_INFO.ITEM_CODE
-        , ITEM_CONTENT
-        , ITEM_PLACE
-        , date_format(ITEM_START_DATE,'%Y-%m-%d') ITEM_START_DATE
-        , date_format(ITEM_END_DATE,'%Y-%m-%d') ITEM_END_DATE
-        , ITEM_TEL
-        , ITEM_PRICE
-        , IMG_CODE
-        , ATTACHED_FILE_NAME
-
+            ITEM_INFO.ITEM_CODE
+            , ITEM_CONTENT
+            , ITEM_PLACE
+            , date_format(ITEM_START_DATE,'%Y-%m-%d') ITEM_START_DATE
+            , date_format(ITEM_END_DATE,'%Y-%m-%d') ITEM_END_DATE
+            , ITEM_TEL
+            , ITEM_PRICE
+            , IMG_CODE
+            , ATTACHED_FILE_NAME
+            , IS_MAIN
+            , ORIGIN_FILE_NAME
         FROM item_info JOIN ITEM_IMAGE
         ON ITEM_INFO.ITEM_CODE = ITEM_IMAGE.ITEM_CODE
         WHERE ITEM_INFO.ITEM_CODE=#{itemCode}
