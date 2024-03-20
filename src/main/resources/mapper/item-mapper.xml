@@ -204,6 +204,9 @@
             , ATTACHED_FILE_NAME
             , IS_MAIN
             , ORIGIN_FILE_NAME
+            , ITEM_TITLE
+            , ITEM_PEOPLE
+            , IMG_CODE
         FROM item_info JOIN ITEM_IMAGE
         ON ITEM_INFO.ITEM_CODE = ITEM_IMAGE.ITEM_CODE
         WHERE ITEM_INFO.ITEM_CODE=#{itemCode}
@@ -216,7 +219,34 @@
         , ITEM_PLACE=#{itemPlace}
         , ITEM_PRICE=#{itemPrice}
         , ITEM_TEL=#{itemTel}
+        , ITEM_TITLE=#{itemTitle}
+        , ITEM_PEOPLE=#{itemPeople}
         WHERE ITEM_CODE=#{itemCode}
     </update>
+
+
+    <insert id="insertImage">
+    INSERT INTO ITEM_IMAGE(
+         ATTACHED_FILE_NAME
+        , ORIGIN_FILE_NAME
+        , IS_MAIN
+        , ITEM_CODE
+        )
+        VALUES
+        <foreach collection="imgList" item="img" separator=",">
+        (
+        #{img.originFileName}
+        , #{img.attachedFileName}
+        , #{img.isMain}
+        , #{img.itemCode}
+        )
+        </foreach>
+    </insert>
+
+
+    <delete id="deleteItemImg">
+        DELETE FROM ITEM_IMAGE
+        WHERE IMG_CODE  = #{imgCode}
+    </delete>
 
 </mapper>

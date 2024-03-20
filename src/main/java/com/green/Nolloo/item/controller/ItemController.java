@@ -195,10 +195,24 @@ public class ItemController {
 
         return detail;
     }
-//    @PostMapping("/updateItem")
-//    public ItemVO updateItem(ItemVO itemVO){
-//        itemService.updateItemDetail(itemVO);
-//    }
+
+    @PostMapping("/updateItem")
+    public String updateItem(ItemVO itemVO){
+        System.out.println(itemVO);
+        itemService.updateItemDetail(itemVO);
+
+        return "redirect:/item/myParty";
+    }
+
+    //상품 상세보기 페이지에서 이미지 삭제버튼 클릭 시 실행
+    @ResponseBody
+    @PostMapping("/deleteImg")
+    public void deleteImg(ImgVO imgVO){
+        //산택한 이미지 디비에서 삭제
+        //itemService.deleteItemImg(imgVO);
+
+
+    }
 
 
 

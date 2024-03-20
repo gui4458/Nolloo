@@ -1,5 +1,6 @@
 package com.green.Nolloo.item.service;
 
+import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.search.vo.SearchVO;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -42,9 +43,17 @@ public class ItemServiceImpl implements ItemService {
         return sqlSession.selectOne("itemMapper.selectItemDetail",itemCode);
     }
 
+    //파티 상세 수정
     @Override
     public void updateItemDetail(ItemVO itemVO) {
         sqlSession.update("itemMapper.updateItemDetail",itemVO);
+        sqlSession.insert("itemMapper.insertImage",itemVO);
+
+    }
+
+    @Override
+    public void deleteItemImg(ImgVO imgVO) {
+        sqlSession.delete("itemMapper.deleteItemImg", imgVO);
     }
 
 
