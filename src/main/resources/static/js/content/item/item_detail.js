@@ -86,19 +86,16 @@ function reserveAlert(){
 }
 
 
-function goChat(test){
 
+function goChat(itemCode) {
+    // 채팅방 URL 생성
+    const chatRoomUrl = `http://192.168.30.107:8081/chat/${itemCode}`;
+
+    // 채팅방을 새 창으로 열기
     const windowFeatures = "left=1500,top=100,width=750,height=750,popup";
-
-	
-    window.open(
-        `http://192.168.30.107:8081/chat/${test}`,
-        "_blank",
-        windowFeatures
-        
-    
-    );
+    window.open(chatRoomUrl, "_blank", windowFeatures);
 }
+
 
 function goLogin(){
     alert('로그인 후 이용해주세요.')

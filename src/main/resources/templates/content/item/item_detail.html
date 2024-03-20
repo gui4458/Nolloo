@@ -123,7 +123,7 @@
                     <div class="row">
                         <div class="col ">
                             [[${item.readCnt}]]/
-                            <span sec:authorize="isAuthenticated()" onclick="goChat()">채팅바로가기</span>
+                            <span sec:authorize="isAuthenticated()" th:onclick="goChat([[${item.itemCode}]])">채팅바로가기</span>
                             <span sec:authorize="isAnonymous()" onclick="goLogin()">채팅바로가기</span>
                         </div>
                     </div>
