@@ -1,323 +1,62 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{fragment/user_layout}">
+layout:decorate="~{fragment/user_layout}">
 
 <th:block layout:fragment="content_css">
-  <!-- html 파일이 열릴때 같이 실행되는 css -->
-  <link rel="stylesheet" href="/css/fragment/item_list.css">
-  <link rel="stylesheet" href="/css/content/main.css">
+<!-- html 파일이 열릴때 같이 실행되는 css -->
+<link rel="stylesheet" href="/css/fragment/item_list.css">
+<link rel="stylesheet" href="/css/content/main.css">
 </th:block>
 
 <th:block layout:fragment="contentFragment">
-  <!-- html 코드 작성 -->
-  <div class="row header-div">
-    <div class="col">
-      <th:block th:replace="~{fragment/user_menu :: userMenuFragment}"></th:block>
-    </div>
-  </div>
 
-  <div class="row header-div">
-    <div class="col">
-      <th:block th:replace="~{fragment/user_search :: userSearchFragment}"></th:block>
-    </div>
-  </div>
+  <div class="mx-auto max-w-7xl py-1 px-4 md:px-6 ">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4" >
+      
+      <div class="bg-white shadow-xl shadow-slate-900/5 rounded-lg" th:each="item : ${itemList}" >
+        <a th:href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'>
+          <div class="flex flex-row p-3 lg:flex-col ">
+            <!-- <img class="w-24 h-24 rounded-full lg:w-full lg:h-full lg:rounded-lg" src="https://kfescdn.visitkorea.or.kr/kfes/upload/contents/db/87dfeda1-084e-41a9-b76e-09f2d502443a_2.jpeg" alt=""> -->
+            <!-- <img class="w-24 h-24 rounded-full lg:w-full lg:h-full lg:rounded-lg" th:src="@{'/upload/item/' + ${item.imgList[0].attachedFileName}}" 
+            th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|" alt=""> -->
 
-  <div class="py-3">
-    <div class="row">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col" onclick="alert('clicked')">
-          <div class="card shadow-sm">
+            <div class="image-container w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg" style="background-image: url('/upload/item/your_image.jpg');" th:style="'background-image: url(\'' + '/upload/item/' + ${item.imgList[0].attachedFileName} + '\');'" th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|">
+            </div>
 
-            <div class="card-body"
-              style="background-image: url('https://cdn.visitkorea.or.kr/kfes/upload/nationwide/2024/02/26/3fa43c9e-126a-43de-87ad-44e0d25bb86f.jpg');">
-              <h3 class="title">This is Title</h3>
-              <h6 class="area">Daegu</h6>
-              <h6 class="date">2024.06.27</h6>
-
-              <div class="d-flex" style="height:290px;">
-              </div>
-
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
+            <div class="ml-5 lg:ml-0 lg:mt-3">
+              <figcaption class="font-medium">
+                <div class="text-dark-600">
+                  <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">[[${item.cateName}]]</span><strong class="inline-flex text-xs py-1 pl-1">[[${item.itemPlace}]]</strong>
                 </div>
-                <small class="text-body-secondary">9 people</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col" onclick="alert('clicked')">
-          <div class="card shadow-sm">
-
-            <div class="card-body"
-              style="background-image: url('https://cdn.visitkorea.or.kr/kfes/upload/nationwide/2024/02/26/d60db693-6eca-47ac-a32c-743e70c7ab5a.jpg');">
-              <h3 class="title">This is Title</h3>
-              <h6 class="area">Daegu</h6>
-              <h6 class="date">2024.06.27</h6>
-
-              <div class="d-flex" style="height:290px;">
-              </div>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
+                <div class="text-dark-600 font-bold mt-1">
+                  [[${item.itemTitle}]]                    
                 </div>
-                <small class="text-body-secondary">9 people</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col" onclick="alert('clicked')">
-          <div class="card shadow-sm">
-
-            <div class="card-body"
-              style="background-image: url('https://cdn.visitkorea.or.kr/kfes/upload/nationwide/2024/02/26/45669c4b-690a-4e9c-879c-b3b29c7bf39b.jpeg');">
-              <h3 class="title">This is Title</h3>
-              <h6 class="area">Daegu</h6>
-              <h6 class="date">2024.06.27</h6>
-
-              <div class="d-flex" style="height:290px;">
-              </div>
-
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
+                <div class="text-slate-600 text-sm mt-1">
+                  Description(Subtitle)
                 </div>
-                <small class="text-body-secondary">9 people</small>
-              </div>
+                <div class="text-green-500 text-sm mt-1">
+                  [[${item.itemStartDate}]]~[[${item.itemEndDate}]]
+                </div>
+              </figcaption>
             </div>
           </div>
-        </div>
-
-
-      </div>
+        </a>
+      </div> 
 
     </div>
-    <div>
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <th:block th:if="${chkCode == 1}">
-
-          <div class="col-3" th:each="item : ${itemList}" th:if="${item.cateCode == 1}">
-            <div class="card-item" >
-              
-                <img th:src="@{'/upload/itemSolo/' + ${item.imgList[0].attachedFileName}}" 
-                th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|" class="card-img-main" alt="...">
-            
-              <span class="ht text-end" style="position: absolute;transform: translate(-90%);">
-                <th:block sec:authorize="isAuthenticated()">
-
-                  <div class="col" th:onclick="wishDelete(this,[[${item.itemCode}]])"
-                    th:if="${#lists.contains(wishCodeList,item.itemCode)}">
-                    ❤
-                  </div>
-
-
-                  <div class="col" th:onclick="wishAdd(this,[[${item.itemCode}]])"
-                    th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
-                    🤍
-                  </div>
-                </th:block>
-                <th:block sec:authorize="isAnonymous()">
-                  <div class="col" onclick="gologin()">
-                    🤍
-                  </div>
-                </th:block>
-              </span>
-              <div class="card-body mt-3 mb-3">
-                <h5 class="card-title">[[${item.itemTitle}]]</h5>
-                <h6 class="date">[[${item.itemStartDate}]]~[[${item.itemEndDate}]]</h6>
-                <h6 class="date">[[${item.itemPlace}]]</h6>
-              </div>
-            </div>
-          </div>
-        </th:block>
-
-        <th:block th:if="${chkCode == 2}">
-
-          <div class="col-3" th:each="item : ${itemList}" th:if="${item.cateCode == 2}">
-            <div class="card-item" >
-              
-                <img th:src="@{'/upload/item/' + ${item.imgList[0].attachedFileName}}" 
-                th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|" class="card-img-main" alt="...">
-            
-              <span class="ht text-end" style="position: absolute;transform: translate(-90%);">
-                <th:block sec:authorize="isAuthenticated()">
-
-                  <div class="col" th:onclick="wishDelete(this,[[${item.itemCode}]])"
-                    th:if="${#lists.contains(wishCodeList,item.itemCode)}">
-                    ❤
-                  </div>
-
-
-                  <div class="col" th:onclick="wishAdd(this,[[${item.itemCode}]])"
-                    th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
-                    🤍
-                  </div>
-                </th:block>
-                <th:block sec:authorize="isAnonymous()">
-                  <div class="col" onclick="gologin()">
-                    🤍
-                  </div>
-                </th:block>
-              </span>
-              <div class="card-body mt-3 mb-3">
-                <h5 class="card-title">[[${item.itemTitle}]]</h5>
-                <h6 class="date">[[${item.itemStartDate}]]~[[${item.itemEndDate}]]</h6>
-                <h6 class="date">[[${item.itemPlace}]]</h6>
-              </div>
-            </div>
-          </div>
-        </th:block>
-      </div>
-    </div>
-
-  </div>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    <th:block th:if="${chkCode == 1}">
-
-      <div class="col-4" th:each="item : ${itemList}" th:if="${item.cateCode == 1}">
-        <div class="card shadow-sm">
-
-          <div class="card-body"
-            th:style="'background-image:url(/upload/itemSolo/' + ${item.imgList[0].attachedFileName} + ');'">
-            <div class="title h3">
-              <span th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|">[[${item.itemTitle}]]</span>
-              <span class="ht text-end" style="position: absolute; left: 95%; transform: translate(-90%);">
-                <th:block sec:authorize="isAuthenticated()">
-
-                  <div class="col" th:onclick="wishDelete(this,[[${item.itemCode}]])"
-                    th:if="${#lists.contains(wishCodeList,item.itemCode)}">
-                    ❤
-                  </div>
-
-
-                  <div class="col" th:onclick="wishAdd(this,[[${item.itemCode}]])"
-                    th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
-                    🤍
-                  </div>
-                </th:block>
-                <th:block sec:authorize="isAnonymous()" >
-                  <span class="col" onclick="gologin()">
-                    🤍
-                  </span>
-                </th:block>
-              </span>
-            </div>
-            <h6 class="area">[[${item.itemPlace}]]</h6>
-            <h6 class="date">[[${item.itemStartDate}]]~[[${item.itemEndDate}]]</h6>
-
-
-            <div class="d-flex" style="height:290px;">
-            </div>
-
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
-              </div>
-              <small class="text-body-secondary">[[${item.itemPeople}]]명</small>
-            </div>
-            <div class="text-end">
-              <small class="text-body-secondary">조회수: [[${item.readCnt}]]</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </th:block>
-
-
-    <th:block th:if="${chkCode == 2}">
-
-
-
-      <div class="col-4" th:each="item : ${itemList}" th:if="${item.cateCode == 2}">
-
-
-        <div class="card shadow-sm">
-
-          <div class="card-body"
-            th:style="'background-image:url(/upload/item/' + ${item.imgList[0].attachedFileName} + ');'">
-
-            <div class="title h3"><span
-                th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|">[[${item.itemTitle}]]</span>
-              <span class="ht text-end" style="position: absolute; left: 95%; transform: translate(-90%);">
-                <th:block sec:authorize="isAuthenticated()">
-
-                  <div class="col" th:onclick="wishDelete(this,[[${item.itemCode}]])"
-                    th:if="${#lists.contains(wishCodeList,item.itemCode)}">
-                    ❤
-                  </div>
-
-
-                  <div class="col" th:onclick="wishAdd(this,[[${item.itemCode}]])"
-                    th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
-                    🤍
-                  </div>
-                </th:block>
-                <th:block sec:authorize="isAnonymous()">
-                  <div class="col" onclick="gologin()">
-                    🤍
-                  </div>
-                </th:block>
-              </span>
-            </div>
-            <h6 class="area">[[${item.itemPlace}]]</h6>
-            <h6 class="date">[[${item.itemStartDate}]]~[[${item.itemEndDate}]]</h6>
-
-
-            <div class="d-flex" style="height:290px;">
-            </div>
-
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-light">Edit</button>
-              </div>
-              <small class="text-body-secondary">[[${item.itemPeople}]]명</small>
-            </div>
-            <div class="text-end">
-              <small class="text-body-secondary">조회수: [[${item.readCnt}]]</small>
-            </div>
-          </div>
-        </div>
-      </div>
-    </th:block>
-  </div>
   </div>
 
-
-  </div>
-
-
-  <input type="button" onclick="location.href='/item/itemAddForm';" value="글쓰기">
-
-  <div class="page-div">
-    <!-- ${searchVO.beginPage} -->
-    <!-- ${searchVO.endPage} -->
-
-    <th:block th:if="${searchVO.prev}">
-      <a
-        th:href="@{/item/list(nowPage=${searchVO.beginPage-1}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})},chkCode=${chkCode}">
-        이전 </a>
-    </th:block>
-
-    <th:block th:each="i : ${#numbers.sequence(searchVO.beginPage, searchVO.endPage)}">
-      <a
-        th:href="@{/item/list(nowPage=${i},chkCode=${chkCode}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})}">
-        [[${i}]] </a>
-    </th:block>
-
-    <th:block th:if="${searchVO.next}">
-      <a
-        th:href="@{/item/list(nowPage=${searchVO.endPage+1},chkCode=${chkCode}, searchText=${searchVO.searchText}, searchOption=${searchVO.searchOption})}">
-        다음 </a>
-    </th:block>
-  </div>
+  <th:block sec:authorize="isAuthenticated()">
+    <div class="fixed bottom-20 right-6">
+      <input type="button" onclick="location.href='/item/itemAddForm'" value="글쓰기" class="text-sm font-medium rounded-full bg-red-600 border border-slate-200 px-3 py-1.5 text-white hover:bg-white hover:text-red-600 hover:border-red-500 focus-visible:outline-none focus-visible:ring focus-visible:ring-red-300 transition">
+    </div> 
+  </th:block>
 
 </th:block>
 
 <th:block layout:fragment="content_js">
-  <!-- html 파일이 열릴때 같이 실행되는 js -->
-  <script src="/js/content/main.js"></script>
+<!-- html 파일이 열릴때 같이 실행되는 js -->
+<script src="/js/content/main.js"></script>
 </th:block>
 
 </html>

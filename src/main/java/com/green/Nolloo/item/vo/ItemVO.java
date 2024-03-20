@@ -29,6 +29,7 @@ public class ItemVO {
     private double itemX;
     private double itemY;
     private int cateCode;
+    private String cateName;
     private String memberId;
     private List<ImgVO> imgList;
 

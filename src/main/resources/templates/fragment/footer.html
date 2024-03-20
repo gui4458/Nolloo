@@ -3,145 +3,52 @@
 
 
     <th:block th:fragment="footerFragment">
-        <style>
-            .footer-clean {
-                        padding: 50px 0;
-                        background-color: #fff;
-                        color: #4b4c4d;
-                    }
-        
-                    .footer-clean h3 {
-                        margin-top: 0;
-                        margin-bottom: 12px;
-                        font-weight: bold;
-                        font-size: 16px;
-                    }
-        
-                    .footer-clean ul {
-                        padding: 0;
-                        list-style: none;
-                        line-height: 1.6;
-                        font-size: 14px;
-                        margin-bottom: 0;
-                    }
-        
-                    .footer-clean ul a {
-                        color: inherit;
-                        text-decoration: none;
-                        opacity: 0.8;
-                    }
-        
-                    .footer-clean ul a:hover {
-                        opacity: 1;
-                    }
-        
-                    .footer-clean .item.social {
-                        text-align: right;
-                    }
-        
-                    @media (max-width:100%) {
-                        .footer-clean .item {
-                            text-align: center;
-                            padding-bottom: 20px;
-                        }
-                    }
-        
-                    @media (max-width: 100%) {
-                        .footer-clean .item.social {
-                            text-align: center;
-                        }
-                    }
-        
-                    .footer-clean .item.social>a {
-                        font-size: 24px;
-                        width: 40px;
-                        height: 40px;
-                        line-height: 40px;
-                        display: inline-block;
-                        text-align: center;
-                        border-radius: 50%;
-                        border: 1px solid #ccc;
-                        margin-left: 10px;
-                        margin-top: 22px;
-                        color: inherit;
-                        opacity: 0.75;
-                    }
-        
-                    .footer-clean .item.social>a:hover {
-                        opacity: 0.9;
-                    }
-        
-                    @media (max-width:1300px) {
-                        .footer-clean .item.social>a {
-                            margin-top: 40px;
-                        }
-                    }
-        
-                    @media (max-width:1300px) {
-                        .footer-clean .item.social>a {
-                            margin-top: 10px;
-                        }
-                    }
-        
-                    .footer-clean .copyright {
-                        margin-top: 14px;
-                        margin-bottom: 0;
-                        font-size: 13px;
-                        opacity: 0.6;
-                    }
-        </style>
+        <footer>        
+            <div class="fixed bottom-0 z-50 w-full min-w-[320px] h-16 bg-white grid grid-cols-2 gap-x-11 shadow-md">
+                <div class="flex items-center justify-evenly">
+                    <a href="/item/list" class="flex flex-col items-center justify-center">
+                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <mask id="path-1-inside-1_9_71" fill="white">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15 3L3 12V27H12V18.5293C12 16.8724 13.3431 15.5293 15 15.5293C16.6569 15.5293 18 16.8724 18 18.5293V27H27V12L15 3Z"/>
+                            </mask>
+                            <path d="M3 12L1.8 10.4L1 11V12H3ZM15 3L16.2 1.4L15 0.5L13.8 1.4L15 3ZM3 27H1V29H3V27ZM12 27V29H14V27H12ZM18 27H16V29H18V27ZM27 27V29H29V27H27ZM27 12H29V11L28.2 10.4L27 12ZM4.2 13.6L16.2 4.6L13.8 1.4L1.8 10.4L4.2 13.6ZM5 27V12H1V27H5ZM12 25H3V29H12V25ZM14 27V18.5293H10V27H14ZM14 18.5293C14 17.977 14.4477 17.5293 15 17.5293V13.5293C12.2386 13.5293 10 15.7678 10 18.5293H14ZM15 17.5293C15.5523 17.5293 16 17.977 16 18.5293H20C20 15.7678 17.7614 13.5293 15 13.5293V17.5293ZM16 18.5293V27H20V18.5293H16ZM27 25H18V29H27V25ZM25 12V27H29V12H25ZM13.8 4.6L25.8 13.6L28.2 10.4L16.2 1.4L13.8 4.6Z" fill="#D04F45" mask="url(#path-1-inside-1_9_71)"/>
+                        </svg>
+                        <span class="text-xs text-gray-500 mt-1">홈</span>
+                    </a>
+                    <a href="/search" class="flex flex-col items-center justify-center">
+                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12.955" cy="12.9549" r="9" stroke="#D04F45" stroke-width="2"/>
+                            <path d="M25.1531 26.6149C25.5436 27.0054 26.1767 27.0054 26.5673 26.6149C26.9578 26.2244 26.9578 25.5912 26.5673 25.2007L25.1531 26.6149ZM18.8186 20.2804L25.1531 26.6149L26.5673 25.2007L20.2328 18.8662L18.8186 20.2804Z" fill="#D04F45"/>
+                        </svg>
+                            
+                            
+                        <span class="text-xs text-gray-700">검색</span>
+                    </a>
+                </div>
+                <div class="flex items-center justify-evenly">
+                    <a href="/chat" class="flex flex-col items-center justify-center">
+                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 24.5089C8.10486 24.5089 2.79398 19.7654 2.79398 14.2319C2.79398 8.69835 8.10486 3.9549 15 3.9549C21.8951 3.9549 27.206 8.69835 27.206 14.2319C27.206 15.7232 27.0082 16.9297 26.5621 17.9796C26.1191 19.0221 25.4052 19.9716 24.2825 20.9111C23.9983 21.1489 23.9193 21.4565 23.8933 21.5824C23.8613 21.7366 23.8577 21.8846 23.8599 21.9958C23.8644 22.2225 23.899 22.4807 23.9391 22.7245C23.9935 23.0557 24.0758 23.4599 24.158 23.8635C24.1963 24.0518 24.2346 24.24 24.2701 24.4205C24.3524 24.8399 24.4224 25.2323 24.4651 25.5714C24.2043 25.3858 23.9125 25.1566 23.6022 24.9046C23.4762 24.8023 23.3458 24.6951 23.2147 24.5872C22.8847 24.3159 22.5499 24.0407 22.2682 23.8296C22.0717 23.6824 21.8547 23.5305 21.6478 23.4221C21.546 23.3689 21.4042 23.3032 21.2403 23.2642C21.095 23.2296 20.7798 23.1789 20.4449 23.3445C18.6631 24.2258 17.2839 24.5089 15 24.5089ZM24.4912 26.379C24.491 26.3788 24.492 26.3742 24.4947 26.366C24.4927 26.3753 24.4914 26.3793 24.4912 26.379ZM25.1521 25.9746C25.1576 25.9756 25.1605 25.9764 25.1606 25.9765C25.1606 25.9767 25.1579 25.9761 25.1521 25.9746Z" stroke="#D04F45" stroke-width="2"/>
+                            <ellipse cx="10.0641" cy="14.4983" rx="1.36198" ry="1.38587" fill="#D04F45"/>
+                            <ellipse cx="15" cy="14.4983" rx="1.36198" ry="1.38587" fill="#D04F45"/>
+                            <ellipse cx="19.9359" cy="14.4983" rx="1.36198" ry="1.38587" fill="#D04F45"/>
+                            </svg>                            
+                        <span class="text-xs text-gray-700">채팅</span>
+                    </a>
+                    <a href="/login?url=%2Fmy-service" class="flex flex-col items-center justify-center">
+                        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M22.6017 18.2924C20.6768 20.2692 17.9805 21.5008 15.0001 21.5008C12.0196 21.5008 9.32327 20.2691 7.39839 18.2922C7.33783 18.23 7.26835 18.1777 7.1995 18.1398C7.16955 18.1233 7.1428 18.1112 7.12002 18.1024C5.14588 19.8583 3.76531 22.2588 3.30566 24.9689H26.6942C26.2346 22.2589 24.8541 19.8585 22.8801 18.1026C22.8573 18.1114 22.8305 18.1235 22.8006 18.14C22.7317 18.1779 22.6622 18.2302 22.6017 18.2924ZM26.8642 24.9687C26.8642 24.9687 26.8639 24.9688 26.8632 24.9688ZM3.13571 24.9687C3.13571 24.9687 3.13602 24.9687 3.13661 24.9688ZM21.1688 16.8971C21.9574 16.0873 23.2233 15.7517 24.0773 16.4923C26.5339 18.6227 28.2337 21.6026 28.7194 24.975C28.8769 26.0683 27.9664 26.9689 26.8618 26.9689H3.13809C2.03352 26.9689 1.12293 26.0683 1.28042 24.975C1.76623 21.6025 3.46611 18.6225 5.9228 16.4921C6.77681 15.7515 8.04276 16.0871 8.83134 16.897C10.3953 18.5032 12.5812 19.5008 15.0001 19.5008C17.419 19.5008 19.6048 18.5033 21.1688 16.8971Z" fill="#D04F45"/>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15 15.8737C18.0151 15.8737 20.4594 13.4294 20.4594 10.4143C20.4594 7.39915 18.0151 4.9549 15 4.9549C11.9848 4.9549 9.54059 7.39915 9.54059 10.4143C9.54059 13.4294 11.9848 15.8737 15 15.8737ZM15 17.8737C19.1197 17.8737 22.4594 14.534 22.4594 10.4143C22.4594 6.29458 19.1197 2.9549 15 2.9549C10.8803 2.9549 7.54059 6.29458 7.54059 10.4143C7.54059 14.534 10.8803 17.8737 15 17.8737Z" fill="#D04F45"/>
+                        </svg>
+                        <span class="text-xs text-gray-700">내계정</span>
+                    </a>
+                </div>
+                <button type="button" class="btn_sticky" onclick="location.href='/now'">
+                    <span class="sr-only">내위치</span>
+                </button>
 
-    
-        <div class="row" style="margin-top: 15%;">
-            <div class="col">
-            
-                    <div class="footer-clean">
-                        <footer>
-                            <!-- <div class="container"> -->
-                                <div class="row justify-content-center">
-                                    <div class="col-sm-4 col-md-3 item">
-                                        <h3>Services</h3>
-                                        <ul>
-                                            <li><a href="javascript:void(0);">Web design</a></li>
-                                            <li><a href="javascript:void(0);">Development</a></li>
-                                            <li><a href="javascript:void(0);">Hosting</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-4 col-md-3 item">
-                                        <h3>Contact</h3>
-                                        <ul>
-                                            <li><a href="javascript:void(0);" style="font-weight: bold;">Email</a></li>
-                                            <li><a href="javascript:void(0);">nolloo@gmail.com</a></li>
-                                            <li><a href="javascript:void(0);" style="font-weight: bold;">Address</a>
-                                            </li>
-                                            <li><a href="javascript:void(0);">울산 남구 삼산중로100번길 26 케이엠빌딩 1~4층</a></li>
-                                            <li><a href="javascript:void(0);" style="font-weight: bold;">Tel</a></li>
-                                            <li><a href="javascript:void(0);">052-022-2222</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-sm-4 col-md-3 item">
-                                        <h3>About</h3>
-                                        <ul>
-                                            <li><a href="javascript:void(0);">고객센터</a></li>
-                                            <li><a href="javascript:void(0);">공지사항</a></li>
-                                            <li><a href="javascript:void(0);">Q&A</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-3 item social">
-                                        <a href="javascript:void(0);"><i class="icon ion-social-facebook"></i></a>
-                                        <a href="javascript:void(0);"><i class="icon ion-social-twitter"></i></a>
-                                        <a href="javascript:void(0);"><i class="icon ion-social-snapchat"></i></a>
-                                        <a href="javascript:void(0);"><i class="icon ion-social-instagram"></i></a>
-                                        <p class="copyright">Company Name © 2018</p>
-                                    </div>
-                                </div>
-                            <!-- </div> -->
-                        </footer>
-                    </div>
-          
             </div>
-        </div>
-
+        </footer>
 
     </th:block>
 

@@ -33,6 +33,7 @@ public class KakaoApiService {
 
         try {
             ResponseEntity<Map<String, Object>> response = restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers), new ParameterizedTypeReference<Map<String, Object>>() {});
+
             if (response.getStatusCode() == HttpStatus.OK) {
                 Map<String, Object> responseBody = response.getBody();
                 List<Map<String, Object>> documents = (List<Map<String, Object>>) responseBody.get("documents");
@@ -44,9 +45,6 @@ public class KakaoApiService {
                     addressVO.setRegion1depthName((String) firstDocument.get("region_1depth_name"));
                     addressVO.setRegion2depthName((String) firstDocument.get("region_2depth_name"));
                     addressVO.setRegion3depthName((String) firstDocument.get("region_3depth_name"));
-
-//                  String addressName = (String) firstDocument.get("address_name");
-//                  System.out.println(addressName);
 
                     return addressVO;
 

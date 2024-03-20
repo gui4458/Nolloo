@@ -24,6 +24,7 @@
         <result column="ITEM_X" property="itemX"/>
         <result column="ITEM_Y" property="itemY"/>
         <result column="CATE_CODE" property="cateCode"/>
+        <result column="CATE_NAME" property="cateName"/>
         <result column="MEMBER_ID" property="memberId"/>
         <collection property="imgList"  resultMap="img"/>
     </resultMap>
@@ -75,7 +76,8 @@
             , ITEM_PRICE
             , ITEM_PLACE
             , ITEM_PEOPLE
-            , CATE_CODE
+            , INFO.CATE_CODE
+            , c.CATE_NAME
             , LEFT(ITEM_START_DATE,10) ITEM_START_DATE
             , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
             , ATTACHED_FILE_NAME
@@ -83,8 +85,12 @@
         FROM ITEM_INFO INFO
         INNER JOIN ITEM_IMAGE IMG
         ON INFO.ITEM_CODE = IMG.ITEM_CODE
+        INNER JOIN CATE c
+        ON INFO.CATE_CODE = c.CATE_CODE
+
+
         WHERE IS_MAIN='Y'
-        AND CATE_CODE = #{cateCode}
+        AND INFO.CATE_CODE = #{cateCode}
 <!--        <if test='searchText != null and !searchText.equals("")'>-->
 <!--            AND ${searchOption} LIKE CONCAT('%',#{searchText},'%')-->
 <!--        </if>-->
@@ -111,10 +117,8 @@
         , ITEM_PRICE
         , LEFT(ITEM_START_DATE,10) ITEM_START_DATE
         , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
-
         , ATTACHED_FILE_NAME
         , IS_MAIN
-
         , ITEM_X
         , ITEM_Y
         , READ_CNT

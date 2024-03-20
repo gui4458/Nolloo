@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+
+
+<th:block th:fragment="headerFragment">
+  <header class="p-2 mb-2 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Nolloo">
+            <use xlink:href="#Nolloo" />
+          </svg>
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+
+        </ul>
+        
+        <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        </form> -->
+
+        <div class="dropdown text-end">
+          <a href="javascript:void(0);" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            
+            <th:block sec:authorize="isAnonymous()">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </th:block>
+          <th:block sec:authorize="isAuthenticated()">
+          <img th:src="@{'/upload/profile/'}+${session.memberImage}" alt="mdo" width="32" height="32" class="rounded-circle">
+        </th:block>
+
+
+
+            
+          </a>
+          
+      
+          <ul class="dropdown-menu text-small">
+
+
+            <th:block sec:authorize="isAuthenticated()">
+              [[${#authentication.name}]]님 환영합니다.
+              <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                <li><span class="dropdown-item" href="/admin/regItemForm">Settings</span></li>
+                <!-- <span class="joinhover" onclick="location.href='/admin/regItemForm';">관리자메뉴</span> -->
+              </th:block>
+
+              <li><a class="dropdown-item" href="/now">Area</a></li>
+
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><input class="btn joinhover" type="button" value="장바구니" onclick="location.href='/wish/goWishList'"
+                  style="cursor: pointer;"></li>
+              <li><input class="btn joinhover" type="button" value="내정보관리" onclick="location.href='/member/myPage'"
+                  style="cursor: pointer;"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><input class="btn" type="button" value="LOGOUT" onclick="goLogout()" style="cursor: pointer;"></li>
+
+
+            </th:block>
+            <th:block sec:authorize="isAnonymous()">
+              
+              <li> <span class="dropdown-item" onclick="goLoginForm()">LOGIN</span></li>
+              <li> <span class="dropdown-item" data-bs-toggle="modal" data-bs-target="#join-modal">JOIN</span></li>
+            </th:block>
+
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="row">
+    <div class="col text-center">
+      <h1 class="main-title" onclick="location.href='/item/list'"></h1>
+    </div>
+  </div>
+
+
+
+  <!-- 회원가입 모달 -->
+  <div class="modal fade" id="join-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">회원가입</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+
+
+          <form action="/member/join" class="row g-3" method="post" id="join-form" enctype="multipart/form-data">
+
+            <div class="col-12">
+              <label for="" class="form-label">ID</label>
+              <input type="text" name="memberId" class="form-control" id="memberId" placeholder="ID">
+            </div>
+            <div class="col-12">
+              <label for="" class="form-label">Password</label>
+              <input type="password" name="memberPw" class="form-control" id="memberPw" placeholder="Password">
+            </div>
+            <div class="col-12">
+              <label for="" class="form-label">Confirm Password</label>
+              <input type="password" name="checkPW" class="form-control" id="confirmPassword">
+            </div>
+            <div class="col-12">
+              <label for="" class="form-label">Name</label>
+              <input type="text" name="memberName" class="form-control">
+            </div>
+            <div class="col-12">
+              <label for="" class="form-label">birth</label>
+              <input type="date" name="memberBirth" class="form-control">
+            </div>
+            <div class="col-4">
+              <label for="" class="form-label">Tel</label>
+              <select id="" name="memberTel" class="form-select">
+                <option selected value="010">010</option>
+                <option value="011">011</option>
+              </select>
+            </div>
+            <div class="col-4">
+              <label for="" class="form-label">　</label>
+              <input type="text" name="memberTel" class="form-control" id="">
+            </div>
+            <div class="col-4">
+              <label for="" class="form-label">&nbsp;</label>
+              <input type="text" name="memberTel" class="form-control" id="">
+            </div>
+            <div class="col-6">
+              <label for="" class="form-label">Email</label>
+              <input type="text" name="memberEmail" class="form-control" id="">
+            </div>
+            <div class="col-6">
+              <label for="" class="form-label">　</label>
+              <select id="" name="memberEmail" class="form-select">
+                <option selected value="@naver.com">@naver.com</option>
+                <option value="@gmail.com">@gmail.com</option>
+              </select>
+            </div>
+            <div class="col-8">
+              <label for="" class="form-label">Addr</label>
+              <input type="text" name="memberPost" class="form-control" id="postCode">
+            </div>
+            <div class="d-grid col-4 ">
+              <label for="" class="form-label">　</label>
+              <input type="button" class="btn btn-primary" value="Search" onclick="searchAddress()"></button>
+            </div>
+            <div class="col-12">
+              <input type="text" name="memberAddr" class="form-control" id="roadAddress" readonly>
+            </div>
+            <div class="col-12">
+              <input type="text" name="addrDetail" class="form-control" id="">
+            </div>
+
+            <label for="" class="form-label">성별</label>
+            <span class="form-check form-check-inline col-2">
+              <input class="form-check-input" type="radio" name="gender" id="" value="male" checked>
+              <label class="form-check-label" for="">남성</label>
+            </span>
+            <span class="form-check form-check-inline col-8">
+              <input class="form-check-input" type="radio" name="gender" id="" value="female">
+              <label class="form-check-label" for="">여성</label>
+            </span>
+            
+            <div class="col-sm-8">
+              <label for="" class="form-label">프로필 이미지 선택</label>
+              <input class="form-control" type="file" name="img" >
+            </div>
+
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="join()">Join</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script src="/js/fragment/user_header.js"></script>
+
+
+
+</th:block>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+
+    <th:block th:fragment="footerFragment">
+        <style>
+            .footer-clean {
+                        padding: 50px 0;
+                        background-color: #fff;
+                        color: #4b4c4d;
+                    }
+        
+                    .footer-clean h3 {
+                        margin-top: 0;
+                        margin-bottom: 12px;
+                        font-weight: bold;
+                        font-size: 16px;
+                    }
+        
+                    .footer-clean ul {
+                        padding: 0;
+                        list-style: none;
+                        line-height: 1.6;
+                        font-size: 14px;
+                        margin-bottom: 0;
+                    }
+        
+                    .footer-clean ul a {
+                        color: inherit;
+                        text-decoration: none;
+                        opacity: 0.8;
+                    }
+        
+                    .footer-clean ul a:hover {
+                        opacity: 1;
+                    }
+        
+                    .footer-clean .item.social {
+                        text-align: right;
+                    }
+        
+                    @media (max-width:100%) {
+                        .footer-clean .item {
+                            text-align: center;
+                            padding-bottom: 20px;
+                        }
+                    }
+        
+                    @media (max-width: 100%) {
+                        .footer-clean .item.social {
+                            text-align: center;
+                        }
+                    }
+        
+                    .footer-clean .item.social>a {
+                        font-size: 24px;
+                        width: 40px;
+                        height: 40px;
+                        line-height: 40px;
+                        display: inline-block;
+                        text-align: center;
+                        border-radius: 50%;
+                        border: 1px solid #ccc;
+                        margin-left: 10px;
+                        margin-top: 22px;
+                        color: inherit;
+                        opacity: 0.75;
+                    }
+        
+                    .footer-clean .item.social>a:hover {
+                        opacity: 0.9;
+                    }
+        
+                    @media (max-width:1300px) {
+                        .footer-clean .item.social>a {
+                            margin-top: 40px;
+                        }
+                    }
+        
+                    @media (max-width:1300px) {
+                        .footer-clean .item.social>a {
+                            margin-top: 10px;
+                        }
+                    }
+        
+                    .footer-clean .copyright {
+                        margin-top: 14px;
+                        margin-bottom: 0;
+                        font-size: 13px;
+                        opacity: 0.6;
+                    }
+        </style>
+
+    
+        <div class="row" style="margin-top: 15%;">
+            <div class="col">
+            
+                    <div class="footer-clean">
+                        <footer>
+                            <!-- <div class="container"> -->
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-4 col-md-3 item">
+                                        <h3>Services</h3>
+                                        <ul>
+                                            <li><a href="javascript:void(0);">Web design</a></li>
+                                            <li><a href="javascript:void(0);">Development</a></li>
+                                            <li><a href="javascript:void(0);">Hosting</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-4 col-md-3 item">
+                                        <h3>Contact</h3>
+                                        <ul>
+                                            <li><a href="javascript:void(0);" style="font-weight: bold;">Email</a></li>
+                                            <li><a href="javascript:void(0);">nolloo@gmail.com</a></li>
+                                            <li><a href="javascript:void(0);" style="font-weight: bold;">Address</a>
+                                            </li>
+                                            <li><a href="javascript:void(0);">울산 남구 삼산중로100번길 26 케이엠빌딩 1~4층</a></li>
+                                            <li><a href="javascript:void(0);" style="font-weight: bold;">Tel</a></li>
+                                            <li><a href="javascript:void(0);">052-022-2222</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-sm-4 col-md-3 item">
+                                        <h3>About</h3>
+                                        <ul>
+                                            <li><a href="javascript:void(0);">고객센터</a></li>
+                                            <li><a href="javascript:void(0);">공지사항</a></li>
+                                            <li><a href="javascript:void(0);">Q&A</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-3 item social">
+                                        <a href="javascript:void(0);"><i class="icon ion-social-facebook"></i></a>
+                                        <a href="javascript:void(0);"><i class="icon ion-social-twitter"></i></a>
+                                        <a href="javascript:void(0);"><i class="icon ion-social-snapchat"></i></a>
+                                        <a href="javascript:void(0);"><i class="icon ion-social-instagram"></i></a>
+                                        <p class="copyright">Company Name © 2018</p>
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                        </footer>
+                    </div>
+          
+            </div>
+        </div>
+
+
+    </th:block>
+
+
+
