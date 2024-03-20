@@ -46,5 +46,6 @@ public class ItemVO {
         setItemX(Double.parseDouble(rowData[9]));
         setItemY(Double.parseDouble(rowData[10]));
         setCateCode(Integer.parseInt(rowData[11]));
+        setMemberId(rowData[12]);
     }
 }

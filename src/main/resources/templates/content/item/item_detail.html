@@ -16,7 +16,7 @@
             <tr class="main-img-tr">
                 <td>
                     <div class="row">
-                        <div class="offset-1 col-6 text-center main-img-div align-middle justify-content-center">
+                        <div class=" col-6 text-center main-img-div align-middle justify-content-center">
                             <span>
                                 <th:block th:if="${item.cateCode == 1}">
                                     <th:block th:each="img : ${item.imgList}">
@@ -24,20 +24,17 @@
                                             <div class="img-div"
                                                 th:style="'background-image:url(/upload/itemSolo/' + ${img.attachedFileName} + ');background-repeat:no-repeat;'">
                                             </div>
-                                            <!-- <img width="100%" th:src="@{'/upload/itemSolo/'+${img.attachedFileName}}" class="" alt="..."> -->
                                         </th:block>
                                     </th:block>
                                 </th:block>
                             </span>
                             <span>
-                                <th:block th:if="${item.cateCode == 2}">
+                                <th:block  th:if="${item.cateCode == 2}">
                                     <th:block th:each="img : ${item.imgList}">
                                         <th:block th:if="${img.isMain=='Y'}">
                                             <div class="col-10 align-item-center text-start img-div"
                                                 th:style="'background-image:url(/upload/item/' + ${img.attachedFileName} + ');background-repeat:no-repeat;'">
                                             </div>
-                                            <!-- <img width="100%" th:src="@{'/upload/item/'+${img.attachedFileName}}"
-                                                class="" alt="..."> -->
                                         </th:block>
                                     </th:block>
                                 </th:block>
@@ -72,10 +69,40 @@
                             <b>[[${item.itemTitle}]]</b>
                         </div>
                     </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <!---------- 올린시간 --------->
                     <div class="row-mb-3 ">
                         <div class="col date-div">
-                            [[${item.itemDate}]]
+                            [[${item.itemStartDate}]]~[[${item.itemEndDate}]]
+                        </div>
+                    </div>
+                    
+                    <!--------------------- 상세이미지  ------------------------->
+                    <div class="row">
+                        <div class="col">
+                            <span>
+                                <th:block th:if="${item.cateCode == 1}">
+                                    <th:block th:each="img : ${item.imgList}">
+                                        <th:block th:if="${img.isMain=='N'}">
+                                            <div class="col">
+                                                <img width="300px" height="500px" th:src="@{'/upload/itemSolo/'+${img.attachedFileName}}" class="rounded float-start" alt="">
+                                            </div>
+                                        </th:block>
+                                    </th:block>
+                                </th:block>
+                            </span>
+                            <span>
+                                <th:block th:if="${item.cateCode == 2}">
+                                    <th:block th:each="img : ${item.imgList}">
+                                        <th:block th:if="${img.isMain=='N'}">
+                                                <img width="100%" th:src="@{'/upload/item/'+${img.attachedFileName}}" class="rounded float-start" alt="">
+                                        </th:block>
+                                    </th:block>
+                                </th:block>
+                            </span>
                         </div>
                     </div>
                 </td>
