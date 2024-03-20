@@ -1,5 +1,6 @@
 package com.green.Nolloo.item.service;
 
+import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.search.vo.SearchVO;
 
@@ -28,4 +29,8 @@ public interface ItemService {
     ItemVO selectItemDetail(int itemCode);
 
     void updateItemDetail(ItemVO itemVO);
+
+    void deleteItemImg(ImgVO imgVO);
+
+
 }
