@@ -15,14 +15,9 @@ layout:decorate="~{fragment/user_layout}">
       
       <div class="bg-white shadow-xl shadow-slate-900/5 rounded-lg" th:each="item : ${itemList}" >
         <a th:href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'>
-          <div class="flex flex-row p-3 lg:flex-col ">
-            <!-- <img class="w-24 h-24 rounded-full lg:w-full lg:h-full lg:rounded-lg" src="https://kfescdn.visitkorea.or.kr/kfes/upload/contents/db/87dfeda1-084e-41a9-b76e-09f2d502443a_2.jpeg" alt=""> -->
-            <!-- <img class="w-24 h-24 rounded-full lg:w-full lg:h-full lg:rounded-lg" th:src="@{'/upload/item/' + ${item.imgList[0].attachedFileName}}" 
-            th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|" alt=""> -->
-
-            <div class="image-container w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg" style="background-image: url('/upload/item/your_image.jpg');" th:style="'background-image: url(\'' + '/upload/item/' + ${item.imgList[0].attachedFileName} + '\');'" th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|">
+          <div class="flex flex-row p-3 lg:flex-col">
+            <div class="image-container w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg" style="background-image: url('/upload/item/your_image.jpg');" th:style="'background-image: url(\'' + '/upload/item/' + ${item.imgList[0].attachedFileName} + '\');'">
             </div>
-
             <div class="ml-5 lg:ml-0 lg:mt-3">
               <figcaption class="font-medium">
                 <div class="text-dark-600">
@@ -39,8 +34,27 @@ layout:decorate="~{fragment/user_layout}">
                 </div>
               </figcaption>
             </div>
+
           </div>
         </a>
+        <div class="w-8 h-8 relative left-3">
+          <th:block sec:authorize="isAuthenticated()">
+          <div class="" th:onclick="wishDelete(this,[[${item.itemCode}]])"
+            th:if="${#lists.contains(wishCodeList,item.itemCode)}">
+            ❤
+          </div>
+
+          <div class="" th:onclick="wishAdd(this,[[${item.itemCode}]])"
+            th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
+            🤍
+          </div>
+        </th:block>
+        <th:block sec:authorize="isAnonymous()">
+          <div class="" onclick="gologin()">
+            🤍
+          </div>
+        </th:block>
+        </div>
       </div> 
 
     </div>
