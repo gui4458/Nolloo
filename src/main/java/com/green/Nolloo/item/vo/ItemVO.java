@@ -29,6 +29,7 @@ public class ItemVO {
     private double itemX;
     private double itemY;
     private int cateCode;
+    private String cateName;
     private String memberId;
     private List<ImgVO> imgList;
 
@@ -46,5 +47,6 @@ public class ItemVO {
         setItemX(Double.parseDouble(rowData[9]));
         setItemY(Double.parseDouble(rowData[10]));
         setCateCode(Integer.parseInt(rowData[11]));
+        setMemberId(rowData[12]);
     }
 }

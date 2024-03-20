@@ -187,11 +187,19 @@ public class ItemController {
 
     @ResponseBody
     @PostMapping("/selectItemDetail")
-    private ItemVO selectItemDetail(@RequestParam(name="itemCode") int itemCode){
+    public ItemVO selectItemDetail(@RequestParam(name="itemCode") int itemCode,ItemVO itemVO){
         ItemVO detail=itemService.selectItemDetail(itemCode);
         System.out.println(itemCode);
         System.out.println(detail);
+
+
         return detail;
     }
+//    @PostMapping("/updateItem")
+//    public ItemVO updateItem(ItemVO itemVO){
+//        itemService.updateItemDetail(itemVO);
+//    }
+
+
 
 }

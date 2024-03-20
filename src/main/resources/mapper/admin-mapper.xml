@@ -17,6 +17,7 @@
             , ITEM_X
             , ITEM_Y
             , CATE_CODE
+            , MEMBER_ID
         )
         VALUES
         (
@@ -32,6 +33,7 @@
             , #{itemX}
             , #{itemY}
             , #{cateCode}
+            , #{memberId}
         )
 
     </insert>

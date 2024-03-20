@@ -1,6 +1,6 @@
 .main-img-div{
     
-    width:1000px;
+    width:1200px;
     height:1000px;
     overflow:hidden;
     margin:0 auto;
@@ -10,7 +10,7 @@
     height: 300px;
 }
 .date-div{
-    font-size: 8pt;
+    font-size: 16pt;
 }
 b{
     font-size: 18pt;
@@ -31,4 +31,10 @@ b{
     background-attachment: fixed;
     background-position: center;
 
+}
+.card-body{
+    border: none;
+    text-align: start;
+    margin: 0px;
+    padding: 0px;
 }
