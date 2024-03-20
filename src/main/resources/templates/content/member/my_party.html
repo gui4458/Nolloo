@@ -4,8 +4,9 @@
 
 
 <th:block layout:fragment="contentFragment">
-    <div class="row" style="margin-top: 7.2%; margin-bottom: 20%;">
+    <div class="row" style="margin-top: 10%; margin-bottom: 20%;">
         <div class="col-6">
+            <h6 style="font-weight: bold;">나의 파티</h6>
             <table class="table table-bordered">
                 <colgroup>
                     <col width="8%">
@@ -28,12 +29,15 @@
             </table>
         </div>
         <div class="col-6 detail-div">
-    
+
         </div>
 
-    
-        
     </div>
+    <form action="/item/selectItemDetail" method="post">
+    </form>
+
+    <input type="text" name="" value="">
+
 </th:block>
 
 </body>
@@ -42,4 +46,5 @@
     <!-- html 파일이 열릴때 같이 실행되는 js -->
     <script src="/js/content/member/my_party.js"></script>
 </th:block>
+
 </html>
