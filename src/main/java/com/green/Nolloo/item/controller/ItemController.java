@@ -201,6 +201,7 @@ public class ItemController {
         System.out.println(itemVO);
         itemService.updateItemDetail(itemVO);
 
+
         return "redirect:/item/myParty";
     }
 
