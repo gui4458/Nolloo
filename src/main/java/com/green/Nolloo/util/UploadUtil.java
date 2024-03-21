@@ -5,6 +5,9 @@ import com.green.Nolloo.member.vo.MemberImageVO;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -79,6 +82,21 @@ public class UploadUtil {
             }
         }
         return memberImageVO;
+    }
+
+    //첨부파일 삭제 메서드
+    //매개변수 fileName : 삭제할 첨부파일의 경로+파일명
+    //        ex > "C:\\study\\Nolloo\\abc.jpg"
+    public static void deleteUploadFile(String fileName){
+        //첨부파일 삭제
+        try {
+            //삭제할 파일 경로 및 파일명 지정
+            Path file = Paths.get(fileName);
+            Files.deleteIfExists(file);
+        } catch(Exception e) {
+            System.out.println("파일 삭제 오류!!!!!");
+            e.printStackTrace();;
+        }
     }
 
 }
