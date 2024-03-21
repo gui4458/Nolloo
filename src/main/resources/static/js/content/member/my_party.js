@@ -94,7 +94,7 @@ function getDetail(itemCode) {
                 if (element.isMain == 'Y') {
                     str += `<div class="row">
                                 <div class="col">
-                                    <input class="form-control" type="file" name="originfileName" >
+                                    <input class="form-control" type="file" name="originfileName" id="main_img_input" disabled>
                                 </div>
                             </div>
                             <div class="row">
@@ -115,15 +115,16 @@ function getDetail(itemCode) {
                     </tr>        
                     <tr>
                         <td>상세 이미지</td>
-                        <td>`;
+                        <td>
+                            <div class="row">
+                                    <div class="col">
+                                        <input class="form-control" type="file" name="originfileName" multiple>
+                                    </div>
+                                </div>`;
 
             data.imgList.forEach(element => {
                 if (element.isMain == 'N') {
-                    str += `<div class="row">
-                                <div class="col">
-                                    <input class="form-control" type="file" name="originfileName" multiple>
-                                </div>
-                            </div>
+                    str += `
                             <div class="row">
                                 <div class="col">
                                     ${element.originFileName}
@@ -144,8 +145,8 @@ function getDetail(itemCode) {
         </form>
             
 
-            `
-            detail_div.insertAdjacentHTML("afterbegin", str)
+            `;
+            detail_div.insertAdjacentHTML("afterbegin", str);
 
         })
         //fetch 통신 실패 시 실행 영역
@@ -158,6 +159,7 @@ function getDetail(itemCode) {
 
 //x 버튼 클릭 시 이미지를 삭제하는 코드
 function goDeleteImg(imgCode, selected_tag){
+    //이미지 삭제하러 컨트롤러 이동
     fetch('/item/deleteImg', { //요청경로
         method: 'POST',
         cache: 'no-cache',
@@ -182,10 +184,24 @@ function goDeleteImg(imgCode, selected_tag){
         //fetch 통신 후 실행 영역
         .then((data) => {//data -> controller에서 리턴되는 데이터!
             //삭제한 이미지명을 화면에서 제거
-            selected_tag.parentElement.innerHTML = '';
+        
             
 
+            //대표이미지 삭제 시 대표이미지 input 태그 활성화
+            const fileInputTag = selected_tag.closest('tr').querySelector('input');
+            const colTag = selected_tag.parentElement;
 
+            selected_tag.parentElement.innerHTML = '';    
+        
+            console.log(colTag.textContent.trim());
+            if(colTag.textContent.trim() == ''){
+
+                fileInputTag.disabled = false;
+            }
+
+            
+
+    
         })
         //fetch 통신 실패 시 실행 영역
         .catch(err => {
@@ -193,3 +209,4 @@ function goDeleteImg(imgCode, selected_tag){
             console.log(err);
         });
 }
+

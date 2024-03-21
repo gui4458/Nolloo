@@ -56,6 +56,11 @@ public class ItemServiceImpl implements ItemService {
         sqlSession.delete("itemMapper.deleteItemImg", imgVO);
     }
 
+    @Override
+    public String findAttachedFileNameByImgCode(ImgVO imgVO) {
+        return sqlSession.selectOne("itemMapper.findAttachedFileNameByImgCode", imgVO);
+    }
+
 
     // item 등록
     @Override

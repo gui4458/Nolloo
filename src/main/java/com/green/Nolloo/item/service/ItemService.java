@@ -30,7 +30,9 @@ public interface ItemService {
 
     void updateItemDetail(ItemVO itemVO);
 
+    //아이템 이미지 삭제
     void deleteItemImg(ImgVO imgVO);
 
-
+    //imgCode로 첨부파일명 조회
+    String findAttachedFileNameByImgCode(ImgVO imgVO);
 }

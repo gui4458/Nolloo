@@ -253,4 +253,10 @@
         WHERE IMG_CODE  = #{imgCode}
     </delete>
 
+    <select id="findAttachedFileNameByImgCode" resultType="String">
+        SELECT ATTACHED_FILE_NAME
+        FROM ITEM_IMAGE
+        WHERE IMG_CODE = #{imgCode}
+    </select>
+
 </mapper>
