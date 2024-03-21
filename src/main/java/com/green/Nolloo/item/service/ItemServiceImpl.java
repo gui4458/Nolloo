@@ -37,6 +37,11 @@ public class ItemServiceImpl implements ItemService {
         return sqlSession.selectList("itemMapper.selectMyParty",itemVO);
     }
 
+    @Override
+    public List<ItemVO> selectCalendarPartyList() {
+        return sqlSession.selectList("itemMapper.selectCalendarPartyList");
+    }
+
     //나의 파티 상세
     @Override
     public ItemVO selectItemDetail(int itemCode) {

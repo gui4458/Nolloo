@@ -26,11 +26,15 @@ public interface ItemService {
 
     List<ItemVO> selectMyParty(ItemVO itemVO);
 
+    List<ItemVO> selectCalendarPartyList();
+
     ItemVO selectItemDetail(int itemCode);
 
     void updateItemDetail(ItemVO itemVO);
 
     void deleteItemImg(ImgVO imgVO);
+
+
 
 
 }
