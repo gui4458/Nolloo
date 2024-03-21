@@ -83,6 +83,13 @@ function searchAddress(){
 
     }
 }
+function goCalendar(){
+    const calendar = `http://192.168.30.107:8081/calendar/goCalendar`;
 
+    // 채팅방을 새 창으로 열기
+    const windowFeatures = "left=200,top=100,width=750,height=750,popup";
+    window.open(calendar, "_blank", windowFeatures);
+
+}
 
     

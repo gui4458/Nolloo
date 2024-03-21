@@ -22,11 +22,19 @@ document.addEventListener('DOMContentLoaded',function(){
 .then((data) => {//data -> controller에서 리턴되는 데이터!
 
     
-    
+  
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: "dayGridMonth",
+      firstDay: 1,
+      titleFormat: function (date) {
+        year = date.date.year;
+        month = date.date.month + 1;
+  
+        return year + "년 " + month + "월";
+      },
       headerToolbar: {
-        left: 'prevYear,prev,next,nextYear today',
+        left: 'prev,next',
         center: 'title',
         right: 'dayGridMonth,dayGridWeek,dayGridDay'
       },
@@ -36,14 +44,20 @@ document.addEventListener('DOMContentLoaded',function(){
       dayMaxEvents: true// allow "more" link when too many events
       
       
-      
     });
     calendar.batchRendering(function() {
       data.forEach(e => {
-        calendar.addEvent({ title: e.itemTitle, start: e.itemStartDate });
+        if(e.cateCode==1){
+          calendar.addEvent({color : 'rgba(137, 43, 226, 0.795)' ,title: e.itemTitle, start: e.itemStartDate, end: e.itemEndDate,url:`http://localhost:8081/item/itemDetailForm?itemCode=${e.itemCode}` });
+        }
+        if(e.cateCode==2){
+          calendar.addEvent({title: e.itemTitle, start: e.itemStartDate, end: e.itemEndDate,url:`http://localhost:8081/item/itemDetailForm?itemCode=${e.itemCode}` });
+        }
+        
       });
       
     });
+
   
     calendar.render();
 
@@ -56,8 +70,4 @@ document.addEventListener('DOMContentLoaded',function(){
     console.log(err);
 });
 
-
-
-
-  
 });
