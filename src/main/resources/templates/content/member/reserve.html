@@ -28,8 +28,15 @@
                 <tr th:each="reserve, state:${reserveList}">
                     <td><input type="checkbox" class="chk" th:value="${reserve.reserveCode}"></td>
                     <td>[[${state.index + 1}]]</td>
-                    <td> <span
-                            th:onclick="getReserveDetail([[${reserve.itemCode}]])">[[${reserve.itemVO.itemTitle}]]</span>
+                    <td>
+
+                        <span class="text-sm font-medium   px-3 py-1.5
+                            focus-visible:outline-none
+                            focus-visible:ring focus-visible:ring-red-300 transition" @click="showModal1 = true"
+                            th:onclick="getReserveDetail([[${reserve.itemCode}]])">
+                            [[${reserve.itemVO.itemTitle}]]
+                        </span>
+
                     </td>
                     <td>[[${reserve.reserveDate}]]</td>
                 </tr>
@@ -45,127 +52,109 @@
 
 
 
-    <!-- Modal -->
-    <!-- <div class="modal modal-xl fade" id="reserveModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-weight: bold;">예약상세내역</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <section class="flex flex-wrap h-full items-center">
+
+        <!--Overlay-->
+        <div class="overflow-auto fixed inset-0 z-100" style="background-color: rgba(0,0,0,0.5)" x-show="showModal1"
+            :class="{ '': showModal1 }" x-transition:leave="ease-out duration-300" x-transition:leave-start="opacity-50"
+            x-transition:leave-end="opacity-0">
+
+            <!--Dialog-->
+            <div class="bg-white w-11/12 md:max-w-md mx-auto my-4 md:my-8 px-6 py-4 rounded-lg shadow-lg text-left "
+                x-show="showModal1" @click.away="showModal1 = false" x-transition:enter="ease-in duration-300"
+                x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="ease-out duration-300" x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-90">
+
+                <!--Title-->
+                <div class="flex justify-between items-center mt-3 pb-3 relative">
+                    <p class="text-2xl font-bold">예약 상세 내역</p>
+                    <div class="cursor-pointer z-150" @click="showModal = false">
+                        <svg class="fill-current text-black" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                            viewBox="0 0 18 18">
+                            <path
+                                d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                            </path>
+                        </svg>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col">
-                            <table class="table table-bordered align-middle text-center">
-                                <colgroup>
-                                    <col width="20%">
-                                    <col width="15%">
-                                    <col width="10%">
-                                    <col width="20%">
-                                    <col width="15%">
-                                    <col width="20%">
-                                </colgroup>
-
-                                <thead>
-                                    <tr>
-                                        <td>party</td>
-                                        <td>content</td>
-                                        <td>가격</td>
-                                        <td>날짜</td>
-                                        <td>인원수</td>
-                                        <td>장소</td>
-                                    </tr>
-                                </thead>
-
-                                <tbody id="modal_tbody">
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
 
 
-                            </table>
+                <!-- 모달창(예약 상세 내역) -->
+                
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-weight: bold;">예약상세내역
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <table class="table table-bordered align-middle text-center">
+                                            <colgroup>
+                                                <col width="20%">
+                                                <col width="15%">
+                                                <col width="10%">
+                                                <col width="20%">
+                                                <col width="15%">
+                                                <col width="20%">
+                                            </colgroup>
+
+                                            <thead>
+                                                <tr>
+                                                    <td>party</td>
+                                                    <td>content</td>
+                                                    <td>가격</td>
+                                                    <td>날짜</td>
+                                                    <td>인원수</td>
+                                                    <td>장소</td>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody id="modal_tbody">
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+
+
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
                         </div>
                     </div>
+                
 
 
 
 
 
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
             </div>
-        </div>
-    </div> -->
+            <!--/Dialog -->
+        </div><!-- /Overlay -->
 
-    <div class="modal fade modal-xl" id="reserveModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-weight: bold;">예약상세내역</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col">
-                            <table class="table table-bordered align-middle text-center">
-                                <colgroup>
-                                    <col width="20%">
-                                    <col width="15%">
-                                    <col width="10%">
-                                    <col width="20%">
-                                    <col width="15%">
-                                    <col width="20%">
-                                </colgroup>
-
-                                <thead>
-                                    <tr>
-                                        <td>party</td>
-                                        <td>content</td>
-                                        <td>가격</td>
-                                        <td>날짜</td>
-                                        <td>인원수</td>
-                                        <td>장소</td>
-                                    </tr>
-                                </thead>
-
-                                <tbody id="modal_tbody">
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-
-
-                            </table>
-                        </div>
-                    </div>
+    </section>
 
 
 
 
 
 
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </th:block>
 
 <th:block layout:fragment="content_js">
