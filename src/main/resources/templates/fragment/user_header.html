@@ -69,7 +69,7 @@
                         <div class="text-xs uppercase font-semibold text-red-400 mb-3">카테고리</div>
                         <ul class="space-y-1">
                             <li>
-                                <a class="flex space-x-4 px-3 py-2.5 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition" href="#0">
+                                <span class="flex space-x-4 px-3 py-2.5 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition" onclick="goFestival(2)">
                                     <div class="shrink-0 flex items-center justify-center h-9 w-9 rounded bg-white border border-slate-200">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30">
                                             <style type="text/css">
@@ -111,13 +111,13 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <div class="text-sm font-semibold text-slate-800 mb-0.5">축제</div>
+                                        <div class="text-sm font-semibold text-slate-800 mb-0.5" >축제</div>
                                         <!-- <div class="text-slate-500">Everything counts. And everything that counts — shapes us.</div> -->
                                     </div>
-                                </a>
+                                </span>
                             </li>
                             <li>
-                                <a class="flex space-x-4 px-3 py-2.5 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition" href="#0">
+                                <span class="flex space-x-4 px-3 py-2.5 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition" onclick="goParty(1)">
                                     <div class="shrink-0 flex items-center justify-center h-9 w-9 rounded bg-white border border-slate-200">
                                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             
@@ -126,10 +126,10 @@
                                         
                                     </div>
                                     <div>
-                                        <div class="text-sm font-semibold text-slate-800 mb-0.5">파티</div>
+                                        <div class="text-sm font-semibold text-slate-800 mb-0.5"  >파티</div>
                                         <!-- <div class="text-slate-500">Everything counts. And everything that counts — shapes us.</div> -->
                                     </div>
-                                </a>
+                                </span>
                             </li>
                             <li>
                                 <a class="flex space-x-4 px-3 py-2.5 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition" href="#0">
@@ -441,7 +441,7 @@
                     <button type="submit" class="rounded-full bg-red-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600" @click="join()">Save</button>
                 </div>
                 
-            </form>
+        </form>
             
             
         </div>
