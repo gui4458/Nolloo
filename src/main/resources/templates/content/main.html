@@ -65,7 +65,28 @@ layout:decorate="~{fragment/user_layout}">
       <input type="button" onclick="location.href='/item/itemAddForm'" value="글쓰기" class="text-sm font-medium rounded-full bg-red-600 border border-slate-200 px-3 py-1.5 text-white hover:bg-white hover:text-red-600 hover:border-red-500 focus-visible:outline-none focus-visible:ring focus-visible:ring-red-300 transition">
     </div> 
   </th:block>
+  <div class="page-div">
+    <!-- ${searchVO.beginPage} -->
+    <!-- ${searchVO.endPage} -->
 
+    <th:block th:if="${searchVO.prev}">
+      <a
+        th:href="@{/item/list(nowPage=${searchVO.beginPage-1},chkCode=${chkCode})}">
+        이전 </a>
+    </th:block>
+
+    <th:block th:each="i : ${#numbers.sequence(searchVO.beginPage, searchVO.endPage)}">
+      <a
+        th:href="@{/item/list(nowPage=${i},chkCode=${chkCode})}">
+        [[${i}]] </a>
+    </th:block>
+
+    <th:block th:if="${searchVO.next}">
+      <a
+        th:href="@{/item/list(nowPage=${searchVO.endPage+1},chkCode=${chkCode})}">
+        다음 </a>
+    </th:block>
+  </div>
 
 </th:block>
 
