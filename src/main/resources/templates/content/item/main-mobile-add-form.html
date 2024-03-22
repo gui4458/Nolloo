@@ -297,141 +297,104 @@
         </div>
 
         <div class="mx-auto max-w-7xl py-6 px-4 md:px-6 ">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
 
-                <div class="bg-white shadow-xl shadow-slate-900/5 rounded-lg">
-                    <a href="">
-                        <div class="flex flex-row p-3 lg:flex-col ">
-                            <img class="w-24 h-24 rounded-full lg:w-full lg:h-full lg:rounded-lg" src="https://kfescdn.visitkorea.or.kr/kfes/upload/contents/db/87dfeda1-084e-41a9-b76e-09f2d502443a_2.jpeg" alt="" width="384" height="512">
-                            <div class="ml-5 lg:ml-0 lg:mt-3">
-                                <figcaption class="font-medium">
-                                    <div class="text-dark-600">
-                                        <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">축제</span><strong class="inline-flex text-xs py-1 pl-1">경기도 수원</strong>
-                                    </div>
-                                    <div class="text-dark-600 font-bold mt-1">
-                                        제목                    
-                                    </div>
-                                    <div class="text-slate-600 text-sm mt-1">
-                                        Description
-                                    </div>
-                                    <div class="text-green-500 text-sm mt-1">
-                                        3월 25일 - 4월 30일
-                                    </div>
-                                </figcaption>
-                            </div>
-                        </div>
-                    </a>
-                </div> 
+            <div class="bg-white w-11/12 md:max-w-md mx-auto my-4 md:my-8 px-6 py-4 rounded-lg shadow-lg text-left ">
+            
+                <div class="flex justify-between items-center mt-3 pb-3 relative">
+                    <p class="text-2xl font-bold">글 등록하기</p>
+                </div>
                 
-                <div class="bg-white shadow-xl shadow-slate-900/5 rounded-lg">
-                    <a href="">
-                        <div class="flex flex-row p-3 lg:flex-col">
-                            <img class="w-24 h-24 rounded-full lg:w-full lg:h-full lg:rounded-lg" src="https://kfescdn.visitkorea.or.kr/kfes/upload/contents/db/87dfeda1-084e-41a9-b76e-09f2d502443a_2.jpeg" alt="" width="384" height="512">
-                            <div class="ml-5 lg:ml-0 lg:mt-3">
-                                <figcaption class="font-medium">
-                                    <div class="text-dark-600">
-                                        <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">운동</span><strong class="inline-flex text-xs py-1 pl-1">신정동</strong>
+                <form action="/item/itemAdd"  method="post" id="join-form" enctype="multipart/form-data">
+                    <div class="space-y-12">
+                        
+                        <div class="border-b border-gray-900/10 pb-12">
+                            <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
+                            <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
+                            
+                            <div class="mt-3 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
+                                
+                                <div class="sm:col-span-4">
+                                    <label for="itemTitle" class="block text-sm font-medium leading-6 text-gray-900">글 제목</label>
+                                    <div class="mt-1">
+                                        <input type="text" name="itemTitle" id="itemTitle" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
-                                    <div class="text-dark-600 font-bold mt-1">
-                                        제목                    
+                                </div>
+
+                                <div class="sm:col-span-6">
+                                    <label for="itemSubTitle" class="block text-sm font-medium leading-6 text-gray-900">부 제목</label>
+                                    <div class="mt-1">
+                                        <input type="text" name="itemSubTitle" id="itemSubTitle" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
-                                    <div class="text-slate-600 text-sm mt-1">
-                                        Description
+                                </div>
+                                
+                                <div class="sm:col-span-6">
+                                    <label for="itemContent" class="block text-sm font-medium leading-6 text-gray-900">내용</label>
+                                    <div class="mt-1">
+                                        <textarea rows="4" name="comment" id="comment" class="w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" style="height: 155px;"></textarea>
                                     </div>
-                                    <div class="text-violet-500 text-sm mt-1">
-                                        정기모임
-                                    </div>
-                                </figcaption>
-                            </div>
-                        </div> 
-                    </a>
-                    </div>
-                    
-                <div class="bg-white shadow-xl shadow-slate-900/5 rounded-lg">
-                    <a href="">
-                        <div class="flex flex-row p-3 lg:flex-col">
-                            <img class="w-24 h-24 rounded-full lg:w-full lg:h-full lg:rounded-lg" src="https://kfescdn.visitkorea.or.kr/kfes/upload/contents/db/87dfeda1-084e-41a9-b76e-09f2d502443a_2.jpeg" alt="" width="384" height="512">
-                            <div class="ml-5 lg:ml-0 lg:mt-3">
-                                <figcaption class="font-medium">
+                                </div>
+
+                                <div class="sm:col-span-3">
+                                    <label for="itemStartDate" class="block text-sm font-medium leading-6 text-gray-900">시작일</label>
+                                    <input type="date" name="itemStartDate" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label for="itemEndDate" class="block text-sm font-medium leading-6 text-gray-900">종료일</label>
+                                    <input type="date" name="itemEndDate" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                                </div>
+                                <div class="sm:col-span-4">
+                                    <label for="itemPrice" class="block text-sm font-medium leading-6 text-gray-900">참가비</label>
+                                    <input type="text" name="itemPrice" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
                                     
-                                    <div class="text-dark-600">
-                                        <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">파티</span><strong class="inline-flex text-xs py-1 pl-1">삼산동</strong>
-                                    </div>
-                                    <div class="text-dark-600 font-bold mt-1">
-                                        제목                    
-                                    </div>
-                                    <div class="text-slate-600 text-sm mt-1">
-                                        Description
-                                    </div>
-                                    <div class="text-green-500 text-sm mt-1">
-                                        3월 25일 16:00 - 18:00
-                                    </div>
-                                </figcaption>
-                            </div>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label for="itemPeople" class="block text-sm font-medium leading-6 text-gray-900">최대인원</label>
+                                    <input type="text" name="itemPeople" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                                </div>
+                                <div class="sm:col-span-6">
+                                    <label for="itemPlace" class="block text-sm font-medium leading-6 text-gray-900">주소</label>
+                                    <input type="text" name="itemPlace" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                                </div>        
+                                <div class="sm:col-span-4">
+                                    <label for="itemPlace" class="block text-sm font-medium leading-6 text-gray-900">아파트, 동 호수 및 기타</label>
+                                    <input type="text" name="placeDetail" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                                </div>                                    
+                                <div class="sm:col-span-6">
+                                    <label class="block">
+                                        <span class="sr-only">대표 이미지</span>
+                                        <input type="file" name="img" class="block w-full text-sm text-slate-500
+                                        file:mr-4 file:py-2 file:px-4
+                                        file:rounded-full file:border-0
+                                        file:text-sm file:font-semibold
+                                        file:bg-red-50 file:text-red-700
+                                        hover:file:bg-red-100
+                                        "/>
+                                    </label>
+                                </div>
+                                <div class="sm:col-span-6">
+                                    <label class="block">
+                                        <span class="sr-only">상세 이미지</span>
+                                        <input type="file" name="imgs" class="block w-full text-sm text-slate-500
+                                        file:mr-4 file:py-2 file:px-4
+                                        file:rounded-full file:border-0
+                                        file:text-sm file:font-semibold
+                                        file:bg-red-50 file:text-red-700
+                                        hover:file:bg-red-100
+                                        " multiple/>
+                                    </label>
+                                </div>
+                            </div>   
                         </div>
-                    </a>
-                </div>
-                
+                    </div> 
+                    <div class="mt-6 flex items-center justify-end gap-x-6">
+                        <button type="button" class="text-sm font-semibold leading-6 text-gray-900" @click="|location.href='@{/item/list}'|">Cancel</button>
+                        <button type="submit" class="rounded-full bg-red-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">등록</button>
+                    </div>
+                </form>
             </div>
+
         </div>
-        
-        <!-- <footer>        
-            <div class="wrap_bottom_menu">
 
-                <div class="inner common">
-                    <div class="box_bottom_menu">
-                        <a href="/location-job/recently-list">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.50979 6.3501C6.17842 6.3501 5.90979 6.61873 5.90979 6.9501C5.90979 7.28147 6.17842 7.5501 6.50979 7.5501H15.3098C15.6412 7.5501 15.9098 7.28147 15.9098 6.9501C15.9098 6.61873 15.6412 6.3501 15.3098 6.3501H6.50979ZM6.50979 10.2002C6.17842 10.2002 5.90979 10.4688 5.90979 10.8002C5.90979 11.1316 6.17842 11.4002 6.50979 11.4002H10.9098C11.2412 11.4002 11.5098 11.1316 11.5098 10.8002C11.5098 10.4688 11.2412 10.2002 10.9098 10.2002H6.50979Z" fill="currentColor"></path>
-                                <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18.6 9.64255V3.55C18.6 2.91487 18.0851 2.4 17.45 2.4H3.55C2.91487 2.4 2.4 2.91487 2.4 3.55V20.45C2.4 21.0851 2.91487 21.6 3.55 21.6H15.5864H17.45C18.0851 21.6 18.6 21.0851 18.6 20.45V9.64255Z"></path>
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M18.4014 21.7C18.4014 21.7 14.0014 19.225 14.0014 15.21C13.9717 14.0241 14.4222 12.8764 15.2506 12.0273C16.079 11.1782 17.2151 10.6996 18.4014 10.7C19.5876 10.6996 20.7238 11.1782 21.5522 12.0273C22.3806 12.8764 22.831 14.0241 22.8014 15.21C22.8014 19.225 18.4014 21.7 18.4014 21.7Z" fill="#FFFFFF"></path>
-                                    <circle cx="18.401" cy="15.1" r="1.65"></circle>
-                                </g>
-                            </svg>
-                            <span>홈</span>
-                        </a>
-                        <a href="/avatar/list">
-                            <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M11.4001 3.9819C10.7753 3.93074 10.1361 3.94033 9.48935 4.01603C4.24853 4.62944 0.494508 9.35165 1.10451 14.5634C1.71452 19.7751 6.45756 23.5028 11.6984 22.8893C16.9392 22.2759 20.6932 17.5537 20.0832 12.342C19.9876 11.5254 19.7906 10.7452 19.5061 10.0125"></path>
-                                    <path d="M11.8876 8.12657C11.5079 8.04368 11.1135 8 10.709 8C7.67142 8 5.20898 10.4624 5.20898 13.5C5.20898 16.5376 7.67142 19 10.709 19C13.7466 19 16.209 16.5376 16.209 13.5C16.209 12.7772 16.0696 12.087 15.8161 11.4547"></path>
-                                    <path d="M11.208 13.0001L17.7656 4.72046"></path>
-                                    <path d="M14.5095 4.61746L17.3187 1.28396L17.8369 3.35575C17.9569 3.83575 18.3711 4.18477 18.8645 4.22173L20.9941 4.38124L18.1849 7.71474L15.2288 7.49332L14.5095 4.61746ZM18.2116 7.71674L18.2115 7.71673L18.2116 7.71674Z" fill="#ffffff"></path>
-                                </g>
-                            </svg>
-                            <span>검색</span>
-                        </a>
-                    </div>
-                    <div class="box_bottom_menu">
-                        <a href="/service/talent-pool" data-nav-track="ga_lead|tab-bar|m_massmarketing|">
-                            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M9.5479 21.6559L7.9628 13.271L15.4918 14.5258L9.5479 21.6559Z" fill="#ffffff"></path>
-                                    <path d="M2.94903 11.7209L21.971 2.66278C22.727 2.30276 23.5643 2.97586 23.3751 3.7916L19.8932 18.8029C19.756 19.3942 19.1281 19.7279 18.5613 19.5108L3.02122 13.5575C2.20043 13.2431 2.15544 12.0988 2.94903 11.7209Z" fill="#ffffff"></path>
-                                    <path d="M8.51074 16.0091L19.8438 6"></path>
-                                </g>
-                            </svg>
-                            <span>채팅</span>
-                        </a>
-                        <a href="/login?url=%2Fmy-service" data-nav-track="ga_lead|tab-bar|my-bt|">
-                            <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
-                                    <path d="M5.53113 8.90916C5.53113 5.09334 8.62447 2 12.4403 2V2C16.2561 2 19.3495 5.09334 19.3495 8.90916V8.90916C19.3495 12.725 16.2561 15.8183 12.4403 15.8183V15.8183C8.62447 15.8183 5.53113 12.725 5.53113 8.90916V8.90916Z"></path>
-                                    <path d="M11 10.5273C11.6918 11.8597 13.3061 11.8597 13.9979 10.5273"></path>
-                                    <rect x="4.6" y="17.4694" width="15.7835" height="6.23026" rx="3.11513"></rect>
-                                </g>
-                            </svg>
-                            <span>내계정</span>
-                        </a>
-                    </div>
-
-                    <button type="button" class="btn_sticky">
-                        <span class="blind">내위치</span>
-                    </button>
-                </div>
-            </div>
-        </footer> -->
         <footer>        
             <div class="fixed bottom-0 z-50 w-full min-w-[320px] h-16 bg-white grid grid-cols-2 gap-x-11 shadow-md">
                 <div class="flex items-center justify-evenly">

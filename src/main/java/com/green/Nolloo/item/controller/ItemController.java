@@ -17,6 +17,7 @@ import com.green.Nolloo.restAPI.vo.AddressVO;
 import com.green.Nolloo.restAPI.vo.MapVO;
 
 import com.green.Nolloo.search.vo.SearchVO;
+import com.green.Nolloo.util.PathVariable;
 import com.green.Nolloo.util.UploadUtil;
 import com.green.Nolloo.wish.service.WishService;
 import com.green.Nolloo.wish.vo.WishViewVO;
@@ -31,6 +32,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.standard.processor.AbstractStandardDoubleAttributeModifierTagProcessor;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -217,8 +223,16 @@ public class ItemController {
     @ResponseBody
     @PostMapping("/deleteImg")
     public void deleteImg(ImgVO imgVO){
-        //산택한 이미지 디비에서 삭제
+        System.out.println(imgVO);
+        //첨부파일명 조회
+        String attachedFileName = itemService.findAttachedFileNameByImgCode(imgVO);
+
+        //선택한 이미지 디비에서 삭제
         //itemService.deleteItemImg(imgVO);
+
+        //첨부파일 삭제
+        //UploadUtil.deleteUploadFile(PathVariable.ITEM_UPLOAD_PATH + attachedFileName);
+
 
 
     }

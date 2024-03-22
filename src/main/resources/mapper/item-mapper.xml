@@ -268,6 +268,7 @@
         WHERE IMG_CODE  = #{imgCode}
     </delete>
 
+<<<<<<< HEAD
     <update id="updatePeopleCnt">
         UPDATE ITEM_INFO
         SET PEOPLE_CNT = PEOPLE_CNT + 1
@@ -281,5 +282,12 @@
             #{reserveCode}
         </foreach>
     </update>
+=======
+    <select id="findAttachedFileNameByImgCode" resultType="String">
+        SELECT ATTACHED_FILE_NAME
+        FROM ITEM_IMAGE
+        WHERE IMG_CODE = #{imgCode}
+    </select>
+>>>>>>> 4551f146ad11b78a568d83415e19f0cc437ccd73
 
 </mapper>
