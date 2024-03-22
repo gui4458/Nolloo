@@ -37,7 +37,7 @@ layout:decorate="~{fragment/user_layout}">
 
           </div>
         </a>
-        <div class="w-8 h-8 relative left-3">
+        <div class="w-8 h-8 ml-3">
           <th:block sec:authorize="isAuthenticated()">
           <div class="" th:onclick="wishDelete(this,[[${item.itemCode}]])"
             th:if="${#lists.contains(wishCodeList,item.itemCode)}">
