@@ -21,7 +21,6 @@ public class ChatController {
     private MemberService memberService;
     @GetMapping("/chat/{test}")
     public String chatGET(Model model,@PathVariable("test") String test){
-        System.out.println(test);
         log.info("@ChatController, chat GET()");
         model.addAttribute("test", test);
         return "content/chat/chat";

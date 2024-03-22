@@ -37,6 +37,11 @@ public class ItemServiceImpl implements ItemService {
         return sqlSession.selectList("itemMapper.selectMyParty",itemVO);
     }
 
+    @Override
+    public List<ItemVO> selectCalendarPartyList() {
+        return sqlSession.selectList("itemMapper.selectCalendarPartyList");
+    }
+
     //나의 파티 상세
     @Override
     public ItemVO selectItemDetail(int itemCode) {
@@ -56,6 +61,11 @@ public class ItemServiceImpl implements ItemService {
         sqlSession.delete("itemMapper.deleteItemImg", imgVO);
     }
 
+    @Override
+    public String findAttachedFileNameByImgCode(ImgVO imgVO) {
+        return sqlSession.selectOne("itemMapper.findAttachedFileNameByImgCode", imgVO);
+    }
+
 
     // item 등록
     @Override
@@ -64,6 +74,10 @@ public class ItemServiceImpl implements ItemService {
         sqlSession.insert("itemMapper.insertParty",itemVO);
 
         sqlSession.insert("itemMapper.insertImgs",itemVO);
+
+        sqlSession.update("itemMapper.updatePeopleCnt",itemVO);
+
+        sqlSession.insert("chatMapper.insertChatRoom",itemVO.getChatVO());
     }
     //item 목록조회
     @Override

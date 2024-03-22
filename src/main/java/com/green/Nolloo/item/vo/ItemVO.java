@@ -1,5 +1,6 @@
 package com.green.Nolloo.item.vo;
 
+import com.green.Nolloo.chat.vo.ChatVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -32,6 +33,7 @@ public class ItemVO {
     private String cateName;
     private String memberId;
     private List<ImgVO> imgList;
+    private ChatVO chatVO;
 
     //매개변수로 전달되는 csv 행 데이터를  vo의 객 변수에 매핑
     public void setCsvData(String[] rowData){

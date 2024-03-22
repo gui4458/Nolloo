@@ -10,83 +10,106 @@
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
-    
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-8">
-                <div class="row align-middle">
-                    <div class="col text-center">
-                        <form action="/item/updateParty" method="post">
-                            <input type="hidden" name="itemCode" th:value="${item.itemCode}" style="justify-content: center;">
-                            <h2 class="mt-5">글 수정</h2>
-                            <div style="width: 100%; margin: 0 auto;">
-                                <table class="table">
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">제목</span>
-                                                <input type="text" name="itemTitle" class="form-control">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="input-group">
-                                                <span class="input-group-text">내용</span>
-                                                <textarea class="form-control" name="itemContent" aria-label="With textarea" style="height: 350px;"></textarea>
-                                            </div>
-                                        
-                                            
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="input-group-text" id="basic-addon1">참가비</span>
-                                            <input type="text" name="itemPrice" class="form-control" >
-                                            
-                                        </td>
-                                        <td>
-                                            <span class="input-group-text" id="basic-addon1">최대인원</span>
-                                            <input type="text" name="itemPeople" class="form-control" >
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span class="input-group-text" id="basic-addon1">장소</span>
-                                            <input type="text" name="itemPlace" class="form-control" >
-                                            
-                                        </td>
-                                        <td>
-                                            <span class="input-group-text" id="basic-addon1">자세한 장소</span>
-                                            <input type="text" name="placeDetail" class="form-control" >
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <button type="submit" class="btn btn-outline-primary">수정</button>
-                                            <button type="button" th:onclick="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|" class="btn btn-outline-primary">취소</button>
-                                        </td>
-                                    </tr>
-                                </table>
+
+    <div class="mx-auto max-w-7xl py-1 px-4 md:px-6 ">
+
+        <div class="bg-white w-11/12 md:max-w-md mx-auto my-4 md:my-8 px-6 py-4 rounded-lg shadow-lg text-left ">
+        
+            <div class="flex justify-between items-center mt-3 pb-3 relative">
+                <p class="text-2xl font-bold">글 수정하기</p>
+            </div>
+            
+            <form action="/item/updateParty"  method="post" id="join-form" enctype="multipart/form-data">
+                <input type="hidden" name="itemCode" th:value="${item.itemCode}" style="justify-content: center;">
+                <div class="space-y-12">
+                    
+                    <div class="border-b border-gray-900/10 pb-12">
+                        
+                        <div class="mt-3 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
+                            
+                            <div class="sm:col-span-4">
+                                <label for="itemTitle" class="block text-sm font-medium leading-6 text-gray-900">글 제목</label>
+                                <div class="mt-1">
+                                    <input type="text" name="itemTitle" id="itemTitle" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-6">
+                                <label for="itemSubTitle" class="block text-sm font-medium leading-6 text-gray-900">부 제목</label>
+                                <div class="mt-1">
+                                    <input type="text" name="itemSubTitle" id="itemSubTitle" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                </div>
                             </div>
                             
-                            
-                            
-                        </form>
-                        
+                            <div class="sm:col-span-6">
+                                <label for="itemContent" class="block text-sm font-medium leading-6 text-gray-900">내용</label>
+                                <div class="mt-1">
+                                    <textarea rows="4" name="comment" id="comment" class="w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" style="height: 155px;"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="sm:col-span-3">
+                                <label for="itemStartDate" class="block text-sm font-medium leading-6 text-gray-900">시작일</label>
+                                <input type="date" name="itemStartDate" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                            </div>
+                            <div class="sm:col-span-3">
+                                <label for="itemEndDate" class="block text-sm font-medium leading-6 text-gray-900">종료일</label>
+                                <input type="date" name="itemEndDate" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                            </div>
+                            <div class="sm:col-span-4">
+                                <label for="itemPrice" class="block text-sm font-medium leading-6 text-gray-900">참가비</label>
+                                <input type="text" name="itemPrice" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                                
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="itemPeople" class="block text-sm font-medium leading-6 text-gray-900">최대인원</label>
+                                <input type="text" name="itemPeople" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                            </div>
+                            <div class="sm:col-span-6">
+                                <label for="itemPlace" class="block text-sm font-medium leading-6 text-gray-900">주소</label>
+                                <input type="text" name="itemPlace" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                            </div>        
+                            <div class="sm:col-span-4">
+                                <label for="itemPlace" class="block text-sm font-medium leading-6 text-gray-900">아파트, 동 호수 및 기타</label>
+                                <input type="text" name="placeDetail" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                            </div>                                    
+                            <!-- <div class="sm:col-span-6">
+                                <label class="block">
+                                    <span class="sr-only">대표 이미지</span>
+                                    <input type="file" name="img" class="block w-full text-sm text-slate-500
+                                    file:mr-4 file:py-2 file:px-4
+                                    file:rounded-full file:border-0
+                                    file:text-sm file:font-semibold
+                                    file:bg-red-50 file:text-red-700
+                                    hover:file:bg-red-100
+                                    "/>
+                                </label>
+                            </div>
+                            <div class="sm:col-span-6">
+                                <label class="block">
+                                    <span class="sr-only">상세 이미지</span>
+                                    <input type="file" name="imgs" class="block w-full text-sm text-slate-500
+                                    file:mr-4 file:py-2 file:px-4
+                                    file:rounded-full file:border-0
+                                    file:text-sm file:font-semibold
+                                    file:bg-red-50 file:text-red-700
+                                    hover:file:bg-red-100
+                                    " multiple/>
+                                </label>
+                            </div> -->
+                        </div>   
                     </div>
+                </div> 
+                <div class="mt-6 flex items-center justify-end gap-x-6">
+                    <button type="button" class="text-sm font-semibold leading-6 text-gray-900" @click="|location.href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'|">취소</button>
+                    <button type="submit" class="rounded-full bg-red-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">수정</button>
                 </div>
-
-
-
-            </div>
+            </form>
         </div>
 
-
-    
     </div>
-    
 </th:block>
+
 
 <th:block layout:fragment="content_js">
     <!-- html 파일이 열릴때 같이 실행되는 js -->

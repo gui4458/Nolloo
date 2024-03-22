@@ -1,5 +1,7 @@
 package com.green.Nolloo.item.controller;
 
+import com.green.Nolloo.chat.service.ChatService;
+import com.green.Nolloo.chat.vo.ChatVO;
 import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
@@ -15,6 +17,7 @@ import com.green.Nolloo.restAPI.vo.AddressVO;
 import com.green.Nolloo.restAPI.vo.MapVO;
 
 import com.green.Nolloo.search.vo.SearchVO;
+import com.green.Nolloo.util.PathVariable;
 import com.green.Nolloo.util.UploadUtil;
 import com.green.Nolloo.wish.service.WishService;
 import com.green.Nolloo.wish.vo.WishViewVO;
@@ -29,6 +32,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.standard.processor.AbstractStandardDoubleAttributeModifierTagProcessor;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -49,6 +57,8 @@ public class ItemController {
 
     @Resource(name = "memberService")
     private MemberService memberService;
+    @Resource(name = "chatService")
+    private ChatService chatService;
 
     @Autowired
     private KakaoApiService kakaoApiService;
@@ -97,7 +107,8 @@ public class ItemController {
                             , @RequestParam(name = "img") MultipartFile img
                             , @RequestParam(name = "imgs") MultipartFile[] imgs
                             , @RequestParam(name="itemPlace") String addr
-                            ,Authentication authentication){
+                            , Authentication authentication, ChatVO chatVO){
+
         User user = (User)authentication.getPrincipal();
         itemVO.setMemberId(user.getUsername());
         //메인이미지 업로드
@@ -106,7 +117,10 @@ public class ItemController {
         List<ImgVO> imgList =UploadUtil.multiUploadFile(imgs);
 
         int itemCode = itemService.selectNextItemCode();
-
+        chatVO.setItemCode(itemCode);
+        chatVO.setRoomName(itemVO.getItemTitle());
+        chatVO.setFounder(user.getUsername());
+        itemVO.setChatVO(chatVO);
         itemVO.setItemCode(itemCode);
 
         mainImg.setItemCode(itemCode);
@@ -116,7 +130,7 @@ public class ItemController {
         }
         imgList.add(mainImg);
         itemVO.setImgList(imgList);
-
+        System.out.println(itemVO);
         MapVO mapVO = kakaoApiService.getGeoFromAddress(addr);
 
         System.out.println(mapVO);
@@ -209,8 +223,16 @@ public class ItemController {
     @ResponseBody
     @PostMapping("/deleteImg")
     public void deleteImg(ImgVO imgVO){
-        //산택한 이미지 디비에서 삭제
+        System.out.println(imgVO);
+        //첨부파일명 조회
+        String attachedFileName = itemService.findAttachedFileNameByImgCode(imgVO);
+
+        //선택한 이미지 디비에서 삭제
         //itemService.deleteItemImg(imgVO);
+
+        //첨부파일 삭제
+        //UploadUtil.deleteUploadFile(PathVariable.ITEM_UPLOAD_PATH + attachedFileName);
+
 
 
     }

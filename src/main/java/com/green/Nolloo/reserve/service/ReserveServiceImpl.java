@@ -17,6 +17,7 @@ public class ReserveServiceImpl implements ReserveService{
     @Override
     public void insertReserve(ReserveVO reserveVO) {
         sqlSession.insert("reserveMapper.insertReserve", reserveVO);
+        sqlSession.update("itemMapper.updatePeopleCnt", reserveVO);
     }
 
     @Override
@@ -37,6 +38,7 @@ public class ReserveServiceImpl implements ReserveService{
     @Override
     public void deleteReserve(ReserveVO reserveVO) {
         sqlSession.delete("reserveMapper.deleteReserve", reserveVO);
+        sqlSession.update("itemMapper.minusPeopleCnt", reserveVO);
 
     }
 

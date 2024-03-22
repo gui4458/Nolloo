@@ -108,7 +108,7 @@
         
             <div>
                 [[${item.readCnt}]]/
-                <span sec:authorize="isAuthenticated()" onclick="goChat()">채팅바로가기</span>
+                <span sec:authorize="isAuthenticated()" th:onclick="goChat([[${item.itemCode}]])">채팅바로가기</span>
                 <span sec:authorize="isAnonymous()" onclick="goLogin()">채팅바로가기</span>
             </div>
         
@@ -125,7 +125,15 @@
         
 
         <!------------ 버튼 -------------->
-
+        
+        <div class="col">
+            <button type="button" th:if="${reserveCnt == 0}" th:onclick="reserveInsert([[${item.itemCode}]])"
+                class="btn btn-outline-success">
+                참여</button>
+            <button type="button" th:if="${reserveCnt != 0}" th:onclick="reserveAlert([[${item.itemCode}]])"
+                class="btn btn-outline-success">
+                참여</button>
+        </div>
         <div class="row">
             <!-- 글 올린사람이 마감 올릴 수 있게 마감된 게시글 -->
             <div class="col">
@@ -142,14 +150,6 @@
                 <button type="button" th:onclick="|location.href='@{/item/deleteItem(itemCode=${item.itemCode})}'|"
                     class="btn btn-outline-danger">
                     삭제</button>
-            </div>
-            <div class="col">
-                <button type="button" th:if="${reserveCnt == 0}" th:onclick="reserveInsert([[${item.itemCode}]])"
-                    class="btn btn-outline-success">
-                    참여</button>
-                <button type="button" th:if="${reserveCnt != 0}" th:onclick="reserveAlert([[${item.itemCode}]])"
-                    class="btn btn-outline-success">
-                    참여</button>
             </div>
             <div class="col">
                 <button type="button" class="btn btn-outline-info">

@@ -26,11 +26,21 @@ public interface ItemService {
 
     List<ItemVO> selectMyParty(ItemVO itemVO);
 
+    List<ItemVO> selectCalendarPartyList();
+
     ItemVO selectItemDetail(int itemCode);
 
     void updateItemDetail(ItemVO itemVO);
 
+    //아이템 이미지 삭제
     void deleteItemImg(ImgVO imgVO);
 
+
+
+
+
+
+    //imgCode로 첨부파일명 조회
+    String findAttachedFileNameByImgCode(ImgVO imgVO);
 
 }
