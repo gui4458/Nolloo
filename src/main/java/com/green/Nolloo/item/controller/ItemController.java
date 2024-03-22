@@ -66,7 +66,7 @@ public class ItemController {
     //파티게시글 목록조회
     @RequestMapping("/list")
     public String list(Model model, Authentication authentication, ItemVO itemVO
-                        , @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode
+                        , @RequestParam(name="chkCode",required = false,defaultValue = "2")int chkCode
                         ,SearchVO searchVO,HttpSession session){
         searchVO.setCateCode(chkCode);
         model.addAttribute("itemList",itemService.selectPartyList(searchVO));

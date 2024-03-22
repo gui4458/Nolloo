@@ -1,5 +1,7 @@
 package com.green.Nolloo.restAPI.controller.kakao;
 
+import com.green.Nolloo.item.service.ItemService;
+import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.restAPI.service.restAPIService;
 import com.green.Nolloo.restAPI.vo.MapVO;
 import jakarta.annotation.Resource;
@@ -18,6 +20,9 @@ public class Map {
     @Resource(name = "restAPIService")
     private restAPIService restAPIService;
 
+    @Resource(name="itemService")
+    private ItemService itemService;
+
     public double getDistanceBetweenPointsNew(double latitude1, double longitude1, double latitude2, double longitude2, String unit) {
         double theta = longitude1 - longitude2;
         double distance = 60 * 1.1515 * (180/Math.PI) * Math.acos(
@@ -34,7 +39,10 @@ public class Map {
     }
 
     @GetMapping("/now")
-    public String circle() {
+    public String circle(Model model) {
+        List<ItemVO> itemList = itemService.selectByDistance();
+        model.addAttribute("itemList",itemList);
+
         return "/content/member/my-pos";
     }
 
@@ -42,6 +50,7 @@ public class Map {
     @PostMapping("/now")
     public List<MapVO> nowPos() {
         List<MapVO> nowPos = restAPIService.selectAllMapLatLnt();
+        System.out.println(nowPos);
         return nowPos;
     }
 

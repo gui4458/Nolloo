@@ -12,6 +12,8 @@ public interface ItemService {
     // board 목록 조회 메소드
     List<ItemVO> selectPartyList(SearchVO searchVO);
     // board 디테일
+    List<ItemVO> selectByDistance();
+
     ItemVO selectPartyDetail(ItemVO itemVO);
     //board 삭제하는 메소드
     void deleteParty(ItemVO itemVO);
