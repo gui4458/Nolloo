@@ -80,18 +80,19 @@ function checkAll() {
 function deleteReserve() {
     //체크박스들
     const chks = document.querySelectorAll('.chk:checked');
-
+    
     //선택한 체크박스를 담을 배열 통
     const reserveCodeList = [];
-
+    
 
     if(chks.length == 0){
         alert("삭제할 예약정보를 선택해주세요")
     }else{
         for (const chk of chks) {
             reserveCodeList.push(chk.value);
-    
         }
+        
+        
         location.href = `/reserve/reserveDelete?reserveCodeList=${reserveCodeList}`;
     }
 

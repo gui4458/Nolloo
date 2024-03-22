@@ -33,9 +33,9 @@ public class ReserveController{
     public void reserve(Authentication authentication
                         , @RequestBody ReserveVO reserveVO){
         //reserveService.reserveDone(reserveVO);
-
         User user = (User)authentication.getPrincipal();
         reserveVO.setMemberId(user.getUsername());
+        System.out.println(reserveVO);
         reserveService.insertReserve(reserveVO);
 
     }
@@ -74,6 +74,8 @@ public class ReserveController{
         //삭제 쿼리가 실행될때 위에서 받은 데이타를 같이 넘겨준다 (쿼리의 빈값을 채우기 위해서)
         ReserveVO vo = new ReserveVO();
         vo.setReserveCodeList(reserveCodeList);;
+
+        System.out.println("vo = " + vo);
         reserveService.deleteReserve(vo);
 
 

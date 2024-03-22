@@ -268,4 +268,18 @@
         WHERE IMG_CODE  = #{imgCode}
     </delete>
 
+    <update id="updatePeopleCnt">
+        UPDATE ITEM_INFO
+        SET PEOPLE_CNT = PEOPLE_CNT + 1
+        WHERE ITEM_CODE = #{itemCode}
+    </update>
+    <update id="minusPeopleCnt">
+        UPDATE ITEM_INFO
+        SET PEOPLE_CNT = PEOPLE_CNT - 1
+        WHERE ITEM_CODE IN
+        <foreach collection="reserveCodeList" item="reserveCode" open="(" separator=", " close=")">
+            #{reserveCode}
+        </foreach>
+    </update>
+
 </mapper>

@@ -37,7 +37,20 @@ document.addEventListener('DOMContentLoaded',function(){
         left: 'prev,next',
         center: 'title',
         right: 'dayGridMonth,dayGridWeek,dayGridDay'
-      },
+      },dayCellContent: function (info) {
+        var number = document.createElement("a");
+        number.classList.add("fc-daygrid-day-number");
+        number.innerHTML = info.dayNumberText.replace("일", '').replace("日","");
+        if (info.view.type === "dayGridMonth") {
+          return {
+            html: number.outerHTML
+          };
+        }
+        return {
+          domNodes: []
+        };
+    },
+      locale: "ko",
       initialDate: '2024-03-12',
       navLinks: true, // can click day/week names to navigate views
       editable: true,
@@ -53,7 +66,14 @@ document.addEventListener('DOMContentLoaded',function(){
         if(e.cateCode==2){
           calendar.addEvent({title: e.itemTitle, start: e.itemStartDate, end: e.itemEndDate,url:`http://localhost:8081/item/itemDetailForm?itemCode=${e.itemCode}` });
         }
-        
+        function goItemDetail() {
+          // 채팅방 URL 생성
+          const chatRoomUrl = `http://192.168.30.107:8081/item/itemDetailForm?itemCode=${e.itemCode}`;
+      
+          // 채팅방을 새 창으로 열기
+          const windowFeatures = "left=1500,top=100,width=750,height=750,popup";
+          window.open(chatRoomUrl, "_blank", windowFeatures);
+      }
       });
       
     });

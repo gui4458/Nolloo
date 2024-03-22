@@ -1,5 +1,7 @@
 package com.green.Nolloo.item.controller;
 
+import com.green.Nolloo.chat.service.ChatService;
+import com.green.Nolloo.chat.vo.ChatVO;
 import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
@@ -49,6 +51,8 @@ public class ItemController {
 
     @Resource(name = "memberService")
     private MemberService memberService;
+    @Resource(name = "chatService")
+    private ChatService chatService;
 
     @Autowired
     private KakaoApiService kakaoApiService;
@@ -97,7 +101,8 @@ public class ItemController {
                             , @RequestParam(name = "img") MultipartFile img
                             , @RequestParam(name = "imgs") MultipartFile[] imgs
                             , @RequestParam(name="itemPlace") String addr
-                            ,Authentication authentication){
+                            , Authentication authentication, ChatVO chatVO){
+
         User user = (User)authentication.getPrincipal();
         itemVO.setMemberId(user.getUsername());
         //메인이미지 업로드
@@ -106,7 +111,10 @@ public class ItemController {
         List<ImgVO> imgList =UploadUtil.multiUploadFile(imgs);
 
         int itemCode = itemService.selectNextItemCode();
-
+        chatVO.setItemCode(itemCode);
+        chatVO.setRoomName(itemVO.getItemTitle());
+        chatVO.setFounder(user.getUsername());
+        itemVO.setChatVO(chatVO);
         itemVO.setItemCode(itemCode);
 
         mainImg.setItemCode(itemCode);
@@ -116,7 +124,7 @@ public class ItemController {
         }
         imgList.add(mainImg);
         itemVO.setImgList(imgList);
-
+        System.out.println(itemVO);
         MapVO mapVO = kakaoApiService.getGeoFromAddress(addr);
 
         System.out.println(mapVO);
