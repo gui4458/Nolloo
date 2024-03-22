@@ -48,18 +48,18 @@
 
         <!------------- 장소 ----------->
         <div class="row-mb-3">
-            <div class="col" style="font-size: 13px;">
+            <div class="col" style="font-size: 15px;">
                 <!-- 동만 나오게 설정 예정 -->
                 [[${item.itemPlace}]]
             </div>
         </div>
 
         <!------------ 제목 ---------->
-        <div class="row">
-            <div class="col ">
+        
+            <div class="drop-shadow-lg ">
                 <b>[[${item.itemTitle}]]</b>
             </div>
-        </div>
+        
 
         <!---------- 올린시간 --------->
         <div class="row-mb-3 ">
@@ -70,60 +70,59 @@
 
         <!--------------------- 상세이미지  ------------------------->
 
-        <div>
-            <span>
+        <div class="grid grid-cols-3 gap-4">
+            <span class="flex flex-row p-4">
                 <th:block th:if="${item.cateCode == 1}">
                     <th:block th:each="img : ${item.imgList}">
                         <th:block th:if="${img.isMain=='N'}">
-                            <div class="w-72.5 h-125">
-                                <img th:src="@{'/upload/itemSolo/'+${img.attachedFileName}}" class="rounded float-start"
+                            <div class="lg:w-full ml-5 lg:ml-0 lg:mt-3">
+                                <img th:src="@{'/upload/itemSolo/'+${img.attachedFileName}}" class="sub-img-div object-center lg:rounded-lg "
                                     alt="">
                             </div>
                         </th:block>
                     </th:block>
                 </th:block>
             </span>
-            <span>
+            <span  class="flex flex-row p-4" >
                 <th:block th:if="${item.cateCode == 2}">
                     <th:block th:each="img : ${item.imgList}">
                         <th:block th:if="${img.isMain=='N'}">
+                            <div class="lg:w-full ml-5 lg:ml-0 lg:mt-3" >
                             <img width="100%" th:src="@{'/upload/item/'+${img.attachedFileName}}"
-                                class="rounded float-start" alt="">
+                                class="sub-img-div object-center lg:rounded-lg" alt="">
+                            </div>
                         </th:block>
                     </th:block>
                 </th:block>
             </span>
         </div>
-
-
-
         <!------------ 내용 ------------>
-        <div class="row">
-            <div class="col-8" style="font-size: 18px;">
+        <div class="border-collapse h-24 w-250 border-black bg-white shadow-xl shadow-slate-900/5 rounded-lg ">
+            <div class="text-lg h-25 align-top list-disc">
                 [[${item.itemContent}]]
             </div>
         </div>
         
 
         <!------------- 조회수 ------------>
-        <div class="row">
-            <div class="col ">
+        
+            <div>
                 [[${item.readCnt}]]/
                 <span sec:authorize="isAuthenticated()" onclick="goChat()">채팅바로가기</span>
                 <span sec:authorize="isAnonymous()" onclick="goLogin()">채팅바로가기</span>
             </div>
-        </div>
+        
 
         <!------------- 위치 ------------>
-        <div class="row">
-            <div class="col">
+        
+            <div>
                 위치/지도
             </div>
             <input type="hidden" id="itemX" name="itemX" th:value="${item.itemX}">
             <input type="hidden" id="itemY" name="itemY" th:value="${item.itemY}">
 
             <div id="map" style="width:100%;height:600px;"></div>
-        </div>
+        
 
         <!------------ 버튼 -------------->
 
