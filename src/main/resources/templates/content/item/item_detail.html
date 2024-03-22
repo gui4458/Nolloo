@@ -10,7 +10,7 @@
 <th:block layout:fragment="contentFragment">
     <!-- html 코드작성-->
 
-    <div class="space-y-6 bg-blue-200 mr-10 mx-20 px-40 ">
+    <div class="space-y-6 mr-10 mx-20 px-40 ">
 
         <div class="main-img-div">
             <span>
@@ -31,7 +31,7 @@
                             <div class="bg-fixed"
                                 th:style="'background-image:url(/upload/item/' + ${img.attachedFileName} + ');background-repeat:no-repeat;'">
                             </div>
-                            
+
                         </th:block>
                     </th:block>
                 </th:block>
@@ -55,11 +55,11 @@
         </div>
 
         <!------------ 제목 ---------->
-        
-            <div class="drop-shadow-lg ">
-                <b>[[${item.itemTitle}]]</b>
-            </div>
-        
+
+        <div class="drop-shadow-lg ">
+            <b>[[${item.itemTitle}]]</b>
+        </div>
+
 
         <!---------- 올린시간 --------->
         <div class="row-mb-3 ">
@@ -75,21 +75,21 @@
                 <th:block th:if="${item.cateCode == 1}">
                     <th:block th:each="img : ${item.imgList}">
                         <th:block th:if="${img.isMain=='N'}">
-                            <div class="lg:w-full ml-5 lg:ml-0 lg:mt-3">
-                                <img th:src="@{'/upload/itemSolo/'+${img.attachedFileName}}" class="sub-img-div object-center lg:rounded-lg "
-                                    alt="">
+                            <div class="lg:w-full ml-5 lg:ml-2 ">
+                                <img th:src="@{'/upload/itemSolo/'+${img.attachedFileName}}"
+                                    class="sub-img-div object-center lg:rounded-lg " alt="">
                             </div>
                         </th:block>
                     </th:block>
                 </th:block>
             </span>
-            <span  class="flex flex-row p-4" >
+            <span class="flex flex-row p-4">
                 <th:block th:if="${item.cateCode == 2}">
                     <th:block th:each="img : ${item.imgList}">
                         <th:block th:if="${img.isMain=='N'}">
-                            <div class="lg:w-full ml-5 lg:ml-0 lg:mt-3" >
-                            <img width="100%" th:src="@{'/upload/item/'+${img.attachedFileName}}"
-                                class="sub-img-div object-center lg:rounded-lg" alt="">
+                            <div class="lg:w-full ml-5 lg:ml-2">
+                                <img width="100%" th:src="@{'/upload/item/'+${img.attachedFileName}}"
+                                    class="sub-img-div object-center lg:rounded-lg" alt="">
                             </div>
                         </th:block>
                     </th:block>
@@ -97,67 +97,68 @@
             </span>
         </div>
         <!------------ 내용 ------------>
-        <div class="border-collapse h-24 w-250 border-black bg-white shadow-xl shadow-slate-900/5 rounded-lg ">
-            <div class="text-lg h-25 align-top list-disc">
+        <div class="py-4 px-4 border-slate-100 bg-white shadow-xl shadow-slate-900/5 rounded-lg ">
+            <p class="h-80 text-lg  size-full align-top list-disc px-3">
                 [[${item.itemContent}]]
-            </div>
+            </p>
         </div>
-        
+
 
         <!------------- 조회수 ------------>
-        
-            <div>
-                [[${item.readCnt}]]/
-                <span sec:authorize="isAuthenticated()" th:onclick="goChat([[${item.itemCode}]])">채팅바로가기</span>
-                <span sec:authorize="isAnonymous()" onclick="goLogin()">채팅바로가기</span>
-            </div>
-        
+
+        <div>
+            [[${item.readCnt}]]/
+            <span sec:authorize="isAuthenticated()" th:onclick="goChat([[${item.itemCode}]])">채팅바로가기</span>
+            <span sec:authorize="isAnonymous()" onclick="goLogin()">채팅바로가기</span>
+        </div>
+
 
         <!------------- 위치 ------------>
-        
-            <div>
-                위치/지도
-            </div>
-            <input type="hidden" id="itemX" name="itemX" th:value="${item.itemX}">
-            <input type="hidden" id="itemY" name="itemY" th:value="${item.itemY}">
 
-            <div id="map" style="width:100%;height:600px;"></div>
-        
+        <div>
+            위치/지도
+        </div>
+        <input type="hidden" id="itemX" name="itemX" th:value="${item.itemX}">
+        <input type="hidden" id="itemY" name="itemY" th:value="${item.itemY}">
+
+        <div id="map" style="width:100%;height:600px;"></div>
+
 
         <!------------ 버튼 -------------->
-        
-        <div class="col">
-            <button type="button" th:if="${reserveCnt == 0}" th:onclick="reserveInsert([[${item.itemCode}]])"
-                class="btn btn-outline-success">
-                참여</button>
-            <button type="button" th:if="${reserveCnt != 0}" th:onclick="reserveAlert([[${item.itemCode}]])"
-                class="btn btn-outline-success">
-                참여</button>
-        </div>
-        <div class="row">
+        <div class="grid grid-cols-6 divide-x pb-14">
+            <div class="">
+                <button type="button" th:if="${reserveCnt == 0}" th:onclick="reserveInsert([[${item.itemCode}]])"
+                    class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                    참여</button>
+                <button type="button" th:if="${reserveCnt != 0}" th:onclick="reserveAlert([[${item.itemCode}]])"
+                    class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                    참여</button>
+            </div>
+
             <!-- 글 올린사람이 마감 올릴 수 있게 마감된 게시글 -->
-            <div class="col">
-                <button type="button" onclick="deadline()" class="btn btn-outline-danger">
+            <div class="">
+                <button type="button" onclick="deadline()"
+                    class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                     마감</button>
             </div>
 
-            <div class="col">
+            <div class="">
                 <button type="button" th:onclick="|location.href='@{/item/updateForm(itemCode=${item.itemCode})}'|"
-                    class="btn btn-outline-primary">
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                     수정</button>
             </div>
-            <div class="col">
+            <div class="">
                 <button type="button" th:onclick="|location.href='@{/item/deleteItem(itemCode=${item.itemCode})}'|"
-                    class="btn btn-outline-danger">
+                    class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                     삭제</button>
             </div>
-            <div class="col">
-                <button type="button" class="btn btn-outline-info">
+            <div class="">
+                <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                     목록</button>
             </div>
-            <div class="col">
+            <div class="">
                 <button type="button" th:onclick="goWish([[${item.itemCode}]],[[${#authentication.name}]])"
-                    class="btn btn-outline-info">
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                     찜</button>
             </div>
         </div>
