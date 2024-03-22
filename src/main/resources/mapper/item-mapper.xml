@@ -119,6 +119,36 @@
 
         LIMIT ${displayDataCnt} OFFSET ${displayDataCnt * (nowPage-1)}
     </select>
+
+    <select id="selectByDistance" resultMap="item">
+        SELECT
+        INFO.ITEM_CODE
+        , ITEM_TITLE
+        , ITEM_DATE
+        , ITEM_PRICE
+        , ITEM_PLACE
+        , ITEM_PEOPLE
+        , INFO.CATE_CODE
+        , c.CATE_NAME
+        , LEFT(ITEM_START_DATE,10) ITEM_START_DATE
+        , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
+        , ATTACHED_FILE_NAME
+        , READ_CNT
+        FROM ITEM_INFO INFO
+        INNER JOIN ITEM_IMAGE IMG
+        ON INFO.ITEM_CODE = IMG.ITEM_CODE
+        INNER JOIN CATE c
+        ON INFO.CATE_CODE = c.CATE_CODE
+
+        WHERE IS_MAIN='Y'
+
+        ORDER BY ITEM_START_DATE DESC
+
+
+    </select>
+
+
+
 <!--    itemDetail 조회쿼리 -->
 <select id="selectPartyDetail" resultMap="item">
     SELECT
