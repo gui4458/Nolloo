@@ -40,16 +40,16 @@ public class Map {
 
     @GetMapping("/now")
     public String circle(Model model) {
-        List<ItemVO> itemList = itemService.selectByDistance();
-        model.addAttribute("itemList",itemList);
+//        List<ItemVO> itemList = itemService.selectByDistance();
+//        model.addAttribute("itemList",itemList);
 
         return "/content/member/my-pos";
     }
 
     @ResponseBody
     @PostMapping("/now")
-    public List<MapVO> nowPos() {
-        List<MapVO> nowPos = restAPIService.selectAllMapLatLnt();
+    public List<ItemVO> nowPos() {
+        List<ItemVO> nowPos = itemService.selectByDistance();
         System.out.println(nowPos);
         return nowPos;
     }

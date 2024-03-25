@@ -13,7 +13,7 @@
     </div>
 
     <div class="mx-auto max-w-7xl py-1 px-4 md:px-6 ">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4" >
+        <div id="item-list"  class="grid grid-cols-1 lg:grid-cols-3 gap-4" >
 
             <div class="bg-white shadow-xl shadow-slate-900/5 rounded-lg" th:each="item : ${itemList}" >
                 <a th:href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'>
@@ -57,7 +57,7 @@
                         </div>
                     </th:block> -->
                 </div>
-                <div id="distance" class="w-8 h-8 ml-3"> 8km</div>
+                <div id="distance" class="w-8 h-8 ml-3"> -km</div>
             </div> 
     
         </div>
