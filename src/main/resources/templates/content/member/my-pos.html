@@ -8,97 +8,94 @@
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드작성-->
-    <div class="mx-auto max-w-7xl py-1 px-4 md:px-6 ">
+    <div class="mx-auto max-w-7xl py-3 px-4 md:px-6 ">
         <div id="map" class="w-full h-96 shadow-xl shadow-slate-900/5 rounded-lg"></div>
     </div>
 
     <div class="mx-auto max-w-7xl py-3 px-4 md:px-6 ">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <select>
+            <option value="Month">카테고리</option>
+            <option value="Jan">축제</option>
+            <option value="Feb">파티</option>
+        </select>
+        <select>
+            <option value="distance" selected>반경</option>
+            <option value="5">5km</option>
+            <option value="5">10km</option>
+        </select>
+        <select>
+            <option value="area">지역</option>
+            <option value="서울">5km</option>
+            <option value="경기도">10km</option>
+        </select>
+        <select>
+            <option value="Month">시기</option>
+            <option value="Jan">1월</option>
+            <option value="Feb">2월</option>
+        </select>
+        <button>
+            검색
+        </button>
+    </div>
 
-            <div class="bg-white shadow-xl shadow-slate-900/5 rounded-lg">
-                <a href="">
-                    <div class="flex flex-row p-3 lg:flex-col ">
-                        <img class="w-24 h-24 rounded-full lg:w-full lg:h-full lg:rounded-lg" src="https://kfescdn.visitkorea.or.kr/kfes/upload/contents/db/87dfeda1-084e-41a9-b76e-09f2d502443a_2.jpeg" alt="" width="384" height="512">
-                        <div class="ml-5 lg:ml-0 lg:mt-3">
-                            <figcaption class="font-medium">
-                                <div class="text-dark-600">
-                                    <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">축제</span><strong class="inline-flex text-xs py-1 pl-1">경기도 수원</strong>
-                                </div>
-                                <div class="text-dark-600 font-bold mt-1">
-                                    제목                    
-                                </div>
-                                <div class="text-slate-600 text-sm mt-1">
-                                    Description
-                                </div>
-                                <div class="text-green-500 text-sm mt-1">
-                                    3월 25일 - 4월 30일
-                                </div>
-                            </figcaption>
+    <div class="mx-auto max-w-7xl py-3 px-4 md:px-6 ">
+        <div id="item-list"  class="grid grid-cols-1 lg:grid-cols-3 gap-4" >
+
+            <div class="bg-white shadow-xl shadow-slate-900/5 rounded-lg" th:each="item : ${itemList}" >
+                <a th:href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'>
+                    <div class="flex flex-row p-3 lg:flex-col">
+                        <div class="image-container w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg" style="background-image: url('/upload/item/your_image.jpg');" th:style="'background-image: url(\'' + '/upload/item/' + ${item.imgList[0].attachedFileName} + '\');'">
                         </div>
+                        <div class="ml-5 lg:ml-0 lg:mt-3">
+                        <figcaption class="font-medium">
+                            <div class="text-dark-600">
+                            <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">[[${item.cateName}]]</span><strong class="inline-flex text-xs py-1 pl-1">[[${item.itemPlace}]]</strong>
+                            </div>
+                            <div class="text-dark-600 font-bold mt-1">
+                            [[${item.itemTitle}]]                    
+                            </div>
+                            <div class="text-slate-600 text-sm mt-1">
+                            Description(Subtitle)
+                            </div>
+                            <div class="text-green-500 text-sm mt-1">
+                            [[${item.itemStartDate}]]~[[${item.itemEndDate}]]
+                            </div>
+                        </figcaption>
+                        </div>
+            
                     </div>
                 </a>
-            </div> 
+                <div class="w-8 h-8 ml-3">
+                    <!-- <th:block sec:authorize="isAuthenticated()">
+                    <div class="" th:onclick="wishDelete(this,[[${item.itemCode}]])"
+                        th:if="${#lists.contains(wishCodeList,item.itemCode)}">
+                        ❤
+                    </div>
             
-            <div class="bg-white shadow-xl shadow-slate-900/5 rounded-lg">
-                <a href="">
-                    <div class="flex flex-row p-3 lg:flex-col">
-                        <img class="w-24 h-24 rounded-full lg:w-full lg:h-full lg:rounded-lg" src="https://kfescdn.visitkorea.or.kr/kfes/upload/contents/db/87dfeda1-084e-41a9-b76e-09f2d502443a_2.jpeg" alt="" width="384" height="512">
-                        <div class="ml-5 lg:ml-0 lg:mt-3">
-                            <figcaption class="font-medium">
-                                <div class="text-dark-600">
-                                    <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">운동</span><strong class="inline-flex text-xs py-1 pl-1">신정동</strong>
-                                </div>
-                                <div class="text-dark-600 font-bold mt-1">
-                                    제목                    
-                                </div>
-                                <div class="text-slate-600 text-sm mt-1">
-                                    Description
-                                </div>
-                                <div class="text-violet-500 text-sm mt-1">
-                                    정기모임
-                                </div>
-                            </figcaption>
+                    <div class="" th:onclick="wishAdd(this,[[${item.itemCode}]])"
+                        th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
+                        🤍
+                    </div>
+                    </th:block>
+                    <th:block sec:authorize="isAnonymous()">
+                        <div class="" onclick="gologin()">
+                            🤍
                         </div>
-                    </div> 
-                </a>
+                    </th:block> -->
                 </div>
-                
-            <div class="bg-white shadow-xl shadow-slate-900/5 rounded-lg">
-                <a href="">
-                    <div class="flex flex-row p-3 lg:flex-col">
-                        <img class="w-24 h-24 rounded-full lg:w-full lg:h-full lg:rounded-lg" src="https://kfescdn.visitkorea.or.kr/kfes/upload/contents/db/87dfeda1-084e-41a9-b76e-09f2d502443a_2.jpeg" alt="" width="384" height="512">
-                        <div class="ml-5 lg:ml-0 lg:mt-3">
-                            <figcaption class="font-medium">
-                                
-                                <div class="text-dark-600">
-                                    <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">파티</span><strong class="inline-flex text-xs py-1 pl-1">삼산동</strong>
-                                </div>
-                                <div class="text-dark-600 font-bold mt-1">
-                                    제목                    
-                                </div>
-                                <div class="text-slate-600 text-sm mt-1">
-                                    Description
-                                </div>
-                                <div class="text-green-500 text-sm mt-1">
-                                    3월 25일 16:00 - 18:00
-                                </div>
-                            </figcaption>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            
+                <div id="distance" class="w-8 h-8 ml-3"> -km</div>
+            </div> 
+    
         </div>
     </div>
 
 </th:block>
 
-
 <th:block layout:fragment="content_js">
     <!-- html 파일이 열릴때 같이 실행되는 js -->
     <!-- 3f269d19617ad795568529a85a77081a -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f269d19617ad795568529a85a77081a "></script>
-    <script src="/js/now-pos.js"></script>
+    <script src="/js/my-pos.js"></script>
 </th:block>
 
 </html>
