@@ -69,7 +69,8 @@ public class ItemController {
                         , @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode
                         ,SearchVO searchVO,HttpSession session){
         searchVO.setCateCode(chkCode);
-        model.addAttribute("itemList",itemService.selectPartyList(searchVO));
+        List<ItemVO> itemList = itemService.selectPartyList(searchVO);
+        model.addAttribute("itemList",itemList);
         //        전체 데이터 수
         searchVO.setCateCode(chkCode);
         int totalDataCnt = itemService.itemAllCnt(searchVO.getCateCode());
@@ -78,7 +79,7 @@ public class ItemController {
         searchVO.setPageInfo();
         List<Integer> wishCodeList = new ArrayList<>();
         model.addAttribute("chkCode",chkCode);
-
+        System.out.println(itemList);
 
 
         if (authentication != null){

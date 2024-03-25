@@ -1,17 +1,18 @@
-const con = document.querySelector('.container')
 
-const maxScroll = con.scrollHeight - con.clientHeight
-window.addEventListener('scroll', function(){
-    console.log(con.scrollHeight)
-    console.log(window.scrollY)
-    console.log(con.clientHeight)
+// const con = document.querySelector('.container')
 
-    if(con.scrollHeight == (window.scrollY-5)){
-        alert(123123)
-    }
-    
-    
-});
+// const maxScroll = con.scrollHeight - con.clientHeight
+// window.addEventListener('scroll', function(){
+//     console.log(con.scrollHeight)
+//     console.log(window.scrollY)
+//     console.log(con.clientHeight)
+
+//     if(con.scrollHeight == (window.scrollY-5)){
+//         alert(123123)
+//     }
+
+
+// });
 
 
 
