@@ -11,4 +11,5 @@ public class MapVO {
     private int itemCode;
     private double itemX;
     private double itemY;
+    private double distance;
 }
