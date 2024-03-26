@@ -62,6 +62,14 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<String> selectItemImage(ItemVO itemVO) {
+        return sqlSession.selectList("itemMapper.selectItemImage",itemVO);
+    }
+
+
+
+
+    @Override
     public String findAttachedFileNameByImgCode(ImgVO imgVO) {
         return sqlSession.selectOne("itemMapper.findAttachedFileNameByImgCode", imgVO);
     }
@@ -102,6 +110,7 @@ public class ItemServiceImpl implements ItemService {
     @Transactional(rollbackFor =  Exception.class)
     public void deleteParty(ItemVO itemVO) {
         sqlSession.delete("itemMapper.deleteImg",itemVO);
+        sqlSession.delete("itemMapper.deleteChatRoom",itemVO);
         sqlSession.delete("itemMapper.deleteParty",itemVO);
     }
 
