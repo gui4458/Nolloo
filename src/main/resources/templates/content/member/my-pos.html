@@ -8,11 +8,37 @@
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드작성-->
-    <div class="mx-auto max-w-7xl py-1 px-4 md:px-6 ">
+    <div class="mx-auto max-w-7xl py-3 px-4 md:px-6 ">
         <div id="map" class="w-full h-96 shadow-xl shadow-slate-900/5 rounded-lg"></div>
     </div>
 
-    <div class="mx-auto max-w-7xl py-1 px-4 md:px-6 ">
+    <div class="mx-auto max-w-7xl py-3 px-4 md:px-6 ">
+        <select>
+            <option value="Month">카테고리</option>
+            <option value="Jan">축제</option>
+            <option value="Feb">파티</option>
+        </select>
+        <select>
+            <option value="distance" selected>반경</option>
+            <option value="5">5km</option>
+            <option value="5">10km</option>
+        </select>
+        <select>
+            <option value="area">지역</option>
+            <option value="서울">5km</option>
+            <option value="경기도">10km</option>
+        </select>
+        <select>
+            <option value="Month">시기</option>
+            <option value="Jan">1월</option>
+            <option value="Feb">2월</option>
+        </select>
+        <button>
+            검색
+        </button>
+    </div>
+
+    <div class="mx-auto max-w-7xl py-3 px-4 md:px-6 ">
         <div id="item-list"  class="grid grid-cols-1 lg:grid-cols-3 gap-4" >
 
             <div class="bg-white shadow-xl shadow-slate-900/5 rounded-lg" th:each="item : ${itemList}" >

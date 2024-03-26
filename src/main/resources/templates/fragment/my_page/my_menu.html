@@ -3,9 +3,9 @@
 
 <th:block th:fragment="menuFragment">
 
-    <div class="row">
-        <div class="col">
-        <ul class="list-group">
+    <div class="mx-auto max-w-7xl py-1 px-4 md:px-3 ">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <ul class="list-group border-orange-400 grid grid-cols-1 divide-y">
             <li class="list-group-item pointer-span" onclick="location.href='/member/myPage';">회원 정보 수정</li>
             <li class="list-group-item pointer-span" onclick="location.href='/reserve/reserveList';">예약 내역</li>
             <li class="list-group-item pointer-span" onclick="location.href='/item/myParty';">나의 파티</li>
