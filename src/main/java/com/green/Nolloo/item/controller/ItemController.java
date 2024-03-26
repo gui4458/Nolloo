@@ -35,6 +35,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.standard.processor.AbstractStandardDoubleAttributeModifierTagProcessor;
 
+import java.io.File;
+import java.net.URLDecoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -178,7 +180,29 @@ public class ItemController {
     }
     //게시글 삭제
     @GetMapping("/deleteItem")
-    public String deleteParty(ItemVO itemVO){
+    public String deleteParty(ItemVO itemVO) {
+        List<String> attachedFileNameList = itemService.selectItemImage(itemVO);
+
+
+        try {   //"c:\\ss\\aaa.jpg"
+            for(String attachedFileName : attachedFileNameList){
+                String Path = PathVariable.ITEM_UPLOAD_PATH;//itemSolo경로
+                File file = new File(Path + attachedFileName);//경로+파일이미지(AttachedFileName)
+
+                if(file.delete()){
+                    System.out.println("파일을 삭제 하였습니다");
+                }else {
+                    System.out.println("파일 삭제에 실패하였습니다");
+                }
+            }
+
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         itemService.deleteParty(itemVO);
         return "redirect:/item/list";
     }
@@ -229,7 +253,7 @@ public class ItemController {
         return "redirect:/item/myParty";
     }
 
-    //상품 상세보기 페이지에서 이미지 삭제버튼 클릭 시 실행
+    //상품 나의파티 상세보기 페이지에서 이미지 삭제버튼 클릭 시 실행
     @ResponseBody
     @PostMapping("/deleteImg")
     public void deleteImg(ImgVO imgVO){

@@ -38,9 +38,7 @@ public interface ItemService {
     //아이템 이미지 삭제
     void deleteItemImg(ImgVO imgVO);
 
-
-
-
+    List<String> selectItemImage(ItemVO itemVO);
 
 
     //imgCode로 첨부파일명 조회
