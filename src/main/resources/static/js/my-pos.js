@@ -75,13 +75,26 @@ function displayItems(items) {
     const itemListContainer = document.getElementById('item-list');
     itemListContainer.innerHTML = ''; // Clear previous items
 
+
+
     items.forEach(item => {
         const itemElement = document.createElement('div');
+        let str = ''; // Declare str here
+
+        if (item.cateCode == 2) {
+            str = 'item'; // Assign item to str if cateCode is 1
+        }
+        else {
+            // Provide a default value or define itemSolo somewhere
+            str = 'itemSolo'; 
+        }
+
+
         itemElement.innerHTML = `
         <div class="bg-white shadow-xl shadow-slate-900/5 rounded-lg" >
             <a href='/item/itemDetailForm?itemCode=${item.itemCode}'>
                 <div class="flex flex-row p-3 lg:flex-col">
-                    <div class="image-container w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg" style="background-image: url('/upload/item/${item.imgList[0].attachedFileName}');">
+                    <div class="image-container w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg" style="background-image: url('/upload/${str}/${item.imgList[0].attachedFileName}');">
                     </div>
                     <div class="ml-5 lg:ml-0 lg:mt-3">
                         <figcaption class="font-medium">
