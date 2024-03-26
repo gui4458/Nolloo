@@ -117,7 +117,7 @@
         </if>
         ORDER BY ITEM_START_DATE DESC
 
-        LIMIT ${displayDataCnt} OFFSET ${displayDataCnt * (nowPage-1)}
+<!--        LIMIT ${displayDataCnt} OFFSET ${displayDataCnt * (nowPage-1)}-->
     </select>
 
     <select id="selectByDistance" resultMap="item">

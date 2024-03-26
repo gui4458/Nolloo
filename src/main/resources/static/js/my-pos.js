@@ -103,6 +103,9 @@ function displayItems(items) {
                 </div>
             </a>
             <div id="distance" class="w-8 h-8 ml-3"> ${item.distance.toFixed(2)}km</div>
+            <div id="attend" class="w-8 h-8 ml-3">참가</div>
+            <div id="wait" class="w-8 h-8 ml-3">대기</div>
+
         </div>`;
         
         itemListContainer.appendChild(itemElement);
