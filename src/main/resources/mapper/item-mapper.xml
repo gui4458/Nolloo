@@ -186,7 +186,7 @@
         FROM ITEM_IMAGE
         WHERE ITEM_CODE = #{itemCode}
     </delete>
-    <select id="selectItemImage" resultMap="item">
+    <select id="selectItemImage" resultType="String">
         SELECT
         ATTACHED_FILE_NAME
         FROM ITEM_IMAGE

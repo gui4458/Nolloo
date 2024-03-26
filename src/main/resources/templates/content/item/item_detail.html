@@ -142,21 +142,21 @@
                     마감</button>
             </div>
 
-            <div >
+            <div class="">
                 <button type="button" th:onclick="|location.href='@{/item/updateForm(itemCode=${item.itemCode})}'|"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                     수정</button>
             </div>
-            <div >
+            <div class="">
                 <button type="button" th:onclick="|location.href='@{/item/deleteItem(itemCode=${item.itemCode})}'|"
                     class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                     삭제</button>
             </div>
-            <div >
+            <div class="">
                 <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                     목록</button>
             </div>
-            <div >
+            <div class="">
                 <button type="button" th:onclick="goWish([[${item.itemCode}]],[[${#authentication.name}]])"
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                     찜</button>

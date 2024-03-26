@@ -62,8 +62,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public ItemVO selectItemImage(ItemVO itemVO) {
-        return sqlSession.selectOne("itemMapper.selectItemImage",itemVO);
+    public List<String> selectItemImage(ItemVO itemVO) {
+        return sqlSession.selectList("itemMapper.selectItemImage",itemVO);
     }
 
 

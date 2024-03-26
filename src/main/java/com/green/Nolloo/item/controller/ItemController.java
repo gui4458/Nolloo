@@ -178,20 +178,23 @@ public class ItemController {
     //게시글 삭제
     @GetMapping("/deleteItem")
     public String deleteParty(ItemVO itemVO) {
+        List<String> attachedFileNameList = itemService.selectItemImage(itemVO);
 
 
+        try {   //"c:\\ss\\aaa.jpg"
+            for(String attachedFileName : attachedFileNameList){
+                String Path = PathVariable.ITEM_UPLOAD_PATH;//itemSolo경로
+                File file = new File(Path + attachedFileName);//경로+파일이미지(AttachedFileName)
 
-        try {
-            String Path = PathVariable.ITEM_UPLOAD_PATH;//경로
-            File file = new File(Path + itemService.selectItemImage(itemVO));//경로+파일이미지(AttachedFileName)
-
-            for (int i=0;i<file.length();i++){
                 if(file.delete()){
                     System.out.println("파일을 삭제 하였습니다");
                 }else {
                     System.out.println("파일 삭제에 실패하였습니다");
                 }
             }
+
+
+
 
         }catch (Exception e){
             e.printStackTrace();
