@@ -250,7 +250,7 @@ public class ItemController {
         return "redirect:/item/myParty";
     }
 
-    //상품 상세보기 페이지에서 이미지 삭제버튼 클릭 시 실행
+    //상품 나의파티 상세보기 페이지에서 이미지 삭제버튼 클릭 시 실행
     @ResponseBody
     @PostMapping("/deleteImg")
     public void deleteImg(ImgVO imgVO){
