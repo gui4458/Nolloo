@@ -28,6 +28,13 @@
         <result column="MEMBER_ID" property="memberId"/>
         <collection property="imgList"  resultMap="img"/>
     </resultMap>
+
+    <resultMap id="category" type="com.green.Nolloo.item.vo.ItemVO">
+        <result column="CATE_CODE" property="cateCode"/>
+        <result column="CATE_NAME" property="cateName"/>
+    </resultMap>
+
+
     <resultMap id="img" type="com.green.Nolloo.item.vo.ImgVO">
         <id column="IMG_CODE" property="imgCode"/>
         <result column="ORIGIN_FILE_NAME" property="originFileName"/>
@@ -145,8 +152,10 @@
         WHERE IS_MAIN='Y'
 
         ORDER BY ITEM_START_DATE DESC
+    </select>
 
-
+    <select id="selectAllCategory" resultMap="category">
+        SELECT * FROM CATE
     </select>
 
 

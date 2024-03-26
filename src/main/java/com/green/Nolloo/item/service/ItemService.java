@@ -1,5 +1,6 @@
 package com.green.Nolloo.item.service;
 
+import com.green.Nolloo.item.vo.CategoryVO;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.search.vo.SearchVO;
@@ -14,6 +15,7 @@ public interface ItemService {
     // board 디테일
     List<ItemVO> selectByDistance();
 
+    List<CategoryVO> selectAllCategory();
     ItemVO selectPartyDetail(ItemVO itemVO);
     //board 삭제하는 메소드
     void deleteParty(ItemVO itemVO);
