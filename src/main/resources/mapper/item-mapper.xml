@@ -186,6 +186,19 @@
         FROM ITEM_IMAGE
         WHERE ITEM_CODE = #{itemCode}
     </delete>
+    <select id="selectItemImage" resultMap="item">
+        SELECT
+        ATTACHED_FILE_NAME
+        FROM ITEM_IMAGE
+        WHERE ITEM_CODE=#{itemCode}
+    </select>
+
+    <delete id="deleteChatRoom">
+        DELETE
+        FROM CHAT_ROOM
+        WHERE ITEM_CODE= #{itemCode}
+    </delete>
+
 
     <update id="updateParty">
         UPDATE ITEM_INFO
