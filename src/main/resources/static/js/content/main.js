@@ -15,7 +15,6 @@
 // });
 
 
-
 // 하트 누르면 추가
 function wishAdd(divTag, itemCode) {
     const head = divTag.parentElement

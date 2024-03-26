@@ -64,7 +64,7 @@ public class ItemController {
     private KakaoApiService kakaoApiService;
 
     //파티게시글 목록조회
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public String list(Model model, Authentication authentication, ItemVO itemVO
                         , @RequestParam(name="chkCode",required = false,defaultValue = "2")int chkCode
                         ,SearchVO searchVO,HttpSession session){
@@ -95,6 +95,12 @@ public class ItemController {
         }
 
         return "content/main";
+    }
+
+    @PostMapping("/list")
+    public List<ItemVO> list(SearchVO searchVO){
+        List<ItemVO> itemList = itemService.selectPartyList(searchVO);
+        return itemList;
     }
     //게시글 등록
     @GetMapping("/itemAddForm")
