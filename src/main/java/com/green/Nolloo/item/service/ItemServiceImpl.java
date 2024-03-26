@@ -2,6 +2,7 @@ package com.green.Nolloo.item.service;
 
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
+import com.green.Nolloo.item.vo.PageVO;
 import com.green.Nolloo.search.vo.SearchVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,8 +82,8 @@ public class ItemServiceImpl implements ItemService {
     }
     //item 목록조회
     @Override
-    public List<ItemVO> selectPartyList(SearchVO searchVO) {
-        return sqlSession.selectList("itemMapper.selectPartyList", searchVO);
+    public List<ItemVO> selectPartyList(PageVO pageVO) {
+        return sqlSession.selectList("itemMapper.selectPartyList", pageVO);
 
     }
 

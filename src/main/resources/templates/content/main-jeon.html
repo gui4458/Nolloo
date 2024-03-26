@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorate="~{fragment/user_layout}">
+
+<th:block layout:fragment="content_css">
+<!-- html 파일이 열릴때 같이 실행되는 css -->
+<link rel="stylesheet" href="/css/fragment/item_list.css">
+<link rel="stylesheet" href="/css/content/main.css">
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+
+
+  <div class="mx-auto max-w-7xl py-1 px-4 md:px-3 container">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4" >
+      
+      <div class="item-lazy bg-white shadow-xl shadow-slate-900/5 rounded-lg" th:each="item : ${itemList}" >
+        <a th:href='@{/item/itemDetailForm(itemCode=${item.itemCode})}'>
+          <div class="flex flex-row p-3 lg:flex-col">
+            <div class="image-container w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg" style="background-image: url('/upload/item/your_image.jpg');" th:style="'background-image: url(\'' + '/upload/item/' + ${item.imgList[0].attachedFileName} + '\');'">
+            </div>
+            
+            <div class="ml-5 lg:ml-0 lg:mt-3">
+              <figcaption class="font-medium">
+                <div class="text-dark-600">
+                  <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">[[${item.cateName}]]</span><strong class="inline-flex text-xs py-1 pl-1">[[${item.itemPlace}]]</strong>
+                </div>
+                <div class="text-dark-600 font-bold mt-1">
+                  [[${item.itemTitle}]]                    
+                </div>
+                <div class="text-slate-600 text-sm mt-1">
+                  Description(Subtitle)
+                </div>
+                <div class="text-green-500 text-sm mt-1">
+                  [[${item.itemStartDate}]]~[[${item.itemEndDate}]]
+                </div>
+              </figcaption>
+            </div>
+
+          </div>
+        </a>
+        <div class="w-8 h-8 ml-3">
+          <th:block sec:authorize="isAuthenticated()">
+          <div class="" th:onclick="wishDelete(this,[[${item.itemCode}]])"
+            th:if="${#lists.contains(wishCodeList,item.itemCode)}">
+            ❤
+          </div>
+
+          <div class="" th:onclick="wishAdd(this,[[${item.itemCode}]])"
+            th:if="${!#lists.contains(wishCodeList,item.itemCode)}">
+            🤍
+          </div>
+        </th:block>
+        <th:block sec:authorize="isAnonymous()">
+          <div class="" onclick="gologin()">
+            🤍
+          </div>
+        </th:block>
+        </div>
+      </div> 
+
+    </div>
+  </div>
+
+  <th:block sec:authorize="isAuthenticated()">
+    <div class="fixed bottom-20 right-6">
+      <input type="button" onclick="location.href='/item/itemAddForm'" value="글쓰기" class="text-sm font-medium rounded-full bg-red-600 border border-slate-200 px-3 py-1.5 text-white hover:bg-white hover:text-red-600 hover:border-red-500 focus-visible:outline-none focus-visible:ring focus-visible:ring-red-300 transition">
+    </div> 
+  </th:block>
+  <div class="page-div">
+    <!-- ${searchVO.beginPage} -->
+    <!-- ${searchVO.endPage} -->
+
+    <th:block th:if="${searchVO.prev}">
+      <a
+        th:href="@{/item/list(nowPage=${searchVO.beginPage-1},chkCode=${chkCode})}">
+        이전 </a>
+    </th:block>
+
+    <th:block th:each="i : ${#numbers.sequence(searchVO.beginPage, searchVO.endPage)}">
+      <a
+        th:href="@{/item/list(nowPage=${i},chkCode=${chkCode})}">
+        [[${i}]] </a>
+    </th:block>
+
+    <th:block th:if="${searchVO.next}">
+      <a
+        th:href="@{/item/list(nowPage=${searchVO.endPage+1},chkCode=${chkCode})}">
+        다음 </a>
+    </th:block>
+  </div>
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+<!-- html 파일이 열릴때 같이 실행되는 js -->
+<script src="/js/content/main.js"></script>
+</th:block>
+
+</html>

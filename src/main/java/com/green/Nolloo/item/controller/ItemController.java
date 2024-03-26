@@ -5,6 +5,7 @@ import com.green.Nolloo.chat.vo.ChatVO;
 import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
+import com.green.Nolloo.item.vo.PageVO;
 import com.green.Nolloo.member.service.MemberService;
 import com.green.Nolloo.member.vo.MemberImageVO;
 import com.green.Nolloo.member.vo.MemberVO;
@@ -69,17 +70,15 @@ public class ItemController {
                         , @RequestParam(name="chkCode",required = false,defaultValue = "2")int chkCode
                         ,SearchVO searchVO,HttpSession session){
         searchVO.setCateCode(chkCode);
-        List<ItemVO> itemList = itemService.selectPartyList(searchVO);
-        model.addAttribute("itemList",itemList);
+//        List<ItemVO> itemList = itemService.selectPartyList(searchVO);
+//        model.addAttribute("itemList",itemList);
         //        전체 데이터 수
         searchVO.setCateCode(chkCode);
         int totalDataCnt = itemService.itemAllCnt(searchVO.getCateCode());
         searchVO.setTotalDataCnt(totalDataCnt);
-//        페이지 정보 세팅
-        searchVO.setPageInfo();
         List<Integer> wishCodeList = new ArrayList<>();
         model.addAttribute("chkCode",chkCode);
-        System.out.println(itemList);
+        
 
 
         if (authentication != null){
@@ -94,12 +93,16 @@ public class ItemController {
         session.setAttribute("memberId",user.getUsername());
         }
 
+        System.out.println("겟 list 끝");
         return "content/main";
     }
-
+    @ResponseBody
     @PostMapping("/list")
-    public List<ItemVO> list(SearchVO searchVO){
-        List<ItemVO> itemList = itemService.selectPartyList(searchVO);
+    public List<ItemVO> list(@RequestBody PageVO pageVO){
+        System.out.println("포스트 list 시작");
+        System.out.println(pageVO);
+        List<ItemVO> itemList = itemService.selectPartyList(pageVO);
+        System.out.println(itemList);
         return itemList;
     }
     //게시글 등록

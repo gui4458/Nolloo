@@ -2,6 +2,7 @@ package com.green.Nolloo.item.service;
 
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
+import com.green.Nolloo.item.vo.PageVO;
 import com.green.Nolloo.search.vo.SearchVO;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface ItemService {
     // board 등록하는 메소드
     void insertParty(ItemVO itemVO);
     // board 목록 조회 메소드
-    List<ItemVO> selectPartyList(SearchVO searchVO);
+    List<ItemVO> selectPartyList(PageVO pageVO);
     // board 디테일
     List<ItemVO> selectByDistance();
 
