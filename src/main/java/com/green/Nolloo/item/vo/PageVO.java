@@ -13,4 +13,9 @@ public class PageVO {
     private int offset; //
     private int cateCode;
 
+
+//    public PageVO(){
+//        limit = 9;
+//        offset = 0;
+//    }
 }

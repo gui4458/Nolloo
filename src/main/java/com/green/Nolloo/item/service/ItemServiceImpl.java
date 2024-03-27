@@ -1,5 +1,6 @@
 package com.green.Nolloo.item.service;
 
+import com.green.Nolloo.item.vo.CateVO;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.item.vo.PageVO;
@@ -67,7 +68,10 @@ public class ItemServiceImpl implements ItemService {
         return sqlSession.selectList("itemMapper.selectItemImage",itemVO);
     }
 
-
+    @Override
+    public List<CateVO> selectCate() {
+        return sqlSession.selectList("itemMapper.selectCate");
+    }
 
 
     @Override
@@ -92,8 +96,8 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<ItemVO> selectPartyList(PageVO pageVO) {
         return sqlSession.selectList("itemMapper.selectPartyList", pageVO);
-
     }
+
 
     @Override
     public List<ItemVO> selectByDistance() {

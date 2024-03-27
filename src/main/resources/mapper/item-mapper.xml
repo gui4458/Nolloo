@@ -35,6 +35,10 @@
         <result column="IS_MAIN" property="isMain"/>
         <result column="ITEM_CODE" property="itemCode"/>
     </resultMap>
+    <resultMap id="cate" type="com.green.Nolloo.item.vo.CateVO">
+        <id column="CATE_CODE" property="cateCode"/>
+        <result column="CATE_NAME" property="cateName"/>
+    </resultMap>
 
 <!--    item 등록쿼리-->
     <insert id="insertParty">
@@ -105,7 +109,9 @@
 
 
         WHERE IS_MAIN='Y'
+        <if test='cateCode != 0'>
         AND INFO.CATE_CODE = #{cateCode}
+        </if>
 <!--        <if test='searchText != null and !searchText.equals("")'>-->
 <!--            AND ${searchOption} LIKE CONCAT('%',#{searchText},'%')-->
 <!--        </if>-->
@@ -241,7 +247,9 @@
     <select id="itemAllCnt" resultType="int">
         SELECT COUNT(ITEM_CODE)
         FROM ITEM_INFO
-        WHERE CATE_CODE = #{cateCode}
+        <if test='cateCode != 0'>
+            WHERE CATE_CODE = #{cateCode}
+        </if>
     </select>
 
 <!--    나의 파티 조회-->
@@ -334,5 +342,10 @@
         WHERE IMG_CODE = #{imgCode}
     </select>
 
+    <select id="selectCate" resultMap="cate">
+        SELECT CATE_CODE
+            ,CATE_NAME
+        FROM CATE
+    </select>
 
 </mapper>
