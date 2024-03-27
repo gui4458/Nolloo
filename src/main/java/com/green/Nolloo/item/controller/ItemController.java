@@ -149,6 +149,14 @@ public class ItemController {
 
         System.out.println("Lat:" + lat +" Lng:"+ lng);
 
+        AddressVO addressVO = kakaoApiService.getAddressFromGeolocation(lat,lng);
+
+        System.out.println(addressVO);
+        itemVO.setRegion1(addressVO.getRegion1depthName());
+        itemVO.setRegion2(addressVO.getRegion2depthName());
+        itemVO.setRegion3(addressVO.getRegion3depthName());
+
+
         itemVO.setItemX(lat);
         itemVO.setItemY(lng);
 
