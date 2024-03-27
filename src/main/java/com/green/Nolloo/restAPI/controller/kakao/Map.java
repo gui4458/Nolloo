@@ -1,9 +1,11 @@
 package com.green.Nolloo.restAPI.controller.kakao;
 
 import com.green.Nolloo.item.service.ItemService;
+import com.green.Nolloo.item.vo.CategoryVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.restAPI.service.restAPIService;
 import com.green.Nolloo.restAPI.vo.MapVO;
+import com.green.Nolloo.search.vo.SearchVO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,14 +44,15 @@ public class Map {
     public String circle(Model model) {
 //        List<ItemVO> itemList = itemService.selectByDistance();
 //        model.addAttribute("itemList",itemList);
-
+        List<CategoryVO> catList = itemService.selectAllCategory();
+        model.addAttribute("catList",catList);
         return "/content/member/my-pos";
     }
 
     @ResponseBody
     @PostMapping("/now")
-    public List<ItemVO> nowPos() {
-        List<ItemVO> nowPos = itemService.selectByDistance();
+    public List<ItemVO> nowPos(SearchVO searchVO) {
+        List<ItemVO> nowPos = itemService.selectByDistance(searchVO);
         System.out.println(nowPos);
         return nowPos;
     }

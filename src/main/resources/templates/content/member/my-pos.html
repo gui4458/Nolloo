@@ -13,29 +13,34 @@
     </div>
 
     <div class="mx-auto max-w-7xl py-3 px-4 md:px-6 ">
-        <select>
-            <option value="Month">카테고리</option>
-            <option value="Jan">축제</option>
-            <option value="Feb">파티</option>
-        </select>
-        <select>
-            <option value="distance" selected>반경</option>
-            <option value="5">5km</option>
-            <option value="5">10km</option>
-        </select>
-        <select>
-            <option value="area">지역</option>
-            <option value="서울">5km</option>
-            <option value="경기도">10km</option>
-        </select>
-        <select>
-            <option value="Month">시기</option>
-            <option value="Jan">1월</option>
-            <option value="Feb">2월</option>
-        </select>
-        <button>
-            검색
-        </button>
+ 
+        <form action="/now" method="post" id="search-block"  class="grid grid-cols-1 lg:grid-cols-5 gap-4" >
+            <select id="searchByCode" name="cateCode" class="block w-full rounded-md border-0 px-2 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <option selected value="">Category</option>
+                <th:block th:each="cat : ${catList} ">
+                    <option th:value="${cat.cateCode}">[[${cat.cateName}]]</option>
+                </th>
+            </select>
+
+            <select class="block w-full rounded-md border-0 px-2 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <option selected>지역</option>
+                <option value="Jan">서울</option>
+                <option value="Jan">울산</option>
+                <option value="Jan">부산</option>
+            </select>
+
+            <select class="block w-full rounded-md border-0 px-2 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <option selected>-</option>
+                <option value="Jan">남구</option>
+                <option value="Jan">중구</option>
+                <option value="Jan">동구</option>
+            </select>
+
+            <input id="searchByDate" type="date" name="date" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="Date">
+
+            <input type="button" class="w-full rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600" value="Search" th:onclick="getMapData(document.querySelector('#searchByCode').value,document.querySelector('#searchByDate').value);">
+        
+        </form>
     </div>
 
     <div class="mx-auto max-w-7xl py-3 px-4 md:px-6 ">
@@ -89,6 +94,7 @@
         </div>
     </div>
 
+
 </th:block>
 
 <th:block layout:fragment="content_js">
@@ -96,6 +102,7 @@
     <!-- 3f269d19617ad795568529a85a77081a -->
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f269d19617ad795568529a85a77081a "></script>
     <script src="/js/my-pos.js"></script>
+    <!-- <script src="/js/searchMore.js"></script> -->
 </th:block>
 
 </html>

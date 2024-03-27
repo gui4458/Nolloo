@@ -20,8 +20,9 @@ public interface MemberService {
     //회원정보수정
     void revise(MemberVO memberVO);
 
-    //회원탈퇴
-    void deleteMember(MemberVO memberVO);
+    //회원탈퇴 업데이트(inActive)
+    void updateMemberInactive(MemberVO memberVO);
+
 
     //프로필 이미지
     String selectProfile(String memberId);

@@ -1,5 +1,6 @@
 package com.green.Nolloo.item.service;
 
+import com.green.Nolloo.item.vo.CategoryVO;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.item.vo.PageVO;
@@ -96,9 +97,20 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<ItemVO> selectByDistance() {
-        return sqlSession.selectList("itemMapper.selectByDistance");
+    public List<ItemVO> selectByDistance(SearchVO searchVO) {
+        return sqlSession.selectList("itemMapper.selectByDistance",searchVO);
     }
+
+    @Override
+    public List<ItemVO> searchByDistance(SearchVO searchVO) {
+        return sqlSession.selectList("itemMapper.searchByDistance",searchVO);
+    }
+
+    @Override
+    public List<CategoryVO> selectAllCategory() {
+        return sqlSession.selectList("itemMapper.selectAllCategory");
+    }
+
 
     //itemDetail 목록조회
     @Override

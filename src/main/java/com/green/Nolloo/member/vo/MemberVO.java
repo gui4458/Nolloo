@@ -21,5 +21,6 @@ public class MemberVO {
     private String joinDate;
     private String memberRoll;
     private MemberImageVO memberImageVO;
+    private String memberStatus;
 
 }

@@ -95,7 +95,9 @@ public class ItemController {
         session.setAttribute("memberId",user.getUsername());
         }
 
+
         System.out.println("겟 list 끝");
+
         return "content/main";
     }
     @ResponseBody

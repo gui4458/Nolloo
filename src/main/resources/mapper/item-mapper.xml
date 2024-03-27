@@ -28,6 +28,13 @@
         <result column="MEMBER_ID" property="memberId"/>
         <collection property="imgList"  resultMap="img"/>
     </resultMap>
+
+    <resultMap id="category" type="com.green.Nolloo.item.vo.ItemVO">
+        <result column="CATE_CODE" property="cateCode"/>
+        <result column="CATE_NAME" property="cateName"/>
+    </resultMap>
+
+
     <resultMap id="img" type="com.green.Nolloo.item.vo.ImgVO">
         <id column="IMG_CODE" property="imgCode"/>
         <result column="ORIGIN_FILE_NAME" property="originFileName"/>
@@ -103,9 +110,9 @@
         INNER JOIN CATE c
         ON INFO.CATE_CODE = c.CATE_CODE
 
-
         WHERE IS_MAIN='Y'
         AND INFO.CATE_CODE = #{cateCode}
+
 <!--        <if test='searchText != null and !searchText.equals("")'>-->
 <!--            AND ${searchOption} LIKE CONCAT('%',#{searchText},'%')-->
 <!--        </if>-->
@@ -118,6 +125,7 @@
         ORDER BY ITEM_START_DATE DESC
 
         LIMIT ${limit} OFFSET ${offset}
+
     </select>
 
     <select id="selectByDistance" resultMap="item">
@@ -143,10 +151,23 @@
         ON INFO.CATE_CODE = c.CATE_CODE
 
         WHERE IS_MAIN='Y'
+        <if test='cateCode != null and cateCode != ""'>
+            AND INFO.CATE_CODE = #{cateCode}
+        </if>
 
+        <if test='from != null and !from.equals("")'>
+            AND DATE_FORMAT(ITEM_START_DATE, '%Y-%m-%d') &gt;= #{from}
+        </if>
+        <if test='to != null and !to.equals("")'>
+            AND #{to} &gt;= DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d')
+        </if>
         ORDER BY ITEM_START_DATE DESC
+    </select>
 
 
+
+    <select id="selectAllCategory" resultMap="category">
+        SELECT * FROM CATE
     </select>
 
 
