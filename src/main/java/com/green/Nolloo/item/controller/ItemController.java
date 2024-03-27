@@ -95,7 +95,7 @@ public class ItemController {
         session.setAttribute("memberImage",memberService.selectProfile(user.getUsername()));
         session.setAttribute("memberId",user.getUsername());
         }
-
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         return "content/main";
     }
 

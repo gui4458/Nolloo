@@ -1,7 +1,7 @@
 .main-img-div{
     
     width:1400px;
-    height:1000px;
+    height:700px;
     overflow:hidden;
     margin:0 auto;
     
@@ -26,9 +26,9 @@ b{
     
     width:100%;
     height:100%;
-    object-fit:cover;
-    background-size:contain;
-    background-position: center;
+    
+    background-size:1000px 800px;
+    background-position: top;
     background-attachment: fixed;
 
 }
