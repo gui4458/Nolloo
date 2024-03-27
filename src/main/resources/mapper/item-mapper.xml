@@ -26,6 +26,9 @@
         <result column="CATE_CODE" property="cateCode"/>
         <result column="CATE_NAME" property="cateName"/>
         <result column="MEMBER_ID" property="memberId"/>
+        <result column="region_1" property="region1"/>
+        <result column="region_2" property="region2"/>
+        <result column="region_3" property="region3"/>
         <collection property="imgList"  resultMap="img"/>
     </resultMap>
 
@@ -62,6 +65,10 @@
             , ITEM_START_DATE
             , ITEM_END_DATE
             , MEMBER_ID
+            , REGION_1
+            , REGION_2
+            , REGION_3
+
         )
         VALUES(
             #{itemCode}
@@ -76,6 +83,10 @@
             , #{itemStartDate}
             , #{itemEndDate}
             , #{memberId}
+            , #{region1}
+            , #{region2}
+            , #{region3}
+
         )
     </insert>
 
