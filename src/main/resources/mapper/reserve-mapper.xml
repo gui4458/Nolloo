@@ -44,7 +44,10 @@
         , ITEM_TITLE
         FROM reserve INNER JOIN item_info
         ON reserve.ITEM_CODE = item_info.ITEM_CODE
-        WHERE reserve.MEMBER_ID=#{memberId}
+        <if test="MEMBER_ID =! null">
+            WHERE reserve.MEMBER_ID=#{memberId}
+        </if>
+
     </select>
 
 <!--   예약 상세 내역 조회-->
