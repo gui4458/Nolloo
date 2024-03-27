@@ -83,8 +83,8 @@ public class ItemController {
 //        List<Integer> wishCodeList = new ArrayList<>();
         model.addAttribute("cateCode",cateCode);
         List<CateVO> cateList = itemService.selectCate();
-        model.addAttribute("cateList",cateList);
 
+        session.setAttribute("cateList",cateList);
 //        if (authentication != null){
 //            User user = (User)authentication.getPrincipal();
 //

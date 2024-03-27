@@ -82,7 +82,7 @@
                                     <div class="md:w-1/2">
                                         <div class="text-xs uppercase font-semibold text-red-400 mb-3">카테고리</div>
                                         <ul class="space-y-1">
-                                            <li th:each="cate : ${cateList}">
+                                            <li th:each="cate : ${session.cateList}">
                                                 <span
                                                     class="flex space-x-4 px-3 py-2.5 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition"
                                                     th:onclick="goParty([[${cate.cateCode}]])">
