@@ -40,9 +40,11 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public void deleteMember(MemberVO memberVO) {
-        sqlSession.delete("memberMapper.deleteMember",memberVO);
+    public void updateMemberInactive(MemberVO memberVO) {
+        sqlSession.delete("memberMapper.deleteProfile",memberVO);
+        sqlSession.update("memberMapper.updateMemberInactive",memberVO);
     }
+
 
     @Override
     public String selectProfile(String memberId) {

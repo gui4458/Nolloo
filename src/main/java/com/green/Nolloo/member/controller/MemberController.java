@@ -1,9 +1,12 @@
 package com.green.Nolloo.member.controller;
 
+import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ImgVO;
+import com.green.Nolloo.member.service.MemberService;
 import com.green.Nolloo.member.service.MemberServiceImpl;
 import com.green.Nolloo.member.vo.MemberImageVO;
 import com.green.Nolloo.member.vo.MemberVO;
+import com.green.Nolloo.util.PathVariable;
 import com.green.Nolloo.util.UploadUtil;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
@@ -13,11 +16,10 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
 
 @Controller
 @RequestMapping("/member")
@@ -27,6 +29,8 @@ public class MemberController {
 
     @Autowired
     private BCryptPasswordEncoder encoder;
+
+    private ItemService itemService;
 
 
     //회원가입
@@ -93,15 +97,29 @@ public class MemberController {
 
     }
     //회원탈퇴
-    @GetMapping("deleteMember")
-    public String deleteMember(MemberVO memberVO,Authentication authentication){
+    @ResponseBody
+    @PostMapping("/deleteMember")
+    public void deleteMember(MemberVO memberVO,Authentication authentication){
         User user = (User)authentication.getPrincipal();
 
+
+
+        String Path = PathVariable.PROFILE_UPLOAD_PATH;//profile경로
+        File file = new File(Path + memberService.selectProfile(user.getUsername()));//경로+파일이미지(AttachedFileName)
+
+        try {
+            if(file.delete()){
+                System.out.println("파일을 삭제 하였습니다");
+            }else {
+                System.out.println("파일 삭제에 실패하였습니다");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
         memberVO.setMemberId(user.getUsername());
+        memberService.updateMemberInactive(memberVO);
 
-        memberService.deleteMember(memberVO);
-
-        return "redirect:/item/list";
     }
 
 }
