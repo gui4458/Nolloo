@@ -162,6 +162,7 @@
         , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
         , ATTACHED_FILE_NAME
         , READ_CNT
+        , REGION_1
         FROM ITEM_INFO INFO
         INNER JOIN ITEM_IMAGE IMG
         ON INFO.ITEM_CODE = IMG.ITEM_CODE
@@ -179,6 +180,10 @@
         <if test='to != null and !to.equals("")'>
             AND #{to} &gt;= DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d')
         </if>
+        <if test='region1 != null and region1 !=""'>
+            AND region_1 = #{region1}
+        </if>
+
         ORDER BY ITEM_START_DATE DESC
     </select>
 
