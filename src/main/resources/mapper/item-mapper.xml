@@ -168,7 +168,7 @@
 
 
 
-<!--    itemDetail 조회쿼리 -->
+<!--    item상세페이지 조회쿼리 -->
 <select id="selectPartyDetail" resultMap="item">
     SELECT
         INFO.ITEM_CODE
@@ -187,6 +187,7 @@
         , ITEM_Y
         , READ_CNT
         , CATE_CODE
+        , MEMBER_ID
     FROM ITEM_INFO INFO
     INNER JOIN ITEM_IMAGE IMG
     ON INFO.ITEM_CODE=IMG.ITEM_CODE
