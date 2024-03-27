@@ -96,8 +96,13 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<ItemVO> selectByDistance() {
-        return sqlSession.selectList("itemMapper.selectByDistance");
+    public List<ItemVO> selectByDistance(SearchVO searchVO) {
+        return sqlSession.selectList("itemMapper.selectByDistance",searchVO);
+    }
+
+    @Override
+    public List<ItemVO> searchByDistance(SearchVO searchVO) {
+        return sqlSession.selectList("itemMapper.searchByDistance",searchVO);
     }
 
     @Override

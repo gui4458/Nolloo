@@ -110,12 +110,9 @@
         INNER JOIN CATE c
         ON INFO.CATE_CODE = c.CATE_CODE
 
-
         WHERE IS_MAIN='Y'
         AND INFO.CATE_CODE = #{cateCode}
-<!--        <if test='searchText != null and !searchText.equals("")'>-->
-<!--            AND ${searchOption} LIKE CONCAT('%',#{searchText},'%')-->
-<!--        </if>-->
+
         <if test='from != null and !from.equals("")'>
             AND DATE_FORMAT(ITEM_START_DATE, '%Y-%m-%d') &gt;= #{from}
         </if>
@@ -124,7 +121,7 @@
         </if>
         ORDER BY ITEM_START_DATE DESC
 
-<!--        LIMIT ${displayDataCnt} OFFSET ${displayDataCnt * (nowPage-1)}-->
+
     </select>
 
     <select id="selectByDistance" resultMap="item">
@@ -150,9 +147,20 @@
         ON INFO.CATE_CODE = c.CATE_CODE
 
         WHERE IS_MAIN='Y'
+        <if test='cateCode != null and cateCode != ""'>
+            AND INFO.CATE_CODE = #{cateCode}
+        </if>
 
+        <if test='from != null and !from.equals("")'>
+            AND DATE_FORMAT(ITEM_START_DATE, '%Y-%m-%d') &gt;= #{from}
+        </if>
+        <if test='to != null and !to.equals("")'>
+            AND #{to} &gt;= DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d')
+        </if>
         ORDER BY ITEM_START_DATE DESC
     </select>
+
+
 
     <select id="selectAllCategory" resultMap="category">
         SELECT * FROM CATE

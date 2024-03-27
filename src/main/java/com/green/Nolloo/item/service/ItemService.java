@@ -13,7 +13,8 @@ public interface ItemService {
     // board 목록 조회 메소드
     List<ItemVO> selectPartyList(SearchVO searchVO);
     // board 디테일
-    List<ItemVO> selectByDistance();
+    List<ItemVO> selectByDistance(SearchVO searchVO);
+    List<ItemVO> searchByDistance(SearchVO searchVO);
 
     List<CategoryVO> selectAllCategory();
     ItemVO selectPartyDetail(ItemVO itemVO);

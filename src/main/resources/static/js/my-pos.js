@@ -19,73 +19,70 @@ function deg2rad(deg) {
     return deg * (Math.PI / 180);
 }
 
-function getMapData() {
-    fetch('/now', { //요청경로
+function getMapData(code, date) {
+    const fetchRequest = {
         method: 'POST',
         cache: 'no-cache',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-        },
-        //컨트롤러로 전달할 데이터
-        body: new URLSearchParams({
-            // 데이터명 : 데이터값
-        })
-    })
-    .then((response) => {
-        if(!response.ok){
-            alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
-            return ;
         }
+    };
 
-        // return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
-        return response.json(); //나머지 경우에 사용
-    })
-    //fetch 통신 후 실행 영역
-    .then((data) => {//data -> controller에서 리턴되는 데이터!
-      //  console.log(data);
-        drawMap(data);
-        navigator.geolocation.getCurrentPosition(position => {
-            const currentLat = position.coords.latitude;
-            const currentLon = position.coords.longitude;
+    const requestBody = {};
+    if (code) {
+        requestBody.cateCode = code;
+    }
+    if (date) {
+        requestBody.from = date;
+    }
+    fetchRequest.body = new URLSearchParams(requestBody);
 
-            // Calculate distance for each item and sort by distance
-            data.forEach(item => {
-                const distance = calculateDistance(currentLat, currentLon, item.itemX, item.itemY);
-                item.distance = distance;
+    fetch('/now', fetchRequest)
+        .then((response) => {
+            if (!response.ok) {
+                alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+                return;
+            }
+            return response.json();
+        })
+        .then((data) => {
+            drawMap(data);
+            navigator.geolocation.getCurrentPosition(position => {
+                const currentLat = position.coords.latitude;
+                const currentLon = position.coords.longitude;
+
+                data.forEach(item => {
+                    const distance = calculateDistance(currentLat, currentLon, item.itemX, item.itemY);
+                    item.distance = distance;
+                });
+                data.sort((a, b) => a.distance - b.distance);
+
+                console.log(data);
+
+                displayItems(data);
             });
-            data.sort((a, b) => a.distance - b.distance);
-
-            console.log(data);
-
-
-            
-            // Display items sorted by distance
-            displayItems(data);
+        })
+        .catch(err => {
+            alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+            console.log(err);
         });
-    })
-    //fetch 통신 실패 시 실행 영역
-    .catch(err=>{
-        alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-        console.log(err);
-    });
-
 }
-// Function to display items sorted by distance
+
+
 function displayItems(items) {
     const itemListContainer = document.getElementById('item-list');
-    itemListContainer.innerHTML = ''; // Clear previous items
+    itemListContainer.innerHTML = ''; 
 
 
 
     items.forEach(item => {
         const itemElement = document.createElement('div');
-        let str = ''; // Declare str here
+        let str = ''; 
 
         if (item.cateCode == 2) {
-            str = 'item'; // Assign item to str if cateCode is 1
+            str = 'item';
         }
         else {
-            // Provide a default value or define itemSolo somewhere
             str = 'itemSolo'; 
         }
 
@@ -205,5 +202,4 @@ function drawMap(data) {
     }
 
 }
-
-
+ 

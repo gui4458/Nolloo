@@ -32,6 +32,7 @@ public class ItemVO {
     private int cateCode;
     private String cateName;
     private String memberId;
+    private CategoryVO categoryVO;
     private List<ImgVO> imgList;
     private ChatVO chatVO;
 
