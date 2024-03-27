@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="/css/content/main.css">
 </th:block>
 <th:block layout:fragment="contentFragment">
-
+    <input id="loginId" type="hidden" th:value="${session.memberId}">
+    <input id="cateCode" type="hidden" th:value="${cateCode}">
+    
+    
+    
     <div class="mx-auto max-w-7xl py-1 px-4 md:px-3 " >
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 container" id="itemListContainer">
             <!-- itemList가 동적으로 추가될 자리 -->

@@ -3,6 +3,7 @@ package com.green.Nolloo.item.controller;
 import com.green.Nolloo.chat.service.ChatService;
 import com.green.Nolloo.chat.vo.ChatVO;
 import com.green.Nolloo.item.service.ItemService;
+import com.green.Nolloo.item.vo.CateVO;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.item.vo.PageVO;
@@ -41,6 +42,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -69,20 +71,47 @@ public class ItemController {
     //파티게시글 목록조회
     @GetMapping("/list")
     public String list(Model model, Authentication authentication, ItemVO itemVO
-                        , @RequestParam(name="chkCode",required = false,defaultValue = "2")int chkCode
+                        , @RequestParam(name="cateCode",required = false,defaultValue = "0")int cateCode
                         ,SearchVO searchVO,HttpSession session){
-        searchVO.setCateCode(chkCode);
+//        searchVO.setCateCode(cateCode);
 //        List<ItemVO> itemList = itemService.selectPartyList(searchVO);
 //        model.addAttribute("itemList",itemList);
         //        전체 데이터 수
-        searchVO.setCateCode(chkCode);
+//        int totalDataCnt = itemService.itemAllCnt(searchVO.getCateCode());
+//        searchVO.setTotalDataCnt(totalDataCnt);
+//        System.out.println("totalDataCnt = " + totalDataCnt);
+//        List<Integer> wishCodeList = new ArrayList<>();
+        model.addAttribute("cateCode",cateCode);
+        List<CateVO> cateList = itemService.selectCate();
+        model.addAttribute("cateList",cateList);
+
+//        if (authentication != null){
+//            User user = (User)authentication.getPrincipal();
+//
+//            List<WishViewVO> wishList = wishService.selectWish(user.getUsername());
+//            for (WishViewVO e : wishList){
+//                wishCodeList.add(e.getItemCode());
+//            }
+//            model.addAttribute("wishCodeList",wishCodeList);
+//        session.setAttribute("memberImage",memberService.selectProfile(user.getUsername()));
+//        session.setAttribute("memberId",user.getUsername());
+//            System.out.println("로그인함" + wishCodeList);
+//
+//        }
+
+
+        return "content/main";
+    }
+    @ResponseBody
+    @PostMapping("/list")
+    public Map<String,Object> list(@RequestBody PageVO pageVO,Authentication authentication,SearchVO searchVO){
+        List<ItemVO> itemList = itemService.selectPartyList(pageVO);
+        Map<String,Object> data = new HashMap<String, Object>();
+        data.put("itemList",itemList);
+        List<Integer> wishCodeList = new ArrayList<>();
         int totalDataCnt = itemService.itemAllCnt(searchVO.getCateCode());
         searchVO.setTotalDataCnt(totalDataCnt);
-        List<Integer> wishCodeList = new ArrayList<>();
-        model.addAttribute("chkCode",chkCode);
-        
-
-
+        data.put("dataCnt",totalDataCnt);
         if (authentication != null){
             User user = (User)authentication.getPrincipal();
 
@@ -90,24 +119,11 @@ public class ItemController {
             for (WishViewVO e : wishList){
                 wishCodeList.add(e.getItemCode());
             }
-            model.addAttribute("wishCodeList",wishCodeList);
-        session.setAttribute("memberImage",memberService.selectProfile(user.getUsername()));
-        session.setAttribute("memberId",user.getUsername());
         }
 
+        data.put("wishCodeList", wishCodeList);
+        return data;
 
-        System.out.println("겟 list 끝");
-
-        return "content/main";
-    }
-    @ResponseBody
-    @PostMapping("/list")
-    public List<ItemVO> list(@RequestBody PageVO pageVO){
-        System.out.println("포스트 list 시작");
-        System.out.println(pageVO);
-        List<ItemVO> itemList = itemService.selectPartyList(pageVO);
-        System.out.println(itemList);
-        return itemList;
     }
     //게시글 등록
     @GetMapping("/itemAddForm")

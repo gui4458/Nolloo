@@ -97,7 +97,7 @@
     <div>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         
-        <th:block th:if="${chkCode == 1}">
+        <th:block th:if="${cateCode == 1}">
 
           <div class="col-3" th:each="item : ${itemList}" th:if="${item.cateCode == 1}">
             <div class="card-item" >
@@ -134,7 +134,7 @@
           </div>
         </th:block>
 
-        <th:block th:if="${chkCode == 2}">
+        <th:block th:if="${cateCode == 2}">
 
           <div class="col-3" th:each="item : ${itemList}" th:if="${item.cateCode == 2}">
             <div class="card-item" >
@@ -175,7 +175,7 @@
 
   </div>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    <th:block th:if="${chkCode == 1}">
+    <th:block th:if="${cateCode == 1}">
 
       <div class="col-4" th:each="item : ${itemList}" th:if="${item.cateCode == 1}">
         <div class="card shadow-sm">
@@ -227,7 +227,7 @@
     </th:block>
 
 
-    <th:block th:if="${chkCode == 2}">
+    <th:block th:if="${cateCode == 2}">
 
 
 

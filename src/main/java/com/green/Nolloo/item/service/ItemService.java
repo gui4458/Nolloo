@@ -1,6 +1,8 @@
 package com.green.Nolloo.item.service;
 
+
 import com.green.Nolloo.item.vo.CategoryVO;
+import com.green.Nolloo.item.vo.CateVO;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.item.vo.PageVO;
@@ -43,6 +45,7 @@ public interface ItemService {
 
     List<String> selectItemImage(ItemVO itemVO);
 
+    List<CateVO> selectCate();
 
     //imgCode로 첨부파일명 조회
     String findAttachedFileNameByImgCode(ImgVO imgVO);
