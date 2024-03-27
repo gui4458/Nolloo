@@ -17,6 +17,7 @@
         <result column="ADDR_DETAIL" property="addrDetail"/>
         <result column="MEMBER_ROLL" property="memberRoll"/>
         <result column="JOIN_DATE" property="joinDate"/>
+        <result column="MEMBER_STATUS" property="memberStatus"/>
         <association property="memberImageVO" resultMap="memberImg"/>
     </resultMap>
 
@@ -74,6 +75,7 @@
         ,MEMBER_ROLL
         FROM NOLLOO_MEMBER
         WHERE MEMBER_ID=#{memberId}
+        AND MEMBER_STATUS ='active'
     </select>
 
 
@@ -90,6 +92,7 @@
         , ADDR_DETAIL
         FROM NOLLOO_MEMBER
         WHERE MEMBER_ID=#{memberId}
+        AND MEMBER_STATUS ='active'
     </select>
 
     <update id="revise">
@@ -105,26 +108,28 @@
         , ADDR_DETAIL= #{addrDetail}
 
         WHERE MEMBER_ID=#{memberId}
+        AND MEMBER_STATUS ='active'
     </update>
 
-    <delete id="deleteMember">
-        DELETE FROM NOLLOO_MEMBER
-        WHERE MEMBER_ID=#{memberId}
-
-    </delete>
+    <update id="updateMemberInactive">
+        UPDATE NOLLOO_MEMBER
+        SET MEMBER_STATUS = 'inactive'
+        WHERE MEMBER_ID= #{memberId}
+    </update>
     <select id="selectProfile" resultType="String">
         SELECT
         ATTACHED_FILE_NAME
-        FROM MEMBER_IMAGE
-        WHERE MEMBER_ID = #{memberId}
+        FROM MEMBER_IMAGE MI INNER JOIN
+        NOLLOO_MEMBER NM
+        ON NM.MEMBER_ID= MI.MEMBER_ID
+        WHERE MI.MEMBER_ID = #{memberId}
+        AND MEMBER_STATUS ='active'
     </select>
-    <select id="selectAllProfile" resultMap="memberImg">
-        SELECT MEMBER_ID
-            ,ATTACHED_FILE_NAME
+    <delete id="deleteProfile">
+        DELETE
         FROM MEMBER_IMAGE
-    </select>
-
-
+        WHERE MEMBER_ID=#{memberId}
+    </delete>
 	
 </mapper>
 
