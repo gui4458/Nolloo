@@ -28,7 +28,7 @@
                 <th:block th:if="${item.cateCode == 2}">
                     <th:block th:each="img : ${item.imgList}">
                         <th:block th:if="${img.isMain=='Y'}">
-                            <div class="bg-fixed"
+                            <div class="img-div"
                                 th:style="'background-image:url(/upload/item/' + ${img.attachedFileName} + ');background-repeat:no-repeat;'">
                             </div>
 
@@ -47,17 +47,17 @@
             </div>
 
             <!------------- 장소 ----------->
-            
-                <div style="font-size: 15px;">
-                    <!-- 동만 나오게 설정 예정 -->
-                    [[${item.itemPlace}]]
-                </div>
-            
+
+            <div style="font-size: 15px;">
+                <!-- 동만 나오게 설정 예정 -->
+                [[${item.itemPlace}]]
+            </div>
+
         </div>
         <!------------ 제목 ---------->
 
-        <div class="drop-shadow-lg ">
-            <b>[[${item.itemTitle}]]</b>
+        <div class="drop-shadow-lg text-3xl font-semibold">
+            [[${item.itemTitle}]]
         </div>
 
 
@@ -71,30 +71,30 @@
         <!--------------------- 상세이미지  ------------------------->
 
         <div class="grid grid-cols-3 gap-4">
-            <span class="flex flex-row p-4">
-                <th:block th:if="${item.cateCode == 1}">
+            <th:block th:if="${item.cateCode == 1}">
+                <span class="flex flex-row p-4">
                     <th:block th:each="img : ${item.imgList}">
                         <th:block th:if="${img.isMain=='N'}">
                             <div class="lg:w-full ml-5 lg:ml-2 ">
                                 <img th:src="@{'/upload/itemSolo/'+${img.attachedFileName}}"
-                                    class="sub-img-div object-center lg:rounded-lg " alt="">
+                                    class="sub-img-div lg:rounded-lg " alt="">
                             </div>
                         </th:block>
                     </th:block>
-                </th:block>
-            </span>
-            <span class="flex flex-row p-4">
-                <th:block th:if="${item.cateCode == 2}">
+                </span>
+            </th:block>
+            <th:block th:if="${item.cateCode == 2}">
+                <span class="flex flex-row p-4">
                     <th:block th:each="img : ${item.imgList}">
                         <th:block th:if="${img.isMain=='N'}">
                             <div class="lg:w-full ml-5 lg:ml-2">
-                                <img width="100%" th:src="@{'/upload/item/'+${img.attachedFileName}}"
-                                    class="sub-img-div object-center lg:rounded-lg" alt="">
+                                <img th:src="@{'/upload/item/'+${img.attachedFileName}}"
+                                    class="sub-img-div lg:rounded-lg" alt="">
                             </div>
                         </th:block>
                     </th:block>
-                </th:block>
-            </span>
+                </span>
+            </th:block>
         </div>
         <!------------ 내용 ------------>
         <div class="py-4 px-4 border-slate-100 bg-white shadow-xl shadow-slate-900/5 rounded-lg ">
