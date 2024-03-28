@@ -5,8 +5,8 @@ let limit = 0;
 let offset = 0;
 // 페이지 로드 시 초기 아이템 가져오기
 let itemHtml = ``
-const loginId = document.querySelector('#loginId')
-
+const loginId = document.querySelector('#loginId').value
+console.log(loginId)
 
 // fetchInitialItems();
 window.scrollTo(-10, -10)
@@ -112,10 +112,10 @@ function displayItems(items) {
         items.itemList.forEach(item => {
             let wishchk = items.wishCodeList.includes(item.itemCode)
             itemHtml = itemHtml + `
-                
+
                     <div class="item-lazy bg-white shadow-xl shadow-slate-900/5 rounded-lg group">
-                        <a href='/item/itemDetailForm?itemCode=${item.itemCode}'>
-                        <div class="flex flex-row p-3 lg:flex-col">
+                    <div x-data="{showModal:true}" >
+                        <div class="flex flex-row p-3 lg:flex-col" @click="showModal=true">
                             <div class="image-container relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">`
             if (item.cateCode == 1) {
                 itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/itemSolo/${item.imgList[0].attachedFileName}" alt="">
@@ -169,11 +169,48 @@ function displayItems(items) {
                             </div>
     
                         </div>
-                        </a>
+                        
                         <div class="w-8 h-8 ml-3">
                         </div>
-                                </div>
-                                `
+                    </div>
+                    
+
+                    <!-- dialog 시작 , 여기는 dialog 오픈 시 배경이 검해지는 부분 -->
+    <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
+        x-show="showModal"
+        x-transition:enter="ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0">
+
+        <!-- 찐 dialog 시작 부분 -->
+        <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all my-8 w-full max-w-lg"
+            x-show="showModal"
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            @click.outside="showModal=false">
+
+            <!-- dialog body -->
+            <div class="bg-white p-6">
+                <h1 class="font-bold text-lg mb-2">Deactivate account</h1>
+                <p class="text-sm text-gray-500">Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone.</p>
+            </div>
+
+            <!-- dialog footer -->
+            <div class="flex gap-3 justify-end bg-gray-50 px-4 py-2">
+                <button type="button" class="inline-flex justify-center rounded-md bg-red-600 px-3 py-1 text-sm font-semibold text-white shadow-sm hover:bg-red-500 ml-3 w-auto">Deactivate</button>
+                <button @click="showModal=false" type="button" class="inline-flex justify-center rounded-md bg-white px-3 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 mt-0 w-auto">Cancel</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        `
         });
     }
 
