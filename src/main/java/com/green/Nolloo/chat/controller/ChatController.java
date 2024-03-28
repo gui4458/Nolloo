@@ -40,6 +40,7 @@ public class ChatController {
             User user = (User)authentication.getPrincipal();
             reserveVO.setMemberId(user.getUsername());
             List<ReserveVO> reserveList = reserveService.selectReserve(reserveVO);
+        System.out.println(reserveList);
         return reserveList;
     }
 

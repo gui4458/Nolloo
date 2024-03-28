@@ -170,38 +170,10 @@ function displayItems(items) {
     
                         </div>
                         </a>
-                        <div class="w-8 h-8 ml-3">`
-            if (loginId != null) {
-                if (wishchk) {
-                    itemHtml += `
-                                <div class="" onclick="wishDelete(this,${item.itemCode})">
-                                ❤
+                        <div class="w-8 h-8 ml-3">
+                        </div>
                                 </div>
-                                </div>
-                                </div>`
-                } else {
-                    itemHtml += `<div class="" onclick="wishAdd(this,${item.itemCode})">
-                                🤍
-                                </div>
-                                
-                                </div>
-                                </div>`
-                }
-
-
-
-            } else {
-                itemHtml += `
-                                
-                                <div class="" onclick="gologin()">
-                                🤍
-                                </div>
-                            
-                            </div>
-                            </div>
-                            `
-            }
-
+                                `
         });
     }
 
@@ -211,7 +183,7 @@ function displayItems(items) {
 // 하트 추가 및 삭제 함수
 // 하트 누르면 추가
 function wishAdd(divTag, itemCode) {
-    const head = divTag.parentElement
+    const head = divTag
     fetch('/wish/insertWish', { //요청경로
         method: 'POST',
         cache: 'no-cache',
@@ -235,11 +207,8 @@ function wishAdd(divTag, itemCode) {
             //         location.href = `/wish/goWishList`;
             //     }
             const strDelete = `
-        
-            <div class="col heart" 
-            onclick="wishDelete(this,${itemCode})">
-            ❤
-            </div>
+            <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${itemCode})"><i class="ri-heart-3-fill"></i></sapn>
+
         `
             head.replaceChildren(head.textContent = '');
             head.insertAdjacentHTML("afterbegin", strDelete)
@@ -286,11 +255,8 @@ function wishDelete(divTag, itemCode) {
             //         location.href = `/wish/goWishList`;
             //     }
             const strInsert = `
-        
-            <div class="col heart" 
-            onclick="wishAdd(this,${itemCode})">
-            🤍
-            </div>
+            <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishAdd(this,${itemCode})"><i class="ri-heart-3-line"></i></sapn>
+
         `
             head.replaceChildren(head.textContent = '');
             head.insertAdjacentHTML("afterbegin", strInsert)
