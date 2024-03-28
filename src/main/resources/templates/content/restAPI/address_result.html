@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Address Results</title>
+</head>
+<body>
+    <h2>Address Results</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="address, index : ${addresses}">
+                <td th:text="${index.index + 1}"></td>
+                <td th:text="${address}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

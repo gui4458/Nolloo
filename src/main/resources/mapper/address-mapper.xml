@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="addressMapper">
+    <resultMap id="addresses" type="com.green.Nolloo.restAPI.vo.AddressFormVO">
+        <result column="ZIP_NO" property="zipNo"/>
+        <result column="SIDO" property="sido"/>
+        <result column="SIGUNGU" property="sigungu"/>
+        <result column="DORO" property="doro"/>
+        <result column="BUILD_NO1" property="buildNo1"/>
+        <result column="BUILD_NM" property="buildNm"/>
+    </resultMap>
+
+    <select id="selectAddress" resultMap="addresses" >
+        SELECT * FROM ZIPCODE
+
+        <foreach collection="array" item="data" >
+            <if test="data.length == 0">
+                WHERE DORO=#{doro}
+            </if>
+            <if test="data.length == 1">
+                WHERE DORO=#{doro} AND BUILD_NO1=#{buildNo1}
+            </if>
+        </foreach>
+
+    </select>
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
