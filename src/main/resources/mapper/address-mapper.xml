@@ -14,19 +14,13 @@
 
     <select id="selectAddress" resultMap="addresses" >
         SELECT * FROM ZIPCODE
-
-        <foreach collection="array" item="data" >
-            <if test="data.length == 0">
-                WHERE DORO=#{doro}
+            <if test="array.length == 1">
+                WHERE DORO=#{array[0]}
             </if>
-            <if test="data.length == 1">
-                WHERE DORO=#{doro} AND BUILD_NO1=#{buildNo1}
+            <if test="array.length == 2">
+                WHERE DORO=#{array[0]} AND BUILD_NO1=#{array[1]}
             </if>
-        </foreach>
-
     </select>
-
-
 
 </mapper>
 
