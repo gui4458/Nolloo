@@ -44,8 +44,7 @@ public class ReserveController{
     @GetMapping("/reserveList")
     public String reserveList(ReserveVO reserveVO, Authentication authentication, Model model){
         User user = (User)authentication.getPrincipal();
-        reserveVO.setMemberId(user.getUsername());
-        List<ReserveVO> reserveList = reserveService.selectReserve(reserveVO);
+        List<ReserveVO> reserveList = reserveService.selectReserve(user.getUsername());
         System.out.println(reserveList);
         model.addAttribute("reserveList",reserveList);
 

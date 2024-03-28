@@ -6,6 +6,7 @@ import com.green.Nolloo.member.service.MemberService;
 import com.green.Nolloo.member.service.MemberServiceImpl;
 import com.green.Nolloo.member.vo.MemberImageVO;
 import com.green.Nolloo.member.vo.MemberVO;
+import com.green.Nolloo.reserve.service.ReserveServiceImpl;
 import com.green.Nolloo.util.PathVariable;
 import com.green.Nolloo.util.UploadUtil;
 import jakarta.annotation.Resource;
@@ -26,6 +27,8 @@ import java.io.File;
 public class MemberController {
 @Resource(name="memberService")
     private MemberServiceImpl memberService;
+@Resource(name="reserveService")
+    private ReserveServiceImpl reserveService;
 
     @Autowired
     private BCryptPasswordEncoder encoder;
@@ -55,8 +58,10 @@ public class MemberController {
 
 //    로그인 결과 화면
     @GetMapping("/loginResult")
-    public String login(){
-
+    public String login(Authentication authentication,HttpSession session){
+        User user = (User)authentication.getPrincipal();
+        session.setAttribute("memberId",user.getUsername());
+        session.setAttribute("reserveList",reserveService.selectReserve(user.getUsername()));
     return "content/member/login_result";
 
     }

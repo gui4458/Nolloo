@@ -310,3 +310,12 @@ function wishDelete(divTag, itemCode) {
 function gologin() {
     alert('로그인을 해주세요.');
 }
+
+function goChat(itemCode) {    
+    // 채팅방 URL 생성
+    const chatRoomUrl = `http://192.168.30.107:8081/chat/${itemCode}`;
+
+    // 채팅방을 새 창으로 열기
+    const windowFeatures = "left=1500,top=100,width=750,height=750,popup";
+    window.open(chatRoomUrl, "_blank", windowFeatures);
+}

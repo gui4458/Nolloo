@@ -197,10 +197,9 @@ public class ItemController {
 
         if (authentication != null){
             User user = (User)authentication.getPrincipal();
-            System.out.println(user.getUsername());
             reserveVO.setMemberId(user.getUsername());
             model.addAttribute("reserveCnt",reserveService.reserveDone(reserveVO));
-            List<ReserveVO> reserveList = reserveService.selectReserve(reserveVO);
+            List<ReserveVO> reserveList = reserveService.selectReserve(user.getUsername());
             model.addAttribute("reserveList",reserveList);
 
         }
