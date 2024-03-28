@@ -200,6 +200,9 @@ public class ItemController {
             System.out.println(user.getUsername());
             reserveVO.setMemberId(user.getUsername());
             model.addAttribute("reserveCnt",reserveService.reserveDone(reserveVO));
+            List<ReserveVO> reserveList = reserveService.selectReserve(reserveVO);
+            model.addAttribute("reserveList",reserveList);
+
         }
 
         return "content/item/item_detail";
