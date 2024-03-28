@@ -16,26 +16,26 @@ public class Address {
     @Autowired
     private KakaoApiService kakaoApiService;
 
-//    @GetMapping("/address")
-//    public String index() {
-//        return "/content/restAPI/address";
-//    }
-//
-//    @GetMapping("/getAddress")
-//    @ResponseBody
-//    public AddressVO getAddress(@RequestParam(name="latitude") double latitude, @RequestParam(name="longitude") double longitude) {
-//        return kakaoApiService.getAddressFromGeolocation(latitude, longitude);
-//    }
-//
-//    @GetMapping("/location")
-//    public String loc() {
-//        return "/content/restAPI/location";
-//    }
-//
-//    @GetMapping("/getLocation")
-//    @ResponseBody
-//    public MapVO getAddress(@RequestParam(name="query") String addr) {
-//        return kakaoApiService.getGeoFromAddress(addr);
-//    }
+    @GetMapping("/address")
+    public String index() {
+        return "/content/restAPI/address";
+    }
+
+    @GetMapping("/getAddress")
+    @ResponseBody
+    public AddressVO getAddress(@RequestParam(name="latitude") double latitude, @RequestParam(name="longitude") double longitude) {
+        return kakaoApiService.getAddressFromGeolocation(latitude, longitude);
+    }
+
+    @GetMapping("/location")
+    public String loc() {
+        return "/content/restAPI/location";
+    }
+
+    @GetMapping("/getLocation")
+    @ResponseBody
+    public MapVO getAddress(@RequestParam(name="query") String addr) {
+        return kakaoApiService.getGeoFromAddress(addr);
+    }
 
 }

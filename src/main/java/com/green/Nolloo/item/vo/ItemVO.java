@@ -35,6 +35,10 @@ public class ItemVO {
     private CategoryVO categoryVO;
     private List<ImgVO> imgList;
     private ChatVO chatVO;
+    private String region1;
+    private String region2;
+    private String region3;
+
 
     //매개변수로 전달되는 csv 행 데이터를  vo의 객 변수에 매핑
     public void setCsvData(String[] rowData){

@@ -26,6 +26,9 @@
         <result column="CATE_CODE" property="cateCode"/>
         <result column="CATE_NAME" property="cateName"/>
         <result column="MEMBER_ID" property="memberId"/>
+        <result column="region_1" property="region1"/>
+        <result column="region_2" property="region2"/>
+        <result column="region_3" property="region3"/>
         <collection property="imgList"  resultMap="img"/>
     </resultMap>
 
@@ -41,6 +44,10 @@
         <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
         <result column="IS_MAIN" property="isMain"/>
         <result column="ITEM_CODE" property="itemCode"/>
+    </resultMap>
+    <resultMap id="cate" type="com.green.Nolloo.item.vo.CateVO">
+        <id column="CATE_CODE" property="cateCode"/>
+        <result column="CATE_NAME" property="cateName"/>
     </resultMap>
 
 <!--    item 등록쿼리-->
@@ -58,6 +65,10 @@
             , ITEM_START_DATE
             , ITEM_END_DATE
             , MEMBER_ID
+            , REGION_1
+            , REGION_2
+            , REGION_3
+
         )
         VALUES(
             #{itemCode}
@@ -72,6 +83,10 @@
             , #{itemStartDate}
             , #{itemEndDate}
             , #{memberId}
+            , #{region1}
+            , #{region2}
+            , #{region3}
+
         )
     </insert>
 
@@ -111,16 +126,23 @@
         ON INFO.CATE_CODE = c.CATE_CODE
 
         WHERE IS_MAIN='Y'
+        <if test='cateCode != 0'>
         AND INFO.CATE_CODE = #{cateCode}
 
-        <if test='from != null and !from.equals("")'>
-            AND DATE_FORMAT(ITEM_START_DATE, '%Y-%m-%d') &gt;= #{from}
         </if>
-        <if test='to != null and !to.equals("")'>
-            AND #{to} &gt;= DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d')
-        </if>
+
+<!--        <if test='searchText != null and !searchText.equals("")'>-->
+<!--            AND ${searchOption} LIKE CONCAT('%',#{searchText},'%')-->
+<!--        </if>-->
+<!--        <if test='from != null and !from.equals("")'>-->
+<!--            AND DATE_FORMAT(ITEM_START_DATE, '%Y-%m-%d') &gt;= #{from}-->
+<!--        </if>-->
+<!--        <if test='to != null and !to.equals("")'>-->
+<!--            AND #{to} &gt;= DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d')-->
+<!--        </if>-->
         ORDER BY ITEM_START_DATE DESC
 
+        LIMIT ${limit} OFFSET ${offset}
 
     </select>
 
@@ -140,6 +162,7 @@
         , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
         , ATTACHED_FILE_NAME
         , READ_CNT
+        , REGION_1
         FROM ITEM_INFO INFO
         INNER JOIN ITEM_IMAGE IMG
         ON INFO.ITEM_CODE = IMG.ITEM_CODE
@@ -157,6 +180,10 @@
         <if test='to != null and !to.equals("")'>
             AND #{to} &gt;= DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d')
         </if>
+        <if test='region1 != null and region1 !=""'>
+            AND region_1 = #{region1}
+        </if>
+
         ORDER BY ITEM_START_DATE DESC
     </select>
 
@@ -259,7 +286,9 @@
     <select id="itemAllCnt" resultType="int">
         SELECT COUNT(ITEM_CODE)
         FROM ITEM_INFO
-        WHERE CATE_CODE = #{cateCode}
+        <if test='cateCode != 0'>
+            WHERE CATE_CODE = #{cateCode}
+        </if>
     </select>
 
 <!--    나의 파티 조회-->
@@ -352,5 +381,10 @@
         WHERE IMG_CODE = #{imgCode}
     </select>
 
+    <select id="selectCate" resultMap="cate">
+        SELECT CATE_CODE
+            ,CATE_NAME
+        FROM CATE
+    </select>
 
 </mapper>

@@ -15,4 +15,5 @@ public class SearchVO extends PageVO {
     private String searchText;
     private String from;
     private String to;
+    private String region1;
 }

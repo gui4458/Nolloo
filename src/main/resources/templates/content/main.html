@@ -1,16 +1,27 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<<<<<<< HEAD
   layout:decorate="~{fragment/user_layout}">
 
 <th:block layout:fragment="content_css">
   <!-- html 파일이 열릴때 같이 실행되는 css -->
   <link rel="stylesheet" href="/css/fragment/item_list.css">
   <link rel="stylesheet" href="/css/content/main.css">
+=======
+    layout:decorate="~{fragment/user_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <link rel="stylesheet" href="/css/fragment/item_list.css">
+    <link rel="stylesheet" href="/css/content/main.css">
+>>>>>>> dev
 </th:block>
-
 <th:block layout:fragment="contentFragment">
+    <input id="loginId" type="hidden" th:value="${session.memberId}">
+    <input id="cateCode" type="hidden" th:value="${cateCode}">
 
 
+<<<<<<< HEAD
   <div class="mx-auto max-w-7xl py-1 px-4 md:px-3 container">
     <input type="hidden" id="itemList-tag" th:value="${itemList}">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
@@ -161,11 +172,30 @@
         </th:block>
       </div>
 
-</th:block>
+=======
 
+    <div class="mx-auto max-w-7xl py-1 px-4 md:px-3 ">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 container" id="itemListContainer">
+            <!-- itemList가 동적으로 추가될 자리 -->
+        </div>
+    </div>
+    <th:block sec:authorize="isAuthenticated()">
+        <div class="fixed bottom-20 right-6">
+            <input type="button" onclick="location.href='/item/itemAddForm'" value="글쓰기"
+                class="text-sm font-medium rounded-full bg-red-600 border border-slate-200 px-3 py-1.5 text-white hover:bg-white hover:text-red-600 hover:border-red-500 focus-visible:outline-none focus-visible:ring focus-visible:ring-red-300 transition">
+        </div>
+    </th:block>
+
+>>>>>>> dev
+</th:block>
 <th:block layout:fragment="content_js">
+<<<<<<< HEAD
   <!-- html 파일이 열릴때 같이 실행되는 js -->
   <script src="/js/content/main.js"></script>
+=======
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/js/content/main.js"></script>
+>>>>>>> dev
 </th:block>
 
 </html>

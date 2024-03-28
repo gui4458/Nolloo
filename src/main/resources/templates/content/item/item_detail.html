@@ -107,7 +107,7 @@
         <!------------- 조회수 ------------>
 
         <div>
-            [[${item.readCnt}]]/
+            조회수: [[${item.readCnt}]]/
             <span sec:authorize="isAuthenticated()" th:onclick="goChat([[${item.itemCode}]])">채팅바로가기</span>
             <span sec:authorize="isAnonymous()" onclick="goLogin()">채팅바로가기</span>
         </div>
