@@ -43,7 +43,7 @@
         <!------------- 개최자 ----------->
         <div class="py-4 px-4 border-slate-100 bg-white shadow-xl shadow-slate-900/5 rounded-lg">
             <div class="id-div font-size: 1.125rem;">
-                개최자
+                [[${item.memberId}]]
             </div>
 
             <!------------- 장소 ----------->
@@ -107,7 +107,7 @@
         <!------------- 조회수 ------------>
 
         <div>
-            [[${item.readCnt}]]/
+            조회수: [[${item.readCnt}]]/
             <span sec:authorize="isAuthenticated()" th:onclick="goChat([[${item.itemCode}]])">채팅바로가기</span>
             <span sec:authorize="isAnonymous()" onclick="goLogin()">채팅바로가기</span>
         </div>

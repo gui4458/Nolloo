@@ -22,11 +22,11 @@
                 </th>
             </select>
 
-            <select class="block w-full rounded-md border-0 px-2 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                <option selected>지역</option>
-                <option value="Jan">서울</option>
-                <option value="Jan">울산</option>
-                <option value="Jan">부산</option>
+            <select id="searchByRegion1" name="region1" class="block w-full rounded-md border-0 px-2 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <option selected value="">지역</option>
+                <option value="서울">서울</option>
+                <option value="울산광역시">울산광역시</option>
+                <option value="부산">부산</option>
             </select>
 
             <select class="block w-full rounded-md border-0 px-2 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -38,7 +38,7 @@
 
             <input id="searchByDate" type="date" name="date" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="Date">
 
-            <input type="button" class="w-full rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600" value="Search" th:onclick="getMapData(document.querySelector('#searchByCode').value,document.querySelector('#searchByDate').value);">
+            <input type="button" class="w-full rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600" value="Search" th:onclick="getMapData(document.querySelector('#searchByCode').value,document.querySelector('#searchByDate').value,document.querySelector('#searchByRegion1').value);">
         
         </form>
     </div>
