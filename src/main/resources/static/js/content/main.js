@@ -128,7 +128,7 @@ function displayItems(items) {
             if (loginId != null) {
                 if (wishchk) {
                     itemHtml += `
-                        <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${item.itemCode})"><i class="ri-heart-3-line"></i></sapn>
+                        <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${item.itemCode})"><i class="ri-heart-3-fill"></i></sapn>
 
                             `
                 } else {
