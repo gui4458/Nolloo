@@ -19,7 +19,7 @@ function deg2rad(deg) {
     return deg * (Math.PI / 180);
 }
 
-function getMapData(code, date, r1) {
+function getMapData(code, date, r1,r2) {
     const fetchRequest = {
         method: 'POST',
         cache: 'no-cache',
@@ -37,6 +37,9 @@ function getMapData(code, date, r1) {
     }
     if (r1) {
         requestBody.region1 = r1;
+    }
+    if (r2) {
+        requestBody.region2 = r2;
     }
     fetchRequest.body = new URLSearchParams(requestBody);
 

@@ -1,13 +1,17 @@
 package com.green.Nolloo.restAPI.controller.kakao;
 
 import com.green.Nolloo.restAPI.service.KakaoApiService;
+import com.green.Nolloo.restAPI.service.restAPIService;
+import com.green.Nolloo.restAPI.vo.AddressFormVO;
 import com.green.Nolloo.restAPI.vo.AddressVO;
 import com.green.Nolloo.restAPI.vo.MapVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class Address {
@@ -15,6 +19,9 @@ public class Address {
 
     @Autowired
     private KakaoApiService kakaoApiService;
+
+    @Autowired
+    private restAPIService restAPIService;
 
     @GetMapping("/address")
     public String index() {
@@ -36,6 +43,20 @@ public class Address {
     @ResponseBody
     public MapVO getAddress(@RequestParam(name="query") String addr) {
         return kakaoApiService.getGeoFromAddress(addr);
+    }
+
+    @GetMapping("/addressForm")
+    public String addressForm(){
+        return "/content/restAPI/address_form";
+    }
+
+    @ResponseBody
+    @PostMapping("/addressResult")
+    public List<AddressFormVO> addressResult(@RequestParam(name="query") String query) {
+        //문자열을  스페이스 기준으로 분리 // "aa bb"   "aaa"
+        String[] data =  query.split(" ");
+        System.out.println(Arrays.toString(data));
+        return  restAPIService.searchAddress(data);
     }
 
 }

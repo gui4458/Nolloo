@@ -9,12 +9,12 @@
 <th:block layout:fragment="contentFragment">
     <!-- html 코드작성-->
     <div class="mx-auto max-w-7xl py-3 px-4 md:px-6 ">
-        <div id="map" class="w-full h-96 shadow-xl shadow-slate-900/5 rounded-lg"></div>
+        <div id="map" class="w-full min-h-[60dvh] shadow-xl shadow-slate-900/5 rounded-lg"></div>
     </div>
 
     <div class="mx-auto max-w-7xl py-3 px-4 md:px-6 ">
  
-        <form action="/now" method="post" id="search-block"  class="grid grid-cols-1 lg:grid-cols-5 gap-4" >
+        <form action="/now" method="post" id="search-block"  class="grid grid-cols-3 gap-2 lg:grid-cols-5 lg:gap-4" >
             <select id="searchByCode" name="cateCode" class="block w-full rounded-md border-0 px-2 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 <option selected value="">Category</option>
                 <th:block th:each="cat : ${catList} ">
@@ -29,16 +29,16 @@
                 <option value="부산">부산</option>
             </select>
 
-            <select class="block w-full rounded-md border-0 px-2 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                <option selected>-</option>
-                <option value="Jan">남구</option>
-                <option value="Jan">중구</option>
-                <option value="Jan">동구</option>
+            <select id="searchByRegion2" name="region2" class="block w-full rounded-md border-0 px-2 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <option selected value="">-</option>
+                <option value="남구">남구</option>
+                <option value="중구">중구</option>
+                <option value="동구">동구</option>
             </select>
 
             <input id="searchByDate" type="date" name="date" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="Date">
 
-            <input type="button" class="w-full rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600" value="Search" th:onclick="getMapData(document.querySelector('#searchByCode').value,document.querySelector('#searchByDate').value,document.querySelector('#searchByRegion1').value);">
+            <input type="button" class="w-full rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600" value="Search" th:onclick="getMapData(document.querySelector('#searchByCode').value,document.querySelector('#searchByDate').value,document.querySelector('#searchByRegion1').value,document.querySelector('#searchByRegion2').value);">
         
         </form>
     </div>

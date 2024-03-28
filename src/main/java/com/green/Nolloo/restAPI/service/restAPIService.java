@@ -1,5 +1,6 @@
 package com.green.Nolloo.restAPI.service;
 
+import com.green.Nolloo.restAPI.vo.AddressFormVO;
 import com.green.Nolloo.restAPI.vo.MapVO;
 
 import java.util.List;
@@ -7,4 +8,7 @@ import java.util.List;
 public interface restAPIService {
     //MapVO selectMapLatLnt(int itemCode);
     List<MapVO> selectAllMapLatLnt();
+
+    List<AddressFormVO> searchAddress(String[] qry);
+
 }
