@@ -21,8 +21,8 @@ public class ReserveServiceImpl implements ReserveService{
     }
 
     @Override
-    public List<ReserveVO> selectReserve(ReserveVO reserveVO) {
-        return sqlSession.selectList("reserveMapper.selectReserve",reserveVO);
+    public List<ReserveVO> selectReserve(String memberId) {
+        return sqlSession.selectList("reserveMapper.selectReserve",memberId);
     }
 
     @Override
