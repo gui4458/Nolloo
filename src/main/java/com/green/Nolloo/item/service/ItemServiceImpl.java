@@ -89,11 +89,9 @@ public class ItemServiceImpl implements ItemService {
     @Transactional(rollbackFor =  Exception.class)
     public void insertParty(ItemVO itemVO) {
         sqlSession.insert("itemMapper.insertParty",itemVO);
-
         sqlSession.insert("itemMapper.insertImgs",itemVO);
-
         sqlSession.update("itemMapper.updatePeopleCnt",itemVO);
-
+        sqlSession.insert("reserveMapper.insertReserve",itemVO);
         sqlSession.insert("chatMapper.insertChatRoom",itemVO.getChatVO());
     }
     //item 목록조회
