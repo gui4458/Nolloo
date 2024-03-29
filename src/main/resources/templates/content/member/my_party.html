@@ -8,25 +8,29 @@
     <div class="grid grid-cols-3 divide-x" style="margin-top: 8%; margin-bottom: 20%;">
         <div>
             <h6 style="font-weight: bold;">나의 파티</h6>
-            <table class="border-separate">
+            <table class="border-collapse">
                 <colgroup>
                     <col width="8%">
                     <col width="25%">
                     <col width="10%">
                     <col width="20%">
                 </colgroup>
-                <tr>
-                    <td>No</td>
-                    <td>제목</td>
-                    <td>인원수</td>
-                    <td>시작 날짜</td>
-                </tr>
-                <tr th:each="myPart, state:${myPartyList}" th:onclick="getDetail([[${myPart.itemCode}]])">
-                    <td>[[${state.index + 1}]]</td>
-                    <td>[[${myPart.itemTitle}]]</td>
-                    <td>[[${myPart.itemPeople}]]</td>
-                    <td>[[${myPart.itemStartDate}]]</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <td>No</td>
+                        <td>제목</td>
+                        <td>인원수</td>
+                        <td>시작 날짜</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="myPart, state:${myPartyList}" th:onclick="getDetail([[${myPart.itemCode}]])">
+                        <td>[[${state.index + 1}]]</td>
+                        <td>[[${myPart.itemTitle}]]</td>
+                        <td>[[${myPart.itemPeople}]]</td>
+                        <td>[[${myPart.itemStartDate}]]</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
         <div class="detail-div">

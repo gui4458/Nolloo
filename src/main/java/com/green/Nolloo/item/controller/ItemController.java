@@ -250,7 +250,7 @@ public class ItemController {
 
 
 
-
+    //나의 파티 조회
     @GetMapping("/myParty")
     public String myParty(ItemVO itemVO, Model model,HttpSession session){
 

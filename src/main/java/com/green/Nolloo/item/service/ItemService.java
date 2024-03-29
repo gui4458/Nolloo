@@ -36,6 +36,7 @@ public interface ItemService {
 
     List<ItemVO> selectCalendarPartyList();
 
+    //나의 파티 조회
     ItemVO selectItemDetail(int itemCode);
 
     void updateItemDetail(ItemVO itemVO);
