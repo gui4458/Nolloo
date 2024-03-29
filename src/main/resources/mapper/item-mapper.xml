@@ -120,12 +120,8 @@
             , LEFT(ITEM_START_DATE,10) ITEM_START_DATE
             , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
             , ATTACHED_FILE_NAME
-            , IS_MAIN
-            , ITEM_X
-            , ITEM_Y
             , READ_CNT
-            , CATE_CODE
-            , MEMBER_ID
+
         FROM ITEM_INFO INFO
         INNER JOIN ITEM_IMAGE IMG
         ON INFO.ITEM_CODE = IMG.ITEM_CODE
