@@ -117,12 +117,16 @@ function displayItems(items) {
                         <div class="flex flex-row p-3 lg:flex-col" @click="showModal=true">
                             <div class="image-container relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">`
                                 if (item.cateCode == 1) {
-                                    itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/itemSolo/${item.imgList[0].attachedFileName}" alt="">
-                                    `
+                                    if(item.imgList[0].isMain=='Y'){
+                                        itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/itemSolo/${item.imgList[0].attachedFileName}" alt="">
+                                        `
+                                    }
                                 }
                                 if (item.cateCode == 2) {
-                                    itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/item/${item.imgList[0].attachedFileName}" alt="">
-                                    `
+                                    if(item.imgList[0].isMain=='Y'){
+                                        itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/item/${item.imgList[0].attachedFileName}" alt="">
+                                        `
+                                    }
                                 }
                                 if (loginId != null) {
                                     if (wishchk) {
