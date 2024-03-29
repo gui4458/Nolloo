@@ -36,7 +36,7 @@ function getDetail(itemCode) {
 
         <form action="/item/updateItem" method="post">
         <input type="hidden" name="itemCode" value="${itemCode}">
-            <table class="table table-bordered">
+            <table class="border-collapse mx-auto text-center">
 
             <tr>
             <td>제목</td>
