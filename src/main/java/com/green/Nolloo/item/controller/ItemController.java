@@ -84,6 +84,8 @@ public class ItemController {
         model.addAttribute("cateCode",cateCode);
         List<CateVO> cateList = itemService.selectCate();
 
+//        model.addAttribute("item",itemService.selectPartyDetail(itemVO));
+
         session.setAttribute("cateList",cateList);
 //        if (authentication != null){
 //            User user = (User)authentication.getPrincipal();
@@ -106,6 +108,9 @@ public class ItemController {
     @PostMapping("/list")
     public Map<String,Object> list(@RequestBody PageVO pageVO,Authentication authentication,SearchVO searchVO){
         List<ItemVO> itemList = itemService.selectPartyList(pageVO);
+
+
+
         Map<String,Object> data = new HashMap<String, Object>();
         data.put("itemList",itemList);
         List<Integer> wishCodeList = new ArrayList<>();
