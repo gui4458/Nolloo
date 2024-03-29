@@ -18,7 +18,7 @@ public interface ItemService {
     // board 디테일
     List<ItemVO> selectByDistance(SearchVO searchVO);
     List<ItemVO> searchByDistance(SearchVO searchVO);
-
+    List<ItemVO> searchByReadCnt();
     List<CategoryVO> selectAllCategory();
     ItemVO selectPartyDetail(ItemVO itemVO);
     //board 삭제하는 메소드

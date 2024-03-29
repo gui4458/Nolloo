@@ -25,6 +25,9 @@ public class Map {
     @Resource(name="itemService")
     private ItemService itemService;
 
+
+
+
     public double getDistanceBetweenPointsNew(double latitude1, double longitude1, double latitude2, double longitude2, String unit) {
         double theta = longitude1 - longitude2;
         double distance = 60 * 1.1515 * (180/Math.PI) * Math.acos(
