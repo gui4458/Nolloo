@@ -112,6 +112,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public List<ItemVO> searchByReadCnt() {
+        return sqlSession.selectList("itemMapper.selectByReadCnt");
+    }
+
+    @Override
     public List<CategoryVO> selectAllCategory() {
         return sqlSession.selectList("itemMapper.selectAllCategory");
     }

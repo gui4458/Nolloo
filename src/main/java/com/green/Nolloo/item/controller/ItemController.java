@@ -84,8 +84,9 @@ public class ItemController {
         model.addAttribute("cateCode",cateCode);
         List<CateVO> cateList = itemService.selectCate();
 
-//        model.addAttribute("item",itemService.selectPartyDetail(itemVO));
 
+        List<ItemVO> recommendList = itemService.searchByReadCnt();
+        session.setAttribute("recommendList",recommendList);
         session.setAttribute("cateList",cateList);
 //        if (authentication != null){
 //            User user = (User)authentication.getPrincipal();

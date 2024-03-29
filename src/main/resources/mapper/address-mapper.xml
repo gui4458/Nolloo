@@ -20,6 +20,7 @@
             <if test="array.length == 2">
                 WHERE DORO=#{array[0]} AND BUILD_NO1=#{array[1]}
             </if>
+        limit 10;
     </select>
 
 </mapper>
