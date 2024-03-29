@@ -114,16 +114,23 @@
             , ITEM_PLACE
             , ITEM_PEOPLE
             , INFO.CATE_CODE
-            , c.CATE_NAME
+            , PLACE_DETAIL
+            , C.CATE_NAME
+            , ITEM_CONTENT
             , LEFT(ITEM_START_DATE,10) ITEM_START_DATE
             , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
             , ATTACHED_FILE_NAME
+            , IS_MAIN
+            , ITEM_X
+            , ITEM_Y
             , READ_CNT
+            , CATE_CODE
+            , MEMBER_ID
         FROM ITEM_INFO INFO
         INNER JOIN ITEM_IMAGE IMG
         ON INFO.ITEM_CODE = IMG.ITEM_CODE
-        INNER JOIN CATE c
-        ON INFO.CATE_CODE = c.CATE_CODE
+        INNER JOIN CATE C
+        ON INFO.CATE_CODE = C.CATE_CODE
 
         WHERE IS_MAIN='Y'
         <if test='cateCode != 0'>
@@ -197,7 +204,7 @@
 
 
 
-<!--    itemDetail 조회쿼리 -->
+<!--    item상세페이지 조회쿼리 -->
 <select id="selectPartyDetail" resultMap="item">
     SELECT
         INFO.ITEM_CODE
@@ -216,6 +223,7 @@
         , ITEM_Y
         , READ_CNT
         , CATE_CODE
+        , MEMBER_ID
     FROM ITEM_INFO INFO
     INNER JOIN ITEM_IMAGE IMG
     ON INFO.ITEM_CODE=IMG.ITEM_CODE
