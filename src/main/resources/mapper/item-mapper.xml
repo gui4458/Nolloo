@@ -308,6 +308,7 @@
         , date_format(ITEM_START_DATE,'%Y-%m-%d') ITEM_START_DATE
         FROM ITEM_INFO
         WHERE MEMBER_ID=#{memberId}
+        AND CATE_CODE = 1
     </select>
 
 <!--    나의 파티 상세 -->
