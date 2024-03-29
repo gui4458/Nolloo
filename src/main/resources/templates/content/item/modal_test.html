@@ -12,19 +12,10 @@
 </head>
 <body class="m-10">
   
-
-  <!-- dialog 시작 -->
-  <!-- tailwind의 dialog를 열고 닫는 버튼은 위치가 좀 답답함...  -->
-  <!-- x-어쩌구저쩌군 는 alpine.js(알파인.js)의 기능 -->
-
-  <!-- x-data="{생성할변수:변수값}" --> 
-  <!-- x-show="true" : 해당 태그를 보여줌 -->
-  <!-- x-show="false" : 해당 태그를 숨김 -->
-  <!-- @click="showModal=true" : 태그를 클릭하면 showModal 변수의 값을 true로 변경 -->
   <div x-data="{showModal:false}" >
     <!-- dialog를 오픈하는 버튼 -->
-    <button class="inline-flex justify-center rounded-md bg-indigo-600 px-3 py-1 text-sm font-semibold text-white shadow-lg ml-3 w-[120px] hover:bg-indigo-700" 
-      type="button" @click="showModal=true">Open Modal</button>
+    <button @click="showModal=true" class="btn border-2 py-1 px-5 mb-3 font-bold  duration-500">Test Button</button>
+    
 
     <!-- dialog 시작 , 여기는 dialog 오픈 시 배경이 검해지는 부분 -->
     <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50"
@@ -45,7 +36,7 @@
           x-transition:leave="ease-in duration-200"
           x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
           x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-          @click.outside="showModal=false">
+         >
 
           <!-- dialog body -->
           <div class="bg-white p-6">
@@ -63,9 +54,9 @@
 </div>
 
 
-<script>
 
 
-</script>
+
+
 </body>
 </html>
