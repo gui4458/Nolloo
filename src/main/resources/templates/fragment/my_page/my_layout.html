@@ -18,17 +18,15 @@
 
 
     <th:block th:replace="~{fragment/user_header :: headerFragment}"></th:block>
+
     
-    <div class="mx-auto max-w-7xl py-1 px-4 md:px-3 ">
-    <div class="grid grid-col-3 grid-flow-col gap-4">
-        <div class="">
+
+    <div class="flex">
+        <div class="basis-1/4">
             <th:block th:replace="~{fragment/my_page/my_menu:: menuFragment}"></th:block>
         </div>
-        <div class="">
+        <div class="basis-3/4">
             <th:block layout:fragment="contentFragment"></th:block>
-        </div>
-        <div class="">
-            
         </div>
     </div>
 </div>
