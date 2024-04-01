@@ -32,11 +32,12 @@ function getDetail(itemCode) {
             let str = '';
             str += `
 
-        <h6 style="font-weight: bold;">파티 상세 내역</h6>
+        
 
         <form action="/item/updateItem" method="post">
         <input type="hidden" name="itemCode" value="${itemCode}">
-            <table class="border-collapse mx-auto text-center">
+            <table class="w-[500px] border-collapse text-center">
+            <caption class="text-left font-bold text-[15px]">파티 상세 내역</caption>
 
             <tr>
             <td>제목</td>
