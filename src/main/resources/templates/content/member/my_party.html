@@ -5,10 +5,10 @@
 
 <th:block layout:fragment="contentFragment">
 
-    <div>
-        <div>
-            <h6 style="font-weight: bold;">나의 파티</h6>
-            <table class="border-collapse">
+    <div class="flex">
+        <div class="basis-1/3">
+            <table class="w-[500px] border-collapse text-center">
+                <caption class="text-left font-bold text-[15px]">나의 파티</caption>
                 <colgroup>
                     <col width="8%">
                     <col width="25%">
@@ -16,15 +16,15 @@
                     <col width="20%">
                 </colgroup>
                 <thead>
-                    <tr>
-                        <td>No</td>
-                        <td>제목</td>
-                        <td>인원수</td>
-                        <td>시작 날짜</td>
+                    <tr class="text-white font-semibold border-b-2 border-b-red-500 border-t border-t-red-500 bg-red-300">
+                        <td class="p-2">No</td>
+                        <td class="p-3">제목</td>
+                        <td class="p-3">인원수</td>
+                        <td class="p-3">시작 날짜</td>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr th:each="myPart, state:${myPartyList}" th:onclick="getDetail([[${myPart.itemCode}]])">
+                <tbody class=" [&>tr:hover]:!bg-slate-200 [&>tr:nth-child(odd)]:bg-slate-100">
+                    <tr class="board [&>td]:p-3 border-b" th:each="myPart, state:${myPartyList}" th:onclick="getDetail([[${myPart.itemCode}]])">
                         <td>[[${state.index + 1}]]</td>
                         <td>[[${myPart.itemTitle}]]</td>
                         <td>[[${myPart.itemPeople}]]</td>
@@ -33,7 +33,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="detail-div">
+        <div class="detail-div basis-2/3">
 
         </div>
 
