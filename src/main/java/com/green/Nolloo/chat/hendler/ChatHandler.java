@@ -2,6 +2,9 @@ package com.green.Nolloo.chat.hendler;
 
 import com.green.Nolloo.chat.manager.ChatRoomManager;
 import com.green.Nolloo.chat.room.ChatRoom;
+import com.green.Nolloo.chat.service.ChatMessageService;
+import com.green.Nolloo.chat.vo.ChatMessageVO;
+import jakarta.annotation.Resource;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,6 +21,8 @@ public class ChatHandler extends TextWebSocketHandler {
 
     @Autowired
     private ChatRoomManager chatRoomManager;
+    @Resource(name="chatMessageService")
+    private ChatMessageService chatMessageService;
 
     private String extractRoomId(WebSocketSession session) {
         String roomId = session.getUri().toString();
@@ -39,6 +44,8 @@ public class ChatHandler extends TextWebSocketHandler {
             }
         }
     }
+
+
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {

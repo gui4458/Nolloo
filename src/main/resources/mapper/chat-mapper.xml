@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="chatMapper">
-	<insert id="insertChatRoom">
-        INSERT INTO CHAT_ROOM(
-            ROOM_NAME
-            , ITEM_CODE
-            , FOUNDER
+    <!-- 채팅 메시지 저장 쿼리 -->
+    <insert id="insertChatMessage">
+        INSERT INTO CHAT_MESSAGE(
+        ROOM_CODE
+        , SENDER
+        , MESSAGE
         )
         VALUES
         (
-             #{roomName}
-            , #{itemCode}
-            , #{founder}
-
+        #{roomCode}
+        , #{sender}
+        , #{message}
         )
-
     </insert>
-</mapper>
 
+    <!-- 특정 채팅방의 메시지 검색 쿼리 -->
+    <select id="selectChatMessagesByRoom" resultType="com.green.Nolloo.chat.vo.ChatMessageVO">
+        SELECT * FROM CHAT_MESSAGE WHERE ROOM_CODE = #{roomCode}
+    </select>
+</mapper>
 
 
 
