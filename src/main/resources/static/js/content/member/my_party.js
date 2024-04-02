@@ -40,55 +40,55 @@ function getDetail(itemCode) {
             <caption class="text-left font-bold text-[15px]">파티 상세 내역</caption>
 
             <tr>
-            <td class="text-white font-semibold border-b-2 border-b-red-500 border-t border-t-red-500 bg-red-300">제목</td>
+            <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">제목</td>
             <td>
                 <input type="text" class="form-control" name="itemTitle" value=" ${data.itemTitle}">
             </td>
             </tr>
                 <tr>
-                    <td class="text-white font-semibold border-b-2 border-b-red-500 border-t border-t-red-500 bg-red-300">내용</td>
+                    <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">내용</td>
                     <td>
                         <input type="text" class="form-control" name="itemContent" value=" ${data.itemContent}">
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-white font-semibold border-b-2 border-b-red-500 border-t border-t-red-500 bg-red-300">위치</td>
+                    <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">위치</td>
                     <td>
                         <input type="text" class="form-control" name="itemPlace" value="${data.itemPlace}">
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-white font-semibold border-b-2 border-b-red-500 border-t border-t-red-500 bg-red-300">시작 날짜</td>
+                    <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">시작 날짜</td>
                     <td>
                     <input type="text" class="form-control" name="itemStartDate" value="${data.itemStartDate}">
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-white font-semibold border-b-2 border-b-red-500 border-t border-t-red-500 bg-red-300">마감 날짜</td>
+                    <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">마감 날짜</td>
                     <td>
                     <input type="text" class="form-control" name="itemEndDate" value="${data.itemEndDate}">
                     </td>
                 </tr>            
                 <tr>
-                    <td class="text-white font-semibold border-b-2 border-b-red-500 border-t border-t-red-500 bg-red-300">가격</td>
+                    <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">가격</td>
                     <td>
                     <input type="text" class="form-control" name="itemPrice" value="${data.itemPrice}">
                     </td>
                 </tr>        
                 <tr>
-                    <td class="text-white font-semibold border-b-2 border-b-red-500 border-t border-t-red-500 bg-red-300">인원수</td>
+                    <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">인원수</td>
                     <td>
                     <input type="text" class="form-control" name="itemPeople" value="${data.itemPeople}">
                     </td>
                 </tr>        
                 <tr>
-                    <td class="text-white font-semibold border-b-2 border-b-red-500 border-t border-t-red-500 bg-red-300">연락처</td>
+                    <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">연락처</td>
                     <td>
                     <input type="text" class="form-control" name="itemTel" value="${data.itemTel == null ? '미등록' : data.itemTel}">
                     </td>
                 </tr>        
                 <tr>
-                    <td class="text-white font-semibold border-b-2 border-b-red-500 border-t border-t-red-500 bg-red-300">대표 이미지</td>
+                    <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">대표 이미지</td>
                     <td>`;
 
             data.imgList.forEach(element => {
@@ -115,7 +115,7 @@ function getDetail(itemCode) {
                 `</td>
                     </tr>        
                     <tr>
-                        <td class="text-white font-semibold border-b-2 border-b-red-500 border-t border-t-red-500 bg-red-300">상세 이미지</td>
+                        <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">상세 이미지</td>
                         <td>
                             <div class="row">
                                     <div class="col">
