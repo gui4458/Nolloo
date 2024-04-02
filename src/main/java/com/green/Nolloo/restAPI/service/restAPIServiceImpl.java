@@ -26,6 +26,16 @@ public class restAPIServiceImpl implements restAPIService {
         return sqlSession.selectList("addressMapper.selectAddress",qry);
     }
 
+    @Override
+    public List<String> selectSido() {
+        return sqlSession.selectList("addressMapper.selectSido");
+    }
+
+    @Override
+    public List<AddressFormVO> selectSigungu(String sido) {
+        return sqlSession.selectList("addressMapper.selectSigungu", sido);
+    }
+
     @Autowired
     private AddressRepository addressRepository;
 

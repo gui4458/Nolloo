@@ -45,8 +45,12 @@ public class Address {
         return kakaoApiService.getGeoFromAddress(addr);
     }
 
+
+
+
     @GetMapping("/addressForm")
-    public String addressForm(){
+    public String addressForm(Model model){
+
         return "/content/restAPI/address_form";
     }
 
