@@ -18,19 +18,18 @@
 
 
     <th:block th:replace="~{fragment/user_header :: headerFragment}"></th:block>
+
     
-    <div class="grid grid-rows-3 grid-flow-col gap-4">
-        <div class="row-span-10 ...">
+
+    <div class="flex">
+        <div class="basis-1/4">
             <th:block th:replace="~{fragment/my_page/my_menu:: menuFragment}"></th:block>
         </div>
-        <div class="col-span-2 ...">
+        <div class="basis-3/4">
             <th:block layout:fragment="contentFragment"></th:block>
         </div>
-        <div class="row-span-2 col-span-2 ...">
-            
-        </div>
     </div>
-
+</div>
 
 
     
