@@ -1,18 +1,19 @@
-let cateCode = document.querySelector('#cateCode').value
+let cateCode = document.querySelector('#cateCode').value;
 // LIMIT
 let limit = 0;
 // OFFSET
 let offset = 0;
 // 페이지 로드 시 초기 아이템 가져오기
 let itemHtml = ``
-const loginId = document.querySelector('#loginId').value
+const loginId = document.querySelector('#loginId').value;
 
 // fetchInitialItems();
-window.scrollTo(-10, -10)
+window.scrollTo(-10, -10);
 window.addEventListener('DOMContentLoaded', () => {
     fetchInitialItems();
 
 });
+
 
 // 초기 아이템 가져오는 함수
 function fetchInitialItems() {
@@ -112,9 +113,9 @@ function displayItems(items) {
             let wishchk = items.wishCodeList.includes(item.itemCode)
             itemHtml = itemHtml + `
 
-                    <div class="item-lazy bg-white shadow-xl shadow-slate-900/5 rounded-lg group">
+                    <div class="item-lazy bg-white shadow-xl shadow-slate-900/5 rounded-lg group" onclick="selectItemCode(${item.itemCode}, this)">
                     
-                        <div class="flex flex-row p-3 lg:flex-col" @click="showModal=true">
+                        <div class="flex flex-row p-3 lg:flex-col">
                             <div class="image-container relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">`
                                 if (item.cateCode == 1) {
                                     
@@ -175,6 +176,9 @@ function displayItems(items) {
                     });
     }
     itemListContainer.innerHTML += itemHtml;
+
+
+
 }
 
 // 하트 추가 및 삭제 함수
@@ -278,4 +282,137 @@ function goChat(itemCode) {
     // 채팅방을 새 창으로 열기
     const windowFeatures = "left=1500,top=100,width=750,height=750,popup";
     window.open(chatRoomUrl, "_blank", windowFeatures);
+}
+
+// modal Detail에 itemCode 보내주기
+function selectItemCode(itemCode, selectedTag){
+    fetch('/item/itemDetailForm', { //요청경로
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        },
+        //컨트롤러로 전달할 데이터
+        body: new URLSearchParams({
+           // 데이터명 : 데이터값
+           "itemCode":itemCode
+        })
+    })
+    .then((response) => {
+        if(!response.ok){
+            alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+            return ;
+        }
+    
+        //return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+        return response.json(); //나머지 경우에 사용
+    })
+    //fetch 통신 후 실행 영역
+    .then((data) => {//data -> controller에서 리턴되는 데이터!
+        console.log(data);
+        console.log(data.imgList);
+
+        
+        let modalHtml ='';
+
+        modalHtml += `
+        <!-------- 메인이미지 ------->
+    
+
+        <div class="">
+            <span>`;
+
+                if(data.cateCode == 1){
+                    data.imgList.forEach(function(img,i){
+                        if(img.isMain=='Y'){
+            modalHtml += `
+            <div>
+            <img class="" src="/upload/itemSolo/${img.attachedFileName}" alt="">
+            </div>
+        `;
+                        }
+                    })
+                };
+modalHtml += `</span>
+                <span>`;
+                            if(data.cateCode == 2){
+                                data.imgList.forEach(function(img,i){
+                                    if(img.isMain=='Y'){
+                        modalHtml += `
+                        <div>
+                        <img class="" src="/upload/item/${img.attachedFileName}" alt="">
+                        </div>
+                        `;
+                                    }
+                                })
+                            };
+    modalHtml += `</span>
+        </div>
+        <!------------- 개최자 ----------->
+        <div class="">
+            <div class="">
+                ${data.memberId}
+            </div>
+
+            <!------------- 장소 ----------->
+
+            <div >
+                <!-- 동만 나오게 설정 예정 -->
+                ${data.itemPlace}
+            </div>
+
+        </div>
+        <div >
+            ${data.itemTitle}
+        </div>
+        <div >
+            <div >
+                ${data.itemStartDate}~${data.itemEndDate}
+            </div>
+        </div>
+        <!--------------------- 상세이미지  ------------------------->
+        <!------------ 내용 ------------>
+        <div class="">
+            <p class="">
+                ${data.itemContent}
+            </p>
+        </div>
+        <div>
+            조회수: ${data.readCnt}/
+            <span sec:authorize="isAuthenticated()" onclick="goChat(${data.itemCode})">채팅바로가기</span>
+            <span sec:authorize="isAnonymous()" onclick="goLogin()">채팅바로가기</span>
+        </div>
+        <div>
+            위치/지도
+        </div>
+        <input type="hidden" id="itemX" name="itemX" value="${data.itemX}">
+        <input type="hidden" id="itemY" name="itemY" value="${data.itemY}">
+
+        <div id="map" style="width:100%;"></div>
+        
+    
+        `;
+
+
+        const p_tag =document.querySelector('.p-tag');
+        p_tag.insertAdjacentHTML('afterbegin',modalHtml);
+
+        
+
+        modalToggle();
+        //console.log(selectedTag.children[0]);
+        //console.log(selectedTag.children[0].getAttributeNames());
+        //selectedTag.children[0].setAttribute('@click', 'showModal=true')
+
+    })
+    //fetch 통신 실패 시 실행 영역
+    .catch(err=>{
+        alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+        console.log(err);
+    });
+}
+
+function modalToggle(){
+    document.querySelector('#detail_modal').classList.toggle('hidden'); 
+    document.querySelector('#detail_modal').classList.toggle('flex'); 
 }

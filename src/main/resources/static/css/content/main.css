@@ -45,16 +45,16 @@
 .scale-100 {
     transform: scale(1);
 }
-.sub-img-div{
+/* .sub-img-div{
     width: 300px;
     height: 400px;
     object-fit: fill;
     object-position: center left;
-}
+} */
 .content-div{
     height: 300px;
 }
-.main-img-div{
+/* .main-img-div{
     
     width:800px;
     height:600px;
@@ -67,9 +67,8 @@
     width:100%;
     height:100%;
     
-    background-size:800px 600px;
-    background-position: top;
-    background-attachment: fixed;
+    object-fit:800px 600px;
+    object-position: center;
 
-}
+} */
 
