@@ -55,10 +55,8 @@ public class ItemController {
     @Resource(name = "wishService")
     private WishService wishService;
 
-
     @Resource(name="reserveService")
     private ReserveService reserveService;
-
 
     @Resource(name = "memberService")
     private MemberService memberService;
