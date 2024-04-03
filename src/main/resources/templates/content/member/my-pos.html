@@ -24,17 +24,49 @@
 
             <select id="searchByRegion1" name="region1" class="block w-full rounded-md border-0 px-2 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 <option selected value="">지역</option>
-                <option value="서울">서울</option>
-                <option value="울산광역시">울산광역시</option>
-                <option value="부산">부산</option>
+                <option th:each="sidos : ${sidoList}" th:value="${sidos}" th:text="${sidos}"></option>
+            </select>
+            
+            <select id="searchByRegion2" name="region2" class="block w-full rounded-md border-0 px-2 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                <option selected value="" readonly>시군구</option>
             </select>
 
-            <select id="searchByRegion2" name="region2" class="block w-full rounded-md border-0 px-2 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                <option selected value="">-</option>
-                <option value="남구">남구</option>
-                <option value="중구">중구</option>
-                <option value="동구">동구</option>
-            </select>
+            <script>
+                document.getElementById('searchByRegion1').addEventListener('change', function() {
+                    var sido = this.value;
+                    if (sido !== '') {
+                        fetchSigungu(sido);
+                    } else {
+                        resetSigunguOptions();
+                    }
+                });
+            
+                function fetchSigungu(sido) {
+                    fetch('/fetchSigungu?sido=' + sido)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            updateSigunguOptions(data);
+                        })
+                        .catch(error => console.error('Error fetching sigungu:', error));
+                }
+            
+                function updateSigunguOptions(sigunguList) {
+                    var select = document.getElementById('searchByRegion2');
+                    select.innerHTML = '<option selected value="">시군구를 선택하세요</option>';
+                    sigunguList.forEach(function(sigunguObj) {
+                        var option = document.createElement('option');
+                        option.value = sigunguObj.sigungu;
+                        option.text = sigunguObj.sigungu;
+                        select.appendChild(option);
+                    });
+                }
+            
+                function resetSigunguOptions() {
+                    var select = document.getElementById('searchByRegion2');
+                    select.innerHTML = '<option selected value="" readonly>시군구</option>';
+                }
+            </script>
 
             <input id="searchByDate" type="date" name="date" class="block w-full rounded-md border-0 px-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" value="Date">
 

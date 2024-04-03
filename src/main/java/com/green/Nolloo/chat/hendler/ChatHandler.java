@@ -26,8 +26,9 @@ public class ChatHandler extends TextWebSocketHandler {
 
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        System.out.println("핸들러텍스트메세지");
         String payload = message.getPayload();
-        log.info("payload : " + payload);
+        log.info(payload);
 
         String roomId = extractRoomId(session);
         List<WebSocketSession> sessions = chatRoomManager.getChatRoom(roomId);
@@ -44,6 +45,7 @@ public class ChatHandler extends TextWebSocketHandler {
         String roomId = extractRoomId(session);
         chatRoomManager.addChatRoom(roomId, session);
         log.info(session + " 클라이언트 접속");
+        System.out.println("핸들러끝");
     }
 
     @Override

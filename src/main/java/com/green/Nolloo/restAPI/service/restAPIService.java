@@ -12,6 +12,7 @@ public interface restAPIService {
     List<MapVO> selectAllMapLatLnt();
 
     List<AddressFormVO> searchAddress(String[] qry);
-
+    List<String> selectSido();
+    List<AddressFormVO> selectSigungu(String sido);
 }
 

@@ -4,6 +4,7 @@ import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.CategoryVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.restAPI.service.restAPIService;
+import com.green.Nolloo.restAPI.vo.AddressFormVO;
 import com.green.Nolloo.restAPI.vo.MapVO;
 import com.green.Nolloo.search.vo.SearchVO;
 import jakarta.annotation.Resource;
@@ -47,9 +48,23 @@ public class Map {
     public String circle(Model model) {
 //        List<ItemVO> itemList = itemService.selectByDistance();
 //        model.addAttribute("itemList",itemList);
+
+        List<String> sidoList = restAPIService.selectSido();
+        System.out.println(sidoList);
+        model.addAttribute("sidoList",sidoList);
+
         List<CategoryVO> catList = itemService.selectAllCategory();
+        System.out.println("------"+catList);
         model.addAttribute("catList",catList);
         return "/content/member/my-pos";
+    }
+
+    @GetMapping("/fetchSigungu")
+    @ResponseBody
+    public List<AddressFormVO> getSigungu(@RequestParam(name="sido") String sido){
+        List<AddressFormVO> sigungu = restAPIService.selectSigungu(sido);
+        System.out.println(sigungu);
+        return sigungu;
     }
 
     @ResponseBody
