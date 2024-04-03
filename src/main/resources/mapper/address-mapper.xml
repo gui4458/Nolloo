@@ -24,7 +24,8 @@
     </select>
 
     <select id="selectSido" resultType="String" fetchSize="1000">
-        SELECT sido FROM zipcode GROUP BY sido;
+<!--        SELECT sido FROM zipcode GROUP BY sido;-->
+        SELECT DISTINCT sido FROM zipcode;
     </select>
 
     <select id="selectSigungu" resultMap="addresses" fetchSize="1000">

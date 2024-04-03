@@ -24,8 +24,12 @@ repositories {
 dependencies {
 
 // json
-	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.2'
+	apply plugin: 'java'
 
+
+	compileJava {options.compilerArgs << "-parameters"}
+	implementation group: 'org.apache.lucene', name: 'lucene-core', version: '9.7.0'//
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.14.2'
 	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16' //쿼리 로그 라이브러리 추가
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect' //fragment 사용을 위해 추가
 	compileOnly("org.springframework.boot:spring-boot-devtools") //html새로고침
