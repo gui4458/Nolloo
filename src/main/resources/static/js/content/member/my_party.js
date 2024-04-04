@@ -33,58 +33,58 @@ function getDetail(itemCode) {
             str += `
 
         
-
+        <div class="w-[500px]">    
         <form action="/item/updateItem" method="post">
         <input type="hidden" name="itemCode" value="${itemCode}">
-            <table class="w-[500px] border-collapse text-center">
-            <caption class="text-left font-bold text-[15px]">파티 상세 내역</caption>
-
+            <table class="w-full border-collapse text-center border">
+            <caption class="text-left font-bold text-[15px] italic">파티 상세 내역</caption>
+            <tbody class="[&>tr>td]:p-2 [&>tr>td]:border-b">
             <tr>
             <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">제목</td>
             <td>
-                <input type="text" class="form-control" name="itemTitle" value=" ${data.itemTitle}">
+                <input type="text" class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" name="itemTitle" value=" ${data.itemTitle}">
             </td>
             </tr>
                 <tr>
                     <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">내용</td>
                     <td>
-                        <input type="text" class="form-control" name="itemContent" value=" ${data.itemContent}">
+                        <input type="text" class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" name="itemContent" value=" ${data.itemContent}">
                     </td>
                 </tr>
                 <tr>
                     <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">위치</td>
                     <td>
-                        <input type="text" class="form-control" name="itemPlace" value="${data.itemPlace}">
+                        <input type="text" class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" name="itemPlace" value="${data.itemPlace}">
                     </td>
                 </tr>
                 <tr>
                     <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">시작 날짜</td>
                     <td>
-                    <input type="text" class="form-control" name="itemStartDate" value="${data.itemStartDate}">
+                    <input type="text" class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" name="itemStartDate" value="${data.itemStartDate}">
                     </td>
                 </tr>
                 <tr>
                     <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">마감 날짜</td>
                     <td>
-                    <input type="text" class="form-control" name="itemEndDate" value="${data.itemEndDate}">
+                    <input type="text" class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" name="itemEndDate" value="${data.itemEndDate}">
                     </td>
                 </tr>            
                 <tr>
                     <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">가격</td>
                     <td>
-                    <input type="text" class="form-control" name="itemPrice" value="${data.itemPrice}">
+                    <input type="text" class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" name="itemPrice" value="${data.itemPrice}">
                     </td>
                 </tr>        
                 <tr>
                     <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">인원수</td>
                     <td>
-                    <input type="text" class="form-control" name="itemPeople" value="${data.itemPeople}">
+                    <input type="text" class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" name="itemPeople" value="${data.itemPeople}">
                     </td>
                 </tr>        
                 <tr>
                     <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">연락처</td>
                     <td>
-                    <input type="text" class="form-control" name="itemTel" value="${data.itemTel == null ? '미등록' : data.itemTel}">
+                    <input type="text" class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" name="itemTel" value="${data.itemTel == null ? '미등록' : data.itemTel}">
                     </td>
                 </tr>        
                 <tr>
@@ -95,7 +95,7 @@ function getDetail(itemCode) {
                 if (element.isMain == 'Y') {
                     str += `<div class="row">
                                 <div class="col">
-                                    <input class="form-control" type="file" name="originfileName" id="main_img_input" disabled>
+                                    <input class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" type="file" name="originfileName" id="main_img_input" disabled>
                                 </div>
                             </div>
                             <div class="row">
@@ -119,7 +119,7 @@ function getDetail(itemCode) {
                         <td>
                             <div class="row">
                                     <div class="col">
-                                        <input class="form-control" type="file" name="originfileName" multiple>
+                                        <input class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" type="file" name="originfileName" multiple>
                                     </div>
                                 </div>`;
 
@@ -140,15 +140,16 @@ function getDetail(itemCode) {
             });
 
             str += `</td>
-                    </tr>        
+                    </tr>
+                    </tbody>        
                 </table>
                 <div class="row mt-3">
-                    <div class="col" style="text-align: right;">
+                    <div class="col text-right">
                         <input type="submit" value="수정" class="bg-red-300 hover:bg-blue-200 text-white font-bold py-2 px-4 rounded-[25%]">
                     </div>
                 </div>
         </form>
-            
+        </div>    
 
             `;
             detail_div.insertAdjacentHTML("afterbegin", str);
