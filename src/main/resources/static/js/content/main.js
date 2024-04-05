@@ -285,7 +285,7 @@ function goChat(itemCode) {
 }
 
 // modal Detail에 itemCode 보내주기
-function selectItemCode(itemCode, selectedTag){
+function selectItemCode(itemCode, selectedTag, items){
     fetch('/item/itemDetailForm', { //요청경로
         method: 'POST',
         cache: 'no-cache',
@@ -310,91 +310,125 @@ function selectItemCode(itemCode, selectedTag){
     //fetch 통신 후 실행 영역
     .then((data) => {//data -> controller에서 리턴되는 데이터!
         console.log(data);
-        console.log(data.imgList);
+        console.log(data.item.imgList);
 
+        let wishchk = data.wishCodeList.includes(data.item.itemCode)
+        
+        
+        const loginId =document.querySelector('#loginId').value;
+        console.log(loginId);
+        const p_tag =document.querySelector('.p-tag');
+        p_tag.innerHTML ='';
         
         let modalHtml ='';
 
         modalHtml += `
         <!-------- 메인이미지 ------->
     
-
+    
         <div class="">
-            <span>`;
+            `;
 
-                if(data.cateCode == 1){
-                    data.imgList.forEach(function(img,i){
+                if(data.item.cateCode == 1){
+                    data.item.imgList.forEach(function(img,i){
                         if(img.isMain=='Y'){
             modalHtml += `
-            <div>
-            <img class="" src="/upload/itemSolo/${img.attachedFileName}" alt="">
-            </div>
+            
+                <img class="w-full h-50" src="/upload/itemSolo/${img.attachedFileName}" alt="">
+            
         `;
                         }
                     })
                 };
-modalHtml += `</span>
-                <span>`;
-                            if(data.cateCode == 2){
-                                data.imgList.forEach(function(img,i){
+modalHtml += `
+                </div>
+                <div>`;
+                            if(data.item.cateCode == 2){
+                                data.item.imgList.forEach(function(img,i){
                                     if(img.isMain=='Y'){
                         modalHtml += `
-                        <div>
-                        <img class="" src="/upload/item/${img.attachedFileName}" alt="">
-                        </div>
+                        
+                        <img class="w-full h-50" src="/upload/item/${img.attachedFileName}" alt="">
+                        
                         `;
                                     }
                                 })
                             };
-    modalHtml += `</span>
-        </div>
-        <!------------- 개최자 ----------->
-        <div class="">
-            <div class="">
-                ${data.memberId}
+    modalHtml += `
+        </div >
+        <!-------- 찜 +채팅방 ------------>
+    <div class="px-2 text-right">
+                <div class=" pr-3">
+                    <span class="pr-3" >${data.item.readCnt}`;
+                    if (loginId != null) {
+                        if (wishchk) {
+                            modalHtml += `
+                                <span class="text-red-500 right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${data.item.itemCode})"><i class="ri-heart-3-fill"></i></sapn>
+
+                                    `
+                        } else {
+                            modalHtml += `
+                                <span class="text-red-500 right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishAdd(this,${data.item.itemCode})"><i class="ri-heart-3-line"></i></sapn>
+                            
+                            `
+                        }
+                    }
+                    
+                    
+                    
+                    modalHtml += `</span>`;
+                    if (loginId != "") {
+                        modalHtml += ` <span onclick="goChat(${data.item.itemCode})">채팅바로가기</span>`;
+                        
+                    }else{
+                        modalHtml += ` <span onclick="goLogin()">채팅바로가기</span>`;
+                    }
+                modalHtml += `</div>
+                <!-------- 도시/제목 ------------>
+        <div class="bg-white p-6 p-tag text-center" >
+                <div class="text-2xl">
+                    <span class="text-red-500">[${data.item.itemPlace}]</span> 
+                    <span>${data.item.itemTitle}</span>
+                </div>
+                <!------------- 개최자 ----------->
+                <div class="text-right mb-5">
+                    ${data.item.memberId}
+                </div>
+                <!------------ 내용 ------------>
+                <div class="">
+                    <p class="px-3 my-3">
+                        ${data.item.itemContent}
+                    </p>
+                </div>
+                <!-------- 날짜 ------------>
+                <span
+                class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">
+                        개최기간</span>
+                <span class="my-3 text-green-500" >
+                    ${data.item.itemStartDate}~${data.item.itemEndDate}
+                </span>
+                <div class=" my-3">
+                        ${data.item.itemPrice}
+                </div>
+                <div>
+                    --------------------------------------------------------------------
+                </div>
+            <!--------------------- 상세이미지  ------------------------->
+            <!-------- 위치 지도 ------------>
+            <div>
+                위치/지도
             </div>
+            <input type="hidden" id="itemX" name="itemX" value="${data.item.itemX}">
+            <input type="hidden" id="itemY" name="itemY" value="${data.item.itemY}">
 
-            <!------------- 장소 ----------->
-
-            <div >
-                <!-- 동만 나오게 설정 예정 -->
-                ${data.itemPlace}
-            </div>
-
+            <div id="map" style="width:100%;"></div>
         </div>
-        <div >
-            ${data.itemTitle}
-        </div>
-        <div >
-            <div >
-                ${data.itemStartDate}~${data.itemEndDate}
-            </div>
-        </div>
-        <!--------------------- 상세이미지  ------------------------->
-        <!------------ 내용 ------------>
-        <div class="">
-            <p class="">
-                ${data.itemContent}
-            </p>
-        </div>
-        <div>
-            조회수: ${data.readCnt}/
-            <span sec:authorize="isAuthenticated()" onclick="goChat(${data.itemCode})">채팅바로가기</span>
-            <span sec:authorize="isAnonymous()" onclick="goLogin()">채팅바로가기</span>
-        </div>
-        <div>
-            위치/지도
-        </div>
-        <input type="hidden" id="itemX" name="itemX" value="${data.itemX}">
-        <input type="hidden" id="itemY" name="itemY" value="${data.itemY}">
-
-        <div id="map" style="width:100%;"></div>
-        
+    </div>
     
         `;
 
 
-        const p_tag =document.querySelector('.p-tag');
+        
         p_tag.insertAdjacentHTML('afterbegin',modalHtml);
 
         
@@ -415,4 +449,7 @@ modalHtml += `</span>
 function modalToggle(){
     document.querySelector('#detail_modal').classList.toggle('hidden'); 
     document.querySelector('#detail_modal').classList.toggle('flex'); 
+}
+function goLogin() {
+    alert('로그인 후 이용해주세요.')
 }
