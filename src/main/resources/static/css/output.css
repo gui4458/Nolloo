@@ -9,13 +9,20 @@
 @font-face {
   font-family: 'TTLaundryGothicB';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
-  font-weight: 700;
+  font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'WAGURITTF';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403@1.0/WAGURITTF.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'KCC-Hanbit';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -80,7 +87,8 @@ body {
   line-height: inherit;
   /* 2 */
   /* 프로젝트의 기본 폰트 */
-  font-family: TTLaundryGothicB; 
+  /* font-family: TTLaundryGothicB;  */
+  font-family: 'KCC-Hanbit';
 }
 
 .sub-font{
