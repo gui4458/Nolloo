@@ -1,0 +1,1 @@
+npx tailwindcss -i D:\01-STUDY\dev\download\OneDrive\Nolloo\src\main\resources\static\css\input.css -o D:\01-STUDY\dev\download\OneDrive\Nolloo\src\main\resources\static\css\output.css --watch  

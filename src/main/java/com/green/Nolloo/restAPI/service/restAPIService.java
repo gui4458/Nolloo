@@ -2,6 +2,7 @@ package com.green.Nolloo.restAPI.service;
 
 import com.green.Nolloo.restAPI.vo.AddressFormVO;
 import com.green.Nolloo.restAPI.vo.MapVO;
+import com.green.Nolloo.restAPI.vo.MyEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,6 +13,7 @@ public interface restAPIService {
     List<MapVO> selectAllMapLatLnt();
 
     List<AddressFormVO> searchAddress(String[] qry);
-
+    List<String> selectSido();
+    List<AddressFormVO> selectSigungu(String sido);
 }
 
