@@ -59,9 +59,12 @@ public class MemberController {
 //    로그인 결과 화면
     @GetMapping("/loginResult")
     public String login(Authentication authentication,HttpSession session){
-        User user = (User)authentication.getPrincipal();
-        session.setAttribute("memberId",user.getUsername());
-        session.setAttribute("reserveList",reserveService.selectReserve(user.getUsername()));
+        if (authentication != null){
+            User user = (User)authentication.getPrincipal();
+            session.setAttribute("memberId",user.getUsername());
+            session.setAttribute("reserveList",reserveService.selectReserve(user.getUsername()));
+        }
+
     return "content/member/login_result";
 
     }
