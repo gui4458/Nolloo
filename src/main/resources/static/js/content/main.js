@@ -318,44 +318,41 @@ function selectItemCode(itemCode, selectedTag, items){
         const loginId =document.querySelector('#loginId').value;
         console.log(loginId);
         const p_tag =document.querySelector('.p-tag');
+
+        
+
         p_tag.innerHTML ='';
         
         let modalHtml ='';
 
         modalHtml += `
         <!-------- 메인이미지 ------->
-    
-    
-        <div class="">
             `;
-
                 if(data.item.cateCode == 1){
                     data.item.imgList.forEach(function(img,i){
                         if(img.isMain=='Y'){
             modalHtml += `
-            
-                <img class="w-full h-50" src="/upload/itemSolo/${img.attachedFileName}" alt="">
-            
+            <div class="">
+                <img class="h-50 size-full align-top list-disc px-3" src="/upload/itemSolo/${img.attachedFileName}" alt="">
+                </div>
         `;
                         }
                     })
                 };
-modalHtml += `
-                </div>
-                <div>`;
+
                             if(data.item.cateCode == 2){
                                 data.item.imgList.forEach(function(img,i){
                                     if(img.isMain=='Y'){
                         modalHtml += `
-                        
-                        <img class="w-full h-50" src="/upload/item/${img.attachedFileName}" alt="">
-                        
+                        <div class="">
+                            <img class="h-25 w-full" src="/upload/item/${img.attachedFileName}" alt="">
+                        </div >
                         `;
                                     }
                                 })
                             };
     modalHtml += `
-        </div >
+        
         <!-------- 찜 +채팅방 ------------>
     <div class="px-2 text-right">
                 <div class=" pr-3">
@@ -388,7 +385,7 @@ modalHtml += `
         <div class="bg-white p-6 p-tag text-center" >
                 <div class="text-2xl">
                     <span class="text-red-500">[${data.item.itemPlace}]</span> 
-                    <span>${data.item.itemTitle}</span>
+                    <span class="font-extralight">${data.item.itemTitle}</span>
                 </div>
                 <!------------- 개최자 ----------->
                 <div class="text-right mb-5">
@@ -407,9 +404,15 @@ modalHtml += `
                 <span class="my-3 text-green-500" >
                     ${data.item.itemStartDate}~${data.item.itemEndDate}
                 </span>
-                <div class=" my-3">
-                        ${data.item.itemPrice}
-                </div>
+                <div class=" my-3 itemPrice-div">`;
+                        if(data.item.itemPrice==0){
+                            modalHtml += `무료입장`
+                       }
+                       else{
+                        {data.item.itemPrice}
+                       }
+                        
+                        modalHtml += `</div>
                 <div>
                     --------------------------------------------------------------------
                 </div>
