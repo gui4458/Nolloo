@@ -2,6 +2,7 @@ package com.green.Nolloo.restAPI.service;
 
 import com.green.Nolloo.restAPI.vo.AddressFormVO;
 import com.green.Nolloo.restAPI.vo.MapVO;
+import com.green.Nolloo.restAPI.vo.MyEntity;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -12,6 +13,8 @@ import java.util.List;
 
 @Service("restAPIService")
 public class restAPIServiceImpl implements restAPIService {
+    @Autowired
+    private LuceneIndexer luceneIndexer;
 
     @Autowired
     private SqlSessionTemplate sqlSession;
@@ -36,12 +39,12 @@ public class restAPIServiceImpl implements restAPIService {
         return sqlSession.selectList("addressMapper.selectSigungu", sido);
     }
 
-    @Autowired
-    private AddressRepository addressRepository;
+//    @Autowired
+//    private AddressRepository addressRepository;
 
-    @Cacheable("addressCache")
-    public List<AddressFormVO> processQuery(String inputParams) {
-        return sqlSession.selectList("addressMapper.selectAddress",inputParams);
-    }
+//    @Cacheable("addressCache")
+//    public List<AddressFormVO> processQuery(String inputParams) {
+//        return sqlSession.selectList("addressMapper.selectAddress",inputParams);
+//    }
 
 }

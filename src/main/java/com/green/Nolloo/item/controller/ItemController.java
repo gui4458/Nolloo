@@ -79,12 +79,15 @@ public class ItemController {
 //        searchVO.setTotalDataCnt(totalDataCnt);
 //        System.out.println("totalDataCnt = " + totalDataCnt);
 //        List<Integer> wishCodeList = new ArrayList<>();
+
         model.addAttribute("cateCode",cateCode);
         List<CateVO> cateList = itemService.selectCate();
 
 
+
         List<ItemVO> recommendList = itemService.searchByReadCnt();
         session.setAttribute("recommendList",recommendList);
+
         session.setAttribute("cateList",cateList);
 //        if (authentication != null){
 //            User user = (User)authentication.getPrincipal();
@@ -101,14 +104,13 @@ public class ItemController {
 //        }
 
 
+
         return "content/main";
     }
     @ResponseBody
     @PostMapping("/list")
     public Map<String,Object> list(@RequestBody PageVO pageVO,Authentication authentication,SearchVO searchVO){
         List<ItemVO> itemList = itemService.selectPartyList(pageVO);
-
-
 
         Map<String,Object> data = new HashMap<String, Object>();
         data.put("itemList",itemList);
@@ -190,52 +192,47 @@ public class ItemController {
     }
 
     //itemDetail 조회
-    @GetMapping("/itemDetailForm")
-    public String boardDetailForm(ItemVO itemVO, ReserveVO reserveVO, Model model, Authentication authentication
-            , @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode){
+    @ResponseBody
+    @PostMapping("/itemDetailForm")
+    public ItemVO boardDetailForm(ItemVO itemVO, Authentication authentication){
 
         itemService.itemListUpdateCnt(itemVO);
-        model.addAttribute("item",itemService.selectPartyDetail(itemVO));
+        ItemVO item = itemService.selectPartyDetail(itemVO);
 
-        model.addAttribute("chkCode",chkCode);
+       // model.addAttribute("chkCode",chkCode);
 
-        if (authentication != null){
-            User user = (User)authentication.getPrincipal();
-            reserveVO.setMemberId(user.getUsername());
-            model.addAttribute("reserveCnt",reserveService.reserveDone(reserveVO));
-            List<ReserveVO> reserveList = reserveService.selectReserve(user.getUsername());
-            model.addAttribute("reserveList",reserveList);
+//        if (authentication != null){
+//            User user = (User)authentication.getPrincipal();
+//            reserveVO.setMemberId(user.getUsername());
+//            model.addAttribute("reserveCnt",reserveService.reserveDone(reserveVO));
+//            List<ReserveVO> reserveList = reserveService.selectReserve(user.getUsername());
+//            model.addAttribute("reserveList",reserveList);
+//        }
 
-        }
-
-        return "content/item/item_detail";
+        return item;
     }
     //게시글 삭제
     @GetMapping("/deleteItem")
     public String deleteParty(ItemVO itemVO) {
-        List<String> attachedFileNameList = itemService.selectItemImage(itemVO);
+        List<String> attachedFileNameList = itemService.selectItemImage(itemVO);//attachedFileName만 조회+where절로 itemCode 넣어주기
 
 
         try {   //"c:\\ss\\aaa.jpg"
-            for(String attachedFileName : attachedFileNameList){
+            for(String attachedFileName : attachedFileNameList){//attachedFileName여러개를 하나씩 출력
                 String Path = PathVariable.ITEM_UPLOAD_PATH;//itemSolo경로
                 File file = new File(Path + attachedFileName);//경로+파일이미지(AttachedFileName)
 
-                if(file.delete()){
+                if(file.delete()){//delete로 폴더에 파일 삭제
                     System.out.println("파일을 삭제 하였습니다");
                 }else {
                     System.out.println("파일 삭제에 실패하였습니다");
                 }
             }
-
-
-
-
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        itemService.deleteParty(itemVO);
+        itemService.deleteParty(itemVO);//쿼리 item정보+img삭제
         return "redirect:/item/list";
     }
 

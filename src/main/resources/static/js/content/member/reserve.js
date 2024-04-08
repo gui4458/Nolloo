@@ -83,12 +83,29 @@ function getReserveDetail(itemCode) {
         //fetch 통신 후 실행 영역
         .then((data) => {//data -> controller에서 리턴되는 데이터!
             //조회한 데이터를 모달에 적용
+
+
             console.log(data);
             console.log(123)
 
-            const modal_tbody = document.querySelector('#modal_tbody');
-            modal_tbody.innerHTML = ' ';
-            let str = '';
+            const detail = document.querySelector('.detail');
+            detail.innerHTML = ' ';
+            let str = `
+            <table class="border text-center">
+            <caption class="text-left">예약상세내역</caption>
+            <thead class="[&>tr>td]:border">
+                <tr class="bg-red-300 text-white">
+                    <td>party</td>
+                    <td>content</td>
+                    <td>가격</td>
+                    <td>날짜</td>
+                    <td>인원수</td>
+                    <td>장소</td>
+                </tr>
+            </thead>
+
+            <tbody>
+            `;
 
 
             str += `
@@ -100,8 +117,10 @@ function getReserveDetail(itemCode) {
                 <td>${data.itemPeople}</td>
                 <td>${data.itemPlace}</td>
             </tr>
+            </tbody>
+            </table>
             `;
-            modal_tbody.insertAdjacentHTML("afterbegin", str)
+            detail.insertAdjacentHTML("afterbegin", str)
 
 
 
