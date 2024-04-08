@@ -26,6 +26,7 @@ import com.green.Nolloo.wish.vo.WishViewVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpSession;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
@@ -109,7 +110,7 @@ public class ItemController {
     }
     @ResponseBody
     @PostMapping("/list")
-    public Map<String,Object> list(@RequestBody PageVO pageVO,Authentication authentication,SearchVO searchVO){
+    public Map<String,Object> list(@RequestBody PageVO pageVO,Authentication authentication,SearchVO searchVO,HttpSession session){
         List<ItemVO> itemList = itemService.selectPartyList(pageVO);
 
         Map<String,Object> data = new HashMap<String, Object>();
@@ -128,6 +129,7 @@ public class ItemController {
         }
 
         data.put("wishCodeList", wishCodeList);
+        session.setAttribute("data",data);
         return data;
 
     }
@@ -194,11 +196,16 @@ public class ItemController {
     //itemDetail 조회
     @ResponseBody
     @PostMapping("/itemDetailForm")
-    public ItemVO boardDetailForm(ItemVO itemVO, Authentication authentication){
+    public Map<String,Object> boardDetailForm(ItemVO itemVO, Authentication authentication, HttpSession session){
 
         itemService.itemListUpdateCnt(itemVO);
-        ItemVO item = itemService.selectPartyDetail(itemVO);
 
+
+
+
+        Map<String,Object> data = (Map<String, Object>) session.getAttribute("data");
+        data.put("item",itemService.selectPartyDetail(itemVO));
+        System.out.println(data);
        // model.addAttribute("chkCode",chkCode);
 
 //        if (authentication != null){
@@ -209,7 +216,7 @@ public class ItemController {
 //            model.addAttribute("reserveList",reserveList);
 //        }
 
-        return item;
+        return data;
     }
     //게시글 삭제
     @GetMapping("/deleteItem")

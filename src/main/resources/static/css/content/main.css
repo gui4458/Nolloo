@@ -56,13 +56,11 @@
 }
 /* .main-img-div{
     
-    width:800px;
-    height:600px;
-    overflow:hidden;
-    margin:0 auto;
+    background-repeat: no-repeat;
     
-}
-.img-div{
+    
+} */
+/* .img-div{
     
     width:100%;
     height:100%;
