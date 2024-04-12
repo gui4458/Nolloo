@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/admin/admin_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <link rel="stylesheet" href="/">
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+    <div class="">회원관리</div>
+    <div>[[${memberList}]]</div>
+    <div class="mx-auto max-w-7xl py-1 px-4 md:px-3">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 container" id="itemListContainer">
+            <div class="item-lazy bg-white shadow-xl shadow-slate-900/5 rounded-lg group">
+
+                <div class="flex flex-row p-3 lg:flex-col">
+                    <div
+                        class="image-container relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">
+
+
+
+                        <img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]"
+                            src="/upload/itemSolo/0f288234-dafe-43ca-b882-adace88c9860.jpg" alt="">
+
+
+
+
+                        <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer"><i
+                                class="ri-heart-3-fill"></i></sapn>
+
+
+                    </div>
+                    <div class="ml-5 lg:ml-0 lg:mt-3">
+                        <figcaption class="font-medium">
+                            <div class="text-dark-600">
+                                <span
+                                    class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">1</span><strong
+                                    class="inline-flex text-xs py-1 pl-1">태화동</strong>
+                            </div>
+                            <div class="text-dark-600 font-bold mt-1">
+                                2
+                            </div>
+                            <div class="text-slate-600 text-sm mt-1">
+                                3
+                            </div>
+                            <div class="text-green-500 text-sm mt-1">
+                                4
+                            </div>
+                        </figcaption>
+                    </div>
+
+                </div>
+
+                <div class="w-8 h-8 ml-3">
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 container" id="itemListContainer">
+            <div class="item-lazy bg-white shadow-xl shadow-slate-900/5 rounded-lg group">
+
+                <div class="flex flex-row p-3 lg:flex-col">
+                    <div
+                        class="image-container relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">
+
+
+
+                        <img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]"
+                            src="/upload/itemSolo/0f288234-dafe-43ca-b882-adace88c9860.jpg" alt="">
+
+
+
+
+                        <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer"><i
+                                class="ri-heart-3-fill"></i></sapn>
+
+
+                    </div>
+                    <div class="ml-5 lg:ml-0 lg:mt-3">
+                        <figcaption class="font-medium">
+                            <div class="text-dark-600">
+                                <span
+                                    class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">1</span><strong
+                                    class="inline-flex text-xs py-1 pl-1">태화동</strong>
+                            </div>
+                            <div class="text-dark-600 font-bold mt-1">
+                                2
+                            </div>
+                            <div class="text-slate-600 text-sm mt-1">
+                                3
+                            </div>
+                            <div class="text-green-500 text-sm mt-1">
+                                4
+                            </div>
+                        </figcaption>
+                    </div>
+
+                </div>
+
+                <div class="w-8 h-8 ml-3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/"></script>
+</th:block>
+
+</html>
