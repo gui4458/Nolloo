@@ -384,10 +384,10 @@
         VALUES
         <foreach collection="imgList" item="img" separator=",">
         (
-        #{img.originFileName}
-        , #{img.attachedFileName}
+        #{img.attachedFileName}
+        , #{img.originFileName}
         , #{img.isMain}
-        , #{img.itemCode}
+        , #{itemCode}
         )
         </foreach>
     </insert>

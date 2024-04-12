@@ -51,4 +51,6 @@ public interface ItemService {
     //imgCode로 첨부파일명 조회
     String findAttachedFileNameByImgCode(ImgVO imgVO);
 
+    void insertMainImg(ItemVO itemVO);
+
 }

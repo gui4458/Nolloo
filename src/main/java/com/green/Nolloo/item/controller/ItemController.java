@@ -274,10 +274,17 @@ public class ItemController {
     }
 
     @PostMapping("/updateItem")
-    public String updateItem(ItemVO itemVO){
-        System.out.println(itemVO);
-        itemService.updateItemDetail(itemVO);
+    public String updateItem(ItemVO itemVO,
+             @RequestParam(name = "subfileName") MultipartFile[] subfileName){
+        //----- 첨부파일 새로 등록 -----//
+        //서브 이미지 첨부 및 첨부 데이터 받기
+        List<ImgVO> imgList = UploadUtil.multiUploadFile(subfileName);
 
+        //합체된 첨부 정보를 itemVO에 넣어 줌.
+        itemVO.setImgList(imgList);
+
+        //수정하려는 내용 + 첨부파일 정보가 다 들어있는 itenmVO를 쿼리 실행 시 매개변수로 전달!
+        itemService.updateItemDetail(itemVO);
 
         return "redirect:/item/myParty";
     }
@@ -291,15 +298,41 @@ public class ItemController {
         String attachedFileName = itemService.findAttachedFileNameByImgCode(imgVO);
 
         //선택한 이미지 디비에서 삭제
-        //itemService.deleteItemImg(imgVO);
+        itemService.deleteItemImg(imgVO);
 
         //첨부파일 삭제
-        //UploadUtil.deleteUploadFile(PathVariable.ITEM_UPLOAD_PATH + attachedFileName);
-
-
-
+        UploadUtil.deleteUploadFile(PathVariable.ITEM_UPLOAD_PATH + attachedFileName);
     }
 
+    //상품 정보 수정에서 메인 이미지를 변경하는 메서드
+    @ResponseBody
+    @PostMapping("/changeMainImg")
+    public String changeMainImg(ImgVO imgVO, @RequestParam(name = "file", required = false) MultipartFile file){
 
+        //----- 이미지 삭제 및 재등록 -----//
+
+        //----- 원래 이미지 삭제 -----//
+        //첨부파일명 조회
+        String attachedFileName = itemService.findAttachedFileNameByImgCode(imgVO);
+
+        //선택한 이미지 디비에서 삭제
+        itemService.deleteItemImg(imgVO);
+
+        //첨부파일 삭제
+        UploadUtil.deleteUploadFile(PathVariable.ITEM_UPLOAD_PATH + attachedFileName);
+
+        //----- 새로운 이미지 등록 -----//
+        ImgVO vo = UploadUtil.uploadFile(file);
+
+
+        ItemVO itemVO = new ItemVO();
+        itemVO.setItemCode(imgVO.getItemCode());
+        List<ImgVO> imgList = new ArrayList<>();
+        imgList.add(vo);
+        itemVO.setImgList(imgList);
+        itemService.insertMainImg(itemVO);
+
+        return file.getOriginalFilename();
+    }
 
 }

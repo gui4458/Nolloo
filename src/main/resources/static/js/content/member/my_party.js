@@ -34,7 +34,7 @@ function getDetail(itemCode) {
 
         
         <div class="w-[500px]">    
-        <form action="/item/updateItem" method="post">
+        <form action="/item/updateItem" method="post" enctype="multipart/form-data">
         <input type="hidden" name="itemCode" value="${itemCode}">
             <table class="w-full border-collapse text-center border">
             <caption class="text-left font-bold text-[15px] italic">파티 상세 내역</caption>
@@ -95,16 +95,12 @@ function getDetail(itemCode) {
                 if (element.isMain == 'Y') {
                     str += `<div class="row">
                                 <div class="col">
-                                    <input class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" type="file" name="originfileName" id="main_img_input" disabled>
+                                    <input onchange="changeMainImg(${element.imgCode}, ${element.itemCode});" class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" type="file" id="main_img_input">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col">
+                            <div class="">
+                                <div class="text-left" id="main-img-div">
                                     ${element.originFileName}
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-excel" viewBox="0 0 16 16" onclick="goDeleteImg(${element.imgCode},this);">
-                                        <path d="M5.18 4.616a.5.5 0 0 1 .704.064L8 7.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 8l2.233 2.68a.5.5 0 0 1-.768.64L8 8.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 8 5.116 5.32a.5.5 0 0 1 .064-.704"></path>
-                                        <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1"></path>
-                                    </svg>
                                 </div>
                             </div>
                         `;
@@ -117,22 +113,23 @@ function getDetail(itemCode) {
                     <tr>
                         <td class="text-white font-semibold border-b-1 border-b-red-500 border-t border-t-red-500 bg-red-300">상세 이미지</td>
                         <td>
-                            <div class="row">
-                                    <div class="col">
-                                        <input class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" type="file" name="originfileName" multiple>
+                            <div class="">
+                                    <div class="">
+                                        <input class="w-full border rounded-lg py-1 px-2 outline-none  focus:border-red-300" type="file" name="subfileName" multiple>
                                     </div>
                                 </div>`;
 
             data.imgList.forEach(element => {
                 if (element.isMain == 'N') {
                     str += `
-                            <div class="row">
-                                <div class="col">
+                            <div class="">
+                                <div class="text-left">
                                     ${element.originFileName}
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-excel" viewBox="0 0 16 16" onclick="goDeleteImg(${element.imgCode}, this);">
+                                    <svg style="display:inline-block" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-excel" viewBox="0 0 16 16" onclick="goDeleteImg(${element.imgCode}, this);">
                                         <path d="M5.18 4.616a.5.5 0 0 1 .704.064L8 7.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 8l2.233 2.68a.5.5 0 0 1-.768.64L8 8.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 8 5.116 5.32a.5.5 0 0 1 .064-.704"></path>
                                         <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1"></path>
                                     </svg>
+                                    
                                 </div>
                             </div>
                         `;
@@ -216,3 +213,46 @@ function goDeleteImg(imgCode, selected_tag){
         });
 }
 
+
+//대표 이미지 변경 함수
+function changeMainImg(imgCode, itemCode){
+    const fileInput = document.querySelector('#main_img_input') ;
+    let send_data = new FormData();
+    send_data.append('file', fileInput.files[0]);
+    send_data.append('imgCode', imgCode);
+    send_data.append('itemCode', itemCode);
+
+    //이미지 삭제하러 컨트롤러 이동
+    fetch('/item/changeMainImg', { //요청경로
+        method: 'POST',
+        cache: 'no-cache',
+        // headers: {
+        //     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        //     //"Content-Type": "multipart/form-data"
+        // },
+        //컨트롤러로 전달할 데이터
+        body: send_data
+    })
+    .then((response) => {
+        if (!response.ok) {
+            alert('fetch error!\n컨트롤러로 통신중에 오류가 발생했습니다.');
+            return;
+        }
+
+        return response.text(); //컨트롤러에서 return하는 데이터가 없거나 int, String 일 때 사용
+        //return response.json(); //나머지 경우에 사용
+    })
+    //fetch 통신 후 실행 영역
+    .then((data) => {//data -> controller에서 리턴되는 데이터!
+        const main_img_div = document.querySelector('#main-img-div');
+        main_img_div.innerHTML = data;
+        
+
+
+    })
+    //fetch 통신 실패 시 실행 영역
+    .catch(err => {
+        alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+        console.log(err);
+    });
+}

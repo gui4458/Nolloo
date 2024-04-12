@@ -130,4 +130,12 @@ public class MemberController {
 
     }
 
+    @GetMapping("/pw")
+    public String getPw(){
+        String pw = encoder.encode("1111");
+        System.out.println("@@@@@@" + pw);
+        return "";
+    }
+
+
 }

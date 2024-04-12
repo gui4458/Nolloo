@@ -17,13 +17,13 @@
                 <caption class="text-left">예약내역</caption>
 
                 <tbody class="[&>tr>td]:border">
-                    <tr class="bg-red-300 text-white">
+                    <tr class="[&>td]:p-2 bg-red-300 text-white">
                         <td><input type="checkbox" id="checkAll" onclick="checkAll()"></td>
                         <td style="font-weight: bold;">No</td>
                         <td style="font-weight: bold;">Party</td>
                         <td style="font-weight: bold;">Date</td>
                     </tr>
-                    <tr th:each="reserve, state:${reserveList}">
+                    <tr class="[&>td]:p-2" th:each="reserve, state:${reserveList}">
                         <td><input type="checkbox" class="chk" th:value="${reserve.itemVO.itemCode}"></td>
                         <td>[[${state.index + 1}]]</td>
                         <td>
@@ -46,7 +46,7 @@
 
 
         </div>
-        <div class="detail basis-3/5">
+        <div class="detail basis-3/5 ml-2">
 
         </div>
     </div>
