@@ -94,7 +94,7 @@ function getReserveDetail(itemCode) {
             <table class="border text-center">
             <caption class="text-left">예약상세내역</caption>
             <thead class="[&>tr>td]:border">
-                <tr class="bg-red-300 text-white">
+                <tr class="[&>td]:p-2 bg-red-300 text-white">
                     <td>party</td>
                     <td>content</td>
                     <td>가격</td>
@@ -109,7 +109,7 @@ function getReserveDetail(itemCode) {
 
 
             str += `
-            <tr>
+            <tr class="[&>td]:p-2">
                 <td>${data.itemTitle}</td>
                 <td>${data.itemContent}</td>
                 <td>${data.itemPrice}</td>
