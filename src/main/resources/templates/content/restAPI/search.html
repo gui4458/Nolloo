@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/user_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+
+</th:block>
+<th:block layout:fragment="contentFragment"> 
+
+    <div class="flex flex-col items-center justify-center h-screen ask-block">
+        
+        <div class="bg-indigo-800 text-white font-bold rounded-lg border shadow-lg p-10">
+            ASK
+        </div>
+
+        <form action="/search" method="post" class="rounded-md shadow-sm block border-0 mt-3 py-1.5 pr-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600">
+            <input type="search" name="sido">
+            <input type="submit" value="Search">
+        </form>
+            
+    </div>
+
+</th:block>
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3f269d19617ad795568529a85a77081a "></script>
+    <script src="/js/content/main.js"></script>
+    
+
+</th:block>
+
+</html>
