@@ -101,4 +101,14 @@ public class AdminController {
 
         return "content/admin/admin_join_statistics";
     }
+   @GetMapping("/noticeForm")
+   public String noticeForm(){
+        return "content/admin/notice";
+   }
+
+   @PostMapping("/notice")
+    public String notice(ItemVO itemVO){
+
+        return "content/admin/admin_notice";
+   }
 }

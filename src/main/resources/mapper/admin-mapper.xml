@@ -37,6 +37,19 @@
         )
 
     </insert>
+
+    <insert id="insertNotice">
+        INSERT INTO ITEM_INFO(
+        MEMBER_ID
+        , ITEM_TITLE
+        , ITEM_CONTENT
+        )
+        VALUES(
+
+        )
+    </insert>
+
+
 </mapper>
 
 

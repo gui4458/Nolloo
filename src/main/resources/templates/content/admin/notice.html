@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/admin/admin_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <link rel="stylesheet" href="/">
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+
+
+    <form action="/admin/notice" method="post">
+        <div class="w-full">
+            <table class="mt-[10%] m-auto border border-collapse">
+                <tbody class="[&>tr>td]:border [&>tr]:border">
+                    <tr>
+                        <td class="w-[200px] bg-red-300 text-white">작성자</td>
+                        <td class="w-[800px]">
+                            <input type="text" name="memberId" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="w-[200px] bg-red-300 text-white">제목</td>
+                        <td class="w-[800px]">
+                            <input type="text" name="itemTitle" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="w-[200px] bg-red-300 text-white">content</td>
+                        <td class="w-[800px]">
+                            <input type="text" name="itemContent" id="">
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+            <div class="text-right">
+                <input class="bg-red-300 text-white rounded-lg w-[5%]" type="submit" value="확인" name="" id="">
+            </div>
+            
+        </div>
+    </form>
+
+
+
+
+
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/"></script>
+</th:block>
+
+</html>
