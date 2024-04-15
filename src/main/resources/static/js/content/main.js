@@ -134,12 +134,12 @@ function displayItems(items) {
                                 if (loginId != null) {
                                     if (wishchk) {
                                         itemHtml += `
-                                            <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${item.itemCode})"><i class="ri-heart-3-fill"></i></sapn>
+                                            <span class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${item.itemCode})"><i class="ri-heart-3-fill"></i></sapn>
 
                                                 `
                                     } else {
                                         itemHtml += `
-                                            <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishAdd(this,${item.itemCode})"><i class="ri-heart-3-line"></i></sapn>
+                                            <span class="wishAdd-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishAdd(this,${item.itemCode})"><i class="ri-heart-3-line"></i></sapn>
                                         
                                         `
                                     }
@@ -187,6 +187,7 @@ function displayItems(items) {
 // 하트 누르면 추가
 function wishAdd(divTag, itemCode) {
     const head = divTag
+    
     fetch('/wish/insertWish', { //요청경로
         method: 'POST',
         cache: 'no-cache',
@@ -209,6 +210,7 @@ function wishAdd(divTag, itemCode) {
             //     if (result1) {
             //         location.href = `/wish/goWishList`;
             //     }
+            
             const strDelete = `
             <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${itemCode})"><i class="ri-heart-3-fill"></i></sapn>
 
@@ -358,7 +360,7 @@ function selectItemCode(itemCode, selectedTag, items){
         <!-------- 찜 +채팅방 ------------>
     <div class="px-2 text-right">
                 <div class=" pr-3">
-                    <span class="pr-3" >${data.item.readCnt}`;
+                    <span class="pr-3" >${data.wishCnt}`;
                     if (loginId != null) {
                         if (wishchk) {
                             modalHtml += `

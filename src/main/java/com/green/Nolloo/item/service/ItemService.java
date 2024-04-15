@@ -11,6 +11,9 @@ import com.green.Nolloo.search.vo.SearchVO;
 import java.util.List;
 
 public interface ItemService {
+    //하트 카운트
+    int wishCount(int itemCode);
+
     // board 등록하는 메소드
     void insertParty(ItemVO itemVO);
     // board 목록 조회 메소드

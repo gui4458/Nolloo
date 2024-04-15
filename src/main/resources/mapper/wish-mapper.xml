@@ -47,7 +47,16 @@
             ,ITEM_PLACE
             ,PLACE_DETAIL
         FROM WISH_VIEW
+
         WHERE MEMBER_ID = #{memberId}
+
+    </select>
+
+    <select id="wishCount" resultType="int">
+        SELECT
+            COUNT(ITEM_CODE)
+        FROM WISH_VIEW
+        WHERE ITEM_CODE = #{itemCode}
     </select>
 
     <delete id="wishDelete">
