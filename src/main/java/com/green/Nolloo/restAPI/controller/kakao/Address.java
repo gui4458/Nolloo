@@ -77,7 +77,7 @@ public class Address {
 
     @GetMapping("/search")
     public String searchEntities() {
-        return "/content/restAPI/searchaddr";
+        return "/content/restAPI/search";
     }
 
     @ResponseBody
