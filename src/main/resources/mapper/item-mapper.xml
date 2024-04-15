@@ -176,8 +176,10 @@
 <!--            AND #{to} &gt;= DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d')-->
 <!--        </if>-->
         ORDER BY ITEM_START_DATE DESC
+        <if test='limit != 0'>
+            LIMIT ${limit} OFFSET ${offset}
 
-        LIMIT ${limit} OFFSET ${offset}
+        </if>
 
     </select>
 
@@ -384,10 +386,10 @@
         VALUES
         <foreach collection="imgList" item="img" separator=",">
         (
-        #{img.originFileName}
-        , #{img.attachedFileName}
+        #{img.attachedFileName}
+        , #{img.originFileName}
         , #{img.isMain}
-        , #{img.itemCode}
+        , #{itemCode}
         )
         </foreach>
     </insert>

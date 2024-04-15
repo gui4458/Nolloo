@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+
+
+<th:block th:fragment="adminHeaderFragment">
+
+    <div class="w-full mx-auto px-4 md:px-6 py-6">
+
+        <!-- Expandable header -->
+        <th:block th:replace="~{fragment/header/header-exp :: headerFragment}"></th:block>
+
+        <!-- Register Modal -->
+        <th:block th:replace="~{fragment/header/header-reg :: headerFragment}"></th:block>
+
+    </div>
+
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/fragment/user_header.js"></script>
+    <script src="/js/fragment/user_menu.js"></script>
+
+</th:block>
+
+</html>

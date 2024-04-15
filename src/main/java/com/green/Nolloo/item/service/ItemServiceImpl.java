@@ -55,11 +55,14 @@ public class ItemServiceImpl implements ItemService {
     }
 
     //파티 상세 수정
+    @Transactional(rollbackFor = Exception.class)
+    //쿼리 분리된 여러 개의 기능을 하나로 묶어 주는 것 두개의 쿼리가 동시에 실행 되어야 하는 것
     @Override
     public void updateItemDetail(ItemVO itemVO) {
         sqlSession.update("itemMapper.updateItemDetail",itemVO);
-        sqlSession.insert("itemMapper.insertImage",itemVO);
-
+        if(itemVO.getImgList().size() != 0){
+            sqlSession.insert("itemMapper.insertImage",itemVO);
+        }
     }
 
     @Override
@@ -81,6 +84,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public String findAttachedFileNameByImgCode(ImgVO imgVO) {
         return sqlSession.selectOne("itemMapper.findAttachedFileNameByImgCode", imgVO);
+    }
+
+    @Override
+    public void insertMainImg(ItemVO itemVO) {
+        sqlSession.insert("itemMapper.insertImage",itemVO);
     }
 
 

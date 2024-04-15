@@ -91,19 +91,10 @@ function getReserveDetail(itemCode) {
             const detail = document.querySelector('.detail');
             detail.innerHTML = ' ';
             let str = `
-            <table class="table table-bordered align-middle text-center">
-            <caption>예약상세내역</caption>
-            <colgroup>
-                <col width="20%">
-                <col width="15%">
-                <col width="10%">
-                <col width="20%">
-                <col width="15%">
-                <col width="20%">
-            </colgroup>
-
-            <thead>
-                <tr>
+            <table class="border text-center">
+            <caption class="text-left">예약상세내역</caption>
+            <thead class="[&>tr>td]:border">
+                <tr class="[&>td]:p-2 bg-red-300 text-white">
                     <td>party</td>
                     <td>content</td>
                     <td>가격</td>
@@ -118,7 +109,7 @@ function getReserveDetail(itemCode) {
 
 
             str += `
-            <tr>
+            <tr class="[&>td]:p-2">
                 <td>${data.itemTitle}</td>
                 <td>${data.itemContent}</td>
                 <td>${data.itemPrice}</td>
