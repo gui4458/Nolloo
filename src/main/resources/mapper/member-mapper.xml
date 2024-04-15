@@ -91,7 +91,7 @@
         , MEMBER_ADDR
         , ADDR_DETAIL
         FROM NOLLOO_MEMBER
-        <if test='memberId != null and memberId.equals("")'>
+        <if test='memberId != null'>
             WHERE MEMBER_ID=#{memberId}
             AND MEMBER_STATUS ='active'
         </if>
