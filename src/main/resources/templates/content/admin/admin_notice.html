@@ -10,7 +10,45 @@
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
-    공지사항
+
+
+    <div class="w-[1000px] h-500px">
+    <table class="ml-[50%] border-collapse w-[1000px] text-center mt-[60px]">
+        <caption class="text-left text-red-400" >공지사항</caption>
+        <colgroup>
+            <col width="8%">
+            <col width="25%">
+            <col width="10%">
+            <col width="20%">
+            <col width="15%">
+        </colgroup>
+        <thead>
+            <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300">
+                <td>번호</td>
+                <td>제목</td>
+                <td>작성자</td>
+                <td>작성일자</td>
+                <td>조회수</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+        
+    </table>
+    <div class="text-right">
+        <button class="w-[5%] border rounded-lg bg-red-300 text-white">글쓰기</button>
+    </div>
+    
+    </div>
+
+
 </th:block>
 
 <th:block layout:fragment="content_js">
