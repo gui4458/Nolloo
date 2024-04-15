@@ -22,6 +22,7 @@ import com.green.Nolloo.search.vo.SearchVO;
 import com.green.Nolloo.util.PathVariable;
 import com.green.Nolloo.util.UploadUtil;
 import com.green.Nolloo.wish.service.WishService;
+import com.green.Nolloo.wish.vo.WishVO;
 import com.green.Nolloo.wish.vo.WishViewVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletOutputStream;
@@ -202,9 +203,9 @@ public class ItemController {
 
 
 
-
         Map<String,Object> data = (Map<String, Object>) session.getAttribute("data");
         data.put("item",itemService.selectPartyDetail(itemVO));
+        data.put("wishCnt",itemService.wishCount(itemVO.getItemCode()));
         System.out.println(data);
        // model.addAttribute("chkCode",chkCode);
 

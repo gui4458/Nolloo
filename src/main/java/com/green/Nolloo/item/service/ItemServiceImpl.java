@@ -92,6 +92,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
 
+    @Override
+    public int wishCount(int itemCode) {
+        return sqlSession.selectOne("wishMapper.wishCount",itemCode);
+    }
+
     // item 등록
     @Override
     @Transactional(rollbackFor =  Exception.class)
