@@ -7,6 +7,8 @@ let offset = 0;
 let itemHtml = ``
 const loginId = document.querySelector('#loginId').value;
 
+
+
 // fetchInitialItems();
 window.scrollTo(-10, -10);
 window.addEventListener('DOMContentLoaded', () => {
@@ -333,7 +335,7 @@ function selectItemCode(itemCode, selectedTag, items){
                         if(img.isMain=='Y'){
             modalHtml += `
             <div class="">
-                <img class="h-50 size-full align-top list-disc px-3" src="/upload/itemSolo/${img.attachedFileName}" alt="">
+                <img class="h-96 w-full" src="/upload/itemSolo/${img.attachedFileName}" alt="">
                 </div>
         `;
                         }
@@ -345,7 +347,7 @@ function selectItemCode(itemCode, selectedTag, items){
                                     if(img.isMain=='Y'){
                         modalHtml += `
                         <div class="">
-                            <img class="h-25 w-full" src="/upload/item/${img.attachedFileName}" alt="">
+                            <img class="h-96 w-full" src="/upload/item/${img.attachedFileName}" alt="">
                         </div >
                         `;
                                     }
@@ -384,7 +386,7 @@ function selectItemCode(itemCode, selectedTag, items){
                 <!-------- 도시/제목 ------------>
         <div class="bg-white p-6 p-tag text-center" >
                 <div class="text-2xl">
-                    <span class="text-red-500">[${data.item.itemPlace}]</span> 
+                    <span class="text-red-300">[${data.item.itemPlace}]</span> 
                     <span class="font-extralight">${data.item.itemTitle}</span>
                 </div>
                 <!------------- 개최자 ----------->
@@ -405,38 +407,42 @@ function selectItemCode(itemCode, selectedTag, items){
                     ${data.item.itemStartDate}~${data.item.itemEndDate}
                 </span>
                 <div class=" my-3 itemPrice-div">`;
-                        if(data.item.itemPrice==0){
+                    if(data.item.itemPrice==0){
                             modalHtml += `무료입장`
-                       }
-                       else{
+                    }
+                    else{
                         {data.item.itemPrice}
-                       }
+                    }
                         
                         modalHtml += `</div>
                 <div>
-                    --------------------------------------------------------------------
+                    --------------------------------------------
                 </div>
             <!--------------------- 상세이미지  ------------------------->
             <!-------- 위치 지도 ------------>
-            <div>
-                위치/지도
-            </div>
+            <div id="detail_map" class="w-full h-[350px]"></div>
             <input type="hidden" id="itemX" name="itemX" value="${data.item.itemX}">
             <input type="hidden" id="itemY" name="itemY" value="${data.item.itemY}">
 
-            <div id="map" style="width:100%;"></div>
+            
         </div>
     </div>
     
         `;
 
 
-        
+        //조회한 상세 정보를 모달에 세팅
         p_tag.insertAdjacentHTML('afterbegin',modalHtml);
 
+        //상품에 대한 지도 붙이기
+        
         
 
         modalToggle();
+        setTimeout(() => {
+            drawMap(data.item.itemX, data.item.itemY);
+        }, 50);
+        
         //console.log(selectedTag.children[0]);
         //console.log(selectedTag.children[0].getAttributeNames());
         //selectedTag.children[0].setAttribute('@click', 'showModal=true')
@@ -449,10 +455,90 @@ function selectItemCode(itemCode, selectedTag, items){
     });
 }
 
+//상세보기 모달을 열고 닫는 함수
 function modalToggle(){
     document.querySelector('#detail_modal').classList.toggle('hidden'); 
     document.querySelector('#detail_modal').classList.toggle('flex'); 
 }
+
 function goLogin() {
     alert('로그인 후 이용해주세요.')
 }
+
+function reserveInsert(itemCode,reserveCnt) {
+
+    if (reserveCnt == 0) {
+        fetch('/reserve/partyReserve', { //요청경로
+            method: 'POST',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            },
+            //컨트롤러로 전달할 데이터
+            body: JSON.stringify({
+                // 데이터명 : 데이터값
+                itemCode: itemCode
+            })
+        })
+            .then((response) => {
+                // return response.json(); //나머지 경우에 사용
+            })
+            //fetch 통신 후 실행 영역
+            .then((data) => {//data -> controller에서 리턴되는 데이터!
+                const chk = confirm('예약되었습니다.\n예약페이지로 이동 하시겠습니까?')
+                if (chk) {
+                    location.href = `/reserve/reserveList`;
+                }
+    
+            })
+            //fetch 통신 실패 시 실행 영역
+            .catch(err => {
+                alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                console.log(err);
+            });
+    }else {
+        alert('이미 예약되어있는 파티입니다.')
+    }
+}
+function reserveAlert() {
+    alert('로그인 해주세요.')
+}
+
+//상품 상세 보기 화면에 위치 지도 띄우기
+function drawMap(posX, posY) {
+    //모달창에 원래 그려서 있는 지도 지우기
+    document.querySelector('#detail_map').innerHTML = '';
+
+    //console.log(pos.lat);
+    //console.log(pos.lng);
+    //34.86687999 ITEM_X
+    //128.7260471 ITEM_Y
+
+    var mapContainer = document.getElementById('detail_map'); // 지도를 표시할 div 
+    var mapOption = { 
+        center: new kakao.maps.LatLng(posX, posY), // 지도의 중심좌표
+        level: 4 // 지도의 확대 레벨
+    };
+    
+    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    
+    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png'; // 마커이미지의 주소입니다    
+    var imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+    var imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+    
+    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+    var markerPosition = new kakao.maps.LatLng(posX, posY); // 마커가 표시될 위치입니다
+    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        position: markerPosition, 
+        image: markerImage // 마커이미지 설정 
+    });
+    
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map); 
+    map.relayout();
+     
+}
+
