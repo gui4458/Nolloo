@@ -2,7 +2,23 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.3'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id("com.github.node-gradle.node") version "7.0.1"
 }
+
+node {
+	download = true
+	/**
+	 * node version
+	 */
+	version = "20.10.0"
+
+	/**
+	 * npm version
+	 */
+	npmVersion = "10.2.3"
+	nodeProjectDir = file("${projectDir}/src/main/resources/static")
+}
+
 
 group = 'com.green'
 version = '0.0.1-SNAPSHOT'

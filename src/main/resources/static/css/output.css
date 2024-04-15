@@ -6,6 +6,26 @@
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
 2. Allow adding a border to an element by just adding a border-width. (https://github.com/tailwindcss/tailwindcss/pull/116)
 */
+@font-face {
+  font-family: 'TTLaundryGothicB';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'WAGURITTF';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403@1.0/WAGURITTF.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'KCC-Hanbit';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
 *,
 ::before,
@@ -66,6 +86,13 @@ body {
   /* 1 */
   line-height: inherit;
   /* 2 */
+  /* 프로젝트의 기본 폰트 */
+  /* font-family: TTLaundryGothicB;  */
+  font-family: 'KCC-Hanbit';
+}
+
+.sub-font{
+  font-family: 'WAGURITTF';
 }
 
 /*

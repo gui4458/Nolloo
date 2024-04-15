@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="sideFragment">
+
+    <nav id="menu" role="navigation" aria-labelledby="menubutton"
+        class="grid text-sm text-slate-600 overflow-hidden transition-all duration-500 ease-[cubic-bezier(.5,.85,.25,1.8)] [&[x-cloak]]:hidden"
+        :class="expanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0 invisible'" x-cloak>
+        <div
+            class="overflow-hidden before:block before:w-full before:h-px before:bg-gradient-to-r before:from-transparent before:via-slate-200 before:to-transparent">
+            <div class="px-4 md:px-6 py-8">
+                <div class="space-y-8 lg:flex lg:space-x-12 lg:space-y-0">
+                    <div class="space-y-8 lg:w-3/4 md:flex md:space-x-6 md:space-y-0">
+                        <div class="md:w-1/2">
+                            <div class="text-xs uppercase font-semibold text-red-400 mb-3" onclick="location.href='/admin/adminNotice'">공지사항</div>
+                            
+                        </div>
+                        <div class="md:w-1/2">
+                            <div class="text-xs uppercase font-semibold text-red-400 mb-3" onclick="location.href='/admin/adminMemberManage'">회원관리</div>
+                            
+                        </div>
+                        <div class="md:w-1/2">
+                            <div class="text-xs uppercase font-semibold text-red-400 mb-3" onclick="location.href='/admin/adminBoardManage'">글 관리</div>
+                            
+                        </div>
+                        <div class="md:w-1/2">
+                            <div class="text-xs uppercase font-semibold text-red-400 mb-3" onclick="location.href='/admin/adminJoinStatistics'">참여통계</div>
+                            
+                        </div>
+                        <div class="md:w-1/2">
+                            <div class="text-xs uppercase font-semibold text-red-400 mb-3" onclick="location.href='/admin/adminBuyList'">구매리스트</div>
+                            
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</th:block>
+
+</html>

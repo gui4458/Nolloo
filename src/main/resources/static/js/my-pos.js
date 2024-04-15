@@ -95,7 +95,7 @@ function displayItems(items) {
 
         itemElement.innerHTML = `
         <div class="bg-white shadow-xl shadow-slate-900/5 rounded-lg" >
-            <a href='/item/itemDetailForm?itemCode=${item.itemCode}'>
+            <a href='/item/ite mDetailForm?itemCode=${item.itemCode}'>
                 <div class="flex flex-row p-3 lg:flex-col">
                     <div class="image-container w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg" style="background-image: url('/upload/${str}/${item.imgList[0].attachedFileName}');">
                     </div>
