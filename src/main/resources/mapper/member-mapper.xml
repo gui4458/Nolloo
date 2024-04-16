@@ -80,7 +80,7 @@
 
 
     <select id="memberInfo" resultMap="member">
-        SELECT MEMBER_ID
+        SELECT MEM.MEMBER_ID
         , MEMBER_PW
         , MEMBER_NAME
         , MEMBER_BIRTH
@@ -90,11 +90,16 @@
         , MEMBER_POST
         , MEMBER_ADDR
         , ADDR_DETAIL
-        FROM NOLLOO_MEMBER
+        , MEMBER_STATUS
+        , LEFT(JOIN_DATE,10)JOIN_DATE
+        , ATTACHED_FILE_NAME
+        FROM NOLLOO_MEMBER MEM INNER JOIN MEMBER_IMAGE IMG
+        ON MEM.MEMBER_ID = IMG.MEMBER_ID
+        WHERE MEMBER_STATUS ='active'
         <if test='memberId != null'>
-            WHERE MEMBER_ID=#{memberId}
-            AND MEMBER_STATUS ='active'
+            AND MEMBER_ID=#{memberId}
         </if>
+        ORDER BY JOIN_DATE DESC
 
     </select>
 

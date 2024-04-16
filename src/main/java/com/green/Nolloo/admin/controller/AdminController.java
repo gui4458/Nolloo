@@ -85,6 +85,8 @@ public class AdminController {
     @GetMapping("/adminBoardManage")
     public String adminBoardManage(PageVO pageVO, Model model){
 
+
+
         List<ItemVO> itemList = itemService.selectPartyList(pageVO);
         model.addAttribute("itemList",itemList);
         return "content/admin/admin_board_manage";
