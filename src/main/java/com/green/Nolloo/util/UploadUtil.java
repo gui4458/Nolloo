@@ -1,5 +1,6 @@
 package com.green.Nolloo.util;
 
+import com.green.Nolloo.admin.vo.NoticeImgVO;
 import com.green.Nolloo.item.vo.ImgVO;
 import com.green.Nolloo.member.vo.MemberImageVO;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,6 +47,30 @@ public class UploadUtil {
         }
         return imgVO;
     }
+    public static NoticeImgVO uploadNoticeFile(MultipartFile uploadFile){
+        NoticeImgVO noticeImgVO = null;
+        if (!uploadFile.isEmpty()){
+            noticeImgVO =new NoticeImgVO();
+            //확장자 추출
+            String extension = getExtension(uploadFile.getOriginalFilename());
+            //중복되지 않는 파일명 생성
+            String fileName =getUUID()+extension;
+            try {
+                //파일경로+랜덤명.확장자
+                File file1 = new File(PathVariable.NOTICE_UPLOAD_PATH+fileName);
+                uploadFile.transferTo(file1);
+                //메인 네임
+                noticeImgVO.setAttachedFileName(fileName);
+                //첨부파일
+                noticeImgVO.setOriginFileName(uploadFile.getOriginalFilename());
+
+            } catch (Exception e) {
+                System.out.println("파일첨부중 예외발생");
+                e.printStackTrace();
+            }
+        }
+        return noticeImgVO;
+    }
     //다중첨부 메소드
     public static List<ImgVO> multiUploadFile(MultipartFile[] uploadFiles){
         List<ImgVO> imgList = new ArrayList<>();
@@ -58,6 +83,7 @@ public class UploadUtil {
         }
         return imgList;
     }
+//    프로필
     public static MemberImageVO memberUploadFile(MultipartFile memberUploadFile){
         MemberImageVO memberImageVO = null;
         if (!memberUploadFile.isEmpty()){
@@ -99,4 +125,15 @@ public class UploadUtil {
         }
     }
 
+    //공지사항 첨부파일
+    public static List<NoticeImgVO> multiUploadNoticeFile(MultipartFile[] uploadFiles){
+        List<NoticeImgVO> noticeImgList = new ArrayList<>();
+        for (MultipartFile uploadFile : uploadFiles){
+            NoticeImgVO vo =uploadNoticeFile(uploadFile);
+            if (vo != null) {
+                noticeImgList.add(vo);
+            }
+        }
+        return noticeImgList;
+    }
 }
