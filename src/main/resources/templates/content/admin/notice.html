@@ -11,26 +11,28 @@
     <!-- html 코드 작성 -->
 
 
-    <form action="/admin/notice" method="post">
+    <form action="/admin/notice" method="post" enctype="multipart/form-data">
         <div class="w-full">
+            <input type="hidden" name="noticeWriter" th:value="${session.memberId}">
             <table class="mt-[10%] m-auto border border-collapse">
                 <tbody class="[&>tr>td]:border [&>tr]:border">
-                    <tr>
-                        <td class="w-[200px] bg-red-300 text-white">작성자</td>
-                        <td class="w-[800px]">
-                            <input type="text" name="memberId" id="">
-                        </td>
-                    </tr>
+                    
                     <tr>
                         <td class="w-[200px] bg-red-300 text-white">제목</td>
                         <td class="w-[800px]">
-                            <input type="text" name="itemTitle" id="">
+                            <input type="text" name="noticeTitle" id="">
                         </td>
                     </tr>
                     <tr>
                         <td class="w-[200px] bg-red-300 text-white">content</td>
                         <td class="w-[800px]">
-                            <input type="text" name="itemContent" id="">
+                            <input type="text" name="noticeContent" id="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="w-[200px] bg-red-300 text-white">첨부파일</td>
+                        <td>
+                            <input type="file" name="noticeImgs" multiple/>
                         </td>
                     </tr>
                 </tbody>

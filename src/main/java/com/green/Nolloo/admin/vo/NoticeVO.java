@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -14,4 +16,5 @@ public class NoticeVO {
     private String noticeContent;
     private String noticeDate;
     private int readCnt;
+    private List<NoticeImgVO> noticeImgList;
 }

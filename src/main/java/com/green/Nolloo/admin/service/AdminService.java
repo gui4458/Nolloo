@@ -1,5 +1,6 @@
 package com.green.Nolloo.admin.service;
 
+import com.green.Nolloo.admin.vo.NoticeVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.member.vo.MemberVO;
 
@@ -12,6 +13,10 @@ public interface AdminService {
     // 회원 목록 조회
     List<MemberVO> memberInfo();
 
+    //공지사항 글작성
+    void insertNotice(NoticeVO noticeVO);
+
+    int selectNextNoticeCode();
 
 
 

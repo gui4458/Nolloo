@@ -3,6 +3,16 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="adminMapper">
+
+    <resultMap id="notice" type="com.green.Nolloo.admin.vo.NoticeVO">
+        <id column="NOTICE_CODE" property="noticeCode"/>
+        <result column="NOTICE_WRITER" property="noticeWriter"/>
+        <result column="NOTICE_TITLE" property="noticeTitle"/>
+        <result column="NOTICE_CONTENT" property="noticeContent"/>
+        <result column="NOTICE_DATE" property="noticeDate"/>
+        <result column="READ_CNT" property="readCnt"/>
+    </resultMap>
+
 	<insert id="insertFestival">
         INSERT INTO ITEM_INFO(
             ITEM_TITLE
@@ -39,15 +49,43 @@
     </insert>
 
     <insert id="insertNotice">
-        INSERT INTO ITEM_INFO(
-        MEMBER_ID
-        , ITEM_TITLE
-        , ITEM_CONTENT
+        INSERT INTO NOTICE(
+
+         NOTICE_TITLE
+        ,NOTICE_WRITER
+        , NOTICE_CONTENT
         )
         VALUES(
-
+        #{noticeTitle}
+        ,#{noticeWriter}
+        ,#{noticeContent}
         )
     </insert>
+
+    <select id="selectNextNoticeCode" resultType="int">
+        SELECT IFNULL(MAX(NOTICE_CODE),0)+1 FROM NOTICE
+    </select>
+
+    <insert id="insertNoticeImg">
+        INSERT INTO NOTICE_IMAGE(
+          NOTICE_CODE
+         , ORIGIN_FILE_NAME
+         , ATTACHED_FILE_NAME
+        )
+        VALUES
+        <foreach collection="noticeImgList" item="noticeImg" separator=",">
+            (
+            #{noticeImg.noticeCode}
+            , #{noticeImg.originFileName}
+            , #{noticeImg.attachedFileName}
+            )
+        </foreach>
+
+    </insert>
+
+    <select id="selectNotice" resultMap="notice">
+
+    </select>
 
 
 </mapper>

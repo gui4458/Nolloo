@@ -1,6 +1,8 @@
 package com.green.Nolloo.admin.controller;
 
 import com.green.Nolloo.admin.service.AdminService;
+import com.green.Nolloo.admin.vo.NoticeImgVO;
+import com.green.Nolloo.admin.vo.NoticeVO;
 import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.item.vo.PageVO;
@@ -8,16 +10,16 @@ import com.green.Nolloo.member.vo.MemberVO;
 import com.green.Nolloo.reserve.service.ReserveService;
 import com.green.Nolloo.reserve.vo.ReserveVO;
 import com.green.Nolloo.util.PathVariable;
+import com.green.Nolloo.util.UploadUtil;
 import com.opencsv.CSVReader;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.naming.Name;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -109,7 +111,20 @@ public class AdminController {
    }
 
    @PostMapping("/notice")
-    public String notice(ItemVO itemVO){
+    public String notice(NoticeVO noticeVO, @RequestParam(name="noticeImgs")MultipartFile[] noticeImgs){
+        List<NoticeImgVO> imgList= UploadUtil.multiUploadNoticeFile(noticeImgs);
+
+        int noticeCode = adminService.selectNextNoticeCode();
+       for (NoticeImgVO img : imgList){
+           img.setNoticeCode(noticeCode);
+
+       }
+        noticeVO.setNoticeCode(noticeCode);
+        noticeVO.setNoticeImgList(imgList);
+
+       System.out.println(noticeVO);
+           adminService.insertNotice(noticeVO);
+
 
         return "content/admin/admin_notice";
    }
