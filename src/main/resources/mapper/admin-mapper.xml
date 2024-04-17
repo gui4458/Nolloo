@@ -84,7 +84,17 @@
     </insert>
 
     <select id="selectNotice" resultMap="notice">
-
+    SELECT
+        NOTICE_CODE
+        , NOTICE_TITLE
+        , NOTICE_CONTENT
+        , NOTICE_WRITER
+        , NOTICE_DATE
+        , READ_CNT
+        FROM NOTICE
+        <if test="noticeCode != 0">
+            WHERE NOTICE_CODE=#{noticeCode}
+        </if>
     </select>
 
 

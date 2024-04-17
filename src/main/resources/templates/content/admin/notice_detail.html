@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/admin/admin_layout}" >
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <link rel="stylesheet" href="/">
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <div>
+        <table>
+            <thead>
+                <tr th:each="notice : ${noticeDetail}">
+                    <td>제목 </td>
+                    <td>[[${notice.noticeTitle}]]</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>[[${notice.noticeContent}]]</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>[[${notice.noticeDate}]]</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>[[${notice.readCnt}]]</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/"></script>
+</th:block>
+</html>

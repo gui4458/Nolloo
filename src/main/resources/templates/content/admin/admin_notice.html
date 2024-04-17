@@ -18,7 +18,6 @@
         <colgroup>
             <col width="8%">
             <col width="25%">
-            <col width="10%">
             <col width="20%">
             <col width="15%">
         </colgroup>
@@ -26,18 +25,16 @@
             <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300">
                 <td>번호</td>
                 <td>제목</td>
-                <td>작성자</td>
                 <td>작성일자</td>
                 <td>조회수</td>
             </tr>
         </thead>
         <tbody>
-            <tr class="[&>td]:p-2 font-semibold border-b-2">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr th:each="notice,state:${noticeList}" class="[&>td]:p-2 font-semibold border-b-2" th:onclick="|location.href='@{/admin/noticeDetail(noticeCode=${notice.noticeCode})}'|">
+                <td>[[${#lists.size(noticeList)-state.index}]]</td>
+                <td>[[${notice.noticeTitle}]]</td>
+                <td>[[${notice.noticeDate}]]</td>
+                <td>[[${notice.readCnt}]]</td>
             </tr>
         </tbody>
         

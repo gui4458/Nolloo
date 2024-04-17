@@ -39,4 +39,9 @@ public class AdminServiceImpl implements  AdminService{
         return sqlSession.selectOne("adminMapper.selectNextNoticeCode");
     }
 
+    @Override
+    public List<NoticeVO> selectNotice(int noticeCode) {
+        return sqlSession.selectList("adminMapper.selectNotice",noticeCode);
+    }
+
 }
