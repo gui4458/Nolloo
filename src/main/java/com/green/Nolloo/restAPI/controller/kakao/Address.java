@@ -1,10 +1,12 @@
 package com.green.Nolloo.restAPI.controller.kakao;
 
 import com.green.Nolloo.restAPI.service.KakaoApiService;
+import com.green.Nolloo.restAPI.service.MyService;
 import com.green.Nolloo.restAPI.service.restAPIService;
 import com.green.Nolloo.restAPI.vo.AddressFormVO;
 import com.green.Nolloo.restAPI.vo.AddressVO;
 import com.green.Nolloo.restAPI.vo.MapVO;
+import com.green.Nolloo.restAPI.vo.MyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,8 +47,12 @@ public class Address {
         return kakaoApiService.getGeoFromAddress(addr);
     }
 
+
+
+
     @GetMapping("/addressForm")
-    public String addressForm(){
+    public String addressForm(Model model){
+
         return "/content/restAPI/address_form";
     }
 
@@ -57,6 +63,27 @@ public class Address {
         String[] data =  query.split(" ");
         System.out.println(Arrays.toString(data));
         return  restAPIService.searchAddress(data);
+    }
+
+    @Autowired
+    private MyService myService;
+
+    @ResponseBody
+    @GetMapping("/entities")
+    public List<MyEntity> getAllEntities() {
+        return myService.getAllEntities();
+    }
+
+
+    @GetMapping("/search")
+    public String searchEntities() {
+        return "/content/restAPI/search";
+    }
+
+    @ResponseBody
+    @PostMapping("/search")
+    public List<MyEntity> searchEntities(@RequestParam(name="sido") String sido) {
+        return myService.searchEntities(sido);
     }
 
 }

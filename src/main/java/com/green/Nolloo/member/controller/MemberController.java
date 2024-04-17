@@ -42,6 +42,7 @@ public class MemberController {
             , @RequestParam(name = "img")MultipartFile img){
         memberVO.setMemberPw(encoder.encode(memberVO.getMemberPw()));
 
+        memberVO.setMemberTel(memberVO.getMemberTel().replace(",","-"));
         MemberImageVO mainImg = UploadUtil.memberUploadFile(img);
 
         memberVO.setMemberImageVO(mainImg);
@@ -59,9 +60,12 @@ public class MemberController {
 //    로그인 결과 화면
     @GetMapping("/loginResult")
     public String login(Authentication authentication,HttpSession session){
-        User user = (User)authentication.getPrincipal();
-        session.setAttribute("memberId",user.getUsername());
-        session.setAttribute("reserveList",reserveService.selectReserve(user.getUsername()));
+        if (authentication != null){
+            User user = (User)authentication.getPrincipal();
+            session.setAttribute("memberId",user.getUsername());
+            session.setAttribute("reserveList",reserveService.selectReserve(user.getUsername()));
+        }
+
     return "content/member/login_result";
 
     }
@@ -105,26 +109,56 @@ public class MemberController {
     @ResponseBody
     @PostMapping("/deleteMember")
     public void deleteMember(MemberVO memberVO,Authentication authentication){
+
         User user = (User)authentication.getPrincipal();
+        //개인 회원 탈퇴기능
+        if (user.getUsername().equals(memberVO.getMemberId())) {
+            String Path = PathVariable.PROFILE_UPLOAD_PATH;//profile경로
+            File file = new File(Path + memberService.selectProfile(user.getUsername()));//경로+파일이미지(AttachedFileName)
 
-
-
-        String Path = PathVariable.PROFILE_UPLOAD_PATH;//profile경로
-        File file = new File(Path + memberService.selectProfile(user.getUsername()));//경로+파일이미지(AttachedFileName)
-
-        try {
-            if(file.delete()){
-                System.out.println("파일을 삭제 하였습니다");
-            }else {
-                System.out.println("파일 삭제에 실패하였습니다");
+            try {
+                if(file.delete()){
+                    System.out.println("파일을 삭제 하였습니다");
+                }else {
+                    System.out.println("파일 삭제에 실패하였습니다");
+                }
+            } catch (Exception e){
+                e.printStackTrace();
             }
-        } catch (Exception e){
-            e.printStackTrace();
-        }
 
-        memberVO.setMemberId(user.getUsername());
-        memberService.updateMemberInactive(memberVO);
+
+            memberVO.setMemberId(user.getUsername());
+            memberService.updateMemberInactive(memberVO);
+        }
+        //관리자에 의한 강제탈퇴기능
+        else{
+            String Path = PathVariable.PROFILE_UPLOAD_PATH;//profile경로
+            File file = new File(Path + memberService.selectProfile(memberVO.getMemberId()));//경로+파일이미지(AttachedFileName)
+
+            try {
+                if(file.delete()){
+                    System.out.println("파일을 삭제 하였습니다");
+                }else {
+                    System.out.println("파일 삭제에 실패하였습니다");
+                }
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
+
+            memberVO.setMemberId(memberVO.getMemberId());
+            memberService.updateMemberInactive(memberVO);
+        }
+        
 
     }
+
+    @GetMapping("/pw")
+    public String getPw(){
+        String pw = encoder.encode("1111");
+        System.out.println("@@@@@@" + pw);
+        return "";
+    }
+
 
 }

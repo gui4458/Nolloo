@@ -22,10 +22,12 @@ import com.green.Nolloo.search.vo.SearchVO;
 import com.green.Nolloo.util.PathVariable;
 import com.green.Nolloo.util.UploadUtil;
 import com.green.Nolloo.wish.service.WishService;
+import com.green.Nolloo.wish.vo.WishVO;
 import com.green.Nolloo.wish.vo.WishViewVO;
 import jakarta.annotation.Resource;
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpSession;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
@@ -55,10 +57,8 @@ public class ItemController {
     @Resource(name = "wishService")
     private WishService wishService;
 
-
     @Resource(name="reserveService")
     private ReserveService reserveService;
-
 
     @Resource(name = "memberService")
     private MemberService memberService;
@@ -81,12 +81,15 @@ public class ItemController {
 //        searchVO.setTotalDataCnt(totalDataCnt);
 //        System.out.println("totalDataCnt = " + totalDataCnt);
 //        List<Integer> wishCodeList = new ArrayList<>();
+
         model.addAttribute("cateCode",cateCode);
         List<CateVO> cateList = itemService.selectCate();
 
 
+
         List<ItemVO> recommendList = itemService.searchByReadCnt();
         session.setAttribute("recommendList",recommendList);
+
         session.setAttribute("cateList",cateList);
 //        if (authentication != null){
 //            User user = (User)authentication.getPrincipal();
@@ -103,14 +106,13 @@ public class ItemController {
 //        }
 
 
+
         return "content/main";
     }
     @ResponseBody
     @PostMapping("/list")
-    public Map<String,Object> list(@RequestBody PageVO pageVO,Authentication authentication,SearchVO searchVO){
+    public Map<String,Object> list(@RequestBody PageVO pageVO,Authentication authentication,SearchVO searchVO,HttpSession session){
         List<ItemVO> itemList = itemService.selectPartyList(pageVO);
-
-
 
         Map<String,Object> data = new HashMap<String, Object>();
         data.put("itemList",itemList);
@@ -128,6 +130,7 @@ public class ItemController {
         }
 
         data.put("wishCodeList", wishCodeList);
+        session.setAttribute("data",data);
         return data;
 
     }
@@ -192,52 +195,52 @@ public class ItemController {
     }
 
     //itemDetail 조회
-    @GetMapping("/itemDetailForm")
-    public String boardDetailForm(ItemVO itemVO, ReserveVO reserveVO, Model model, Authentication authentication
-            , @RequestParam(name="chkCode",required = false,defaultValue = "1")int chkCode){
+    @ResponseBody
+    @PostMapping("/itemDetailForm")
+    public Map<String,Object> boardDetailForm(ItemVO itemVO, Authentication authentication, HttpSession session){
 
         itemService.itemListUpdateCnt(itemVO);
-        model.addAttribute("item",itemService.selectPartyDetail(itemVO));
 
-        model.addAttribute("chkCode",chkCode);
 
-        if (authentication != null){
-            User user = (User)authentication.getPrincipal();
-            reserveVO.setMemberId(user.getUsername());
-            model.addAttribute("reserveCnt",reserveService.reserveDone(reserveVO));
-            List<ReserveVO> reserveList = reserveService.selectReserve(user.getUsername());
-            model.addAttribute("reserveList",reserveList);
 
-        }
+        Map<String,Object> data = (Map<String, Object>) session.getAttribute("data");
+        data.put("item",itemService.selectPartyDetail(itemVO));
+        data.put("wishCnt",itemService.wishCount(itemVO.getItemCode()));
+        System.out.println(data);
+       // model.addAttribute("chkCode",chkCode);
 
-        return "content/item/item_detail";
+//        if (authentication != null){
+//            User user = (User)authentication.getPrincipal();
+//            reserveVO.setMemberId(user.getUsername());
+//            model.addAttribute("reserveCnt",reserveService.reserveDone(reserveVO));
+//            List<ReserveVO> reserveList = reserveService.selectReserve(user.getUsername());
+//            model.addAttribute("reserveList",reserveList);
+//        }
+
+        return data;
     }
     //게시글 삭제
     @GetMapping("/deleteItem")
     public String deleteParty(ItemVO itemVO) {
-        List<String> attachedFileNameList = itemService.selectItemImage(itemVO);
+        List<String> attachedFileNameList = itemService.selectItemImage(itemVO);//attachedFileName만 조회+where절로 itemCode 넣어주기
 
 
         try {   //"c:\\ss\\aaa.jpg"
-            for(String attachedFileName : attachedFileNameList){
+            for(String attachedFileName : attachedFileNameList){//attachedFileName여러개를 하나씩 출력
                 String Path = PathVariable.ITEM_UPLOAD_PATH;//itemSolo경로
                 File file = new File(Path + attachedFileName);//경로+파일이미지(AttachedFileName)
 
-                if(file.delete()){
+                if(file.delete()){//delete로 폴더에 파일 삭제
                     System.out.println("파일을 삭제 하였습니다");
                 }else {
                     System.out.println("파일 삭제에 실패하였습니다");
                 }
             }
-
-
-
-
         }catch (Exception e){
             e.printStackTrace();
         }
 
-        itemService.deleteParty(itemVO);
+        itemService.deleteParty(itemVO);//쿼리 item정보+img삭제
         return "redirect:/item/list";
     }
 
@@ -279,10 +282,17 @@ public class ItemController {
     }
 
     @PostMapping("/updateItem")
-    public String updateItem(ItemVO itemVO){
-        System.out.println(itemVO);
-        itemService.updateItemDetail(itemVO);
+    public String updateItem(ItemVO itemVO,
+             @RequestParam(name = "subfileName") MultipartFile[] subfileName){
+        //----- 첨부파일 새로 등록 -----//
+        //서브 이미지 첨부 및 첨부 데이터 받기
+        List<ImgVO> imgList = UploadUtil.multiUploadFile(subfileName);
 
+        //합체된 첨부 정보를 itemVO에 넣어 줌.
+        itemVO.setImgList(imgList);
+
+        //수정하려는 내용 + 첨부파일 정보가 다 들어있는 itenmVO를 쿼리 실행 시 매개변수로 전달!
+        itemService.updateItemDetail(itemVO);
 
         return "redirect:/item/myParty";
     }
@@ -296,15 +306,41 @@ public class ItemController {
         String attachedFileName = itemService.findAttachedFileNameByImgCode(imgVO);
 
         //선택한 이미지 디비에서 삭제
-        //itemService.deleteItemImg(imgVO);
+        itemService.deleteItemImg(imgVO);
 
         //첨부파일 삭제
-        //UploadUtil.deleteUploadFile(PathVariable.ITEM_UPLOAD_PATH + attachedFileName);
-
-
-
+        UploadUtil.deleteUploadFile(PathVariable.ITEM_UPLOAD_PATH + attachedFileName);
     }
 
+    //상품 정보 수정에서 메인 이미지를 변경하는 메서드
+    @ResponseBody
+    @PostMapping("/changeMainImg")
+    public String changeMainImg(ImgVO imgVO, @RequestParam(name = "file", required = false) MultipartFile file){
 
+        //----- 이미지 삭제 및 재등록 -----//
+
+        //----- 원래 이미지 삭제 -----//
+        //첨부파일명 조회
+        String attachedFileName = itemService.findAttachedFileNameByImgCode(imgVO);
+
+        //선택한 이미지 디비에서 삭제
+        itemService.deleteItemImg(imgVO);
+
+        //첨부파일 삭제
+        UploadUtil.deleteUploadFile(PathVariable.ITEM_UPLOAD_PATH + attachedFileName);
+
+        //----- 새로운 이미지 등록 -----//
+        ImgVO vo = UploadUtil.uploadFile(file);
+
+
+        ItemVO itemVO = new ItemVO();
+        itemVO.setItemCode(imgVO.getItemCode());
+        List<ImgVO> imgList = new ArrayList<>();
+        imgList.add(vo);
+        itemVO.setImgList(imgList);
+        itemService.insertMainImg(itemVO);
+
+        return file.getOriginalFilename();
+    }
 
 }

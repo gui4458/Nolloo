@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/admin/admin_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <link rel="stylesheet" href="/">
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+    <!-- html 코드 작성 -->
+    <div class="w-[80%] h-500px ml-24">
+        <table class=" border-collapse w-[100%] text-center mt-[60px]">
+            <caption class="text-left text-red-400">회원관리</caption>
+
+            <colgroup>
+                <col width="5%">
+                <col width="15%">
+                <col width="10%">
+                <col width="10%">
+                <col width="15%">
+                <col width="5%">
+                <col width="10%">
+                <col width="10%">
+            </colgroup>
+            <thead>
+                <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300">
+                    <td>번호</td>
+                    <td>회원ID/이름/성별</td>
+                    <td>생년월일</td>
+                    <td>이메일</td>
+                    <td>주소</td>
+                    <td>전화번호</td>
+                    <td>가입일</td>
+                    <td>탈퇴</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="member,state : ${memberList}"
+                    class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300" : ${item}>
+                    <td>[[${#lists.size(memberList)-state.index}]]</td>
+                    <td>
+                        <div class="flex flex-row items-center justify-center ">
+                            <div><img class="w-28 h-28"
+                                    th:src="@{'/upload/profile/'+${member.MemberImageVO.attachedFileName}}" alt="">
+                            </div>
+                            <div class=" text-justify ml-2">
+                                [[${member.memberId}]]/[[${member.memberName}]]/[[${member.gender}]]</div>
+                        </div>
+
+                    </td>
+
+                    <td>[[${member.memberBirth}]]</td>
+                    <td>[[${member.memberEmail}]]</td>
+                    <td>
+
+                        <div>[[${member.memberAddr}]]</div>
+                        <div>[[${member.addrDetail}]]</div>
+                    </td>
+                    <td>[[${member.memberTel}]]</td>
+                    <td>[[${member.joinDate}]]</td>
+                    <td>
+                        <div>
+                            <button class="w-[50%] border rounded-lg bg-red-300 text-white" th:onclick="deleteMember([[${member.memberId}]])" >강제탈퇴</button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+        
+    </div>
+
+</th:block>
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <script src="/css/content/admin/admin_member_manage.css"></script>
+    <script src="/js/content/admin/admin_member_manage.js"></script>
+</th:block>
+
+</html>

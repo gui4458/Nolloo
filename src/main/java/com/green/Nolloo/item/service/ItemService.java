@@ -11,15 +11,21 @@ import com.green.Nolloo.search.vo.SearchVO;
 import java.util.List;
 
 public interface ItemService {
+    //하트 카운트
+    int wishCount(int itemCode);
+
     // board 등록하는 메소드
     void insertParty(ItemVO itemVO);
     // board 목록 조회 메소드
     List<ItemVO> selectPartyList(PageVO pageVO);
     // board 디테일
     List<ItemVO> selectByDistance(SearchVO searchVO);
+
     List<ItemVO> searchByDistance(SearchVO searchVO);
     List<ItemVO> searchByReadCnt();
+
     List<CategoryVO> selectAllCategory();
+
     ItemVO selectPartyDetail(ItemVO itemVO);
     //board 삭제하는 메소드
     void deleteParty(ItemVO itemVO);
@@ -50,5 +56,7 @@ public interface ItemService {
 
     //imgCode로 첨부파일명 조회
     String findAttachedFileNameByImgCode(ImgVO imgVO);
+
+    void insertMainImg(ItemVO itemVO);
 
 }

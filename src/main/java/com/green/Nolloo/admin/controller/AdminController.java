@@ -1,26 +1,40 @@
 package com.green.Nolloo.admin.controller;
 
 import com.green.Nolloo.admin.service.AdminService;
+import com.green.Nolloo.admin.vo.NoticeImgVO;
+import com.green.Nolloo.admin.vo.NoticeVO;
+import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ItemVO;
+import com.green.Nolloo.item.vo.PageVO;
+import com.green.Nolloo.member.vo.MemberVO;
+import com.green.Nolloo.reserve.service.ReserveService;
+import com.green.Nolloo.reserve.vo.ReserveVO;
 import com.green.Nolloo.util.PathVariable;
+import com.green.Nolloo.util.UploadUtil;
 import com.opencsv.CSVReader;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.naming.Name;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
     @Resource(name = "adminService")
     private AdminService adminService;
+    @Resource(name = "itemService")
+    private ItemService itemService;
+    @Resource(name = "reserveService")
+    private ReserveService reserveService;
 
     //csv 등록 페이지로 이동
     @GetMapping("/readCsv")
@@ -59,4 +73,59 @@ public class AdminController {
             e.printStackTrace();
         }
     }
+    @GetMapping("/adminNotice")
+    public String adminNotice(){
+
+        return "content/admin/admin_notice";
+    }
+    @GetMapping("/adminMemberManage")
+    public String adminMemberManage(Model model){
+        List<MemberVO> memberList = adminService.memberInfo();
+        model.addAttribute("memberList",memberList);
+        return "content/admin/admin_member_manage";
+    }
+    @GetMapping("/adminBoardManage")
+    public String adminBoardManage(PageVO pageVO, Model model){
+
+
+
+        List<ItemVO> itemList = itemService.selectPartyList(pageVO);
+        model.addAttribute("itemList",itemList);
+        return "content/admin/admin_board_manage";
+    }
+    @GetMapping("/adminBuyList")
+    public String adminBuyList(HttpSession session,Model model){
+
+        List<ReserveVO> reserveList = reserveService.selectReserve(null);
+        model.addAttribute("reserveList",reserveList);
+        return "content/admin/admin_buy_list";
+    }
+    @GetMapping("/adminJoinStatistics")
+    public String adminJoinStatistics(){
+
+        return "content/admin/admin_join_statistics";
+    }
+   @GetMapping("/noticeForm")
+   public String noticeForm(){
+        return "content/admin/notice";
+   }
+
+   @PostMapping("/notice")
+    public String notice(NoticeVO noticeVO, @RequestParam(name="noticeImgs")MultipartFile[] noticeImgs){
+        List<NoticeImgVO> imgList= UploadUtil.multiUploadNoticeFile(noticeImgs);
+
+        int noticeCode = adminService.selectNextNoticeCode();
+       for (NoticeImgVO img : imgList){
+           img.setNoticeCode(noticeCode);
+
+       }
+        noticeVO.setNoticeCode(noticeCode);
+        noticeVO.setNoticeImgList(imgList);
+
+       System.out.println(noticeVO);
+           adminService.insertNotice(noticeVO);
+
+
+        return "content/admin/admin_notice";
+   }
 }

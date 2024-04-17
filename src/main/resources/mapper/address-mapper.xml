@@ -23,6 +23,14 @@
         limit 10;
     </select>
 
+    <select id="selectSido" resultType="String" fetchSize="1000">
+<!--        SELECT sido FROM zipcode GROUP BY sido;-->
+        SELECT DISTINCT sido FROM zipcode;
+    </select>
+
+    <select id="selectSigungu" resultMap="addresses" fetchSize="1000">
+        SELECT sigungu FROM zipcode WHERE sido = #{sido} GROUP BY sigungu HAVING COUNT(*) > 1;
+    </select>
 </mapper>
 
 
