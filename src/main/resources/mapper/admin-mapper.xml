@@ -84,7 +84,7 @@
     </insert>
 
     <select id="selectNotice" resultMap="notice">
-    SELECT
+        SELECT
         NOTICE_CODE
         , NOTICE_TITLE
         , NOTICE_CONTENT
@@ -96,6 +96,18 @@
             WHERE NOTICE_CODE=#{noticeCode}
         </if>
     </select>
+
+    <update id="upReadCnt">
+        UPDATE NOTICE SET
+        READ_CNT= READ_CNT + 1
+        WHERE NOTICE_CODE=#{noticeCode}
+    </update>
+
+<!--    <update id="updateNotice">-->
+<!--        UPDATE NOTICE SET-->
+
+<!--    </update>-->
+
 
 
 </mapper>

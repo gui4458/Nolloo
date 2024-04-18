@@ -44,4 +44,9 @@ public class AdminServiceImpl implements  AdminService{
         return sqlSession.selectList("adminMapper.selectNotice",noticeCode);
     }
 
+    @Override
+    public void upReadCnt(int noticeCode) {
+        sqlSession.update("adminMapper.upReadCnt",noticeCode);
+    }
+
 }

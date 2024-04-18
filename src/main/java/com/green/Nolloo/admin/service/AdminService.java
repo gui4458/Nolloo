@@ -23,6 +23,8 @@ public interface AdminService {
     //공지사항 조회
     List<NoticeVO> selectNotice(int noticeCode);
 
+    //공지사항 조회수 증가
+    void upReadCnt(int noticeCode);
 
 
 }

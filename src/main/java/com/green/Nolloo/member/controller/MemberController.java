@@ -82,6 +82,7 @@ public class MemberController {
         User user = (User)authentication.getPrincipal();
 
         //세션에 있는 로그인한 사람의 id를 가져온다.
+
         memberVO.setMemberId(user.getUsername());
 
 

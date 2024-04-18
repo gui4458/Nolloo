@@ -135,11 +135,15 @@ public class AdminController {
    @GetMapping("/noticeDetail")
     public String noticeDetail(@RequestParam(name="noticeCode")int noticeCode,Model model){
 
-        List<NoticeVO> noticeDetail = adminService.selectNotice(noticeCode);
-       System.out.println(noticeDetail);
-        model.addAttribute("noticeDetail", noticeDetail);
+        //공지사항 조회수
+        adminService.upReadCnt(noticeCode);
+
+        List<NoticeVO> noticeList = adminService.selectNotice(noticeCode);
+
+        model.addAttribute("noticeDetail", noticeList.get(0));
 
         return "content/admin/notice_detail";
    }
+
 
 }
