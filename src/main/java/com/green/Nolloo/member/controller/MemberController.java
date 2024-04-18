@@ -64,6 +64,7 @@ public class MemberController {
             User user = (User)authentication.getPrincipal();
             session.setAttribute("memberId",user.getUsername());
             session.setAttribute("reserveList",reserveService.selectReserve(user.getUsername()));
+
         }
 
     return "content/member/login_result";

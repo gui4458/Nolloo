@@ -83,13 +83,13 @@ public class ItemController {
 //        List<Integer> wishCodeList = new ArrayList<>();
 
         model.addAttribute("cateCode",cateCode);
-        List<CateVO> cateList = itemService.selectCate();
+
 
 
 
         List<ItemVO> recommendList = itemService.searchByReadCnt();
         session.setAttribute("recommendList",recommendList);
-
+        List<CateVO> cateList = itemService.selectCate();
         session.setAttribute("cateList",cateList);
 //        if (authentication != null){
 //            User user = (User)authentication.getPrincipal();

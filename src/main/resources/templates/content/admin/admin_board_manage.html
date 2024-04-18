@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/admin/admin_layout}" >
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/admin/admin_layout}">
 
 <th:block layout:fragment="content_css">
     <!-- html 파일이 열릴때 같이 실행되는 css -->
@@ -11,24 +10,66 @@
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
     <div>
-        글 관리
-    </div>
-    <div>
-        카테리스트
-    </div>
-    <div>
-        [[${session.cateList}]]
-    </div>
-    <div>
-        아이템리스트
-    </div>
-    <div>
-        [[${itemList}]]
+        <div class="w-[80%] h-500px ml-24">
+            <div>
+                <select name="" id="" class="cate-select">
+                    <th:block th:each="cate : ${session.cateList}">
+                        <option th:value="${cate.cateCode}">[[${cate.cateName}]]</option>
+
+                    </th:block>
+                </select>
+            </div>
+            <table class=" border-collapse w-[100%] text-center mt-[60px]">
+                <caption class="text-left text-red-400">글 목록</caption>
+
+                <colgroup>
+                    <col width="5%">
+                    <col width="15%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="15%">
+                    <col width="5%">
+                    <col width="10%">
+
+                </colgroup>
+                <thead>
+                    <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300">
+                        <td>NO</td>
+                        <td>제목</td>
+                        <td>가격</td>
+                        <td>정원/참여인원</td>
+                        <td>장소</td>
+                        <td>일자</td>
+                        <td>조회수</td>
+
+                    </tr>
+                </thead>
+                <tbody class="change-td">
+                    <tr th:each="board,state : ${itemList}"
+                        class="[&>td]:p-2 font-semibold border-b-2  border-t-red-500">
+                        <td>[[${#lists.size(itemList)-state.index}]]</td>
+                        <td>
+                            [[${board.itemTitle}]]
+                        </td>
+
+                        <td>[[${board.itemPrice}]]</td>
+                        <td>[[${board.itemPeople}]]/[[${board.peopleCnt}]]</td>
+                        <td>[[${board.itemPlace}]]</td>
+                        <td>[[${board.itemStartDate}]]~[[${board.itemEndDate}]]</td>
+                        <td>[[${board.readCnt}]]</td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
     </div>
 </th:block>
 
 <th:block layout:fragment="content_js">
     <!-- html 파일이 열릴때 같이 실행되는 js -->
-    <script src="/"></script>
+    <script src="/js/content/admin/admin_board_manage.js"></script>
 </th:block>
+
 </html>

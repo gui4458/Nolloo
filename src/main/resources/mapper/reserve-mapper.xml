@@ -42,6 +42,7 @@
         , RESERVE.MEMBER_ID
         , RESERVE.ITEM_CODE
         , ITEM_TITLE
+        , ITEM_PRICE
         FROM RESERVE INNER JOIN item_info
         ON RESERVE.ITEM_CODE = item_info.ITEM_CODE
         <if test="memberId != null ">
