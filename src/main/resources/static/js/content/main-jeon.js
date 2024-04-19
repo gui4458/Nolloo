@@ -131,27 +131,8 @@ function displayItems(items) {
                                         `
 
             }
-            if (loginId != "") {
-                if (wishchk) {
                     itemHtml += `
-                                            <span id="wishDelete" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${item.itemCode})"><i class="ri-heart-3-fill"></i></sapn>
-
-                                                `
-                } else {
-                    itemHtml += `
-                                            <span class="wishAdd-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishAdd(this,${item.itemCode})"><i class="ri-heart-3-line"></i></sapn>
-                                        
-                                        `
-                }
-            } else {
-                itemHtml += `
-                                                    
-                                            
-                                            <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="goLogin(event)"><i class="ri-heart-3-line"></i></sapn>
-                                                
-                                                `
-            }
-            itemHtml += `
+                                            <span id="heart" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${item.itemCode},${wishchk},${loginId},event)"><i class="ri-heart-3-fill"></i></sapn>
                     </div>
                             <div class="ml-5 lg:ml-0 lg:mt-3">
                                 <figcaption class="font-medium">
@@ -189,94 +170,105 @@ function displayItems(items) {
 function wishAdd(divTag, itemCode, e) {
     const head = divTag;
     e.stopPropagation();
-    fetch('/wish/insertWish', { //요청경로
-        method: 'POST',
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
-        },
-        //컨트롤러로 전달할 데이터
-        body: JSON.stringify({
-            // 데이터명 : 데이터값
-            itemCode: itemCode
 
-        })
-    })
-        .then((response) => {
-            return response.json(); //나머지 경우에 사용
-        })
-        //fetch 통신 후 실행 영역
-        .then((data) => {//data -> controller에서 리턴되는 데이터!
-            // const result1 = confirm('관심목록에 상품을 등록했습니다.\n관심목록 페이지로 이동할까요?')
-            //     if (result1) {
-            //         location.href = `/wish/goWishList`;
-            //     }
-
-            const strDelete = `
-            <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${itemCode})"><i class="ri-heart-3-fill"></i></sapn>
-
-        `
-            head.replaceChildren(head.textContent = '');
-            head.insertAdjacentHTML("afterbegin", strDelete)
-
-
-            // location.href = '/item/list'
-
-        })
-        //fetch 통신 실패 시 실행 영역
-        .catch(err => {
-            alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-            console.log(err);
-        });
 }
 
 //하트 누르면 삭제
-function wishDelete(divTag, itemCode, e) {
+function heart(divTag, itemCode, wishchk, loginId, e) {
+    alert(1)
     const head = divTag
 
     e.stopPropagation();
+    if (loginId != "") {
+        if (wishchk) {
+            fetch('/wish/wishDelete', { //요청경로
+                method: 'POST',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                },
+                //컨트롤러로 전달할 데이터
+                body: JSON.stringify({
+                    // 데이터명 : 데이터값
+                    itemCode: itemCode
 
-    fetch('/wish/wishDelete', { //요청경로
-        method: 'POST',
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
-        },
-        //컨트롤러로 전달할 데이터
-        body: JSON.stringify({
-            // 데이터명 : 데이터값
-            itemCode: itemCode
+                })
+            })
+                .then((response) => {
+                    return response.text();
+                    // return response.json(); //나머지 경우에 사용
+                })
+                //fetch 통신 후 실행 영역
+                .then((data) => {//data -> controller에서 리턴되는 데이터!
+                    // const result1 = confirm('관심목록에 상품을 등록했습니다.\n관심목록 페이지로 이동할까요?')
+                    //     if (result1) {
+                    //         location.href = `/wish/goWishList`;
+                    //     }
+                    const strInsert = `
+                    <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishAdd(this,${itemCode})"><i class="ri-heart-3-line"></i></sapn>
+        
+                `
+                    head.replaceChildren(head.textContent = '');
+                    head.insertAdjacentHTML("afterbegin", strInsert)
 
-        })
-    })
-        .then((response) => {
-            return response.text();
-            // return response.json(); //나머지 경우에 사용
-        })
-        //fetch 통신 후 실행 영역
-        .then((data) => {//data -> controller에서 리턴되는 데이터!
-            // const result1 = confirm('관심목록에 상품을 등록했습니다.\n관심목록 페이지로 이동할까요?')
-            //     if (result1) {
-            //         location.href = `/wish/goWishList`;
-            //     }
-            const strInsert = `
-            <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishAdd(this,${itemCode})"><i class="ri-heart-3-line"></i></sapn>
+                })
+                //fetch 통신 실패 시 실행 영역
+                .catch(err => {
+                    alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                    console.log(err);
+                });
+        } else {
+            fetch('/wish/insertWish', { //요청경로
+                method: 'POST',
+                cache: 'no-cache',
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                },
+                //컨트롤러로 전달할 데이터
+                body: JSON.stringify({
+                    // 데이터명 : 데이터값
+                    itemCode: itemCode
 
-        `
-            head.replaceChildren(head.textContent = '');
-            head.insertAdjacentHTML("afterbegin", strInsert)
+                })
+            })
+                .then((response) => {
+                    return response.json(); //나머지 경우에 사용
+                })
+                //fetch 통신 후 실행 영역
+                .then((data) => {//data -> controller에서 리턴되는 데이터!
+                    // const result1 = confirm('관심목록에 상품을 등록했습니다.\n관심목록 페이지로 이동할까요?')
+                    //     if (result1) {
+                    //         location.href = `/wish/goWishList`;
+                    //     }
 
-        })
-        //fetch 통신 실패 시 실행 영역
-        .catch(err => {
-            alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-            console.log(err);
-        });
+                    const strDelete = `
+                    <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${itemCode})"><i class="ri-heart-3-fill"></i></sapn>
+        
+                `
+                    head.replaceChildren(head.textContent = '');
+                    head.insertAdjacentHTML("afterbegin", strDelete)
+
+
+                    // location.href = '/item/list'
+
+                })
+                //fetch 통신 실패 시 실행 영역
+                .catch(err => {
+                    alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                    console.log(err);
+                });
+        }
+
+    }else{
+        alert('로그인을 해주세요.');
+
+    }
+
+
 }
 
 // 로그인 함수
 function gologin(event) {
-    alert('로그인을 해주세요.');
     event.stopPropagation();
 }
 

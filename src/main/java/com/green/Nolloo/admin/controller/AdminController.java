@@ -100,10 +100,12 @@ public class AdminController {
         model.addAttribute("itemList",itemList);
         return "content/admin/admin_board_manage";
     }
-    @RequestMapping("/adminBuyList")
-    public String adminBuyList(HttpSession session,Model model){
 
-        List<ReserveVO> reserveList = reserveService.selectReserve(null);
+
+    @RequestMapping("/adminBuyList")
+    public String adminBuyList(HttpSession session,Model model, ReserveVO reserveVO){
+
+        List<ReserveVO> reserveList = reserveService.selectReserve(reserveVO);
         model.addAttribute("reserveList",reserveList);
         System.out.println(reserveList);
         return "content/admin/admin_buy_list";

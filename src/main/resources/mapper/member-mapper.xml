@@ -96,7 +96,7 @@
         FROM NOLLOO_MEMBER MEM INNER JOIN MEMBER_IMAGE IMG
         ON MEM.MEMBER_ID = IMG.MEMBER_ID
         WHERE MEMBER_STATUS ='active'
-        <if test='!memberId.equals(null)'>
+        <if test='memberId != null and !memberId.equals("")  '>
             AND MEM.MEMBER_ID = #{memberId}
         </if>
         ORDER BY JOIN_DATE DESC

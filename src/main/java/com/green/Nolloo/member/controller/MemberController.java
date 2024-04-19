@@ -7,6 +7,7 @@ import com.green.Nolloo.member.service.MemberServiceImpl;
 import com.green.Nolloo.member.vo.MemberImageVO;
 import com.green.Nolloo.member.vo.MemberVO;
 import com.green.Nolloo.reserve.service.ReserveServiceImpl;
+import com.green.Nolloo.reserve.vo.ReserveVO;
 import com.green.Nolloo.util.PathVariable;
 import com.green.Nolloo.util.UploadUtil;
 import jakarta.annotation.Resource;
@@ -59,11 +60,12 @@ public class MemberController {
 
 //    로그인 결과 화면
     @GetMapping("/loginResult")
-    public String login(Authentication authentication,HttpSession session){
+    public String login(Authentication authentication, HttpSession session, ReserveVO reserveVO){
         if (authentication != null){
             User user = (User)authentication.getPrincipal();
             session.setAttribute("memberId",user.getUsername());
-            session.setAttribute("reserveList",reserveService.selectReserve(user.getUsername()));
+            reserveVO.setMemberId(user.getUsername());
+            session.setAttribute("reserveList",reserveService.selectReserve(reserveVO));
 
         }
 

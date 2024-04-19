@@ -9,7 +9,7 @@ public interface ReserveService {
     void insertReserve(ReserveVO reserveVO);
 
 
-    List<ReserveVO> selectReserve(String memberId);
+    List<ReserveVO> selectReserve(ReserveVO reserveVO);
 
 
     ItemVO selectDetail(ReserveVO reserveVO);
