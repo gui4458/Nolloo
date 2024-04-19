@@ -115,7 +115,7 @@ function displayItems(items) {
             let wishchk = items.wishCodeList.includes(item.itemCode)
             itemHtml = itemHtml + `
 
-                    <div class="item-lazy bg-white shadow-xl shadow-slate-900/5 rounded-lg group" onclick="selectItemCode(${item.itemCode}, this)">
+                    <div class="item-lazy bg-white shadow-xl shadow-slate-900/5 rounded-lg group" onclick="selectItemCode(${item.itemCode})">
                     
                         <div class="flex flex-row p-3 lg:flex-col">
                             <div class="image-container relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">`
@@ -131,10 +131,17 @@ function displayItems(items) {
                                         `
 
             }
+<<<<<<< HEAD
             if (loginId != "") {
                 if (wishchk) {
                     itemHtml += `
                                             <span id="wishDelete" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${item.itemCode})"><i class="ri-heart-3-fill"></i></sapn>
+=======
+            if (loginId != null) {
+                if (wishchk) {
+                    itemHtml += `
+                                            <span class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${item.itemCode})"><i class="ri-heart-3-fill"></i></sapn>
+>>>>>>> df7391c147ccfd8a2debf22d779b2cfaa60277ac
 
                                                 `
                 } else {
@@ -186,9 +193,15 @@ function displayItems(items) {
 
 // 하트 추가 및 삭제 함수
 // 하트 누르면 추가
+<<<<<<< HEAD
 function wishAdd(divTag, itemCode, e) {
     const head = divTag;
     e.stopPropagation();
+=======
+function wishAdd(divTag, itemCode) {
+    const head = divTag
+
+>>>>>>> df7391c147ccfd8a2debf22d779b2cfaa60277ac
     fetch('/wish/insertWish', { //요청경로
         method: 'POST',
         cache: 'no-cache',
@@ -290,7 +303,11 @@ function goChat(itemCode) {
 }
 
 // modal Detail에 itemCode 보내주기
+<<<<<<< HEAD
 function selectItemCode(itemCode, selectedTag, items) {
+=======
+function selectItemCode(itemCode) {
+>>>>>>> df7391c147ccfd8a2debf22d779b2cfaa60277ac
     fetch('/item/itemDetailForm', { //요청경로
         method: 'POST',
         cache: 'no-cache',
@@ -320,8 +337,13 @@ function selectItemCode(itemCode, selectedTag, items) {
             let wishchk = data.wishCodeList.includes(data.item.itemCode)
 
 
+<<<<<<< HEAD
 
 
+=======
+            const loginId = document.querySelector('#loginId').value;
+            console.log(loginId);
+>>>>>>> df7391c147ccfd8a2debf22d779b2cfaa60277ac
             const p_tag = document.querySelector('.p-tag');
 
 
@@ -362,8 +384,12 @@ function selectItemCode(itemCode, selectedTag, items) {
     <div class="px-2 text-right">
                 <div class=" pr-3">
                     <span class="pr-3" >${data.wishCnt}`;
+<<<<<<< HEAD
             if (loginId != "") {
 
+=======
+            if (loginId != null) {
+>>>>>>> df7391c147ccfd8a2debf22d779b2cfaa60277ac
                 if (wishchk) {
                     modalHtml += `
                                 <span class="text-red-500 right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${data.item.itemCode})"><i class="ri-heart-3-fill"></i></sapn>
@@ -375,11 +401,14 @@ function selectItemCode(itemCode, selectedTag, items) {
                             
                             `
                 }
+<<<<<<< HEAD
             } else {
                 modalHtml += `
                                 <span class="text-red-500 right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="goLogin()"><i class="ri-heart-3-fill"></i></sapn>
 
                                     `
+=======
+>>>>>>> df7391c147ccfd8a2debf22d779b2cfaa60277ac
             }
 
 
@@ -444,6 +473,7 @@ function selectItemCode(itemCode, selectedTag, items) {
             p_tag.insertAdjacentHTML('afterbegin', modalHtml);
 
             //상품에 대한 지도 붙이기
+<<<<<<< HEAD
 
 
 
@@ -452,6 +482,19 @@ function selectItemCode(itemCode, selectedTag, items) {
                 drawMap(data.item.itemX, data.item.itemY);
             }, 50);
 
+=======
+            if(loginId != ''){
+                document.querySelector('.reserve-btn').setAttribute('onclick', `reserveInsert(${data.item.itemCode},${data.reserveCnt})`);
+            }
+                
+                
+
+            modalToggle();
+            setTimeout(() => {
+                drawMap(data.item.itemX, data.item.itemY);
+            }, 50);
+
+>>>>>>> df7391c147ccfd8a2debf22d779b2cfaa60277ac
             //console.log(selectedTag.children[0]);
             //console.log(selectedTag.children[0].getAttributeNames());
             //selectedTag.children[0].setAttribute('@click', 'showModal=true')
@@ -552,5 +595,46 @@ function drawMap(posX, posY) {
     marker.setMap(map);
     map.relayout();
 
+<<<<<<< HEAD
+=======
+}
+function reserveInsert(itemCode, reserveCnt) {
+
+    if (reserveCnt == 0) {
+        fetch('/reserve/partyReserve', { //요청경로
+            method: 'POST',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            },
+            //컨트롤러로 전달할 데이터
+            body: JSON.stringify({
+                // 데이터명 : 데이터값
+                itemCode: itemCode
+            })
+        })
+            .then((response) => {
+                // return response.json(); //나머지 경우에 사용
+            })
+            //fetch 통신 후 실행 영역
+            .then((data) => {//data -> controller에서 리턴되는 데이터!
+                const chk = confirm('예약되었습니다.\n예약페이지로 이동 하시겠습니까?')
+                if (chk) {
+                    location.href = `/reserve/reserveList`;
+                }
+
+            })
+            //fetch 통신 실패 시 실행 영역
+            .catch(err => {
+                alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                console.log(err);
+            });
+    } else {
+        alert('이미 예약되어있는 파티입니다.')
+    }
+}
+function reserveAlert() {
+    alert('로그인 해주세요.')
+>>>>>>> df7391c147ccfd8a2debf22d779b2cfaa60277ac
 }
 

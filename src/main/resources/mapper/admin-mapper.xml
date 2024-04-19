@@ -48,6 +48,7 @@
 
     </insert>
 
+
     <insert id="insertNotice">
         INSERT INTO NOTICE(
 
@@ -84,7 +85,39 @@
     </insert>
 
     <select id="selectNotice" resultMap="notice">
+        SELECT
+        NOTICE_CODE
+        , NOTICE_TITLE
+        , NOTICE_CONTENT
+        , NOTICE_WRITER
+        , NOTICE_DATE
+        , READ_CNT
+        FROM NOTICE
+        <if test="noticeCode != 0">
+            WHERE NOTICE_CODE=#{noticeCode}
+        </if>
+    </select>
 
+    <update id="upReadCnt">
+        UPDATE NOTICE SET
+        READ_CNT= READ_CNT + 1
+        WHERE NOTICE_CODE=#{noticeCode}
+    </update>
+
+<!--    <update id="updateNotice">-->
+<!--        UPDATE NOTICE SET-->
+
+<!--    </update>-->
+
+
+<!-- 통계(그래프)에 필요한 쿼리-->
+    <select id="selectListAdminStatistics" >
+        SELECT
+            ITEM.ITEM_CODE
+            ,CATE_CODE
+            ,COUNT(ITEM.ITEM_CODE) TOTAL_ITEM
+        FROM RESERVE INNER JOIN ITEM_INFO ITEM
+        ON ITEM.ITEM_CODE = RESERVE.ITEM_CODE
     </select>
 
 

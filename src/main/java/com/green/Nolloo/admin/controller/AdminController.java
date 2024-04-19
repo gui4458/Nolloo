@@ -77,7 +77,11 @@ public class AdminController {
         }
     }
     @GetMapping("/adminNotice")
-    public String adminNotice(){
+    public String adminNotice(Model model){
+        //공지사항 조회(리스트, 상세)
+        int noticeCode = 0;
+        List<NoticeVO> noticeList= adminService.selectNotice(noticeCode);
+        model.addAttribute("noticeList",noticeList);
 
         return "content/admin/admin_notice";
     }
@@ -129,7 +133,6 @@ public class AdminController {
        System.out.println(noticeVO);
            adminService.insertNotice(noticeVO);
 
-
         return "content/admin/admin_notice";
    }
 
@@ -139,6 +142,18 @@ public class AdminController {
         System.out.println(pageVO);
         return itemService.selectPartyList(pageVO);
     }
+   @GetMapping("/noticeDetail")
+    public String noticeDetail(@RequestParam(name="noticeCode")int noticeCode,Model model){
+
+        //공지사항 조회수
+        adminService.upReadCnt(noticeCode);
+
+        List<NoticeVO> noticeList = adminService.selectNotice(noticeCode);
+
+        model.addAttribute("noticeDetail", noticeList.get(0));
+
+        return "content/admin/notice_detail";
+   }
 
 
 }

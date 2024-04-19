@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/admin/admin_layout}">
+
+<th:block layout:fragment="content_css">
+    <!-- html 파일이 열릴때 같이 실행되는 css -->
+    <link rel="stylesheet" href="/">
+</th:block>
+
+<th:block layout:fragment="contentFragment">
+
+    <form action="" method="post">
+        <div class="w-full">
+            <table class="w-[60%] m-auto border mt-[5%]">
+                <caption>공지사항</caption>
+                <thead>
+                    <tr class="bg-red-300 [&>td]:p-2">
+                        <td colspan="5"></td>
+                    </tr>
+                    <tr class="border-b-2 [&>td]:p-2 text-center">
+                        <td>[[${noticeDetail.noticeCode}]]</td>
+                        <td>[[${noticeDetail.noticeTitle}]]</td>
+                        <td>[[${noticeDetail.noticeDate}]]</td>
+                        <td>[[${noticeDetail.readCnt}]]</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="[&>td]:p-2 text-center">
+                        <td colspan="5">[[${noticeDetail.noticeContent}]]</td>
+                    </tr>
+                </tbody>
+
+            </table>
+            <div class="w-[60%] m-auto text-right mt-[20px]">
+                <!-- <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button" onclick="location.href='/admin/adminRevise'">수정하기</button> -->
+                <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button">삭제하기</button>
+            </div>
+        </div>
+    </form>
+
+
+
+</th:block>
+
+
+
+<th:block layout:fragment="content_js">
+    <!-- html 파일이 열릴때 같이 실행되는 js -->
+    <!-- <script src="/"></script> -->
+</th:block>
+
+</html>
