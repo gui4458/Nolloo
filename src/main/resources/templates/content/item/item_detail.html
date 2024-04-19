@@ -127,6 +127,10 @@
         <!------------ 버튼 -------------->
         <div class="grid grid-cols-6 divide-x pb-14">
             <div class="">
+
+
+
+                
                 <button type="button" th:if="${session.memberId != null}"
                     th:onclick="reserveInsert([[${item.itemCode}]],[[${reserveCnt}]])"
                     class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
@@ -137,6 +141,10 @@
                         
                         class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                         참여</button>
+
+
+
+
                     <!-- Background overlay -->
                     <div x-show="showModal" class="fixed inset-0 transition-opacity " aria-hidden="true"
                         @click="showModal = false" style="display: none;">
