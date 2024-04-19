@@ -115,7 +115,7 @@ public class AdminController {
    }
 
    @PostMapping("/notice")
-    public String notice(NoticeVO noticeVO, @RequestParam(name="noticeImgs")MultipartFile[] noticeImgs){
+    public String notice(NoticeVO noticeVO, @RequestParam(name="noticeImgs")MultipartFile[] noticeImgs,Model model){
         List<NoticeImgVO> imgList= UploadUtil.multiUploadNoticeFile(noticeImgs);
 
         int noticeCode = adminService.selectNextNoticeCode();
@@ -129,10 +129,13 @@ public class AdminController {
        System.out.println(noticeVO);
            adminService.insertNotice(noticeVO);
 
+       List<NoticeVO> noticeList= adminService.selectNotice(0);
+           model.addAttribute("noticeList",noticeList);
+
         return "content/admin/admin_notice";
    }
 
-   @GetMapping("/noticeDetail")
+   @RequestMapping("/noticeDetail")
     public String noticeDetail(@RequestParam(name="noticeCode")int noticeCode,Model model){
 
         //공지사항 조회수
@@ -142,8 +145,50 @@ public class AdminController {
 
         model.addAttribute("noticeDetail", noticeList.get(0));
 
+
         return "content/admin/notice_detail";
    }
+
+
+
+   // 공지사항 수정하기 화면
+   @GetMapping("/adminRevise")
+    public String adminRevise(NoticeVO noticeVO,Model model){
+       List<NoticeVO> noticeList = adminService.selectNotice(noticeVO.getNoticeCode());
+
+       model.addAttribute("noticeDetail", noticeList.get(0));
+        return "content/admin/notice_revise";
+   }
+
+   //공지사항 수정
+   @PostMapping("/noticeRevise")
+   public String noticeRevise(NoticeVO noticeVO,Model model){
+       adminService.updateNotice(noticeVO);
+       List<NoticeVO> noticeList=adminService.selectNotice(noticeVO.getNoticeCode());
+       model.addAttribute("noticeDetail",noticeList.get(0));
+        return "content/admin/notice_detail";
+   }
+
+   //공지사항 삭제
+    @GetMapping("/adminDelete")
+    public String adminDelete(NoticeVO noticeVO,Model model){
+        //삭제
+        adminService.deleteNotice(noticeVO);
+        System.out.println(noticeVO);
+        //삭제 후 리스트 조회
+        List<NoticeVO> noticeList= adminService.selectNotice(0);
+        model.addAttribute("noticeList",noticeList);
+
+        return "content/admin/admin_notice";
+    }
+
+    //공지사항 댓글
+    @ResponseBody
+    @PostMapping("/noticeReply")
+    public void noticeReply(){
+
+    }
+
 
 
 }

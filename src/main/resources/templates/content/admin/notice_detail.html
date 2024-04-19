@@ -9,7 +9,7 @@
 
 <th:block layout:fragment="contentFragment">
 
-    <form action="" method="post">
+
         <div class="w-full">
             <table class="w-[60%] m-auto border mt-[5%]">
                 <caption>공지사항</caption>
@@ -32,11 +32,30 @@
 
             </table>
             <div class="w-[60%] m-auto text-right mt-[20px]">
-                <!-- <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button" onclick="location.href='/admin/adminRevise'">수정하기</button> -->
-                <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button">삭제하기</button>
+                <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button" th:onclick="|location.href='@{/admin/adminRevise(noticeCode=${noticeDetail.noticeCode})}'|">수정하기</button>
+                <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button" th:onclick="|location.href='@{/admin/adminDelete(noticeCode=${noticeDetail.noticeCode})}'|">삭제하기</button>
             </div>
         </div>
-    </form>
+
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>
+                            <input type="text" name="" id="">
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="reply">
+                        
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button">댓글 등록</button>
+        </div>
+    
+
 
 
 
@@ -46,7 +65,7 @@
 
 <th:block layout:fragment="content_js">
     <!-- html 파일이 열릴때 같이 실행되는 js -->
-    <!-- <script src="/"></script> -->
+    <script src="/js/content/notice_detail.js"></script>
 </th:block>
 
 </html>

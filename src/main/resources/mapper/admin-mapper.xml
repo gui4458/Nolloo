@@ -11,6 +11,14 @@
         <result column="NOTICE_CONTENT" property="noticeContent"/>
         <result column="NOTICE_DATE" property="noticeDate"/>
         <result column="READ_CNT" property="readCnt"/>
+        <collection property="noticeImgList" resultMap="noticeImg"/>
+    </resultMap>
+
+    <resultMap id="noticeImg" type="com.green.Nolloo.admin.vo.NoticeImgVO">
+        <id column="NOTICE_IMG_CODE" property="noticeImgCode"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="NOTICE_CODE" property="noticeCode"/>
     </resultMap>
 
 	<insert id="insertFestival">
@@ -104,10 +112,31 @@
         WHERE NOTICE_CODE=#{noticeCode}
     </update>
 
-<!--    <update id="updateNotice">-->
-<!--        UPDATE NOTICE SET-->
+    <update id="updateNotice">
+        UPDATE NOTICE SET
+        NOTICE_CONTENT =#{noticeContent}
+        WHERE NOTICE_CODE =#{noticeCode}
 
-<!--    </update>-->
+    </update>
+
+    <delete id="deleteNotice">
+        DELETE FROM NOTICE
+        WHERE NOTICE_CODE= #{noticeCode}
+    </delete>
+
+    <insert id="insertReply">
+        INSERT INTO NOTICE_REPLY(
+            CONTENT
+            , CREATE_DATE
+            , WRITER
+        )
+        VALUES(
+            #{content}
+            , #{createDate}
+            , #{writer}
+        )
+    </insert>
+
 
 
 <!-- 통계(그래프)에 필요한 쿼리-->

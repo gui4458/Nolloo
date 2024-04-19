@@ -1,5 +1,6 @@
 package com.green.Nolloo.admin.service;
 
+import com.green.Nolloo.admin.vo.NoticeImgVO;
 import com.green.Nolloo.admin.vo.NoticeVO;
 import com.green.Nolloo.admin.vo.ReplyVO;
 import com.green.Nolloo.item.vo.ItemVO;
@@ -27,5 +28,16 @@ public interface AdminService {
     //공지사항 조회수 증가
     void upReadCnt(int noticeCode);
 
+
     int selectListAdminStatistics(int cateCode);
+
+    //공지사항 삭제
+    void deleteNotice(NoticeVO noticeVO);
+
+    //공지사항 수정
+    void updateNotice(NoticeVO noticeVO);
+
+    //공지사항 댓글 추가
+    void insertReply(ReplyVO replyVO);
+
 }

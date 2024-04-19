@@ -2,6 +2,7 @@ package com.green.Nolloo.admin.service;
 
 import com.green.Nolloo.admin.vo.NoticeImgVO;
 import com.green.Nolloo.admin.vo.NoticeVO;
+import com.green.Nolloo.admin.vo.ReplyVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.member.vo.MemberVO;
 import com.green.Nolloo.reserve.vo.ReserveVO;
@@ -31,7 +32,10 @@ public class AdminServiceImpl implements  AdminService{
     @Override
     public void insertNotice(NoticeVO noticeVO) {
      sqlSession.insert("adminMapper.insertNotice",noticeVO);
-     sqlSession.insert("adminMapper.insertNoticeImg", noticeVO);
+     if(noticeVO.getNoticeImgList().size() != 0){
+         sqlSession.insert("adminMapper.insertNoticeImg", noticeVO);
+     }
+
 
     }
 
@@ -53,6 +57,20 @@ public class AdminServiceImpl implements  AdminService{
     @Override
     public int selectListAdminStatistics(int cateCode) {
         return sqlSession.selectOne("adminMapper.selectListAdminStatistics", cateCode);
+    }
+
+    public void deleteNotice(NoticeVO noticeVO) {
+        sqlSession.delete("adminMapper.deleteNotice",noticeVO);
+    }
+
+    @Override
+    public void updateNotice(NoticeVO noticeVO) {
+        sqlSession.update("adminMapper.updateNotice",noticeVO);
+    }
+
+    @Override
+    public void insertReply(ReplyVO replyVO) {
+        sqlSession.insert("adminMapper.insertReply",replyVO);
     }
 
 }
