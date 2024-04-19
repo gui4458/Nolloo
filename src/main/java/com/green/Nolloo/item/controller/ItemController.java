@@ -86,7 +86,6 @@ public class ItemController {
         List<CateVO> cateList = itemService.selectCate();
 
 
-
         List<ItemVO> recommendList = itemService.searchByReadCnt();
         session.setAttribute("recommendList",recommendList);
 
@@ -104,6 +103,8 @@ public class ItemController {
 //            System.out.println("로그인함" + wishCodeList);
 //
 //        }
+
+
 
 
 
@@ -197,7 +198,7 @@ public class ItemController {
     //itemDetail 조회
     @ResponseBody
     @PostMapping("/itemDetailForm")
-    public Map<String,Object> boardDetailForm(ItemVO itemVO, Authentication authentication, HttpSession session){
+    public Map<String,Object> boardDetailForm(ItemVO itemVO, Authentication authentication, HttpSession session,ReserveVO reserveVO){
 
         itemService.itemListUpdateCnt(itemVO);
 
@@ -206,7 +207,14 @@ public class ItemController {
         Map<String,Object> data = (Map<String, Object>) session.getAttribute("data");
         data.put("item",itemService.selectPartyDetail(itemVO));
         data.put("wishCnt",itemService.wishCount(itemVO.getItemCode()));
+
+        reserveVO.setMemberId((String) session.getAttribute("memberId"));
+        data.put("reserveCnt",reserveService.reserveDone(reserveVO));
+
+
         System.out.println(data);
+
+
        // model.addAttribute("chkCode",chkCode);
 
 //        if (authentication != null){

@@ -37,7 +37,14 @@
         )
 
     </insert>
-
+    <select id="selectListAdminStatistics" >
+        SELECT
+            ITEM.ITEM_CODE
+            ,CATE_CODE
+            ,COUNT(ITEM.ITEM_CODE) TOTAL_ITEM
+        FROM RESERVE INNER JOIN ITEM_INFO ITEM
+        ON ITEM.ITEM_CODE = RESERVE.ITEM_CODE
+    </select>
 
 </mapper>
 
