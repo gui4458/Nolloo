@@ -48,6 +48,7 @@
 
     </insert>
 
+
     <insert id="insertNotice">
         INSERT INTO NOTICE(
 
@@ -108,6 +109,16 @@
 
 <!--    </update>-->
 
+
+<!-- 통계(그래프)에 필요한 쿼리-->
+    <select id="selectListAdminStatistics" >
+        SELECT
+            ITEM.ITEM_CODE
+            ,CATE_CODE
+            ,COUNT(ITEM.ITEM_CODE) TOTAL_ITEM
+        FROM RESERVE INNER JOIN ITEM_INFO ITEM
+        ON ITEM.ITEM_CODE = RESERVE.ITEM_CODE
+    </select>
 
 
 </mapper>
