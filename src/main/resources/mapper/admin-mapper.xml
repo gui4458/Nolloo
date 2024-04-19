@@ -111,10 +111,31 @@
         WHERE NOTICE_CODE=#{noticeCode}
     </update>
 
-<!--    <update id="updateNotice">-->
-<!--        UPDATE NOTICE SET-->
+    <update id="updateNotice">
+        UPDATE NOTICE SET
+        NOTICE_CONTENT =#{noticeContent}
+        WHERE NOTICE_CODE =#{noticeCode}
 
-<!--    </update>-->
+    </update>
+
+    <delete id="deleteNotice">
+        DELETE FROM NOTICE
+        WHERE NOTICE_CODE= #{noticeCode}
+    </delete>
+
+    <insert id="insertReply">
+        INSERT INTO NOTICE_REPLY(
+            CONTENT
+            , CREATE_DATE
+            , WRITER
+        )
+        VALUES(
+            #{content}
+            , #{createDate}
+            , #{writer}
+        )
+    </insert>
+
 
 
 

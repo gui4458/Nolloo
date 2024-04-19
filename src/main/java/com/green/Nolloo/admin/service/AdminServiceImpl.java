@@ -2,6 +2,7 @@ package com.green.Nolloo.admin.service;
 
 import com.green.Nolloo.admin.vo.NoticeImgVO;
 import com.green.Nolloo.admin.vo.NoticeVO;
+import com.green.Nolloo.admin.vo.ReplyVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.member.vo.MemberVO;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -50,6 +51,23 @@ public class AdminServiceImpl implements  AdminService{
     @Override
     public void upReadCnt(int noticeCode) {
         sqlSession.update("adminMapper.upReadCnt",noticeCode);
+    }
+
+    @Override
+    public void deleteNotice(NoticeVO noticeVO) {
+
+        sqlSession.delete("adminMapper.deleteNotice",noticeVO);
+
+    }
+
+    @Override
+    public void updateNotice(NoticeVO noticeVO) {
+        sqlSession.update("adminMapper.updateNotice",noticeVO);
+    }
+
+    @Override
+    public void insertReply(ReplyVO replyVO) {
+        sqlSession.insert("adminMapper.insertReply",replyVO);
     }
 
 }

@@ -9,7 +9,8 @@
 
 <th:block layout:fragment="contentFragment">
 
-    <form action="" method="post">
+    <form action="/admin/noticeRevise" method="post">
+        <input type="hidden" name="noticeCode" th:value="${noticeDetail.noticeCode}">
         <div class="w-full">
             <table class="w-[60%] m-auto border mt-[5%]">
                 <caption>공지사항</caption>
@@ -27,15 +28,14 @@
                 <tbody>
                     <tr class="[&>td]:p-2 text-center">
                         <td colspan="5">
-                        <input type="text" name="" id="" th:value="${noticeDetail.noticeContent}">
+                        <input type="text" name="noticeContent" th:value="${noticeDetail.noticeContent}">
                         </td>
                     </tr>
                 </tbody>
 
             </table>
             <div class="w-[60%] m-auto text-right mt-[20px]">
-                <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button">수정하기</button>
-                <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button">삭제하기</button>
+                <input class="bg-red-300 text-white rounded-lg w-[10%]" type="submit" value="수정하기">
             </div>
         </div>
     </form>
