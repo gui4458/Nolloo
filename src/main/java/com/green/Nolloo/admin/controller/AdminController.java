@@ -105,8 +105,8 @@ public class AdminController {
         return "content/admin/admin_buy_list";
     }
     @GetMapping("/adminJoinStatistics")
-    public String adminJoinStatistics(){
-
+    public String adminJoinStatistics(int cateCode){
+        adminService.selectListAdminStatistics(cateCode);
         return "content/admin/admin_join_statistics";
     }
    @GetMapping("/noticeForm")
