@@ -18,6 +18,7 @@ new Chart(document.querySelector('#doughnut-chart'), {
       }
   }
 });
+//bar chart
 new Chart(document.querySelector('#bar-chart-grouped'), {
   type: 'bar',
   data: {
