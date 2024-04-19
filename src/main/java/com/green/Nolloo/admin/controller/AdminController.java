@@ -115,7 +115,7 @@ public class AdminController {
    }
 
    @PostMapping("/notice")
-    public String notice(NoticeVO noticeVO, @RequestParam(name="noticeImgs")MultipartFile[] noticeImgs){
+    public String notice(NoticeVO noticeVO, @RequestParam(name="noticeImgs")MultipartFile[] noticeImgs,Model model){
         List<NoticeImgVO> imgList= UploadUtil.multiUploadNoticeFile(noticeImgs);
 
         int noticeCode = adminService.selectNextNoticeCode();
@@ -128,6 +128,9 @@ public class AdminController {
 
        System.out.println(noticeVO);
            adminService.insertNotice(noticeVO);
+
+       List<NoticeVO> noticeList= adminService.selectNotice(0);
+           model.addAttribute("noticeList",noticeList);
 
         return "content/admin/admin_notice";
    }
@@ -145,5 +148,9 @@ public class AdminController {
         return "content/admin/notice_detail";
    }
 
+   @GetMapping("/adminRevise")
+    public String adminRevise(){
+        return "content/admin/notice_revise";
+   }
 
 }

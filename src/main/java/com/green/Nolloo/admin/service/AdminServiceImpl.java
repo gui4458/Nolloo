@@ -30,7 +30,10 @@ public class AdminServiceImpl implements  AdminService{
     @Override
     public void insertNotice(NoticeVO noticeVO) {
      sqlSession.insert("adminMapper.insertNotice",noticeVO);
-     sqlSession.insert("adminMapper.insertNoticeImg", noticeVO);
+     if(noticeVO.getNoticeImgList().size() != 0){
+         sqlSession.insert("adminMapper.insertNoticeImg", noticeVO);
+     }
+
 
     }
 

@@ -11,6 +11,14 @@
         <result column="NOTICE_CONTENT" property="noticeContent"/>
         <result column="NOTICE_DATE" property="noticeDate"/>
         <result column="READ_CNT" property="readCnt"/>
+        <collection property="noticeImgList" resultMap="noticeImg"/>
+    </resultMap>
+
+    <resultMap id="noticeImg" type="com.green.Nolloo.admin.vo.NoticeImgVO">
+        <id column="NOTICE_IMG_CODE" property="noticeImgCode"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
+        <result column="ORIGIN_FILE_NAME" property="originFileName"/>
+        <result column="NOTICE_CODE" property="noticeCode"/>
     </resultMap>
 
 	<insert id="insertFestival">
