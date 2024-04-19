@@ -45,11 +45,23 @@
         , RESERVE.MEMBER_ID
         , RESERVE.ITEM_CODE
         , ITEM_TITLE
+        , ITEM_PRICE
         FROM RESERVE INNER JOIN item_info
         ON RESERVE.ITEM_CODE = item_info.ITEM_CODE
+        WHERE 1 = 1
         <if test="memberId != null ">
-            WHERE RESERVE.MEMBER_ID=#{memberId}
+            and RESERVE.MEMBER_ID=#{memberId}
         </if>
+        <if test='searchText != null and !searchText.equals("")'>
+            AND ${searchOption} LIKE CONCAT('%',#{searchText},'%')
+        </if>
+        <if test='from != null and !from.equals("")'>
+            AND DATE_FORMAT(RESERVE_DATE, '%Y-%m-%d') &gt;= #{from}
+        </if>
+        <if test='to != null and !to.equals("")'>
+            AND #{to} &gt;= DATE_FORMAT(RESERVE_DATE, '%Y-%m-%d')
+        </if>
+
 
     </select>
 

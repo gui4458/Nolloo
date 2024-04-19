@@ -1,9 +1,12 @@
 package com.green.Nolloo.chat.message;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "chat_messages")
 public class ChatMessage {

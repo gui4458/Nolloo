@@ -9,11 +9,15 @@ import com.green.Nolloo.item.vo.PageVO;
 import com.green.Nolloo.member.vo.MemberVO;
 import com.green.Nolloo.reserve.service.ReserveService;
 import com.green.Nolloo.reserve.vo.ReserveVO;
+import com.green.Nolloo.search.vo.SearchVO;
 import com.green.Nolloo.util.PathVariable;
 import com.green.Nolloo.util.UploadUtil;
+import com.green.Nolloo.wish.vo.WishViewVO;
 import com.opencsv.CSVReader;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +27,7 @@ import javax.naming.Name;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/admin")
@@ -97,11 +100,14 @@ public class AdminController {
         model.addAttribute("itemList",itemList);
         return "content/admin/admin_board_manage";
     }
-    @GetMapping("/adminBuyList")
-    public String adminBuyList(HttpSession session,Model model){
 
-        List<ReserveVO> reserveList = reserveService.selectReserve(null);
+
+    @RequestMapping("/adminBuyList")
+    public String adminBuyList(HttpSession session,Model model, ReserveVO reserveVO){
+
+        List<ReserveVO> reserveList = reserveService.selectReserve(reserveVO);
         model.addAttribute("reserveList",reserveList);
+        System.out.println(reserveList);
         return "content/admin/admin_buy_list";
     }
     @GetMapping("/adminJoinStatistics")
@@ -135,7 +141,16 @@ public class AdminController {
         return "content/admin/admin_notice";
    }
 
-   @RequestMapping("/noticeDetail")
+
+    @ResponseBody
+    @PostMapping("/cateSelect")
+    public List<ItemVO> cateSelect(@RequestBody PageVO pageVO, Authentication authentication, SearchVO searchVO, HttpSession session){
+        System.out.println(pageVO);
+        return itemService.selectPartyList(pageVO);
+    }
+    @RequestMapping("/noticeDetail")
+
+
     public String noticeDetail(@RequestParam(name="noticeCode")int noticeCode,Model model){
 
         //공지사항 조회수

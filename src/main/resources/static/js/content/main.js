@@ -118,7 +118,9 @@ function displayItems(items) {
                     <div class="item-lazy bg-white shadow-xl shadow-slate-900/5 rounded-lg group" onclick="selectItemCode(${item.itemCode})">
                     
                         <div class="flex flex-row p-3 lg:flex-col">
-                            <div class="image-container relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">`
+                            <div class="image-container w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">`
+                            // 그림 안에 하트
+                            // <div class="image-container relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">
             if (item.cateCode == 1) {
 
                 itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/itemSolo/${item.imgList[0].attachedFileName}" alt="">
@@ -131,6 +133,7 @@ function displayItems(items) {
                                         `
 
             }
+
             if (loginId != null) {
                 if (wishchk) {
                     itemHtml += `
@@ -146,7 +149,8 @@ function displayItems(items) {
             } else {
                 itemHtml += `
                                                     
-                                            <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="gologin()><i class="ri-heart-3-line"></i></sapn>
+                                            
+                                            <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="goLogin(event)"><i class="ri-heart-3-line"></i></sapn>
                                                 
                                                 `
             }
@@ -158,7 +162,7 @@ function displayItems(items) {
                                         <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">${item.cateName}</span><strong class="inline-flex text-xs py-1 pl-1">${item.itemPlace}</strong>
                                     </div>
                                     <div class="text-dark-600 font-bold mt-1">
-                                    ${item.itemTitle}                  
+                                    ${item.itemTitle}
                                     </div>
                                     <div class="text-slate-600 text-sm mt-1">
                                         Description(Subtitle)
@@ -185,9 +189,9 @@ function displayItems(items) {
 
 // 하트 추가 및 삭제 함수
 // 하트 누르면 추가
-function wishAdd(divTag, itemCode) {
-    const head = divTag
-
+function wishAdd(divTag, itemCode, e) {
+    const head = divTag;
+    e.stopPropagation();
     fetch('/wish/insertWish', { //요청경로
         method: 'POST',
         cache: 'no-cache',
@@ -229,12 +233,11 @@ function wishAdd(divTag, itemCode) {
         });
 }
 
-
 //하트 누르면 삭제
-function wishDelete(divTag, itemCode) {
+function wishDelete(divTag, itemCode, e) {
     const head = divTag
 
-
+    e.stopPropagation();
 
     fetch('/wish/wishDelete', { //요청경로
         method: 'POST',
@@ -275,8 +278,9 @@ function wishDelete(divTag, itemCode) {
 }
 
 // 로그인 함수
-function gologin() {
+function gologin(event) {
     alert('로그인을 해주세요.');
+    event.stopPropagation();
 }
 
 function goChat(itemCode) {
@@ -290,6 +294,7 @@ function goChat(itemCode) {
 
 // modal Detail에 itemCode 보내주기
 function selectItemCode(itemCode) {
+
     fetch('/item/itemDetailForm', { //요청경로
         method: 'POST',
         cache: 'no-cache',
@@ -321,6 +326,7 @@ function selectItemCode(itemCode) {
 
             const loginId = document.querySelector('#loginId').value;
             console.log(loginId);
+
             const p_tag = document.querySelector('.p-tag');
 
 
@@ -361,7 +367,8 @@ function selectItemCode(itemCode) {
     <div class="px-2 text-right">
                 <div class=" pr-3">
                     <span class="pr-3" >${data.wishCnt}`;
-            if (loginId != null) {
+            if (loginId != "") {
+
                 if (wishchk) {
                     modalHtml += `
                                 <span class="text-red-500 right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${data.item.itemCode})"><i class="ri-heart-3-fill"></i></sapn>
@@ -373,6 +380,11 @@ function selectItemCode(itemCode) {
                             
                             `
                 }
+            } else {
+                modalHtml += `
+                                <span class="text-red-500 right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="goLogin()"><i class="ri-heart-3-fill"></i></sapn>
+
+                                    `
             }
 
 
@@ -437,6 +449,7 @@ function selectItemCode(itemCode) {
             p_tag.insertAdjacentHTML('afterbegin', modalHtml);
 
             //상품에 대한 지도 붙이기
+
             if(loginId != ''){
                 document.querySelector('.reserve-btn').setAttribute('onclick', `reserveInsert(${data.item.itemCode},${data.reserveCnt},${data.item.cateCode})`);
             }
@@ -466,8 +479,9 @@ function modalToggle() {
     document.querySelector('#detail_modal').classList.toggle('flex');
 }
 
-function goLogin() {
+function goLogin(e) {
     alert('로그인 후 이용해주세요.')
+    e.stopPropagation();
 }
 
 function reserveInsert(itemCode, reserveCnt, cateCode) {
@@ -506,8 +520,10 @@ function reserveInsert(itemCode, reserveCnt, cateCode) {
         alert('이미 예약되어있는 파티입니다.')
     }
 }
+
 function reserveAlert() {
     alert('로그인 해주세요.')
+
 }
 
 //상품 상세 보기 화면에 위치 지도 띄우기
@@ -546,5 +562,46 @@ function drawMap(posX, posY) {
     marker.setMap(map);
     map.relayout();
 
+
 }
+function reserveInsert(itemCode, reserveCnt) {
+
+    if (reserveCnt == 0) {
+        fetch('/reserve/partyReserve', { //요청경로
+            method: 'POST',
+            cache: 'no-cache',
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8'
+            },
+            //컨트롤러로 전달할 데이터
+            body: JSON.stringify({
+                // 데이터명 : 데이터값
+                itemCode: itemCode
+            })
+        })
+            .then((response) => {
+                // return response.json(); //나머지 경우에 사용
+            })
+            //fetch 통신 후 실행 영역
+            .then((data) => {//data -> controller에서 리턴되는 데이터!
+                const chk = confirm('예약되었습니다.\n예약페이지로 이동 하시겠습니까?')
+                if (chk) {
+                    location.href = `/reserve/reserveList`;
+                }
+
+            })
+            //fetch 통신 실패 시 실행 영역
+            .catch(err => {
+                alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+                console.log(err);
+            });
+    } else {
+        alert('이미 예약되어있는 파티입니다.')
+    }
+}
+function reserveAlert() {
+    alert('로그인 해주세요.')
+
+}
+
 

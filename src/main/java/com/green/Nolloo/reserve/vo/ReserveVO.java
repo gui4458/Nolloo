@@ -18,6 +18,10 @@ public class ReserveVO {
     private int cateCode;
     private ItemVO itemVO;
     private List<Integer> reserveCodeList;
+    private String searchOption;
+    private String searchText;
+    private String from;
+    private String to;
 
 
 }
