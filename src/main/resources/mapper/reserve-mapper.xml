@@ -45,8 +45,9 @@
         , ITEM_PRICE
         FROM RESERVE INNER JOIN item_info
         ON RESERVE.ITEM_CODE = item_info.ITEM_CODE
+        WHERE 1 = 1
         <if test="memberId != null ">
-            WHERE RESERVE.MEMBER_ID=#{memberId}
+            and RESERVE.MEMBER_ID=#{memberId}
         </if>
 
     </select>

@@ -11,46 +11,63 @@
     <!-- html 코드 작성 -->
 
     <div class="w-[80%] h-500px ml-24">
-        <table class=" border-collapse w-[100%] text-center mt-[60px]">
-            <caption class="text-left text-red-400">구매리스트</caption>
+        <div>
+            <table class=" border-collapse w-[100%] text-center mt-[60px]">
+                <caption class="text-left text-red-400">구매리스트</caption>
 
-            <colgroup>
-                <col width="5%">
-                <col width="15%">
-                <col width="10%">
-                <col width="10%">
-                <col width="15%">
-            
-            </colgroup>
-            <thead>
-                <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300">
-                    <td>NO</td>
-                    <td>아이디</td>
-                    <td>구매일</td>
-                    <td>제목</td>
-                    <td>가격</td>
-            
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="reserve,state : ${reserveList}"
-                    class="[&>td]:p-2 font-semibold border-b-2  border-t-red-500 " >
-                    <td>[[${#lists.size(reserveList)-state.index}]]</td>
-                    <td>
-                                [[${reserve.memberId}]]
-                    </td>
+                <colgroup>
+                    <col width="5%">
+                    <col width="15%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="15%">
 
-                    <td>[[${reserve.reserveDate}]]</td>
-                    <td>[[${reserve.itemVO.itemTitle}]]</td>
-                    <td>
+                </colgroup>
+                <thead>
+                    <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300">
+                        <td>NO</td>
+                        <td>아이디</td>
+                        <td>구매일</td>
+                        <td>제목</td>
+                        <td>가격</td>
 
-                        <div>[[${reserve.itemVO.itemPrice}]]</div>
-                    </td>
-                    
-                </tr>
-            </tbody>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="reserve,state : ${reserveList}"
+                        class="[&>td]:p-2 font-semibold border-b-2  border-t-red-500 ">
+                        <td>[[${#lists.size(reserveList)-state.index}]]</td>
+                        <td>
+                            [[${reserve.memberId}]]
+                        </td>
 
-        </table>
+                        <td>[[${reserve.reserveDate}]]</td>
+                        <td>[[${reserve.itemVO.itemTitle}]]</td>
+                        <td>
+
+                            <div>[[${reserve.itemVO.itemPrice}]]</div>
+                        </td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+        <div>
+            <form action="/admin/adminBuyList" method="post">
+                <span><input type="date" name="from" value="from"></span>
+                <span><input type="date" name="to" value="to"></span>
+                <span>
+                    <select name="memberId" id="">
+                        <option value="">구매자</option>
+                    </select>
+                </span>
+                <span><input type="text" name="searchText"></span>
+                <span><button type="submit">검색</button></span>
+
+            </form>
+
+        </div>
 
     </div>
 </th:block>
