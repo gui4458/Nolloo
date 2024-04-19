@@ -4,6 +4,7 @@ import com.green.Nolloo.admin.vo.NoticeImgVO;
 import com.green.Nolloo.admin.vo.NoticeVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.member.vo.MemberVO;
+import com.green.Nolloo.reserve.vo.ReserveVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,11 @@ public class AdminServiceImpl implements  AdminService{
     @Override
     public void upReadCnt(int noticeCode) {
         sqlSession.update("adminMapper.upReadCnt",noticeCode);
+    }
+
+    @Override
+    public int selectListAdminStatistics(int cateCode) {
+        return sqlSession.selectOne("adminMapper.selectListAdminStatistics", cateCode);
     }
 
 }

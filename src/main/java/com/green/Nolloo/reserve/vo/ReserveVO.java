@@ -15,6 +15,7 @@ public class ReserveVO {
     private String memberId;
     private String reserveDate;
     private int itemCode;
+    private int cateCode;
     private ItemVO itemVO;
     private List<Integer> reserveCodeList;
     private String searchOption;

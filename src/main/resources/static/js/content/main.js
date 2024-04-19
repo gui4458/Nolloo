@@ -451,7 +451,7 @@ function selectItemCode(itemCode) {
             //상품에 대한 지도 붙이기
 
             if(loginId != ''){
-                document.querySelector('.reserve-btn').setAttribute('onclick', `reserveInsert(${data.item.itemCode},${data.reserveCnt})`);
+                document.querySelector('.reserve-btn').setAttribute('onclick', `reserveInsert(${data.item.itemCode},${data.reserveCnt},${data.item.cateCode})`);
             }
                 
                 
@@ -484,7 +484,7 @@ function goLogin(e) {
     e.stopPropagation();
 }
 
-function reserveInsert(itemCode, reserveCnt) {
+function reserveInsert(itemCode, reserveCnt, cateCode) {
 
     if (reserveCnt == 0) {
         fetch('/reserve/partyReserve', { //요청경로
@@ -496,7 +496,8 @@ function reserveInsert(itemCode, reserveCnt) {
             //컨트롤러로 전달할 데이터
             body: JSON.stringify({
                 // 데이터명 : 데이터값
-                itemCode: itemCode
+                'itemCode' : itemCode,
+                'cateCode' : cateCode
             })
         })
             .then((response) => {
@@ -602,4 +603,5 @@ function reserveAlert() {
     alert('로그인 해주세요.')
 
 }
+
 
