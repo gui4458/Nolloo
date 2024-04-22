@@ -12,5 +12,5 @@ public class ReplyVO {
     private String content;
     private String createDate;
     private String writer;
-    private int itemCode;
+    private int noticeCode;
 }

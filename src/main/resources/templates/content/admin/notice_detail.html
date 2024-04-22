@@ -10,51 +10,70 @@
 <th:block layout:fragment="contentFragment">
 
 
-        <div class="w-full">
-            <table class="w-[60%] m-auto border mt-[5%]">
-                <caption>공지사항</caption>
-                <thead>
-                    <tr class="bg-red-300 [&>td]:p-2">
-                        <td colspan="5"></td>
-                    </tr>
-                    <tr class="border-b-2 [&>td]:p-2 text-center">
-                        <td>[[${noticeDetail.noticeCode}]]</td>
-                        <td>[[${noticeDetail.noticeTitle}]]</td>
-                        <td>[[${noticeDetail.noticeDate}]]</td>
-                        <td>[[${noticeDetail.readCnt}]]</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="[&>td]:p-2 text-center">
-                        <td colspan="5">[[${noticeDetail.noticeContent}]]</td>
-                    </tr>
-                </tbody>
+    <div class="w-full">
+        <table class="w-[60%] m-auto border mt-[5%]">
+            <caption>공지사항</caption>
+            <thead>
+                <tr class="bg-red-300 [&>td]:p-2">
+                    <td colspan="5"></td>
+                </tr>
+                <tr class="border-b-2 [&>td]:p-2 text-center">
+                    <td>[[${noticeNo}]]</td>
+                    <td>[[${noticeDetail.noticeTitle}]]</td>
+                    <td>[[${noticeDetail.noticeDate}]]</td>
+                    <td>[[${noticeDetail.readCnt}]]</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="[&>td]:p-2 text-center">
+                    <td colspan="5">[[${noticeDetail.noticeContent}]]</td>
+                </tr>
+            </tbody>
 
-            </table>
-            <div class="w-[60%] m-auto text-right mt-[20px]">
-                <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button" th:onclick="|location.href='@{/admin/adminRevise(noticeCode=${noticeDetail.noticeCode})}'|">수정하기</button>
-                <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button" th:onclick="|location.href='@{/admin/adminDelete(noticeCode=${noticeDetail.noticeCode})}'|">삭제하기</button>
+        </table>
+        <div class="w-[60%] m-auto text-right mt-[20px]">
+            <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button"
+                th:onclick="|location.href='@{/admin/adminRevise(noticeCode=${noticeDetail.noticeCode})}'|">수정하기</button>
+            <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button"
+                th:onclick="|location.href='@{/admin/adminDelete(noticeCode=${noticeDetail.noticeCode})}'|">삭제하기</button>
+        </div>
+    </div>
+
+    <div class="w-full mt-[15%]">
+        <form action="/admin/noticeReply" method="post">
+            <input type="hidden"  name="noticeCode" th:value="${noticeDetail.noticeCode}">
+            <div>
+                <table class="text-center">
+                    <thead>
+                        <tr>
+                            <td>
+                                <input type="text" name="content" id="">
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="reply">
+
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" class="bg-red-300 text-white rounded-lg w-[10%]" value="등록">
             </div>
-        </div>
+        </form>
+    </div>
+    <table th:each="reply:${replyList}" class="w-[60%] m-auto border mb-5" >
+        <tbody>
+            <tr class="border-b-2 [&>td]:p-2 text-center">
+                <td>[[${reply.writer}]]</td>
+                <td class="text-right">[[${reply.createDate}]]</td>
+            </tr>
+            <tr class="border-b-2 [&>td]:p-2 text-center">
+                <td colspan="2">[[${reply.content}]]</td>
+            </tr>
+        </tbody>
+   
+    </table>
 
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <td>
-                            <input type="text" name="" id="">
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr id="reply">
-                        
-                    </tr>
-                </tbody>
-            </table>
-            <button type="button">댓글 등록</button>
-        </div>
-    
 
 
 

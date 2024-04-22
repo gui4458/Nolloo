@@ -40,4 +40,8 @@ public interface AdminService {
     //공지사항 댓글 추가
     void insertReply(ReplyVO replyVO);
 
+    //공지사항 댓글 조회
+    List<ReplyVO> selectReply(ReplyVO replyVO);
+
+
 }

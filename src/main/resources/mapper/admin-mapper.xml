@@ -21,6 +21,14 @@
         <result column="NOTICE_CODE" property="noticeCode"/>
     </resultMap>
 
+    <resultMap id="reply" type="com.green.Nolloo.admin.vo.ReplyVO">
+        <id column="REPLY_CODE" property="replyCode"/>
+        <result column="CONTENT" property="content"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="WRITER" property="writer"/>
+        <result column="NOTICE_CODE" property="noticeCode"/>
+    </resultMap>
+
 	<insert id="insertFestival">
         INSERT INTO ITEM_INFO(
             ITEM_TITLE
@@ -127,15 +135,26 @@
     <insert id="insertReply">
         INSERT INTO NOTICE_REPLY(
             CONTENT
-            , CREATE_DATE
             , WRITER
+            , NOTICE_CODE
         )
         VALUES(
             #{content}
-            , #{createDate}
             , #{writer}
+            , #{noticeCode}
         )
     </insert>
+
+    <select id="selectReply" resultMap="reply">
+    SELECT
+        REPLY_CODE
+        , CONTENT
+        , CREATE_DATE
+        , WRITER
+        , NOTICE_CODE
+    FROM NOTICE_REPLY
+        WHERE NOTICE_CODE=#{noticeCode}
+    </select>
 
 
 

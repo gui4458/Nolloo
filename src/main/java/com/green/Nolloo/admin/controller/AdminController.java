@@ -3,6 +3,7 @@ package com.green.Nolloo.admin.controller;
 import com.green.Nolloo.admin.service.AdminService;
 import com.green.Nolloo.admin.vo.NoticeImgVO;
 import com.green.Nolloo.admin.vo.NoticeVO;
+import com.green.Nolloo.admin.vo.ReplyVO;
 import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.item.vo.PageVO;
@@ -148,10 +149,10 @@ public class AdminController {
         System.out.println(pageVO);
         return itemService.selectPartyList(pageVO);
     }
+
+
     @RequestMapping("/noticeDetail")
-
-
-    public String noticeDetail(@RequestParam(name="noticeCode")int noticeCode,Model model){
+    public String noticeDetail(@RequestParam(name="noticeCode")int noticeCode,@RequestParam(name="noticeNo")int noticeNo,Model model,ReplyVO replyVO){
 
         //공지사항 조회수
         adminService.upReadCnt(noticeCode);
@@ -160,6 +161,9 @@ public class AdminController {
 
         model.addAttribute("noticeDetail", noticeList.get(0));
 
+        List<ReplyVO> replyList= adminService.selectReply(replyVO);
+        model.addAttribute("replyList",replyList);
+        model.addAttribute("noticeNo",noticeNo);
 
         return "content/admin/notice_detail";
    }
@@ -198,10 +202,20 @@ public class AdminController {
     }
 
     //공지사항 댓글
-    @ResponseBody
     @PostMapping("/noticeReply")
-    public void noticeReply(){
+    public String noticeReply(ReplyVO replyVO,HttpSession session,Model model){
 
+
+        session.setAttribute("vo",replyVO);
+        ReplyVO reply = (ReplyVO)session.getAttribute("vo");
+        String writer = (String)session.getAttribute("memberId");
+        replyVO.setWriter(writer);
+
+        System.out.println(replyVO);
+        adminService.insertReply(replyVO);
+
+
+        return "redirect:/admin/noticeDetail?noticeCode="+replyVO.getNoticeCode();
     }
 
 

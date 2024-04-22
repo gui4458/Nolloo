@@ -73,4 +73,9 @@ public class AdminServiceImpl implements  AdminService{
         sqlSession.insert("adminMapper.insertReply",replyVO);
     }
 
+    @Override
+    public List<ReplyVO> selectReply(ReplyVO replyVO) {
+        return sqlSession.selectList("adminMapper.selectReply",replyVO);
+    }
+
 }
