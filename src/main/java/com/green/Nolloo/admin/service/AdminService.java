@@ -40,4 +40,6 @@ public interface AdminService {
     //공지사항 댓글 추가
     void insertReply(ReplyVO replyVO);
 
+    int selectBoardCnt(int cateCode);
+
 }

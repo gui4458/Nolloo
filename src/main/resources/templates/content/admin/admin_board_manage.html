@@ -10,7 +10,7 @@
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
     <div>
-        <div class="w-[80%] h-500px ml-24">
+        <div class="w-[80%] h-500px ml-24 mb-14">
             <div>
                 <select name="" id="" class="cate-select">
                     <th:block th:each="cate : ${session.cateList}">
@@ -52,8 +52,10 @@
                             [[${board.itemTitle}]]
                         </td>
 
-                        <td>[[${board.itemPrice}]]</td>
-                        <td>[[${board.itemPeople}]]/[[${board.peopleCnt}]]</td>
+                        <td>[[${board.itemPrice == '0' ? '-' : board.itemPrice}]]</td>
+                        <td>
+                            [[${board.cateCode == 2 ? '-' : board.itemPeople +'/'+ board.peopleCnt}]]
+                        </td>
                         <td>[[${board.itemPlace}]]</td>
                         <td>[[${board.itemStartDate}]]~[[${board.itemEndDate}]]</td>
                         <td>[[${board.readCnt}]]</td>
@@ -63,6 +65,31 @@
 
             </table>
 
+        </div>
+        <div>
+            <div class="mb-[12]">
+                <!-- ${searchVO.beginPage} -->
+                <!-- ${searchVO.endPage} -->
+
+                <th:block th:if="${pageVO.prev}">
+                    <a
+                        th:href="@{/admin/adminBoardManage(nowPage=${pageVO.beginPage-1})}">
+                        이전 </a>
+                </th:block>
+
+                <th:block th:each="i : ${#numbers.sequence(pageVO.beginPage, pageVO.endPage)}">
+                    <a
+                        th:href="@{/admin/adminBoardManage(nowPage=${i})}">
+                        [[${i}]] </a>
+                </th:block>
+
+                <th:block th:if="${pageVO.next}">
+                    <a
+                        th:href="@{/admin/adminBoardManage(nowPage=${pageVO.endPage+1})}">
+                        다음 </a>
+                </th:block>
+
+            </div>
         </div>
     </div>
 </th:block>

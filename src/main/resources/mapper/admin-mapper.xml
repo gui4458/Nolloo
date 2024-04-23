@@ -148,6 +148,15 @@
     </select>
 
 
+    <select id="selectBoardCnt" resultType="int">
+        SELECT COUNT(ITEM_CODE)
+        FROM ITEM_INFO
+        <if test='cateCode != 0'>
+            WHERE CATE_CODE = ${cateCode}
+        </if>
+    </select>
+
+
 </mapper>
 
 

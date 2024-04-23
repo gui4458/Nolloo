@@ -93,11 +93,12 @@ public class AdminController {
     }
     @GetMapping("/adminBoardManage")
     public String adminBoardManage(PageVO pageVO, Model model){
-
-
-
+        int totalDataCnt = adminService.selectBoardCnt(pageVO.getCateCode());
+        pageVO.setTotalDataCnt(totalDataCnt);
+        pageVO.setPageInfo();
         List<ItemVO> itemList = itemService.selectPartyList(pageVO);
         model.addAttribute("itemList",itemList);
+        System.out.println(pageVO);
         return "content/admin/admin_board_manage";
     }
 

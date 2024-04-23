@@ -73,4 +73,9 @@ public class AdminServiceImpl implements  AdminService{
         sqlSession.insert("adminMapper.insertReply",replyVO);
     }
 
+    @Override
+    public int selectBoardCnt(int cateCode) {
+        return sqlSession.selectOne("adminMapper.selectBoardCnt",cateCode);
+    }
+
 }
