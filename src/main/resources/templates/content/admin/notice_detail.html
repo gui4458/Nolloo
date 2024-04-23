@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <div class="w-full mt-[15%]">
+    <div class="w-[60%] mt-[15%]">
         <form action="/admin/noticeReply" method="post">
             <input type="hidden"  name="noticeCode" th:value="${noticeDetail.noticeCode}">
             <div>
@@ -57,7 +57,7 @@
                         </tr>
                     </tbody>
                 </table>
-                <input type="submit" class="bg-red-300 text-white rounded-lg w-[10%]" value="등록">
+                <input type="submit" class="bg-red-300 text-white rounded-lg w-[10%] text-center" value="등록">
             </div>
         </form>
     </div>
@@ -71,7 +71,7 @@
                 <td colspan="2">[[${reply.content}]]</td>
             </tr>
         </tbody>
-   
+
     </table>
 
 
