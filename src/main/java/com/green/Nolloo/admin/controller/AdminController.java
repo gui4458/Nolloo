@@ -1,6 +1,7 @@
 package com.green.Nolloo.admin.controller;
 
 import com.green.Nolloo.admin.service.AdminService;
+import com.green.Nolloo.admin.vo.ItemCntPerMonth;
 import com.green.Nolloo.admin.vo.NoticeImgVO;
 import com.green.Nolloo.admin.vo.NoticeVO;
 import com.green.Nolloo.item.service.ItemService;
@@ -24,7 +25,9 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin")
@@ -104,11 +107,25 @@ public class AdminController {
         model.addAttribute("reserveList",reserveList);
         return "content/admin/admin_buy_list";
     }
+
     @GetMapping("/adminJoinStatistics")
-    public String adminJoinStatistics(int cateCode){
-        adminService.selectListAdminStatistics(cateCode);
+    public String adminJoinStatistics(){
+        //System.out.println("admin!!:"+ adminService.selectDate());
         return "content/admin/admin_join_statistics";
     }
+
+    @ResponseBody
+    @PostMapping("/adminJoinStatistics1")
+    public Map<String, Object> Date11(){
+        System.out.println("!!!!!!!!!!!!!!");
+        Map<String, Object> data = new HashMap<String, Object>();
+
+        data.put("month",adminService.selectDate());
+        data.put("items",adminService.selectListAdminStatistics());
+        System.out.println(data);
+        return data;
+    }
+
    @GetMapping("/noticeForm")
    public String noticeForm(){
         return "content/admin/notice";

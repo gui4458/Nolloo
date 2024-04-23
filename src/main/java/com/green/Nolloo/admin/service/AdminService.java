@@ -1,5 +1,6 @@
 package com.green.Nolloo.admin.service;
 
+import com.green.Nolloo.admin.vo.ItemCntPerMonth;
 import com.green.Nolloo.admin.vo.NoticeVO;
 import com.green.Nolloo.admin.vo.ReplyVO;
 import com.green.Nolloo.item.vo.ItemVO;
@@ -27,5 +28,8 @@ public interface AdminService {
     //공지사항 조회수 증가
     void upReadCnt(int noticeCode);
 
-    int selectListAdminStatistics(int cateCode);
+
+    List<ReserveVO> selectListAdminStatistics();
+
+    List<ItemCntPerMonth> selectDate();
 }

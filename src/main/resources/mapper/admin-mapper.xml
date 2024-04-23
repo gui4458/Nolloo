@@ -13,6 +13,11 @@
         <result column="READ_CNT" property="readCnt"/>
     </resultMap>
 
+    <resultMap id="itemCntPerMonth" type="com.green.Nolloo.admin.vo.ItemCntPerMonth">
+        <result  column="MONTH" property="month"/>
+        <result  column="CNT" property="cnt"/>
+    </resultMap>
+
 	<insert id="insertFestival">
         INSERT INTO ITEM_INFO(
             ITEM_TITLE
@@ -111,13 +116,34 @@
 
 
 <!-- 통계(그래프)에 필요한 쿼리-->
-    <select id="selectListAdminStatistics" resultType="int">
-        SELECT
-        COUNT(RESERVE_CODE)
-        FROM reserve
-        WHERE CATE_CODE=#{cateCode};
+    <select id="selectListAdminStatistics" resultMap="reserveMapper.reserve">
+        SELECT  (SELECT CATE_NAME
+        FROM CATE
+        WHERE CATE_CODE = RESERVE.CATE_CODE) CATE_NAME,
+        COUNT(RESERVE_CODE) RESERVE_CODE
+        FROM RESERVE
+        GROUP BY CATE_CODE;
     </select>
 
+    <select id="selectDate" resultMap="itemCntPerMonth">
+        SELECT DATE_FORMAT(NOW(), '%Y.%m') MONTH
+        , (SELECT COUNT(ITEM_CODE) FROM item_info WHERE DATE_FORMAT(ITEM_DATE, '%Y%m') = DATE_FORMAT(NOW(), '%Y%m')) AS CNT
+        UNION ALL
+        SELECT DATE_FORMAT( DATE_ADD(NOW(), INTERVAL-1 MONTH ), '%Y.%m') MONTH
+        , (SELECT COUNT(ITEM_CODE) FROM item_info WHERE DATE_FORMAT(ITEM_DATE, '%Y%m') = DATE_FORMAT( DATE_ADD(NOW(), INTERVAL-1 MONTH ), '%Y%m')) AS CNT
+        UNION ALL
+        SELECT DATE_FORMAT( DATE_ADD(NOW(), INTERVAL-2 MONTH ), '%Y.%m') MONTH
+        , (SELECT COUNT(ITEM_CODE) FROM item_info WHERE DATE_FORMAT(ITEM_DATE, '%Y%m') = DATE_FORMAT( DATE_ADD(NOW(), INTERVAL-2 MONTH ), '%Y%m')) AS CNT
+        UNION ALL
+        SELECT DATE_FORMAT( DATE_ADD(NOW(), INTERVAL-3 MONTH ), '%Y.%m') MONTH
+        , (SELECT COUNT(ITEM_CODE) FROM item_info WHERE DATE_FORMAT(ITEM_DATE, '%Y%m') = DATE_FORMAT( DATE_ADD(NOW(), INTERVAL-3 MONTH ), '%Y%m')) AS CNT
+        UNION ALL
+        SELECT DATE_FORMAT( DATE_ADD(NOW(), INTERVAL-4 MONTH ), '%Y.%m') MONTH
+        , (SELECT COUNT(ITEM_CODE) FROM item_info WHERE DATE_FORMAT(ITEM_DATE, '%Y%m') = DATE_FORMAT( DATE_ADD(NOW(), INTERVAL-4 MONTH ), '%Y%m')) AS CNT
+        UNION ALL
+        SELECT DATE_FORMAT( DATE_ADD(NOW(), INTERVAL-5 MONTH ), '%Y.%m') MONTH
+        , (SELECT COUNT(ITEM_CODE) FROM item_info WHERE DATE_FORMAT(ITEM_DATE, '%Y%m') = DATE_FORMAT( DATE_ADD(NOW(), INTERVAL-5 MONTH ), '%Y%m')) AS CNT;
+    </select>
 
 </mapper>
 
