@@ -43,13 +43,14 @@
         <form action="/admin/noticeReply" method="post">
             <input type="hidden" name="noticeCode" th:value="${noticeDetail.noticeCode}">
             <div class="text-center mb-[20px]">
-                <input class="w-[50%] h-[35px]" type="text" name="content" >
-                <input type="submit" class="bg-red-300 text-white rounded-lg w-[9%] h-[35px] text-[17px] text-center " value="등록">
+                <input class="w-[50%] h-[35px]" type="text" name="content">
+                <input type="submit" class="bg-red-300 text-white rounded-lg w-[9%] h-[35px] text-[17px] text-center "
+                    value="등록">
             </div>
         </form>
 
         <table th:each="reply:${replyList}" class="w-[60%] m-auto border mb-5">
-            <tbody>
+            <thead>
                 <tr class="border-b-2 [&>td]:p-2 text-center">
                     <td>[[${reply.writer}]]</td>
                     <td class="text-right">[[${reply.createDate}]]</td>
@@ -57,9 +58,24 @@
                 <tr class="border-b-2 [&>td]:p-2 text-center">
                     <td colspan="2">[[${reply.content}]]</td>
                 </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2" rowspan="2">
+                        <div class="w-[60%] m-auto text-right mt-[20px]">
+                            <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button"
+                                th:onclick="|location.href='@{/admin/adminRevise(noticeCode=${noticeDetail.noticeCode})}'|">수정하기</button>
+                            <button class="bg-red-300 text-white rounded-lg w-[10%]" type="button"
+                                th:onclick="|location.href='@{/admin/adminDelete(noticeCode=${noticeDetail.noticeCode})}'|">삭제하기</button>
+                        </div>
+                    </td>
+                </tr>
+                
             </tbody>
 
         </table>
+
+
     </div>
 
 
