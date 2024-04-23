@@ -32,9 +32,6 @@ public interface AdminService {
     void upReadCnt(int noticeCode);
 
 
-
-    int selectListAdminStatistics(int cateCode);
-
     //공지사항 삭제
     void deleteNotice(NoticeVO noticeVO);
 
@@ -47,9 +44,10 @@ public interface AdminService {
     //공지사항 댓글 조회
     List<ReplyVO> selectReply(ReplyVO replyVO);
 
-
+    // 도넛 차트 참여인원 조회
     List<ReserveVO> selectListAdminStatistics();
 
+    //바차트 월별 상품수 조회
     List<ItemCntPerMonth> selectDate();
 
 }
