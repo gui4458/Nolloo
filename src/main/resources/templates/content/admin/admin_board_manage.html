@@ -47,7 +47,8 @@
                 <tbody class="change-td">
                     <tr th:each="board,state : ${itemList}"
                         class="[&>td]:p-2 font-semibold border-b-2  border-t-red-500">
-                        <td>[[${#lists.size(itemList)-state.index}]]</td>
+                        <!-- <td>[[${#lists.size(itemList)-state.index}]]</td> -->
+                        <td>[[${board.itemCode}]]</td>
                         <td>
                             [[${board.itemTitle}]]
                         </td>
