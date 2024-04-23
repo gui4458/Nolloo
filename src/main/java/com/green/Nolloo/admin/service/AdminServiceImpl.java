@@ -1,5 +1,6 @@
 package com.green.Nolloo.admin.service;
 
+import com.green.Nolloo.admin.vo.ItemCntPerMonth;
 import com.green.Nolloo.admin.vo.NoticeImgVO;
 import com.green.Nolloo.admin.vo.NoticeVO;
 import com.green.Nolloo.admin.vo.ReplyVO;
@@ -55,8 +56,13 @@ public class AdminServiceImpl implements  AdminService{
     }
 
     @Override
-    public int selectListAdminStatistics(int cateCode) {
-        return sqlSession.selectOne("adminMapper.selectListAdminStatistics", cateCode);
+    public List<ReserveVO> selectListAdminStatistics() {
+        return sqlSession.selectList("adminMapper.selectListAdminStatistics");
+    }
+
+    @Override
+    public List<ItemCntPerMonth> selectDate() {
+        return sqlSession.selectList("adminMapper.selectDate");
     }
 
     public void deleteNotice(NoticeVO noticeVO) {
