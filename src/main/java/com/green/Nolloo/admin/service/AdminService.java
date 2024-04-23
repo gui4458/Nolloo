@@ -1,10 +1,9 @@
 package com.green.Nolloo.admin.service;
 
-<<<<<<< HEAD
+
 import com.green.Nolloo.admin.vo.NoticeImgVO;
-=======
+
 import com.green.Nolloo.admin.vo.ItemCntPerMonth;
->>>>>>> Jinsol
 import com.green.Nolloo.admin.vo.NoticeVO;
 import com.green.Nolloo.admin.vo.ReplyVO;
 import com.green.Nolloo.item.vo.ItemVO;
@@ -33,7 +32,7 @@ public interface AdminService {
     void upReadCnt(int noticeCode);
 
 
-<<<<<<< HEAD
+
     int selectListAdminStatistics(int cateCode);
 
     //공지사항 삭제
@@ -49,9 +48,8 @@ public interface AdminService {
     List<ReplyVO> selectReply(ReplyVO replyVO);
 
 
-=======
     List<ReserveVO> selectListAdminStatistics();
 
     List<ItemCntPerMonth> selectDate();
->>>>>>> Jinsol
+
 }

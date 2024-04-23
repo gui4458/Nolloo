@@ -29,14 +29,11 @@ import javax.naming.Name;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-<<<<<<< HEAD
-import java.util.*;
-=======
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
->>>>>>> Jinsol
+
 
 @Controller
 @RequestMapping("/admin")
