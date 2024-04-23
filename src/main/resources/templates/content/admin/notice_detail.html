@@ -39,41 +39,28 @@
         </div>
     </div>
 
-    <div class="w-[60%] mt-[15%]">
+    <div class="w-full mt-[15%]">
         <form action="/admin/noticeReply" method="post">
-            <input type="hidden"  name="noticeCode" th:value="${noticeDetail.noticeCode}">
-            <div>
-                <table class="text-center">
-                    <thead>
-                        <tr>
-                            <td>
-                                <input type="text" name="content" id="">
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="reply">
-
-                        </tr>
-                    </tbody>
-                </table>
-                <input type="submit" class="bg-red-300 text-white rounded-lg w-[10%] text-center" value="등록">
+            <input type="hidden" name="noticeCode" th:value="${noticeDetail.noticeCode}">
+            <div class="text-center mb-[20px]">
+                <input class="w-[50%] h-[35px]" type="text" name="content" >
+                <input type="submit" class="bg-red-300 text-white rounded-lg w-[9%] h-[35px] text-[17px] text-center " value="등록">
             </div>
         </form>
+
+        <table th:each="reply:${replyList}" class="w-[60%] m-auto border mb-5">
+            <tbody>
+                <tr class="border-b-2 [&>td]:p-2 text-center">
+                    <td>[[${reply.writer}]]</td>
+                    <td class="text-right">[[${reply.createDate}]]</td>
+                </tr>
+                <tr class="border-b-2 [&>td]:p-2 text-center">
+                    <td colspan="2">[[${reply.content}]]</td>
+                </tr>
+            </tbody>
+
+        </table>
     </div>
-    <table th:each="reply:${replyList}" class="w-[60%] m-auto border mb-5" >
-        <tbody>
-            <tr class="border-b-2 [&>td]:p-2 text-center">
-                <td>[[${reply.writer}]]</td>
-                <td class="text-right">[[${reply.createDate}]]</td>
-            </tr>
-            <tr class="border-b-2 [&>td]:p-2 text-center">
-                <td colspan="2">[[${reply.content}]]</td>
-            </tr>
-        </tbody>
-
-    </table>
-
 
 
 
