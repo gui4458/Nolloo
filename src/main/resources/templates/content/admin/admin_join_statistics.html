@@ -4,33 +4,32 @@
 
 <th:block layout:fragment="content_css">
     <!-- html 파일이 열릴때 같이 실행되는 css -->
-    <link rel="stylesheet" href="/">
+    <!-- <link rel="stylesheet" href="/"> -->
+    <link rel="stylesheet" src="/css/content/admin/admin_join_statistics.css">
+    </link>
 </th:block>
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
     참여통계
-    
-        <div
-            class="flex h-screen">
-            <div>
-                <canvas id="doughnut-chart"></canvas>
-            </div>
-            
+    <div class="flex h-screen">
+        <div>
+            <canvas id="doughnut-chart"></canvas>
         </div>
-        
-            <div class="flex h-screen">
-                <canvas id="bar-chart-grouped"></canvas>
-            </div>
-       
-    
+
+
+
+        <div class="flex h-screen">
+            <canvas id="bar-chart-grouped"></canvas>
+        </div>
+    </div>
+
 </th:block>
 
 <th:block layout:fragment="content_js">
     <!-- html 파일이 열릴때 같이 실행되는 js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/js/content/admin/admin_join_statistics.js"></script>
-    <script src="/css/content/admin/admin_join_statistics.css"></script>
 </th:block>
 
 </html>

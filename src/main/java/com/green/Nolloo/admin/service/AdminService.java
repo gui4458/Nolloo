@@ -1,6 +1,9 @@
 package com.green.Nolloo.admin.service;
 
+
 import com.green.Nolloo.admin.vo.NoticeImgVO;
+
+import com.green.Nolloo.admin.vo.ItemCntPerMonth;
 import com.green.Nolloo.admin.vo.NoticeVO;
 import com.green.Nolloo.admin.vo.ReplyVO;
 import com.green.Nolloo.item.vo.ItemVO;
@@ -29,8 +32,6 @@ public interface AdminService {
     void upReadCnt(int noticeCode);
 
 
-    int selectListAdminStatistics(int cateCode);
-
     //공지사항 삭제
     void deleteNotice(NoticeVO noticeVO);
 
@@ -41,5 +42,15 @@ public interface AdminService {
     void insertReply(ReplyVO replyVO);
 
     int selectBoardCnt(int cateCode);
+
+    //공지사항 댓글 조회
+    List<ReplyVO> selectReply(ReplyVO replyVO);
+
+    // 도넛 차트 참여인원 조회
+    List<ReserveVO> selectListAdminStatistics();
+
+    //바차트 월별 상품수 조회
+    List<ItemCntPerMonth> selectDate();
+
 
 }
