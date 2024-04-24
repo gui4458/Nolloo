@@ -127,7 +127,7 @@ public class AdminController {
     @ResponseBody
     @PostMapping("/adminJoinStatistics1")
     public Map<String, Object> Date11(){
-        System.out.println("!!!!!!!!!!!!!!");
+
         Map<String, Object> data = new HashMap<String, Object>();
 
         data.put("month",adminService.selectDate());

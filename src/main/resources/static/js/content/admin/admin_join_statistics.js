@@ -7,6 +7,7 @@ fetch('/admin/adminJoinStatistics1', { //요청경로
     //컨트롤러로 전달할 데이터
     body: new URLSearchParams({
        // 데이터명 : 데이터값
+       
     })
 })
 .then((response) => {
@@ -20,7 +21,68 @@ fetch('/admin/adminJoinStatistics1', { //요청경로
 })
 //fetch 통신 후 실행 영역
 .then((item) => {//data -> controller에서 리턴되는 데이터!
-    console.log(11);
+    
+    let monthList = []
+    let cntList=[]
+    item.month.forEach(m => {
+        monthList.push(m.month);
+        cntList.push(m.cnt);
+    });
+
+    let itemName=[]
+    let reserve=[]
+    item.items.forEach(i =>{
+        itemName.push(i.itemVO.cateName);
+        reserve.push(i.reserveCode);
+        console.log(i);
+    });
+    console.log(item);
+//Doughnut chart
+    new Chart(document.querySelector('#doughnut-chart'), {
+        type: 'doughnut',
+        data: {
+            labels: itemName,
+            datasets: [
+                {
+                    label: "Population (millions)",
+                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                    data: reserve
+                }
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Predicted world population (millions) in 2050'
+            }
+        }
+    });
+    //bar chart
+    new Chart(document.querySelector('#bar-chart-grouped'), {
+    
+        type: 'bar',
+        data: {
+            labels: monthList.reverse() ,
+            datasets: [
+                {
+                    label: "월별 총 등록 상품수",
+                    backgroundColor: "#3e95cd",
+                    data: cntList.reverse()
+                }, {
+                    label: "Europe",
+                    backgroundColor: "#8e5ea2",
+                    data: [408, 547, 675, 734]
+                }
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Population growth (millions)'
+            }
+        }
+        
+    });
    
 })
 //fetch 통신 실패 시 실행 영역
