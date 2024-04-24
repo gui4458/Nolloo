@@ -23,8 +23,6 @@ public class PageVO {
         nowPage = 1;
         displayDataCnt = 10;
         displayPageCnt = 5;
-        limit = 10;
-        offset = 0;
     }
     //    public PageVO(){
 //        limit = 9;

@@ -176,8 +176,8 @@
 <!--            AND #{to} &gt;= DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d')-->
 <!--        </if>-->
         ORDER BY ITEM_CODE DESC
-        <if test='displayDataCnt != 0'>
-            LIMIT ${displayDataCnt} OFFSET ${displayDataCnt * (nowPage-1)}
+        <if test='limit != 0'>
+            LIMIT ${limit} OFFSET ${offset}
 
         </if>
 

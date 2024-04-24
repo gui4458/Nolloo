@@ -26,14 +26,17 @@ selectBox.addEventListener('change', function () {
             let str = '';
             data.forEach((e, i) => {
                 str += `
-            <tr class="[&>td]:p-2 font-semibold border-b-2  border-t-red-500">
-                        <td>${data.length - i}</td>
+
+                <tr class="[&>td]:p-2 font-semibold border-b-2  border-t-red-500">
+                        <td>${e.itemCode}</td>
                         <td>
-                            ${e.itemTitle}
+                        ${e.itemTitle}
                         </td>
 
-                        <td>${e.itemPrice}</td>
-                        <td>${e.itemPeople}/${e.peopleCnt}</td>
+                        <td>${e.itemPrice == '0' ? '-' : e.itemPrice}</td>
+                        <td>
+                            ${e.itemCode == 2 ? '-' : e.itemPeople +'/'+ e.peopleCnt}
+                        </td>
                         <td>${e.itemPlace}</td>
                         <td>${e.itemStartDate}~${e.itemEndDate}</td>
                         <td>${e.readCnt}</td>

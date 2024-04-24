@@ -166,7 +166,9 @@ public class AdminController {
     @ResponseBody
     @PostMapping("/cateSelect")
     public List<ItemVO> cateSelect(@RequestBody PageVO pageVO, Authentication authentication, SearchVO searchVO, HttpSession session){
-        System.out.println(pageVO);
+        int totalDataCnt = adminService.selectBoardCnt(pageVO.getCateCode());
+        pageVO.setTotalDataCnt(totalDataCnt);
+        pageVO.setPageInfo();
         return itemService.selectPartyList(pageVO);
     }
 
