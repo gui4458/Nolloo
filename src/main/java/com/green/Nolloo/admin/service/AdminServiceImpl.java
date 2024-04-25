@@ -92,4 +92,9 @@ public class AdminServiceImpl implements  AdminService{
 
     }
 
+    @Override
+    public void deleteReply(ReplyVO replyVO) {
+        sqlSession.delete("adminMapper.deleteReply",replyVO);
+    }
+
 }
