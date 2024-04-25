@@ -1,10 +1,7 @@
 package com.green.Nolloo.admin.controller;
 
 import com.green.Nolloo.admin.service.AdminService;
-import com.green.Nolloo.admin.vo.ItemCntPerMonth;
-import com.green.Nolloo.admin.vo.NoticeImgVO;
-import com.green.Nolloo.admin.vo.NoticeVO;
-import com.green.Nolloo.admin.vo.ReplyVO;
+import com.green.Nolloo.admin.vo.*;
 import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.item.vo.PageVO;
@@ -97,14 +94,15 @@ public class AdminController {
         model.addAttribute("memberList",memberList);
         return "content/admin/admin_member_manage";
     }
-    @GetMapping("/adminBoardManage")
-    public String adminBoardManage(PageVO pageVO, Model model){
-        int totalDataCnt = adminService.selectBoardCnt(pageVO.getCateCode());
-        pageVO.setTotalDataCnt(totalDataCnt);
-        pageVO.setPageInfo();
-        List<ItemVO> itemList = itemService.selectPartyList(pageVO);
+    @RequestMapping("/adminBoardManage")
+    public String adminBoardManage(AdminPageVO adminPageVO, Model model){
+        List<ItemVO> itemList = adminService.adminBoardList(adminPageVO);
+        int totalDataCnt = adminService.selectBoardCnt(adminPageVO);
+
+        adminPageVO.setTotalDataCnt(totalDataCnt);
+        adminPageVO.setPageInfo();
         model.addAttribute("itemList",itemList);
-        System.out.println(pageVO);
+        System.out.println(itemList);
         return "content/admin/admin_board_manage";
     }
 
@@ -165,10 +163,10 @@ public class AdminController {
 
     @ResponseBody
     @PostMapping("/cateSelect")
-    public List<ItemVO> cateSelect(@RequestBody PageVO pageVO, Authentication authentication, SearchVO searchVO, HttpSession session){
-        int totalDataCnt = adminService.selectBoardCnt(pageVO.getCateCode());
+    public List<ItemVO> cateSelect(@RequestBody PageVO pageVO, Authentication authentication, AdminPageVO adminPageVO, HttpSession session){
+        int totalDataCnt = adminService.selectBoardCnt(adminPageVO);
         pageVO.setTotalDataCnt(totalDataCnt);
-        pageVO.setPageInfo();
+
         return itemService.selectPartyList(pageVO);
     }
 

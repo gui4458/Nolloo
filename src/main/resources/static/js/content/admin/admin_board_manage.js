@@ -28,7 +28,9 @@ selectBox.addEventListener('change', function () {
                 str += `
 
                 <tr class="[&>td]:p-2 font-semibold border-b-2  border-t-red-500">
+                    
                         <td>${e.itemCode}</td>
+                        
                         <td>
                         ${e.itemTitle}
                         </td>

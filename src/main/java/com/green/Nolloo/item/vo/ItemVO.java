@@ -1,6 +1,7 @@
 package com.green.Nolloo.item.vo;
 
 import com.green.Nolloo.chat.vo.ChatVO;
+import com.green.Nolloo.search.vo.SearchVO;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -38,6 +39,10 @@ public class ItemVO {
     private String region1;
     private String region2;
     private String region3;
+    private String searchOption;
+    private String searchText;
+    private String from;
+    private String to;
 
 
     //매개변수로 전달되는 csv 행 데이터를  vo의 객 변수에 매핑
