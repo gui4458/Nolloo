@@ -18,7 +18,7 @@
                     <td colspan="5"></td>
                 </tr>
                 <tr class="border-b-2 [&>td]:p-2 text-center">
-                    <td>[[${noticeNo}]]</td>
+                    <!-- <td>[[${noticeNo}]]</td> -->
                     <td>[[${noticeDetail.noticeTitle}]]</td>
                     <td>[[${noticeDetail.noticeDate}]]</td>
                     <td>[[${noticeDetail.readCnt}]]</td>
@@ -63,10 +63,10 @@
                 <tr>
                     <td colspan="2" rowspan="2">
                         <div class="m-auto text-right mt-[10px]">
-                            <button class="bg-red-300 text-white rounded-lg" type="button"
-                                th:onclick="|location.href='@{/admin/adminRevise(noticeCode=${noticeDetail.noticeCode})}'|">수정하기</button>
+                            <!-- <button class="bg-red-300 text-white rounded-lg" type="button"
+                                th:onclick="|location.href='@{/admin/adminRevise(noticeCode=${noticeDetail.noticeCode})}'|">수정하기</button> -->
                             <button class="bg-red-300 text-white rounded-lg " type="button"
-                                th:onclick="|location.href='@{/admin/adminDelete(noticeCode=${noticeDetail.noticeCode})}'|">삭제하기</button>
+                                th:onclick="|location.href='@{/admin/deleteReply(replyCode=${reply.replyCode},noticeCode=${noticeDetail.noticeCode})}'|">삭제하기</button>
                         </div>
                     </td>
                 </tr>
