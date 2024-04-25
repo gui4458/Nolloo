@@ -43,12 +43,20 @@ public interface AdminService {
     //공지사항 댓글 조회
     List<ReplyVO> selectReply(ReplyVO replyVO);
 
+    //공지사항 댓글 삭제
+    void deleteReply(ReplyVO replyVO);
+
     // 도넛 차트 참여인원 조회
     List<ReserveVO> selectListAdminStatistics();
 
     //바차트 월별 상품수 조회
     List<ItemCntPerMonth> selectDate();
 
+
     //글 관리 페이지 상품 조회
     List<ItemVO> adminBoardList(AdminPageVO adminPageVO);
+
+
+
+
 }

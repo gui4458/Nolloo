@@ -137,6 +137,7 @@
         WHERE NOTICE_CODE= #{noticeCode}
     </delete>
 
+<!--    댓글 등록-->
     <insert id="insertReply">
         INSERT INTO NOTICE_REPLY(
             CONTENT
@@ -150,6 +151,7 @@
         )
     </insert>
 
+<!--    댓글 조회-->
     <select id="selectReply" resultMap="reply">
     SELECT
         REPLY_CODE
@@ -161,6 +163,11 @@
         WHERE NOTICE_CODE=#{noticeCode}
     </select>
 
+<!--    댓글 삭제-->
+    <delete id="deleteReply">
+        DELETE FROM NOTICE_REPLY
+        WHERE REPLY_CODE=#{replyCode}
+    </delete>
 
 
 <!-- 통계(그래프)에 필요한 쿼리-->

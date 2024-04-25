@@ -172,7 +172,7 @@ public class AdminController {
 
 
     @RequestMapping("/noticeDetail")
-    public String noticeDetail(@RequestParam(name="noticeCode")int noticeCode,@RequestParam(name="noticeNo")int noticeNo,Model model,ReplyVO replyVO){
+    public String noticeDetail(@RequestParam(name="noticeCode")int noticeCode,Model model,ReplyVO replyVO){
 
         //공지사항 조회수
         adminService.upReadCnt(noticeCode);
@@ -183,7 +183,7 @@ public class AdminController {
 
         List<ReplyVO> replyList= adminService.selectReply(replyVO);
         model.addAttribute("replyList",replyList);
-        model.addAttribute("noticeNo",noticeNo);
+//        model.addAttribute("noticeNo",noticeNo);
 
         return "content/admin/notice_detail";
    }
@@ -238,6 +238,12 @@ public class AdminController {
         return "redirect:/admin/noticeDetail?noticeCode="+replyVO.getNoticeCode();
     }
 
+    @GetMapping("/deleteReply")
+    public String deleteReply(ReplyVO replyVO ){
+        adminService.deleteReply(replyVO);
+        System.out.println(replyVO);
+        return "redirect:/admin/noticeDetail?noticeCode="+replyVO.getNoticeCode();
+    }
 
 
 }
