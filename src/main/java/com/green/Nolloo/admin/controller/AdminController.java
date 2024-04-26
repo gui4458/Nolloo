@@ -125,11 +125,12 @@ public class AdminController {
     @ResponseBody
     @PostMapping("/adminJoinStatistics1")
     public Map<String, Object> Date11(){
-        System.out.println("!!!!!!!!!!!!!!");
+
         Map<String, Object> data = new HashMap<String, Object>();
 
         data.put("month",adminService.selectDate());
         data.put("items",adminService.selectListAdminStatistics());
+        data.put("itemsTrue",adminService.selectListDoughnutTrueCnt());
         System.out.println(data);
         return data;
     }

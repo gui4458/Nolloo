@@ -5,24 +5,27 @@
 <th:block layout:fragment="content_css">
     <!-- html 파일이 열릴때 같이 실행되는 css -->
     <!-- <link rel="stylesheet" href="/"> -->
-    <link rel="stylesheet" src="/css/content/admin/admin_join_statistics.css">
+    <!-- <link rel="stylesheet" src="/css/content/admin/admin_join_statistics.css"> -->
     </link>
 </th:block>
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
     참여통계
-    <div class="flex h-screen">
+    <div class="flex">
         <div>
-            <canvas id="doughnut-chart"></canvas>
+            <canvas id="doughnut-chart-item" style="width: 100%; height: 100%;"></canvas>
         </div>
-
-
-
-        <div class="flex h-screen">
-            <canvas id="bar-chart-grouped"></canvas>
+        <div class="layer">
+            <canvas id="mixed-chart" style="width: 100%; height: 100%;"></canvas>
+        </div>
+        <div >
+            <canvas id="doughnut-chart-itemTrue" style="width: 100%; height: 100%;"></canvas>
         </div>
     </div>
+    
+        
+    
 
 </th:block>
 
