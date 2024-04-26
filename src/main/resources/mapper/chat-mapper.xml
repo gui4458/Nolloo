@@ -3,24 +3,17 @@
 
 <mapper namespace="chatMapper">
     <!-- 채팅 메시지 저장 쿼리 -->
-    <insert id="insertChatMessage">
-        INSERT INTO CHAT_MESSAGE(
-        ROOM_CODE
-        , SENDER
-        , MESSAGE
-        )
-        VALUES
-        (
-        #{roomCode}
-        , #{sender}
-        , #{message}
-        )
+    <!-- 채팅 메시지 저장 쿼리 -->
+    <insert id="insertChatMessage" parameterType="com.green.Nolloo.chat.vo.ChatMessageVO">
+        INSERT INTO CHAT_MESSAGE (ROOM_CODE, SENDER, MESSAGE)
+        VALUES (#{roomId}, #{sender}, #{message})
     </insert>
 
-    <!-- 특정 채팅방의 메시지 검색 쿼리 -->
-    <select id="selectChatMessagesByRoom" resultType="com.green.Nolloo.chat.vo.ChatMessageVO">
-        SELECT * FROM CHAT_MESSAGE WHERE ROOM_CODE = #{roomCode}
+    <!-- 채팅방 별 메시지 조회 쿼리 -->
+    <select id="selectChatMessagesByRoom" parameterType="int" resultType="com.green.Nolloo.chat.vo.ChatMessageVO">
+        SELECT * FROM CHAT_MESSAGE WHERE ROOM_CODE = #{roomId}
     </select>
+
 </mapper>
 
 

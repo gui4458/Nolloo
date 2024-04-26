@@ -1,7 +1,6 @@
 package com.green.Nolloo.chat.hendler;
 
 import com.green.Nolloo.chat.manager.ChatRoomManager;
-import com.green.Nolloo.chat.room.ChatRoom;
 import com.green.Nolloo.chat.service.ChatMessageService;
 import com.green.Nolloo.chat.vo.ChatMessageVO;
 import jakarta.annotation.Resource;
@@ -21,6 +20,7 @@ public class ChatHandler extends TextWebSocketHandler {
 
     @Autowired
     private ChatRoomManager chatRoomManager;
+
     @Resource(name="chatMessageService")
     private ChatMessageService chatMessageService;
 
@@ -43,9 +43,25 @@ public class ChatHandler extends TextWebSocketHandler {
                 sess.sendMessage(message);
             }
         }
+
+        // 메시지를 데이터베이스에 저장
+        saveMessageToDatabase(roomId, payload);
     }
 
+    private void saveMessageToDatabase(String roomId, String payload) {
+        String[] parts = payload.split(":", 2); // 사용자명과 메시지 분리
+        String sender = parts[0];
+        String message = parts[1];
 
+        // ChatMessage 객체 생성 및 저장
+        ChatMessageVO chatMessage = new ChatMessageVO();
+        chatMessage.setRoomId(roomId);
+        chatMessage.setSender(sender);
+        chatMessage.setMessage(message);
+
+        // 데이터베이스에 저장
+        chatMessageService.saveChatMessage(chatMessage);
+    }
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
