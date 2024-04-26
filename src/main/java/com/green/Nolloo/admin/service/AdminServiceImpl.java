@@ -67,6 +67,11 @@ public class AdminServiceImpl implements  AdminService{
         return sqlSession.selectList("adminMapper.selectDate");
     }
 
+    @Override
+    public List<ReserveVO> selectListDoughnutTrueCnt() {
+        return sqlSession.selectList("adminMapper.selectListDoughnutTrueCnt");
+    }
+
     public void deleteNotice(NoticeVO noticeVO) {
         sqlSession.delete("adminMapper.deleteNotice",noticeVO);
     }
