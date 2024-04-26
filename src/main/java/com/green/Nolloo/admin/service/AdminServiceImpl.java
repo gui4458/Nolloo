@@ -64,8 +64,13 @@ public class AdminServiceImpl implements  AdminService{
     }
 
     @Override
+
     public List<ItemVO> adminBoardList(AdminPageVO adminPageVO) {
         return sqlSession.selectList("adminMapper.adminBoardList",adminPageVO);
+
+    public List<ReserveVO> selectListDoughnutTrueCnt() {
+        return sqlSession.selectList("adminMapper.selectListDoughnutTrueCnt");
+
     }
 
     public void deleteNotice(NoticeVO noticeVO) {

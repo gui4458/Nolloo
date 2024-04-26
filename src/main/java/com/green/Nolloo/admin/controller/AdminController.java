@@ -130,6 +130,7 @@ public class AdminController {
 
         data.put("month",adminService.selectDate());
         data.put("items",adminService.selectListAdminStatistics());
+        data.put("itemsTrue",adminService.selectListDoughnutTrueCnt());
         System.out.println(data);
         return data;
     }

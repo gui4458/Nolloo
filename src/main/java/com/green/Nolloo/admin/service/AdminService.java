@@ -52,11 +52,10 @@ public interface AdminService {
     //바차트 월별 상품수 조회
     List<ItemCntPerMonth> selectDate();
 
-
     //글 관리 페이지 상품 조회
     List<ItemVO> adminBoardList(AdminPageVO adminPageVO);
 
-
-
+    //도넛 차트 현재 참여인원
+    List<ReserveVO> selectListDoughnutTrueCnt();
 
 }
