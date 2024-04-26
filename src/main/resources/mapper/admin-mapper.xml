@@ -137,6 +137,7 @@
         WHERE NOTICE_CODE= #{noticeCode}
     </delete>
 
+<!--    댓글 등록-->
     <insert id="insertReply">
         INSERT INTO NOTICE_REPLY(
             CONTENT
@@ -150,6 +151,7 @@
         )
     </insert>
 
+<!--    댓글 조회-->
     <select id="selectReply" resultMap="reply">
     SELECT
         REPLY_CODE
@@ -161,6 +163,11 @@
         WHERE NOTICE_CODE=#{noticeCode}
     </select>
 
+<!--    댓글 삭제-->
+    <delete id="deleteReply">
+        DELETE FROM NOTICE_REPLY
+        WHERE REPLY_CODE=#{replyCode}
+    </delete>
 
 
 <!-- 통계(그래프)에 필요한 쿼리-->
@@ -196,10 +203,67 @@
     <select id="selectBoardCnt" resultType="int">
         SELECT COUNT(ITEM_CODE)
         FROM ITEM_INFO
+        WHERE 1 = 1
         <if test='cateCode != 0'>
-            WHERE CATE_CODE = ${cateCode}
+            AND CATE_CODE = ${cateCode}
+        </if>
+        <if test='searchText != null and !searchText.equals("")'>
+            AND ${searchOption} LIKE CONCAT('%',#{searchText},'%')
+        </if>
+        <if test='from != null and !from.equals("")'>
+            AND DATE_FORMAT(ITEM_START_DATE, '%Y-%m-%d') &gt;= #{from}
+        </if>
+        <if test='to != null and !to.equals("")'>
+            AND #{to} &gt;= DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d')
         </if>
     </select>
+
+
+    <select id="adminBoardList" resultMap="itemMapper.item">
+        SELECT
+        INFO.ITEM_CODE
+        , ITEM_TITLE
+        , ITEM_DATE
+        , ITEM_PRICE
+        , ITEM_PLACE
+        , ITEM_PEOPLE
+        , INFO.CATE_CODE
+        , PLACE_DETAIL
+        , C.CATE_NAME
+        , ITEM_CONTENT
+        , LEFT(ITEM_START_DATE,10) ITEM_START_DATE
+        , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
+        , ATTACHED_FILE_NAME
+        , READ_CNT
+
+        FROM ITEM_INFO INFO
+        INNER JOIN ITEM_IMAGE IMG
+        ON INFO.ITEM_CODE = IMG.ITEM_CODE
+        INNER JOIN CATE C
+        ON INFO.CATE_CODE = C.CATE_CODE
+
+        WHERE IS_MAIN='Y'
+        <if test='cateCode != 0'>
+            AND INFO.CATE_CODE = #{cateCode}
+
+        </if>
+        <if test='searchText != null and !searchText.equals("")'>
+            AND ${searchOption} LIKE CONCAT('%',#{searchText},'%')
+        </if>
+        <if test='from != null and !from.equals("")'>
+            AND DATE_FORMAT(ITEM_START_DATE, '%Y-%m-%d') &gt;= #{from}
+        </if>
+        <if test='to != null and !to.equals("")'>
+            AND #{to} &gt;= DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d')
+        </if>
+        ORDER BY ITEM_CODE DESC
+        <if test='displayDataCnt != 0'>
+            LIMIT ${displayDataCnt} OFFSET ${displayDataCnt * (nowPage-1)}
+
+        </if>
+
+    </select>
+
 
 
 </mapper>

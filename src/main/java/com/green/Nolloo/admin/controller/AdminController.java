@@ -1,10 +1,7 @@
 package com.green.Nolloo.admin.controller;
 
 import com.green.Nolloo.admin.service.AdminService;
-import com.green.Nolloo.admin.vo.ItemCntPerMonth;
-import com.green.Nolloo.admin.vo.NoticeImgVO;
-import com.green.Nolloo.admin.vo.NoticeVO;
-import com.green.Nolloo.admin.vo.ReplyVO;
+import com.green.Nolloo.admin.vo.*;
 import com.green.Nolloo.item.service.ItemService;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.item.vo.PageVO;
@@ -97,14 +94,15 @@ public class AdminController {
         model.addAttribute("memberList",memberList);
         return "content/admin/admin_member_manage";
     }
-    @GetMapping("/adminBoardManage")
-    public String adminBoardManage(PageVO pageVO, Model model){
-        int totalDataCnt = adminService.selectBoardCnt(pageVO.getCateCode());
-        pageVO.setTotalDataCnt(totalDataCnt);
-        pageVO.setPageInfo();
-        List<ItemVO> itemList = itemService.selectPartyList(pageVO);
+    @RequestMapping("/adminBoardManage")
+    public String adminBoardManage(AdminPageVO adminPageVO, Model model){
+        List<ItemVO> itemList = adminService.adminBoardList(adminPageVO);
+        int totalDataCnt = adminService.selectBoardCnt(adminPageVO);
+
+        adminPageVO.setTotalDataCnt(totalDataCnt);
+        adminPageVO.setPageInfo();
         model.addAttribute("itemList",itemList);
-        System.out.println(pageVO);
+        System.out.println(itemList);
         return "content/admin/admin_board_manage";
     }
 
@@ -165,16 +163,16 @@ public class AdminController {
 
     @ResponseBody
     @PostMapping("/cateSelect")
-    public List<ItemVO> cateSelect(@RequestBody PageVO pageVO, Authentication authentication, SearchVO searchVO, HttpSession session){
-        int totalDataCnt = adminService.selectBoardCnt(pageVO.getCateCode());
+    public List<ItemVO> cateSelect(@RequestBody PageVO pageVO, Authentication authentication, AdminPageVO adminPageVO, HttpSession session){
+        int totalDataCnt = adminService.selectBoardCnt(adminPageVO);
         pageVO.setTotalDataCnt(totalDataCnt);
-        pageVO.setPageInfo();
+
         return itemService.selectPartyList(pageVO);
     }
 
 
     @RequestMapping("/noticeDetail")
-    public String noticeDetail(@RequestParam(name="noticeCode")int noticeCode,@RequestParam(name="noticeNo")int noticeNo,Model model,ReplyVO replyVO){
+    public String noticeDetail(@RequestParam(name="noticeCode")int noticeCode,Model model,ReplyVO replyVO){
 
         //공지사항 조회수
         adminService.upReadCnt(noticeCode);
@@ -185,7 +183,7 @@ public class AdminController {
 
         List<ReplyVO> replyList= adminService.selectReply(replyVO);
         model.addAttribute("replyList",replyList);
-        model.addAttribute("noticeNo",noticeNo);
+//        model.addAttribute("noticeNo",noticeNo);
 
         return "content/admin/notice_detail";
    }
@@ -240,6 +238,12 @@ public class AdminController {
         return "redirect:/admin/noticeDetail?noticeCode="+replyVO.getNoticeCode();
     }
 
+    @GetMapping("/deleteReply")
+    public String deleteReply(ReplyVO replyVO ){
+        adminService.deleteReply(replyVO);
+        System.out.println(replyVO);
+        return "redirect:/admin/noticeDetail?noticeCode="+replyVO.getNoticeCode();
+    }
 
 
 }

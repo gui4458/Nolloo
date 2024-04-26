@@ -1,16 +1,12 @@
 package com.green.Nolloo.admin.service;
 
-import com.green.Nolloo.admin.vo.ItemCntPerMonth;
-import com.green.Nolloo.admin.vo.NoticeImgVO;
-import com.green.Nolloo.admin.vo.NoticeVO;
-import com.green.Nolloo.admin.vo.ReplyVO;
+import com.green.Nolloo.admin.vo.*;
 import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.member.vo.MemberVO;
 import com.green.Nolloo.reserve.vo.ReserveVO;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -67,6 +63,11 @@ public class AdminServiceImpl implements  AdminService{
         return sqlSession.selectList("adminMapper.selectDate");
     }
 
+    @Override
+    public List<ItemVO> adminBoardList(AdminPageVO adminPageVO) {
+        return sqlSession.selectList("adminMapper.adminBoardList",adminPageVO);
+    }
+
     public void deleteNotice(NoticeVO noticeVO) {
         sqlSession.delete("adminMapper.deleteNotice",noticeVO);
     }
@@ -83,13 +84,18 @@ public class AdminServiceImpl implements  AdminService{
 
     @Override
 
-    public int selectBoardCnt(int cateCode) {
-        return sqlSession.selectOne("adminMapper.selectBoardCnt", cateCode);
+    public int selectBoardCnt(AdminPageVO adminPageVO) {
+        return sqlSession.selectOne("adminMapper.selectBoardCnt", adminPageVO);
     }
     @Override
     public List<ReplyVO> selectReply(ReplyVO replyVO) {
         return sqlSession.selectList("adminMapper.selectReply",replyVO);
 
+    }
+
+    @Override
+    public void deleteReply(ReplyVO replyVO) {
+        sqlSession.delete("adminMapper.deleteReply",replyVO);
     }
 
 }

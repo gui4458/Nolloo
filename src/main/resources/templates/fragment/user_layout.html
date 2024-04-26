@@ -18,7 +18,7 @@
     <th:block layout:fragment="content_css"></th:block>
 </head>
 <body class="bg-zinc-50/100 " x-data="{ 'showModal': false }" @keydown.escape="showModal = false" x-cloak >
-
+    
     <th:block th:replace="~{fragment/user_header :: headerFragment}"></th:block>
 
     <th:block layout:fragment="contentFragment"></th:block>

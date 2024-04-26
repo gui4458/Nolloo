@@ -10,11 +10,13 @@
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
     <div>
+
         <div class="w-[80%] h-500px ml-24 mb-14">
             <div>
-                <select name="" id="" class="cate-select">
+                <select name="cateCode" id="" class="cate-select">
+                    <option value="0" th:selected="${adminPageVO.cateCode} == 0">전체</option>
                     <th:block th:each="cate : ${session.cateList}">
-                        <option th:value="${cate.cateCode}">[[${cate.cateName}]]</option>
+                        <option th:value="${cate.cateCode}" th:selected="${adminPageVO.cateCode == cate.cateCode}">[[${cate.cateName}]]</option>
 
                     </th:block>
                 </select>
@@ -45,23 +47,32 @@
                     </tr>
                 </thead>
                 <tbody class="change-td">
-                    <tr th:each="board,state : ${itemList}"
-                        class="[&>td]:p-2 font-semibold border-b-2  border-t-red-500">
-                        <!-- <td>[[${#lists.size(itemList)-state.index}]]</td> -->
-                        <td>[[${board.itemCode}]]</td>
-                        <td>
-                            [[${board.itemTitle}]]
-                        </td>
+                    <th:block th:if="${#lists.size(itemList)}!=0">
+                        <tr th:each="board,state : ${itemList}"
+                            class="[&>td]:p-2 font-semibold border-b-2  border-t-red-500">
+                            <!-- <td>[[${#lists.size(itemList)-state.index}]]</td> -->
+                            <td>[[${board.itemCode}]]</td>
+                            <td>
+                                [[${board.itemTitle}]]
+                            </td>
 
-                        <td>[[${board.itemPrice == '0' ? '-' : board.itemPrice}]]</td>
-                        <td>
-                            [[${board.cateCode == 2 ? '-' : board.itemPeople +'/'+ board.peopleCnt}]]
-                        </td>
-                        <td>[[${board.itemPlace}]]</td>
-                        <td>[[${board.itemStartDate}]]~[[${board.itemEndDate}]]</td>
-                        <td>[[${board.readCnt}]]</td>
+                            <td>[[${board.itemPrice == '0' ? '-' : board.itemPrice}]]</td>
+                            <td>
+                                [[${board.cateCode == 2 ? '-' : board.itemPeople +'/'+ board.peopleCnt}]]
+                            </td>
+                            <td>[[${board.itemPlace}]]</td>
+                            <td>[[${board.itemStartDate}]]~[[${board.itemEndDate}]]</td>
+                            <td>[[${board.readCnt}]]</td>
+                        </tr>
+                    </th:block>
+                    <th:block th:if="${#lists.size(itemList)} == 0">
+                        <tr class="[&>td]:p-2 font-semibold border-b-2  border-t-red-500">
+                            <!-- <td>[[${#lists.size(itemList)-state.index}]]</td> -->
+                            <td colspan="7">조회된 목록이 없습니다.</td>
+                            
+                        </tr>
+                    </th:block>
 
-                    </tr>
                 </tbody>
 
             </table>
@@ -72,27 +83,56 @@
                 <!-- ${searchVO.beginPage} -->
                 <!-- ${searchVO.endPage} -->
 
-                <th:block th:if="${pageVO.prev}">
-                    <a
-                        th:href="@{/admin/adminBoardManage(nowPage=${pageVO.beginPage-1})}">
+                <th:block th:if="${adminPageVO.prev}">
+                    <a th:href="@{/admin/adminBoardManage(nowPage=${adminPageVO.beginPage-1})}">
                         이전 </a>
                 </th:block>
 
-                <th:block th:each="i : ${#numbers.sequence(pageVO.beginPage, pageVO.endPage)}">
-                    <a
-                        th:href="@{/admin/adminBoardManage(nowPage=${i})}">
+                <th:block th:each="i : ${#numbers.sequence(adminPageVO.beginPage, adminPageVO.endPage)}">
+                    <a th:href="@{/admin/adminBoardManage(nowPage=${i})}">
                         [[${i}]] </a>
                 </th:block>
 
-                <th:block th:if="${pageVO.next}">
-                    <a
-                        th:href="@{/admin/adminBoardManage(nowPage=${pageVO.endPage+1})}">
+                <th:block th:if="${adminPageVO.next}">
+                    <a th:href="@{/admin/adminBoardManage(nowPage=${adminPageVO.endPage+1})}">
                         다음 </a>
                 </th:block>
 
             </div>
         </div>
+        <div>
+            <div>
+                <form action="/admin/adminBoardManage" method="post">
+
+                    <span><input type="date" name="from" value="from"></span>
+                    <span><input type="date" name="to" value="to"></span>
+                    <span>
+                        <select name="cateCode">
+                            <option value="0" th:selected="${adminPageVO.cateCode} == 0">전체</option>
+                            <th:block th:each="cate : ${session.cateList}">
+                                <option th:value="${cate.cateCode}" th:selected="${adminPageVO.cateCode == cate.cateCode}">
+                                    [[${cate.cateName}]]
+                                </option>
+
+                            </th:block>
+                        </select>
+                    </span>
+                    <span>
+                        <select name="searchOption">
+                            <option value="MEMBER_ID" th:selected="${adminPageVO.searchOption}=='MEMBER_ID'">작성자</option>
+                            <option value="ITEM_TITLE" th:selected="${adminPageVO.searchOption}=='ITEM_TITLE'">제목</option>
+                        </select>
+                    </span>
+                    <span><input type="text" name="searchText" th:value="${adminPageVO.searchText}"></span>
+                    <span><button type="submit">검색</button></span>
+                </form>
+
+
+
+            </div>
+        </div>
     </div>
+
 </th:block>
 
 <th:block layout:fragment="content_js">
