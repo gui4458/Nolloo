@@ -169,6 +169,13 @@
         WHERE REPLY_CODE=#{replyCode}
     </delete>
 
+    <update id="updateReply">
+        UPDATE NOTICE_REPLY SET
+        CONTENT=#{content}
+        WHERE REPLY_CODE=#{replyCode}
+
+    </update>
+
 
 <!-- 통계(그래프)에 필요한 쿼리-->
     <select id="selectListAdminStatistics" resultMap="reserveMapper.reserve">

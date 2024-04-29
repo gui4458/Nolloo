@@ -247,5 +247,12 @@ public class AdminController {
         return "redirect:/admin/noticeDetail?noticeCode="+replyVO.getNoticeCode();
     }
 
+    @PostMapping("/updateReply")
+    public String updateReply(ReplyVO replyVO){
+        adminService.updateReply(replyVO);
+
+        return "redirect:/admin/noticeDetail?noticeCode="+replyVO.getNoticeCode();
+    }
+
 
 }

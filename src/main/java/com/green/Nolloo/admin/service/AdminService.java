@@ -49,11 +49,15 @@ public interface AdminService {
     //공지사항 댓글 삭제
     void deleteReply(ReplyVO replyVO);
 
+    //공지사항 댓글 수정
+    void updateReply(ReplyVO replyVO);
+
     // 도넛 차트 참여인원 조회
     List<ReserveVO> selectListAdminStatistics();
 
     //바차트 월별 상품수 조회
     List<ItemCntPerMonth> selectDate();
+
 
 
 
