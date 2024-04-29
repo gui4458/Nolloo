@@ -83,13 +83,15 @@ public class MemberController {
     @GetMapping("/myPage")
     public String myPage(MemberVO memberVO, Model model, Authentication authentication){
         User user = (User)authentication.getPrincipal();
+        //security에 로그인한 사람의 정보를 user에 저장
 
         //세션에 있는 로그인한 사람의 id를 가져온다.
+        System.out.println("user = " + user);
+        memberVO.setMemberId(user.getUsername()); //id
 
-        memberVO.setMemberId(user.getUsername());
-
-
+        System.out.println("memberVO = " + memberVO);
         MemberVO memberInfo = memberService.memberInfo(memberVO);
+        System.out.println("memberInfo = " + memberInfo);
         model.addAttribute("memberInfo",memberInfo);
 
         return "content/member/my_page";
@@ -101,9 +103,9 @@ public class MemberController {
         memberVO.setMemberPw(encoder.encode(memberVO.getMemberPw()));
         memberVO.setMemberId(user.getUsername());
         memberService.revise(memberVO);
-
-//        MemberVO memberInfo = memberService.memberInfo(memberVO);
-//        model.addAttribute("memberInfo",memberInfo);
+        MemberVO memberInfo = memberService.memberInfo(memberVO);
+        System.out.println(memberInfo);
+        model.addAttribute("memberInfo",memberInfo);
 //        return "content/member/my_page";
 
         return "redirect:/member/myPage";
