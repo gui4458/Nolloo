@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
     <meta charset="UTF-8">
     <title>NolLoo</title>
@@ -16,15 +16,28 @@
     <link rel="stylesheet" href="/css/fragment/btn.css">
     <th:block layout:fragment="content_css"></th:block>
 </head>
-<body class="bg-zinc-50/100 " x-data="{ 'showModal': false }" @keydown.escape="showModal = false" x-cloak >
-    
-    <th:block th:replace="~{fragment/header/admin_header_exp :: adminHeaderFragment}"></th:block>
-    <th:block th:replace="~{fragment/admin/admin_side_menu :: sideFragment}"></th:block>
 
-    <th:block layout:fragment="contentFragment"></th:block>
+<body class="bg-zinc-50/100 " x-data="{ 'showModal': false }" @keydown.escape="showModal = false" x-cloak>
+
+    <th:block th:replace="~{fragment/header/admin_header_exp :: adminHeaderFragment}"></th:block>
+
+    <div class="flex">
+        <div class="basis-1/4 mt-[5%]">
+            <th:block th:replace="~{fragment/admin/admin_side_menu :: sideFragment}"></th:block>
+        </div>
+        <div class="basis-3/4 justify-start">
+            <th:block layout:fragment="contentFragment"></th:block>
+        </div>
+    </div>
+
+
+    <!-- <th:block th:replace="~{fragment/admin/admin_side_menu :: sideFragment}"></th:block>
+
+    <th:block layout:fragment="contentFragment"></th:block> -->
 
     <th:block th:replace="~{fragment/footer::footerFragment}"></th:block>
 
     <th:block layout:fragment="content_js"></th:block>
 </body>
-</html> 
+
+</html>
