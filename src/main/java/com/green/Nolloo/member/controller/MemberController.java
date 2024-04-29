@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.util.List;
 
 @Controller
 @RequestMapping("/member")
@@ -65,7 +66,9 @@ public class MemberController {
             User user = (User)authentication.getPrincipal();
             session.setAttribute("memberId",user.getUsername());
             reserveVO.setMemberId(user.getUsername());
-            session.setAttribute("reserveList",reserveService.selectReserve(reserveVO));
+            List<ReserveVO> reserveList = reserveService.selectReserve(reserveVO);
+            session.setAttribute("reserveList",reserveList);
+            session.setAttribute("reserveCnt",reserveList.size());
 
         }
 

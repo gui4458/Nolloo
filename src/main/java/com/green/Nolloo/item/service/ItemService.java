@@ -22,7 +22,7 @@ public interface ItemService {
     List<ItemVO> selectByDistance(SearchVO searchVO);
 
     List<ItemVO> searchByDistance(SearchVO searchVO);
-    List<ItemVO> searchByReadCnt();
+    List<ItemVO> searchByReadCnt(String memberId);
 
     List<CategoryVO> selectAllCategory();
 

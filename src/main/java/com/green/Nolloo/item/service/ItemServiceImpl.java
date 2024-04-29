@@ -125,8 +125,8 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<ItemVO> searchByReadCnt() {
-        return sqlSession.selectList("itemMapper.selectByReadCnt");
+    public List<ItemVO> searchByReadCnt(String memberId) {
+        return sqlSession.selectList("itemMapper.selectByReadCnt",memberId);
     }
 
     @Override

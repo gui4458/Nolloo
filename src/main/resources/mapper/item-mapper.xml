@@ -107,31 +107,37 @@
 
 <!--   추천목록 조회-->
     <select id="selectByReadCnt" resultMap="item">
-        SELECT
-        INFO.ITEM_CODE
-        , ITEM_TITLE
-        , ITEM_DATE
-        , ITEM_PRICE
-        , ITEM_PLACE
-        , ITEM_PEOPLE
-        , INFO.CATE_CODE
-        , c.CATE_NAME
-        , LEFT(ITEM_START_DATE,10) ITEM_START_DATE
-        , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
-        , ATTACHED_FILE_NAME
-        , READ_CNT
-        FROM ITEM_INFO INFO
-        INNER JOIN ITEM_IMAGE IMG
-        ON INFO.ITEM_CODE = IMG.ITEM_CODE
-        INNER JOIN CATE c
-        ON INFO.CATE_CODE = c.CATE_CODE
-
-        WHERE IS_MAIN='Y'
-
-        ORDER BY read_cnt DESC
-
-        LIMIT 5;
-
+    SELECT IT.ITEM_CODE
+        ,IT.ITEM_TITLE
+        ,IT.PEOPLE_CNT
+    FROM item_info IT
+    WHERE 1 = 1
+    <if test='memberId != null and !memberId.equals("")'>
+        AND IT.CATE_CODE =
+        (SELECT maxCnt.CATE_CODE
+        FROM
+            (SELECT IT.CATE_CODE,
+                COUNT(IT.CATE_CODE) AS cnt
+            FROM reserve RE
+            JOIN item_info IT ON RE.ITEM_CODE = IT.ITEM_CODE
+            WHERE RE.MEMBER_ID = #{memberId}
+            GROUP BY IT.CATE_CODE
+            ) AS maxCnt
+        JOIN cate CA ON maxCnt.CATE_CODE = CA.CATE_CODE
+        WHERE maxCnt.cnt =
+            (SELECT MAX(cnt)
+            FROM
+                (SELECT COUNT(IT.CATE_CODE) AS cnt
+                FROM reserve RE
+                JOIN item_info IT ON RE.ITEM_CODE = IT.ITEM_CODE
+                WHERE RE.MEMBER_ID = #{memberId}
+                GROUP BY IT.CATE_CODE
+                ) AS max_subquery
+            )
+        )
+    </if>
+    ORDER BY IT.PEOPLE_CNT DESC
+    LIMIT 5
     </select>
 
 
