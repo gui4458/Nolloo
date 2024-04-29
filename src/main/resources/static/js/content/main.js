@@ -452,7 +452,7 @@ function selectItemCode(itemCode) {
 
             if(loginId != ''){
                 document.querySelector('.reserve-btn').setAttribute('onclick', `reserveInsert(${data.item.itemCode},${data.reserveCnt},${data.item.cateCode})`);
-            }
+            } //                                  속성 값 추가(이미 있는 속성이면 덮어쓰기 없으면 속성 및 속성 값 추가)
                 
                 
 
