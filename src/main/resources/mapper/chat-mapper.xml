@@ -16,6 +16,18 @@
         , #{message}
         )
     </insert>
+    <insert id="insertChatRoom">
+        INSERT INTO CHAT_ROOM(
+        ROOM_NAME
+        ,ITEM_CODE
+        ,FOUNDER
+        )
+        VALUES
+        (
+        #{roomName}
+        ,#{itemCode}
+        ,#{founder})
+    </insert>
 
     <!-- 특정 채팅방의 메시지 검색 쿼리 -->
     <select id="selectChatMessagesByRoom" resultType="com.green.Nolloo.chat.vo.ChatMessageVO">
