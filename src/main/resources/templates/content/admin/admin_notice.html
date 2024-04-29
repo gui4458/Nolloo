@@ -11,8 +11,8 @@
     <!-- html 코드 작성 -->
 
 
-    <div class="mb-[10%] w-[1000px]">
-        <table class="ml-[50%] border-collapse w-[1000px] text-center mt-[60px]">
+    <div class="mb-[10%] ml-20">
+        <table class="border-collapse mt-[60px]">
             <caption class="text-left text-red-400">공지사항</caption>
             <colgroup>
                 <col width="8%">
@@ -21,7 +21,7 @@
                 <col width="15%">
             </colgroup>
             <thead>
-                <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300">
+                <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300 text-center">
                     <td>번호</td>
                     <td>제목</td>
                     <td>작성일자</td>
@@ -29,7 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="notice,state:${noticeList}" class="[&>td]:p-2 font-semibold border-b-2"
+                <tr th:each="notice,state:${noticeList}" class="[&>td]:p-2 font-semibold border-b-2 text-center"
                     th:onclick="|location.href='@{/admin/noticeDetail(noticeCode=${notice.noticeCode},noticeNo=${#lists.size(noticeList)-state.index})}'|">
                     <td>[[${#lists.size(noticeList)-state.index}]]</td>
                     <td>[[${notice.noticeTitle}]]</td>
@@ -39,8 +39,8 @@
             </tbody>
 
         </table>
-        <div class="text-right">
-            <button class="w-[5%] border rounded-lg bg-red-300 text-white" type="button"
+        <div class="mt-[40px] ml-[60%]">
+            <button class="w-[12%] border rounded-lg bg-red-300 text-white" type="button"
                 onclick="location.href='/admin/noticeForm'">글쓰기</button>
         </div>
 
