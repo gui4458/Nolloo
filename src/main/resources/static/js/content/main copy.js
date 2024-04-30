@@ -16,6 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 });
 
+
 // 초기 아이템 가져오는 함수
 function fetchInitialItems() {
     limit = 9;
@@ -54,7 +55,7 @@ function eventScroll() {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
         fetchItems();
     }
-};
+}
 
 
 // 스크롤 이벤트 리스너 등록
@@ -132,8 +133,7 @@ function displayItems(items) {
             }
             // <span id="heart" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${item.itemCode},${wishchk},${loginId},event)"><i class="ri-heart-3-fill"></i></sapn>
             itemHtml += `
-            <div id="heart-div">
-                            <span id="" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${item.itemCode},${wishchk},event)">
+                            <span id="heart" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${item.itemCode},${wishchk},event)">
                             `
             if (loginId != "") {
                 if (wishchk) {
@@ -143,11 +143,11 @@ function displayItems(items) {
 
                 }
             } else {
-                itemHtml += '<i class="ri-heart-3-line" onclick="heart(this,${item.itemCode},${wishchk},event)"></i>'
+                itemHtml += '<i class="ri-heart-3-line" onclick="heart(this,${item.itemCode},${wishchk},${loginId},event)"></i>'
             }
             itemHtml += `
                             </span>                        
-                    </div>
+                    
                     </div>
                             <div class="ml-5 lg:ml-0 lg:mt-3">
                                 <figcaption class="font-medium">
@@ -183,108 +183,99 @@ function displayItems(items) {
 
 // 하트 추가 및 삭제 함수
 // 하트 누르면 추가
-
-
-//하트 누르면 삭제
-function heart(divTag, itemCode, wishchk, e) {
-    let heartDiv = document.querySelector('#heart-div');
-    console.log(heartDiv)
+function wishAdd(divTag, itemCode, e) {
+    const head = divTag;
     e.stopPropagation();
-    let strHeart = ''
-    if (loginId != "") {
-        if (wishchk) {
-            fetch('/wish/wishDelete', { //요청경로
-                method: 'POST',
-                cache: 'no-cache',
-                headers: {
-                    'Content-Type': 'application/json; charset=UTF-8'
-                },
-                //컨트롤러로 전달할 데이터
-                body: JSON.stringify({
-                    // 데이터명 : 데이터값
-                    itemCode: itemCode
+    fetch('/wish/insertWish', { //요청경로
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+        },
+        //컨트롤러로 전달할 데이터
+        body: JSON.stringify({
+            // 데이터명 : 데이터값
+            itemCode: itemCode
 
-                })
-            })
-                .then((response) => {
-                    return response.text();
-                    // return response.json(); //나머지 경우에 사용
-                })
-                //fetch 통신 후 실행 영역
-                .then((data) => {//data -> controller에서 리턴되는 데이터!
-                    // const result1 = confirm('관심목록에 상품을 등록했습니다.\n관심목록 페이지로 이동할까요?')
-                    //     if (result1) {
-                    //         location.href = `/wish/goWishList`;
-                    //     }
-                    strHeart = `
-                    <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${itemCode},${data},event)"><i class="ri-heart-3-line"></i></sapn>
-        
-                `
+        })
+    })
+        .then((response) => {
+            return response.json(); //나머지 경우에 사용
+        })
+        //fetch 통신 후 실행 영역
+        .then((data) => {//data -> controller에서 리턴되는 데이터!
+            // const result1 = confirm('관심목록에 상품을 등록했습니다.\n관심목록 페이지로 이동할까요?')
+            //     if (result1) {
+            //         location.href = `/wish/goWishList`;
+            //     }
 
-                    heartDiv.replaceChildren(heartDiv.textContent = '');
-                    heartDiv.insertAdjacentHTML("afterbegin", strHeart)
+            const strDelete = `
+            <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${itemCode})"><i class="ri-heart-3-fill"></i></sapn>
+
+        `
+            head.replaceChildren(head.textContent = '');
+            head.insertAdjacentHTML("afterbegin", strDelete)
 
 
+            // location.href = '/item/list'
 
-                })
-                //fetch 통신 실패 시 실행 영역
-                .catch(err => {
-                    alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-                    console.log(err);
-                });
-        } else {
-            fetch('/wish/insertWish', { //요청경로
-                method: 'POST',
-                cache: 'no-cache',
-                headers: {
-                    'Content-Type': 'application/json; charset=UTF-8'
-                },
-                //컨트롤러로 전달할 데이터
-                body: JSON.stringify({
-                    // 데이터명 : 데이터값
-                    itemCode: itemCode
-
-                })
-            })
-                .then((response) => {
-                    return response.json(); //나머지 경우에 사용
-                })
-                //fetch 통신 후 실행 영역
-                .then((data) => {//data -> controller에서 리턴되는 데이터!
-                    // const result1 = confirm('관심목록에 상품을 등록했습니다.\n관심목록 페이지로 이동할까요?')
-                    //     if (result1) {
-                    //         location.href = `/wish/goWishList`;
-                    //     }
-
-                    strHeart = `
-                    <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${itemCode},${wishchk},event)"><i class="ri-heart-3-fill"></i></sapn>
-        
-                `
-
-                    heartDiv.replaceChildren(heartDiv.textContent = '');
-                    heartDiv.insertAdjacentHTML("afterbegin", strHeart)
-
-
-
-                    // location.href = '/item/list'
-
-                })
-                //fetch 통신 실패 시 실행 영역
-                .catch(err => {
-                    alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
-                    console.log(err);
-                });
-        }
-
-    } else {
-        alert('로그인을 해주세요.');
-
-    }
-
-
+        })
+        //fetch 통신 실패 시 실행 영역
+        .catch(err => {
+            alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+            console.log(err);
+        });
 }
 
+//하트 누르면 삭제
+function wishDelete(divTag, itemCode, e) {
+    const head = divTag
 
+    e.stopPropagation();
+
+    fetch('/wish/wishDelete', { //요청경로
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+        },
+        //컨트롤러로 전달할 데이터
+        body: JSON.stringify({
+            // 데이터명 : 데이터값
+            itemCode: itemCode
+
+        })
+    })
+        .then((response) => {
+            return response.text();
+            // return response.json(); //나머지 경우에 사용
+        })
+        //fetch 통신 후 실행 영역
+        .then((data) => {//data -> controller에서 리턴되는 데이터!
+            // const result1 = confirm('관심목록에 상품을 등록했습니다.\n관심목록 페이지로 이동할까요?')
+            //     if (result1) {
+            //         location.href = `/wish/goWishList`;
+            //     }
+            const strInsert = `
+            <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishAdd(this,${itemCode})"><i class="ri-heart-3-line"></i></sapn>
+
+        `
+            head.replaceChildren(head.textContent = '');
+            head.insertAdjacentHTML("afterbegin", strInsert)
+
+        })
+        //fetch 통신 실패 시 실행 영역
+        .catch(err => {
+            alert('fetch error!\nthen 구문에서 오류가 발생했습니다.\n콘솔창을 확인하세요!');
+            console.log(err);
+        });
+}
+
+// 로그인 함수
+function gologin(event) {
+    alert('로그인을 해주세요.');
+    event.stopPropagation();
+}
 
 function goChat(itemCode) {
     // 채팅방 URL 생성
@@ -296,7 +287,8 @@ function goChat(itemCode) {
 }
 
 // modal Detail에 itemCode 보내주기
-function selectItemCode(itemCode, selectedTag, items) {
+function selectItemCode(itemCode) {
+
     fetch('/item/itemDetailForm', { //요청경로
         method: 'POST',
         cache: 'no-cache',
@@ -326,7 +318,8 @@ function selectItemCode(itemCode, selectedTag, items) {
             let wishchk = data.wishCodeList.includes(data.item.itemCode)
 
 
-
+            const loginId = document.querySelector('#loginId').value;
+            console.log(loginId);
 
             const p_tag = document.querySelector('.p-tag');
 
@@ -451,7 +444,11 @@ function selectItemCode(itemCode, selectedTag, items) {
 
             //상품에 대한 지도 붙이기
 
-
+            if(loginId != ''){
+                document.querySelector('.reserve-btn').setAttribute('onclick', `reserveInsert(${data.item.itemCode},${data.reserveCnt},${data.item.cateCode})`);
+            } //                                  속성 값 추가(이미 있는 속성이면 덮어쓰기 없으면 속성 및 속성 값 추가)
+                
+                
 
             modalToggle();
             setTimeout(() => {
@@ -476,9 +473,13 @@ function modalToggle() {
     document.querySelector('#detail_modal').classList.toggle('flex');
 }
 
+function goLogin(e) {
+    alert('로그인 후 이용해주세요.')
+    e.stopPropagation();
+}
 
-function reserveInsert(itemCode, reserveCnt) {
-
+function reserveInsert(itemCode, reserveCnt, cateCode) {
+    
     if (reserveCnt == 0) {
         fetch('/reserve/partyReserve', { //요청경로
             method: 'POST',
@@ -489,7 +490,8 @@ function reserveInsert(itemCode, reserveCnt) {
             //컨트롤러로 전달할 데이터
             body: JSON.stringify({
                 // 데이터명 : 데이터값
-                itemCode: itemCode
+                'itemCode' : itemCode,
+                'cateCode' : cateCode
             })
         })
             .then((response) => {
@@ -554,5 +556,8 @@ function drawMap(posX, posY) {
     marker.setMap(map);
     map.relayout();
 
+
 }
+
+
 

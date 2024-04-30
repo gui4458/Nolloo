@@ -441,17 +441,30 @@
             ,ITEM_TEL
             ,ITEM_URL
             ,MEMBER_ID
-        FROM item_info
-        WHERE ITEM_CONTENT LIKE CONCAT ('%' ,#{searchText}, '%')
-        OR ITEM_TITLE LIKE CONCAT ('%',#{searchText},'%')
-        OR ITEM_PRICE LIKE CONCAT ('%',#{searchText},'%')
-        OR ITEM_PLACE LIKE CONCAT ('%',#{searchText},'%')
-        OR ITEM_START_DATE LIKE CONCAT ('%',#{searchText},'%')
-        OR ITEM_END_DATE LIKE CONCAT ('%',#{searchText},'%')
-        OR ITEM_TEL LIKE CONCAT ('%',#{searchText},'%')
-        OR ITEM_URL LIKE CONCAT ('%',#{searchText},'%')
-        OR MEMBER_ID LIKE CONCAT ('%',#{searchText},'%')
-        ;
+            ,INFO.CATE_CODE
+            , PLACE_DETAIL
+            , C.CATE_NAME
+            , ITEM_CONTENT
+            , LEFT(ITEM_START_DATE,10) ITEM_START_DATE
+            , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
+            , ATTACHED_FILE_NAME
+            , READ_CNT
+
+            FROM ITEM_INFO INFO
+            INNER JOIN ITEM_IMAGE IMG
+            ON INFO.ITEM_CODE = IMG.ITEM_CODE
+            INNER JOIN CATE C
+            ON INFO.CATE_CODE = C.CATE_CODE
+            WHERE ITEM_CONTENT LIKE CONCAT ('%' ,#{searchText}, '%')
+            OR ITEM_TITLE LIKE CONCAT ('%',#{searchText},'%')
+            OR ITEM_PRICE LIKE CONCAT ('%',#{searchText},'%')
+            OR ITEM_PLACE LIKE CONCAT ('%',#{searchText},'%')
+            OR ITEM_START_DATE LIKE CONCAT ('%',#{searchText},'%')
+            OR ITEM_END_DATE LIKE CONCAT ('%',#{searchText},'%')
+            OR ITEM_TEL LIKE CONCAT ('%',#{searchText},'%')
+            OR ITEM_URL LIKE CONCAT ('%',#{searchText},'%')
+            OR MEMBER_ID LIKE CONCAT ('%',#{searchText},'%')
+
     </select>
     <select id="contentSearch" resultMap="item">
     SELECT ITEM_CONTENT

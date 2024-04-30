@@ -10,6 +10,10 @@ import com.green.Nolloo.restAPI.vo.AddressVO;
 import com.green.Nolloo.restAPI.vo.MapVO;
 import com.green.Nolloo.restAPI.vo.MyEntity;
 import com.green.Nolloo.search.vo.SearchVO;
+import com.green.Nolloo.wish.service.WishService;
+import com.green.Nolloo.wish.vo.WishVO;
+import com.green.Nolloo.wish.vo.WishViewVO;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +34,8 @@ public class Address {
 
     @Autowired
     private ItemService itemService;
+    @Autowired
+    private WishService wishService;
 
     @GetMapping("/address")
     public String index() {
@@ -92,7 +98,7 @@ public class Address {
 //        return myService.searchEntities(sido);
 //    }
     @PostMapping("/search")
-    public String searchResult(SearchVO searchVO, Model model) {
+    public String searchResult(SearchVO searchVO, Model model, HttpSession session) {
         List<ItemVO> searchItemList = itemService.titleSearch(searchVO);
         List<ItemVO> contentSearch = itemService.contentSearch(searchVO);
         if (!searchItemList.isEmpty()){
@@ -103,6 +109,8 @@ public class Address {
         }
         model.addAttribute("searchText",searchVO.getSearchText());
         System.out.println(searchItemList);
+        List<WishViewVO> wishList = wishService.selectWish((String) session.getAttribute("memberId"));
+        model.addAttribute("wishList",wishList);
         return "/content/restAPI/search_result";
     }
 

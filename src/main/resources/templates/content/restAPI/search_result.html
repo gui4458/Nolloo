@@ -12,54 +12,82 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div>
-                    '[[${searchText}]]'의 검색결과
-                </div>
-                <div class="mx-auto max-w-7xl py-1 px-4 md:px-3 ">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 container"
-                        id="itemListContainer">
-                        <th:block th:each="item : ${searchItemList}">
-                            <div class="item-lazy bg-white shadow-xl shadow-slate-900/5 rounded-lg group"
-                                th:onclick="selectItemCode([[${item.itemCode}]])">
-
-                                <div class="flex flex-row p-3 lg:flex-col">
-                                    <div
-                                        class="image-container w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">
-                                        <img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]"
-                                            src="/upload/itemSolo/${item.imgList[0].attachedFileName}" alt="">
-                                        <span
-                                            class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer"
-                                            th:onclick="wishDelete(this,[[${item.itemCode}]])"><i
-                                                class="ri-heart-3-fill"></i>
-                                            </sapn>
-                                    </div>
-                                    <div class="ml-5 lg:ml-0 lg:mt-3">
-                                        <figcaption class="font-medium">
-                                            <div class="text-dark-600">
-                                                <span
-                                                    class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">[[${item.cateName}]]</span><strong
-                                                    class="inline-flex text-xs py-1 pl-1">[[${item.itemPlace}]]</strong>
-                                            </div>
-                                            <div class="text-dark-600 font-bold mt-1">
-                                                [[${item.itemTitle}]]
-                                            </div>
-                                            <div class="text-slate-600 text-sm mt-1">
-
-                                            </div>
-                                            <div class="text-green-500 text-sm mt-1">
-                                                [[${item.itemStartDate}]]~[[${item.itemEndDate}]]
-                                            </div>
-                                        </figcaption>
-                                    </div>
-
-                                </div>
-
-                                <div class="w-8 h-8 ml-3">
-                                </div>
-                            </div>
-                        </th:block>
+                <div class="row">
+                    <div class="col">
+                        '[[${searchText}]]'의 검색결과
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mt-10">
+                            -아이템목록-
+                        </div>
+                        <div class="mx-auto max-w-7xl py-1 px-4 md:px-3 ">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 container"
+                                id="itemListContainer">
+                                <th:block th:each="item : ${searchItemList}">
+                                    <div class="item-lazy bg-white shadow-xl shadow-slate-900/5 rounded-lg group"
+                                        th:onclick="selectItemCode([[${item.itemCode}]])">
+
+                                        <div class="flex flex-row p-3 lg:flex-col">
+                                            <div
+                                                class="image-container w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">
+                                                <th:block th:if="${item.cateCode == 1}">
+                                                    <img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]"
+                                                        th:src="@{'/upload/itemSolo/' + ${item.imgList[0].attachedFileName}}">
+                                                    <div id="heart-div">
+                                                        <span id=""
+                                                            class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer"
+                                                            th:onclick="heart(this,[[${item.itemCode}]],[[${wishchk}]],event)">
+                                                            <th:block>
+
+                                                                <i class="ri-heart-3-fill"></i>
+
+
+                                                            </th:block>
+
+
+
+                                                        </span>
+                                                    </div>
+                                                </th:block>
+                                                <th:block th:if="${item.cateCode == 2}">
+                                                    <img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]"
+                                                        th:src="@{'/upload/item/' + ${item.imgList[0].attachedFileName}}">
+                                                </th:block>
+
+
+                                            </div>
+                                            <div class="ml-5 lg:ml-0 lg:mt-3">
+                                                <figcaption class="font-medium">
+                                                    <div class="text-dark-600">
+                                                        <span
+                                                            class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">[[${item.cateName}]]</span><strong
+                                                            class="inline-flex text-xs py-1 pl-1">[[${item.itemPlace}]]</strong>
+                                                    </div>
+                                                    <div class="text-dark-600 font-bold mt-1">
+                                                        [[${item.itemTitle}]]
+                                                    </div>
+                                                    <div class="text-slate-600 text-sm mt-1">
+
+                                                    </div>
+                                                    <div class="text-green-500 text-sm mt-1">
+                                                        [[${item.itemStartDate}]]~[[${item.itemEndDate}]]
+                                                    </div>
+                                                </figcaption>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="w-8 h-8 ml-3">
+                                        </div>
+                                    </div>
+                                </th:block>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
         </div>
