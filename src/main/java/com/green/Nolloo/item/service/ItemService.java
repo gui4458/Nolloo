@@ -59,4 +59,7 @@ public interface ItemService {
 
     void insertMainImg(ItemVO itemVO);
 
+    List<ItemVO> titleSearch(SearchVO searchVO);
+    List<ItemVO> contentSearch(SearchVO searchVO);
+
 }

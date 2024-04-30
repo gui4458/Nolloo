@@ -91,6 +91,15 @@ public class ItemServiceImpl implements ItemService {
         sqlSession.insert("itemMapper.insertImage",itemVO);
     }
 
+    @Override
+    public List<ItemVO> titleSearch(SearchVO searchVO) {
+        return sqlSession.selectList("itemMapper.titleSearch",searchVO);
+    }
+    @Override
+    public List<ItemVO> contentSearch(SearchVO searchVO) {
+        return sqlSession.selectList("itemMapper.contentSearch",searchVO);
+    }
+
 
     @Override
     public int wishCount(int itemCode) {

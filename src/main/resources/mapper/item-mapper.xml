@@ -216,11 +216,9 @@
             AND INFO.CATE_CODE = #{cateCode}
         </if>
 
-        <if test='from != null and !from.equals("")'>
-            AND DATE_FORMAT(ITEM_START_DATE, '%Y-%m-%d') &gt;= #{from}
-        </if>
-        <if test='to != null and !to.equals("")'>
-            AND #{to} &gt;= DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d')
+        <if test='searchDate != null and !searchDate.equals("")'>
+            AND #{searchDate} &gt;= DATE_FORMAT(ITEM_START_DATE, '%Y-%m-%d')
+            AND DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d') &gt;= #{searchDate}
         </if>
         <if test='region1 != null and region1 !=""'>
             AND region_1 = #{region1}
@@ -433,4 +431,31 @@
         FROM CATE
     </select>
 
+    <select id="titleSearch" resultMap="item">
+        SELECT ITEM_TITLE
+            ,ITEM_CONTENT
+            ,ITEM_PRICE
+            ,ITEM_PLACE
+            ,ITEM_START_DATE
+            ,ITEM_END_DATE
+            ,ITEM_TEL
+            ,ITEM_URL
+            ,MEMBER_ID
+        FROM item_info
+        WHERE ITEM_CONTENT LIKE CONCAT ('%' ,#{searchText}, '%')
+        OR ITEM_TITLE LIKE CONCAT ('%',#{searchText},'%')
+        OR ITEM_PRICE LIKE CONCAT ('%',#{searchText},'%')
+        OR ITEM_PLACE LIKE CONCAT ('%',#{searchText},'%')
+        OR ITEM_START_DATE LIKE CONCAT ('%',#{searchText},'%')
+        OR ITEM_END_DATE LIKE CONCAT ('%',#{searchText},'%')
+        OR ITEM_TEL LIKE CONCAT ('%',#{searchText},'%')
+        OR ITEM_URL LIKE CONCAT ('%',#{searchText},'%')
+        OR MEMBER_ID LIKE CONCAT ('%',#{searchText},'%')
+        ;
+    </select>
+    <select id="contentSearch" resultMap="item">
+    SELECT ITEM_CONTENT
+    FROM item_info
+    WHERE ITEM_CONTENT LIKE CONCAT ('%' ,#{searchText}, '%')
+    </select>
 </mapper>

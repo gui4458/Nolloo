@@ -1,5 +1,7 @@
 package com.green.Nolloo.restAPI.controller.kakao;
 
+import com.green.Nolloo.item.service.ItemService;
+import com.green.Nolloo.item.vo.ItemVO;
 import com.green.Nolloo.restAPI.service.KakaoApiService;
 import com.green.Nolloo.restAPI.service.MyService;
 import com.green.Nolloo.restAPI.service.restAPIService;
@@ -7,6 +9,7 @@ import com.green.Nolloo.restAPI.vo.AddressFormVO;
 import com.green.Nolloo.restAPI.vo.AddressVO;
 import com.green.Nolloo.restAPI.vo.MapVO;
 import com.green.Nolloo.restAPI.vo.MyEntity;
+import com.green.Nolloo.search.vo.SearchVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +27,9 @@ public class Address {
 
     @Autowired
     private restAPIService restAPIService;
+
+    @Autowired
+    private ItemService itemService;
 
     @GetMapping("/address")
     public String index() {
@@ -80,10 +86,26 @@ public class Address {
         return "/content/restAPI/search";
     }
 
-    @ResponseBody
+//    @ResponseBody
+//    @PostMapping("/search")
+//    public List<MyEntity> searchEntities(@RequestParam(name="sido") String sido) {
+//        return myService.searchEntities(sido);
+//    }
     @PostMapping("/search")
-    public List<MyEntity> searchEntities(@RequestParam(name="sido") String sido) {
-        return myService.searchEntities(sido);
+    public String searchResult(SearchVO searchVO, Model model) {
+        List<ItemVO> searchItemList = itemService.titleSearch(searchVO);
+        List<ItemVO> contentSearch = itemService.contentSearch(searchVO);
+        if (!searchItemList.isEmpty()){
+            model.addAttribute("searchItemList",searchItemList);
+        }
+        if (!contentSearch.isEmpty()){
+            model.addAttribute("contentSearch",contentSearch);
+        }
+        model.addAttribute("searchText",searchVO.getSearchText());
+        System.out.println(searchItemList);
+        return "/content/restAPI/search_result";
     }
+
+
 
 }

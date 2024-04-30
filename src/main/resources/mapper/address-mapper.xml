@@ -22,14 +22,14 @@
             </if>
         limit 10;
     </select>
-
+<!-- 수정-->
     <select id="selectSido" resultType="String" fetchSize="1000">
 <!--        SELECT sido FROM zipcode GROUP BY sido;-->
-        SELECT DISTINCT sido FROM zipcode;
+        SELECT DISTINCT sido FROM SEARCH_MAP;
     </select>
-
+<!-- 수정 -->
     <select id="selectSigungu" resultMap="addresses" fetchSize="1000">
-        SELECT sigungu FROM zipcode WHERE sido = #{sido} GROUP BY sigungu HAVING COUNT(*) > 1;
+        SELECT sigungu FROM SEARCH_MAP WHERE sido = #{sido};
     </select>
 </mapper>
 
