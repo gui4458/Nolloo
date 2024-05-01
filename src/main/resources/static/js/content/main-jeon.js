@@ -132,7 +132,7 @@ function displayItems(items) {
             }
             // <span id="heart" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${item.itemCode},${wishchk},${loginId},event)"><i class="ri-heart-3-fill"></i></sapn>
             itemHtml += `
-            <div id="heart-div">
+            <div>
                             <span id="" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${item.itemCode},${wishchk},event)">
                             `
             if (loginId != "") {
@@ -143,7 +143,7 @@ function displayItems(items) {
 
                 }
             } else {
-                itemHtml += '<i class="ri-heart-3-line" onclick="heart(this,${item.itemCode},${wishchk},event)"></i>'
+                itemHtml += '<i class="ri-heart-3-line"></i>'
             }
             itemHtml += `
                             </span>                        
@@ -187,8 +187,8 @@ function displayItems(items) {
 
 //하트 누르면 삭제
 function heart(divTag, itemCode, wishchk, e) {
-    let heartDiv = document.querySelector('#heart-div');
-    console.log(heartDiv)
+    let heartDiv = divTag.parentElement;
+    console.log(itemCode)
     e.stopPropagation();
     let strHeart = ''
     if (loginId != "") {
@@ -217,7 +217,7 @@ function heart(divTag, itemCode, wishchk, e) {
                     //         location.href = `/wish/goWishList`;
                     //     }
                     strHeart = `
-                    <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${itemCode},${data},event)"><i class="ri-heart-3-line"></i></sapn>
+                    <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${itemCode},${false},event)"><i class="ri-heart-3-line"></i></sapn>
         
                 `
 
@@ -257,7 +257,7 @@ function heart(divTag, itemCode, wishchk, e) {
                     //     }
 
                     strHeart = `
-                    <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${itemCode},${wishchk},event)"><i class="ri-heart-3-fill"></i></sapn>
+                    <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${itemCode},${true},event)"><i class="ri-heart-3-fill"></i></sapn>
         
                 `
 
