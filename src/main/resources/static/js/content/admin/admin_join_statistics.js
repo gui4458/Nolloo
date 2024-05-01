@@ -48,7 +48,7 @@ fetch('/admin/adminJoinStatistics1', { //요청경로
         console.log(itemReserve);
 
         //Doughnut chart 누적참여인원
-        new Chart(document.querySelector('#doughnut-chart-item'), {
+        new Chart(document.querySelector('#doughnut-chart'), {
             type: 'doughnut',
             data: {
                 labels: itemName,
@@ -67,6 +67,7 @@ fetch('/admin/adminJoinStatistics1', { //요청경로
                 }
             }
         });
+        // 월별 파티 참여 인원, 월별 등록된 총 상품수
         //Mixed chart
         new Chart(document.querySelector('#mixed-chart'), {
             type: 'bar',
