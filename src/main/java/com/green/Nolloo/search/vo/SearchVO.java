@@ -13,6 +13,7 @@ import lombok.ToString;
 public class SearchVO extends PageVO {
     private String searchOption;
     private String searchText;
+    private String searchDate;
     private String from;
     private String to;
     private String region1;

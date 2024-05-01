@@ -33,7 +33,7 @@ function getMapData(code, date, r1,r2) {
         requestBody.cateCode = code;
     }
     if (date) {
-        requestBody.from = date;
+        requestBody.searchDate = date;
     }
     if (r1) {
         requestBody.region1 = r1;

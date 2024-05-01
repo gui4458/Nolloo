@@ -83,11 +83,17 @@ public class ItemController {
 //        List<Integer> wishCodeList = new ArrayList<>();
 
         model.addAttribute("cateCode",cateCode);
+        List<ItemVO> recommendList ;
+        Integer reserveCnt = (Integer) session.getAttribute("reserveCnt");
+        System.out.println("1111111111111111111111111111111"+reserveCnt);
+        if (reserveCnt == null || reserveCnt == 0){
+            recommendList = itemService.searchByReadCnt("");
+        }else {
+            recommendList = itemService.searchByReadCnt((String) session.getAttribute("memberId"));
 
-
-
-        List<ItemVO> recommendList = itemService.searchByReadCnt();
+        }
         session.setAttribute("recommendList",recommendList);
+
         List<CateVO> cateList = itemService.selectCate();
         session.setAttribute("cateList",cateList);
 //        if (authentication != null){

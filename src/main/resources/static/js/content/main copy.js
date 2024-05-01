@@ -115,47 +115,39 @@ function displayItems(items) {
             let wishchk = items.wishCodeList.includes(item.itemCode)
             itemHtml = itemHtml + `
 
-                    <div class="item-lazy bg-white shadow-xl shadow-slate-900/5 rounded-lg group" onclick="selectItemCode(${item.itemCode})">
+                    <div class="item-lazy bg-white shadow-xl shadow-slate-900/5 rounded-lg group" onclick="selectItemCode(${item.itemCode}, this)">
                     
                         <div class="flex flex-row p-3 lg:flex-col">
-                        <div class="relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidde">`
-                        // 그림 안에 하트
-                        // image-container  relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden
-                        // <div class="image-container relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">
+                            <div class="image-container relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">`
             if (item.cateCode == 1) {
 
-                itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/itemSolo/${item.imgList[0].attachedFileName}" alt="">
+                itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/itemSolo/${item.imgList[0].attachedFileName}">
                                         `
 
             }
             if (item.cateCode == 2) {
 
-                itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/item/${item.imgList[0].attachedFileName}" alt="">
+                itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/item/${item.imgList[0].attachedFileName}">
                                         `
 
             }
-
-            if (loginId != null) {
+            // <span id="heart" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${item.itemCode},${wishchk},${loginId},event)"><i class="ri-heart-3-fill"></i></sapn>
+            itemHtml += `
+                            <span id="heart" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${item.itemCode},${wishchk},event)">
+                            `
+            if (loginId != "") {
                 if (wishchk) {
-                    itemHtml += `
-                                            <span class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${item.itemCode})"><i class="ri-heart-3-fill"></i></sapn>
-
-                                                `
+                    itemHtml += '<i class="ri-heart-3-fill" ></i>'
                 } else {
-                    itemHtml += `
-                                            <span class="wishAdd-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishAdd(this,${item.itemCode})"><i class="ri-heart-3-line"></i></sapn>
-                                        
-                                        `
+                    itemHtml += '<i class="ri-heart-3-line"></i>'
+
                 }
             } else {
-                itemHtml += `
-                                                    
-                                            
-                                            <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="goLogin(event)"><i class="ri-heart-3-line"></i></sapn>
-                                                
-                                                `
+                itemHtml += '<i class="ri-heart-3-line" onclick="heart(this,${item.itemCode},${wishchk},${loginId},event)"></i>'
             }
             itemHtml += `
+                            </span>                        
+                    
                     </div>
                             <div class="ml-5 lg:ml-0 lg:mt-3">
                                 <figcaption class="font-medium">
@@ -183,6 +175,7 @@ function displayItems(items) {
         });
     }
     itemListContainer.innerHTML += itemHtml;
+
 
 
 

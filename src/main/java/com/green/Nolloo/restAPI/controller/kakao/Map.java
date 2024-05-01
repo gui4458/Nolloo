@@ -70,6 +70,7 @@ public class Map {
     @ResponseBody
     @PostMapping("/now")
     public List<ItemVO> nowPos(SearchVO searchVO) {
+        System.out.println("dddddddddddddddddddddddddd"+searchVO);
         List<ItemVO> nowPos = itemService.selectByDistance(searchVO);
         System.out.println(nowPos);
         return nowPos;

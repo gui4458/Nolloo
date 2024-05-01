@@ -56,10 +56,11 @@ public class WishController {
 //  관심목록에서 아이템 삭제
     @ResponseBody
     @PostMapping("/wishDelete")
-    public void wishDelete(@RequestBody WishVO wishVO, Authentication authentication){
+    public int wishDelete(@RequestBody WishVO wishVO, Authentication authentication){
         User user = (User)authentication.getPrincipal();
         wishVO.setMemberId(user.getUsername());
         wishService.wishDelete(wishVO);
+        return wishService.check(wishVO);
     }
 
 }

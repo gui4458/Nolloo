@@ -46,6 +46,9 @@ public interface AdminService {
     //공지사항 댓글 삭제
     void deleteReply(ReplyVO replyVO);
 
+    //공지사항 댓글 수정
+    void updateReply(ReplyVO replyVO);
+
     // 도넛 차트 참여인원 조회
     List<ReserveVO> selectListAdminStatistics();
 
@@ -57,5 +60,6 @@ public interface AdminService {
 
     //도넛 차트 현재 참여인원
     List<ReserveVO> selectListDoughnutTrueCnt();
+
 
 }

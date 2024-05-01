@@ -22,6 +22,7 @@ public class ReserveVO {
     private String searchText;
     private String from;
     private String to;
+    private int reserveCnt;
 
 
 }

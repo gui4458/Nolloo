@@ -38,7 +38,7 @@
                 th:onclick="|location.href='@{/admin/adminDelete(noticeCode=${noticeDetail.noticeCode})}'|">삭제하기</button>
         </div>
     </div>
-
+    <!-- 댓글 -->
     <div class="w-full mt-[15%]">
         <form action="/admin/noticeReply" method="post">
             <input type="hidden" name="noticeCode" th:value="${noticeDetail.noticeCode}">
@@ -49,6 +49,7 @@
             </div>
         </form>
 
+        
         <table th:each="reply:${replyList}" class="w-[60%] m-auto mb-5">
             <thead>
                 <tr class="border-b-2 [&>td]:p-2 text-center">
@@ -56,15 +57,19 @@
                     <td class="text-right">[[${reply.createDate}]]</td>
                 </tr>
                 <tr class="border-b-2 [&>td]:p-2 text-center">
-                    <td colspan="2">[[${reply.content}]]</td>
+                    <td class="add-input" colspan="2" id="replyContent">[[${reply.content}]]</td>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td colspan="2" rowspan="2">
                         <div class="m-auto text-right mt-[10px]">
-                            <!-- <button class="bg-red-300 text-white rounded-lg" type="button"
-                                th:onclick="|location.href='@{/admin/adminRevise(noticeCode=${noticeDetail.noticeCode})}'|">수정하기</button> -->
+                        
+                            <button class="bg-red-300 text-white rounded-lg" type="button"
+                                th:onclick="updateReply()">수정하기</button>
+                            
+                                <!-- <button class="bg-red-300 text-white rounded-lg" type="button"
+                                th:onclick="|location.href='@{/admin/updateReply(replyCode=${reply.replyCode},noticeCode=${noticeDetail.noticeCode})}'|">수정하기</button> -->
                             <button class="bg-red-300 text-white rounded-lg " type="button"
                                 th:onclick="|location.href='@{/admin/deleteReply(replyCode=${reply.replyCode},noticeCode=${noticeDetail.noticeCode})}'|">삭제하기</button>
                         </div>
@@ -87,7 +92,7 @@
 
 <th:block layout:fragment="content_js">
     <!-- html 파일이 열릴때 같이 실행되는 js -->
-    <script src="/js/content/notice_detail.js"></script>
+    <script src="/js/content/admin/notice_detail.js"></script>
 </th:block>
 
 </html>

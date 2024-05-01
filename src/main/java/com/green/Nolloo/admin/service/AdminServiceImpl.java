@@ -83,6 +83,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
 
+
     @Override
     public List<ReserveVO> selectListAdminStatistics() {
         return sqlSession.selectList("adminMapper.selectListAdminStatistics");
@@ -105,4 +106,10 @@ public class AdminServiceImpl implements AdminService {
     public List<ReserveVO> selectListDoughnutTrueCnt() {
         return sqlSession.selectList("adminMapper.selectListDoughnutTrueCnt");
     }
+    @Override
+    public void updateReply(ReplyVO replyVO) {
+        sqlSession.update("adminMapper.updateReply");
+    }
+
+
 }

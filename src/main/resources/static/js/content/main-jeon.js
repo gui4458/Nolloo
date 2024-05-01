@@ -16,7 +16,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 });
 
-
 // 초기 아이템 가져오는 함수
 function fetchInitialItems() {
     limit = 9;
@@ -55,7 +54,7 @@ function eventScroll() {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
         fetchItems();
     }
-}
+};
 
 
 // 스크롤 이벤트 리스너 등록
@@ -121,18 +120,34 @@ function displayItems(items) {
                             <div class="image-container relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">`
             if (item.cateCode == 1) {
 
-                itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/itemSolo/${item.imgList[0].attachedFileName}" alt="">
+                itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/itemSolo/${item.imgList[0].attachedFileName}">
                                         `
 
             }
             if (item.cateCode == 2) {
 
-                itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/item/${item.imgList[0].attachedFileName}" alt="">
+                itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/item/${item.imgList[0].attachedFileName}">
                                         `
 
             }
-                    itemHtml += `
-                                            <span id="heart" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${item.itemCode},${wishchk},${loginId},event)"><i class="ri-heart-3-fill"></i></sapn>
+            // <span id="heart" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${item.itemCode},${wishchk},${loginId},event)"><i class="ri-heart-3-fill"></i></sapn>
+            itemHtml += `
+            <div>
+                            <span id="" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${item.itemCode},${wishchk},event)">
+                            `
+            if (loginId != "") {
+                if (wishchk) {
+                    itemHtml += '<i class="ri-heart-3-fill" ></i>'
+                } else {
+                    itemHtml += '<i class="ri-heart-3-line"></i>'
+
+                }
+            } else {
+                itemHtml += '<i class="ri-heart-3-line"></i>'
+            }
+            itemHtml += `
+                            </span>                        
+                    </div>
                     </div>
                             <div class="ml-5 lg:ml-0 lg:mt-3">
                                 <figcaption class="font-medium">
@@ -163,22 +178,19 @@ function displayItems(items) {
 
 
 
+
 }
 
 // 하트 추가 및 삭제 함수
 // 하트 누르면 추가
-function wishAdd(divTag, itemCode, e) {
-    const head = divTag;
-    e.stopPropagation();
 
-}
 
 //하트 누르면 삭제
-function heart(divTag, itemCode, wishchk, loginId, e) {
-    alert(1)
-    const head = divTag
-
+function heart(divTag, itemCode, wishchk, e) {
+    let heartDiv = divTag.parentElement;
+    console.log(itemCode)
     e.stopPropagation();
+    let strHeart = ''
     if (loginId != "") {
         if (wishchk) {
             fetch('/wish/wishDelete', { //요청경로
@@ -204,12 +216,15 @@ function heart(divTag, itemCode, wishchk, loginId, e) {
                     //     if (result1) {
                     //         location.href = `/wish/goWishList`;
                     //     }
-                    const strInsert = `
-                    <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishAdd(this,${itemCode})"><i class="ri-heart-3-line"></i></sapn>
+                    strHeart = `
+                    <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${itemCode},${false},event)"><i class="ri-heart-3-line"></i></sapn>
         
                 `
-                    head.replaceChildren(head.textContent = '');
-                    head.insertAdjacentHTML("afterbegin", strInsert)
+
+                    heartDiv.replaceChildren(heartDiv.textContent = '');
+                    heartDiv.insertAdjacentHTML("afterbegin", strHeart)
+
+
 
                 })
                 //fetch 통신 실패 시 실행 영역
@@ -241,12 +256,14 @@ function heart(divTag, itemCode, wishchk, loginId, e) {
                     //         location.href = `/wish/goWishList`;
                     //     }
 
-                    const strDelete = `
-                    <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="wishDelete(this,${itemCode})"><i class="ri-heart-3-fill"></i></sapn>
+                    strHeart = `
+                    <span class="text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${itemCode},${true},event)"><i class="ri-heart-3-fill"></i></sapn>
         
                 `
-                    head.replaceChildren(head.textContent = '');
-                    head.insertAdjacentHTML("afterbegin", strDelete)
+
+                    heartDiv.replaceChildren(heartDiv.textContent = '');
+                    heartDiv.insertAdjacentHTML("afterbegin", strHeart)
+
 
 
                     // location.href = '/item/list'
@@ -259,7 +276,7 @@ function heart(divTag, itemCode, wishchk, loginId, e) {
                 });
         }
 
-    }else{
+    } else {
         alert('로그인을 해주세요.');
 
     }
@@ -267,10 +284,7 @@ function heart(divTag, itemCode, wishchk, loginId, e) {
 
 }
 
-// 로그인 함수
-function gologin(event) {
-    event.stopPropagation();
-}
+
 
 function goChat(itemCode) {
     // 채팅방 URL 생성
@@ -462,10 +476,6 @@ function modalToggle() {
     document.querySelector('#detail_modal').classList.toggle('flex');
 }
 
-function goLogin(e) {
-    alert('로그인 후 이용해주세요.')
-    e.stopPropagation();
-}
 
 function reserveInsert(itemCode, reserveCnt) {
 
