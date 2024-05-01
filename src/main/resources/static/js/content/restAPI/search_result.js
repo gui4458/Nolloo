@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     let searchText = document.querySelector('.searchText').value.toLowerCase();
-    let items = document.querySelectorAll('.table tbody td');
+    let items = document.querySelectorAll('.item-title');
 
     items.forEach(function(item) {
         let text = item.textContent.toLowerCase();

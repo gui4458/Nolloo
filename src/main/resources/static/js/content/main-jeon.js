@@ -188,7 +188,6 @@ function displayItems(items) {
 //하트 누르면 삭제
 function heart(divTag, itemCode, wishchk, e) {
     let heartDiv = divTag.parentElement;
-    console.log(itemCode)
     e.stopPropagation();
     let strHeart = ''
     if (loginId != "") {

@@ -436,8 +436,6 @@
             ,ITEM_CONTENT
             ,ITEM_PRICE
             ,ITEM_PLACE
-            ,ITEM_START_DATE
-            ,ITEM_END_DATE
             ,ITEM_TEL
             ,ITEM_URL
             ,MEMBER_ID
@@ -455,14 +453,11 @@
             ON INFO.ITEM_CODE = IMG.ITEM_CODE
             INNER JOIN CATE C
             ON INFO.CATE_CODE = C.CATE_CODE
-            WHERE ITEM_CONTENT LIKE CONCAT ('%' ,#{searchText}, '%')
-            OR ITEM_TITLE LIKE CONCAT ('%',#{searchText},'%')
+            WHERE ITEM_TITLE LIKE CONCAT ('%',#{searchText},'%')
             OR ITEM_PRICE LIKE CONCAT ('%',#{searchText},'%')
             OR ITEM_PLACE LIKE CONCAT ('%',#{searchText},'%')
             OR ITEM_START_DATE LIKE CONCAT ('%',#{searchText},'%')
             OR ITEM_END_DATE LIKE CONCAT ('%',#{searchText},'%')
-            OR ITEM_TEL LIKE CONCAT ('%',#{searchText},'%')
-            OR ITEM_URL LIKE CONCAT ('%',#{searchText},'%')
             OR MEMBER_ID LIKE CONCAT ('%',#{searchText},'%')
 
     </select>
