@@ -61,7 +61,6 @@ public class SecurityConfig {
                                     // 이전페이지가 없다면 지정한 url로 이동
                                     .defaultSuccessUrl("/member/loginResult")
                                     .failureUrl("/member/loginResult");
-
                         }
                 ).logout(
                         logout -> {
