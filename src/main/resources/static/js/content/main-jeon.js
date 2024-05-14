@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // 초기 아이템 가져오는 함수
-function fetchInitialItems() {
+function fetchInitialItems() { 
     limit = 9;
     offset = 0;
     fetch('/item/list', { //요청경로
