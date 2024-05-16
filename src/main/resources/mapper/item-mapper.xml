@@ -145,54 +145,122 @@
 <!--    item 메인 목록조회-->
     <select id="selectPartyList" resultMap="item">
         SELECT
-            INFO.ITEM_CODE
-            , ITEM_TITLE
-            , ITEM_DATE
-            , ITEM_PRICE
-            , ITEM_PLACE
-            , ITEM_PEOPLE
-            , INFO.CATE_CODE
-            , PLACE_DETAIL
-            , C.CATE_NAME
-            , ITEM_CONTENT
-            , LEFT(ITEM_START_DATE,10) ITEM_START_DATE
-            , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
-            , ATTACHED_FILE_NAME
-            , READ_CNT
-            , PEOPLE_CNT
+        ITEM_CODE
+        , ITEM_TITLE
+        , ITEM_DATE
+        , ITEM_PRICE
+        , ITEM_PLACE
+        , ITEM_PEOPLE
+        , CATE_CODE
+        , PLACE_DETAIL
+        , CATE_NAME
+        , ITEM_CONTENT
+        , ITEM_START_DATE
+        , ITEM_END_DATE
+        , ATTACHED_FILE_NAME
+        , READ_CNT
+        , PEOPLE_CNT
+        ,TEST_ORDER, ROWNUM
+        FROM
+        (
+        SELECT * , @ROWNUM_1:=@ROWNUM_1+1 AS ROWNUM
+        FROM
+        (
+        SELECT
+        INFO.ITEM_CODE
+        , ITEM_TITLE
+        , ITEM_DATE
+        , ITEM_PRICE
+        , ITEM_PLACE
+        , ITEM_PEOPLE
+        , INFO.CATE_CODE
+        , PLACE_DETAIL
+        , C.CATE_NAME
+        , ITEM_CONTENT
+        , LEFT(ITEM_START_DATE,10) ITEM_START_DATE
+        , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
+        , ATTACHED_FILE_NAME
+        , READ_CNT
+        , PEOPLE_CNT
+        , 1 AS TEST_ORDER
+        FROM ITEM_INFO INFO
+        INNER JOIN ITEM_IMAGE IMG
+        ON INFO.ITEM_CODE = IMG.ITEM_CODE
+        INNER JOIN CATE C
+        ON INFO.CATE_CODE = C.CATE_CODE
+        WHERE IS_MAIN='Y'
+        AND ITEM_END_DATE &gt; CURRENT_DATE()
+        <if test='cateCode != 0'>
+            AND INFO.CATE_CODE = #{cateCode}
+
+        </if>
+        ORDER BY ITEM_START_DATE LIMIT 10000
+        <if test='limit != 0'>
+            LIMIT ${limit} OFFSET ${offset}
+
+        </if>
+        ) AA,(select @ROWNUM_1:=0) temp
+        ) A
+        UNION ALL
+        SELECT
+        ITEM_CODE
+        , ITEM_TITLE
+        , ITEM_DATE
+        , ITEM_PRICE
+        , ITEM_PLACE
+        , ITEM_PEOPLE
+        , CATE_CODE
+        , PLACE_DETAIL
+        , CATE_NAME
+        , ITEM_CONTENT
+        , ITEM_START_DATE
+        , ITEM_END_DATE
+        , ATTACHED_FILE_NAME
+        , READ_CNT
+        , PEOPLE_CNT
+        ,TEST_ORDER, ROWNUM
+        FROM
+        (
+        SELECT * , @ROWNUM_2:=@ROWNUM_2+1 AS ROWNUM
+        FROM
+        (
+        SELECT
+        INFO.ITEM_CODE
+        , ITEM_TITLE
+        , ITEM_DATE
+        , ITEM_PRICE
+        , ITEM_PLACE
+        , ITEM_PEOPLE
+        , INFO.CATE_CODE
+        , PLACE_DETAIL
+        , C.CATE_NAME
+        , ITEM_CONTENT
+        , LEFT(ITEM_START_DATE,10) ITEM_START_DATE
+        , LEFT(ITEM_END_DATE,10) ITEM_END_DATE
+        , ATTACHED_FILE_NAME
+        , READ_CNT
+        , PEOPLE_CNT
+        , 2 AS TEST_ORDER
 
         FROM ITEM_INFO INFO
         INNER JOIN ITEM_IMAGE IMG
         ON INFO.ITEM_CODE = IMG.ITEM_CODE
         INNER JOIN CATE C
         ON INFO.CATE_CODE = C.CATE_CODE
-
         WHERE IS_MAIN='Y'
+        AND ITEM_END_DATE &lt;= CURRENT_DATE()
         <if test='cateCode != 0'>
-        AND INFO.CATE_CODE = #{cateCode}
+            AND INFO.CATE_CODE = #{cateCode}
 
         </if>
-
-<!--        <if test='searchText != null and !searchText.equals("")'>-->
-<!--            AND ${searchOption} LIKE CONCAT('%',#{searchText},'%')-->
-<!--        </if>-->
-<!--        <if test='from != null and !from.equals("")'>-->
-<!--            AND DATE_FORMAT(ITEM_START_DATE, '%Y-%m-%d') &gt;= #{from}-->
-<!--        </if>-->
-<!--        <if test='to != null and !to.equals("")'>-->
-<!--            AND #{to} &gt;= DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d')-->
-<!--        </if>-->
-        ORDER BY
-        CASE
-        WHEN ITEM_START_DATE >= CURRENT_DATE() THEN 0
-        ELSE 1
-        END,
-        ITEM_START_DATE ASC
+        ORDER BY ITEM_START_DATE DESC LIMIT 10000
         <if test='limit != 0'>
             LIMIT ${limit} OFFSET ${offset}
 
         </if>
-
+        ) BB,  (select @ROWNUM_2:=0) temp
+        ) B
+        ORDER BY TEST_ORDER, ROWNUM
     </select>
 
     <select id="selectByDistance" resultMap="item">

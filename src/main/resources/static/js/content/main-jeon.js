@@ -144,7 +144,7 @@ function displayItems(items) {
 
 
             if(dateString > item.itemStartDate && dateString > item.itemEndDate){
-                itemHtml += `<div class="justify-center" style="padding: 100px; font-size : 1.5rem; height:100%; position: absolute; left: 50%; top: 50%; background-color: rgba(165, 165, 165, 0.8); font-weight: bold; width: 100%; text-align: center; transform: translate(-50%,-50%);">종료된 행사 입니다.</div>`
+                itemHtml += `<div class="justify-center" style="padding: 90px; font-size : 1.5rem; height:100%; position: absolute; left: 50%; top: 50%; background-color: rgba(165, 165, 165, 0.8); font-weight: bold; width: 100%; text-align: center; transform: translate(-50%,-50%);">종료된 ${item.cateName} 입니다.</div>`
             }else if(item.cateCode != 2 && item.peopleCnt == item.itemPeople){
                 itemHtml += `<div class="justify-center" style="padding: 100px; font-size : 1.5rem; height:100%; position: absolute; left: 50%; top: 50%; background-color: rgba(165, 165, 165, 0.8); font-weight: bold; width: 100%; text-align: center; transform: translate(-50%,-50%);">인원마감</div>`
             }
