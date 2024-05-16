@@ -61,5 +61,6 @@ public interface AdminService {
     //도넛 차트 현재 참여인원
     List<ReserveVO> selectListDoughnutTrueCnt();
 
+    List<ReserveVO> selectItemCate();
 
 }

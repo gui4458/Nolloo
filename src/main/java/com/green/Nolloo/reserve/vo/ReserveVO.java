@@ -1,5 +1,6 @@
 package com.green.Nolloo.reserve.vo;
 
+import com.green.Nolloo.item.vo.CateVO;
 import com.green.Nolloo.item.vo.ItemVO;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,6 +24,7 @@ public class ReserveVO {
     private String from;
     private String to;
     private int reserveCnt;
+    private CateVO cateVO;
 
 
 }

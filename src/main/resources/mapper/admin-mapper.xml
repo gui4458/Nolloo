@@ -298,14 +298,16 @@
         </if>
 
     </select>
+<!--    참여 통계 표-->
     <select id="selectItemCate" resultMap="itemMapper.item">
-        SELECT
-        MEMBER_ID
+        SELECT RESERVE.MEMBER_ID
         , CATE_NAME
         , ITEM_TITLE
-        FROM item_info INNER JOIN cate
-        ON cate.CATE_CODE = item_info.CATE_CODE
-        WHERE CATE_NAME= #{cateName}
+        FROM reserve INNER JOIN ITEM_INFO
+        ON reserve.ITEM_CODE = item_info.ITEM_CODE
+        INNER JOIN CATE
+        ON reserve.CATE_CODE= cate.CATE_CODE
+        ORDER BY CATE_NAME DESC
     </select>
 
 

@@ -115,14 +115,14 @@ public class AdminController {
         System.out.println(reserveList);
         return "content/admin/admin_buy_list";
     }
-
+// 참여 통계 이동
     @GetMapping("/adminJoinStatistics")
     public String adminJoinStatistics(Model model){
         //System.out.println("admin!!:"+ adminService.selectDate());
-
+        model.addAttribute("reserveList",adminService.selectItemCate());
         return "content/admin/admin_join_statistics";
     }
-
+// 참여 통계 차트
     @ResponseBody
     @PostMapping("/adminJoinStatistics1")
     public Map<String, Object> Date11(){

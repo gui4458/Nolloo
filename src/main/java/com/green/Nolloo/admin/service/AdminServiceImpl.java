@@ -106,9 +106,15 @@ public class AdminServiceImpl implements AdminService {
     public List<ReserveVO> selectListDoughnutTrueCnt() {
         return sqlSession.selectList("adminMapper.selectListDoughnutTrueCnt");
     }
+
+    @Override
+    public List<ReserveVO> selectItemCate() {
+        return sqlSession.selectList("adminMapper.selectItemCate");
+    }
+// 참여 통계 테이블
     @Override
     public void updateReply(ReplyVO replyVO) {
-        sqlSession.update("adminMapper.updateReply");
+        sqlSession.selectList("adminMapper.updateReply");
     }
 
 

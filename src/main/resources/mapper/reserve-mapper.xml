@@ -12,7 +12,7 @@
         <result column="ITEM_CODE" property="itemCode"/>
         <result column="CATE_CODE" property="cateCode"/>
         <association property="itemVO" resultMap="itemMapper.item"/>
-
+        <association property="cateVO" resultMap="itemMapper.cate"/>
     </resultMap>
 
 <!-- 이전 예약 내역 조회-->
