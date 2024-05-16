@@ -18,6 +18,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const heartTag = document.querySelector('#heart-div');
 let heartStr = `
-                
+
                 `
-heartTag.insertAdjacentHTML("afterbegin",)

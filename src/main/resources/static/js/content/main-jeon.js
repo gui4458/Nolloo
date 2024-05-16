@@ -104,13 +104,24 @@ function fetchItems() {
 
 // 초기 아이템 표시 함수
 function displayItems(items) {
+    let today = new Date();
+
+    let year = today.getFullYear();
+    let month = ('0' + (today.getMonth() + 1)).slice(-2);
+    let day = ('0' + today.getDate()).slice(-2);
+
+    let dateString = year + '-' + month + '-' + day;
+
     if (offset >= items.dataCnt) {
         itemHtml += '<div class="text-center w-[70%] mb-[70px] border-2 bg-white shadow-lg mx-auto h-[50px] p-3 rounded-lg text-base col-start-1 col-span-3">새로운 글이 없습니다.</div>'
 
         window.removeEventListener('scroll', eventScroll);
     } else {
+
         const itemListContainer = document.getElementById('itemListContainer');
         items.itemList.forEach(item => {
+            console.log(dateString,item.itemStartDate)
+            console.log(dateString > item.itemStartDate)
             let wishchk = items.wishCodeList.includes(item.itemCode)
             itemHtml = itemHtml + `
 
@@ -121,7 +132,7 @@ function displayItems(items) {
             if (item.cateCode == 1) {
 
                 itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/itemSolo/${item.imgList[0].attachedFileName}">
-                                        `
+                            `
 
             }
             if (item.cateCode == 2) {
@@ -130,6 +141,16 @@ function displayItems(items) {
                                         `
 
             }
+
+
+            if(dateString > item.itemStartDate && dateString > item.itemEndDate){
+                itemHtml += `<div class="justify-center" style="padding: 100px; font-size : 1.5rem; height:100%; position: absolute; left: 50%; top: 50%; background-color: rgba(165, 165, 165, 0.8); font-weight: bold; width: 100%; text-align: center; transform: translate(-50%,-50%);">종료된 행사 입니다.</div>`
+            }else if(item.cateCode != 2 && item.peopleCnt == item.itemPeople){
+                itemHtml += `<div class="justify-center" style="padding: 100px; font-size : 1.5rem; height:100%; position: absolute; left: 50%; top: 50%; background-color: rgba(165, 165, 165, 0.8); font-weight: bold; width: 100%; text-align: center; transform: translate(-50%,-50%);">인원마감</div>`
+            }
+
+
+
             // <span id="heart" class="wishDelete-div text-red-500 absolute right-[10px] top-[5px] text-[25px] cursor-pointer" onclick="heart(this,${item.itemCode},${wishchk},${loginId},event)"><i class="ri-heart-3-fill"></i></sapn>
             itemHtml += `
             <div>
@@ -527,24 +548,24 @@ function drawMap(posX, posY) {
     //34.86687999 ITEM_X
     //128.7260471 ITEM_Y
 
-    var mapContainer = document.getElementById('detail_map'); // 지도를 표시할 div 
-    var mapOption = {
+    let mapContainer = document.getElementById('detail_map'); // 지도를 표시할 div 
+    let mapOption = {
         center: new kakao.maps.LatLng(posX, posY), // 지도의 중심좌표
         level: 4 // 지도의 확대 레벨
     };
 
-    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+    let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-    var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png'; // 마커이미지의 주소입니다    
-    var imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
-    var imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+    let imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png'; // 마커이미지의 주소입니다    
+    let imageSize = new kakao.maps.Size(64, 69); // 마커이미지의 크기입니다
+    let imageOption = { offset: new kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
     // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
-    var markerPosition = new kakao.maps.LatLng(posX, posY); // 마커가 표시될 위치입니다
+    let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+    let markerPosition = new kakao.maps.LatLng(posX, posY); // 마커가 표시될 위치입니다
 
     // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({
+    let marker = new kakao.maps.Marker({
         position: markerPosition,
         image: markerImage // 마커이미지 설정 
     });
