@@ -12,8 +12,8 @@
     <form action="/admin/noticeRevise" method="post">
         <input type="hidden" name="noticeCode" th:value="${noticeDetail.noticeCode}">
         <div class="w-full">
-            <table class="w-[60%] m-auto border mt-[5%]">
-                <caption>공지사항</caption>
+            <table class="w-[80%] border mt-[5%]">
+                <caption class="text-[20px] text-red-400">공지사항</caption>
                 <thead>
                     <tr class="bg-red-300 [&>td]:p-2">
                         <td colspan="5"></td>
@@ -35,7 +35,7 @@
 
             </table>
             <div class="w-[60%] m-auto text-right mt-[20px]">
-                <input class="bg-red-300 text-white rounded-lg w-[10%]" type="submit" value="수정하기">
+                <input class="bg-red-300 text-white rounded-lg w-[75px] h-[35px] text-[17px] text-center" value="수정하기">
             </div>
         </div>
     </form>

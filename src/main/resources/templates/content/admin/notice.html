@@ -16,23 +16,23 @@
             <div class="justify-start">
                 <input type="hidden" name="noticeWriter" th:value="${session.memberId}">
                 <table class="mt-[10%] w- ml-[30px] m-auto border border-collapse">
-                    <caption class="text-left text-red-400">공지사항 글쓰기</caption>
+                    <caption class="text-left text-red-400 text-[17px]">공지사항 글쓰기</caption>
                     <tbody class="[&>tr>td]:border [&>tr]:border">
 
                         <tr>
-                            <td class="w-[200px] bg-red-300 text-white">제목</td>
+                            <td class="w-[200px] bg-red-300 text-white text-center">제목</td>
                             <td class="w-[800px]">
                                 <input type="text" name="noticeTitle" id="">
                             </td>
                         </tr>
                         <tr class="h-50">
-                            <td class="w-[200px] bg-red-300 text-white ">content</td>
+                            <td class="w-[200px] h-[400px] bg-red-300 text-white text-center">content</td>
                             <td class="w-[800px] ">
-                                <input type="text" name="noticeContent" id="">
+                                <input type="text" class="w-full h-[390px]" name="noticeContent" id="">
                             </td>
                         </tr>
                         <tr class="h-10">
-                            <td class="w-[200px] bg-red-300 text-white ">첨부파일</td>
+                            <td class="w-[200px] bg-red-300 text-white text-center">첨부파일</td>
                             <td>
                                 <input type="file" name="noticeImgs" multiple />
                             </td>
@@ -42,7 +42,7 @@
                 </table>
             </div>
             <div class="mt-[20px] ml-[80%]">
-                <input class="bg-red-300 text-white rounded-lg w-[20%]" type="submit" value="확인" name="" id="">
+                <input class="bg-red-300 text-white rounded-lg w-[50%] h-[25%] text-[17px]" type="submit" value="확인" name="" id="">
             </div>
         </form>
     </div>

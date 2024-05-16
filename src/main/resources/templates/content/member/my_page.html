@@ -16,7 +16,7 @@
 
     <div class="w-[80%] h-[80%]">
         <form action="/member/myPage" method="post" id="update-member-form">
-            <table class="border border-collapse bg-white w-full">
+            <table class="border border-collapse bg-white w-full h-[450px]">
                 <caption class="text-left">회원정보수정</caption>
                 <tbody class="[&>tr>td]:border-b  text-center">
                     <tr>
@@ -128,32 +128,35 @@
 
 
 
-                            <input type="text" name="memberAddr" class="form-control" id="roadAddress"
-                                th:value="${memberInfo.memberAddr}">
+                            <div class="flex">
+                                <input type="text" name="memberAddr" class="form-control basis-1/2" id="roadAddress"
+                                    th:value="${memberInfo.memberAddr}">
 
 
 
-                            <input type="text" name="addrDetail" class="form-control" th:value="${memberInfo.addrDetail}">
+                                <input type="text" name="addrDetail" class="form-control basis-1/2"
+                                    th:value="${memberInfo.addrDetail}">
+                            </div>
 
 
                         </td>
 
                     </tr>
-    
+
                     <tr>
                         <td class="bg-red-300 text-white">성별</td>
                         <td class="text-start">
                             <div>
 
-                                <input class="form-check-input" type="radio" name="gender" th:value="${memberInfo.gender}"
-                                    th:checked="${memberInfo.gender == 'male'}">
+                                <input class="form-check-input" type="radio" name="gender"
+                                    th:value="${memberInfo.gender}" th:checked="${memberInfo.gender == 'male'}">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     남성
                                 </label>
 
 
-                                <input class="form-check-input" type="radio" name="gender" th:value="${memberInfo.gender}"
-                                    th:checked="${memberInfo.gender == 'female'}">
+                                <input class="form-check-input" type="radio" name="gender"
+                                    th:value="${memberInfo.gender}" th:checked="${memberInfo.gender == 'female'}">
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     여성
                                 </label>
@@ -167,10 +170,12 @@
             </table>
 
             <div class="text-right mt-[20px]">
-                <input class="w-[10%] border rounded-lg bg-red-300 text-white" type="submit" value="수정하기" onclick="reviseChk()">
+                <input class="w-[10%] h-[30px] border rounded-lg bg-red-300 text-white" type="submit" value="수정하기"
+                    onclick="reviseChk()">
 
 
-                <input class="w-[10%] border rounded-lg bg-red-300 text-white" type="submit" onclick="deleteMember()" value="회원탈퇴">
+                <input class="w-[10%] h-[30px] border rounded-lg bg-red-300 text-white" type="submit"
+                    onclick="deleteMember()" value="회원탈퇴">
             </div>
         </form>
 
