@@ -181,7 +181,12 @@
 <!--        <if test='to != null and !to.equals("")'>-->
 <!--            AND #{to} &gt;= DATE_FORMAT(ITEM_END_DATE, '%Y-%m-%d')-->
 <!--        </if>-->
-        ORDER BY ITEM_CODE DESC
+        ORDER BY
+        CASE
+        WHEN ITEM_START_DATE >= CURRENT_DATE() THEN 0
+        ELSE 1
+        END,
+        ITEM_START_DATE ASC
         <if test='limit != 0'>
             LIMIT ${limit} OFFSET ${offset}
 

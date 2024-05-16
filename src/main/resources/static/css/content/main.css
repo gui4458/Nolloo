@@ -100,3 +100,7 @@
     width: 30px;
     height: 30px;
 }
+
+.p-tag::-webkit-scrollbar-track-piece{
+    border-top-right-radius: 2em;
+}
