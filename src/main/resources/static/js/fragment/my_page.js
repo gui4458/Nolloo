@@ -18,38 +18,39 @@ function searchAddress() {
     }).open();
 }
 
+//회원정보수정
 function reviseChk() {
 
-    const memberPw_tag = document.querySelector('#update_memberPw');
+    // const memberPw_tag = document.querySelector('#update_memberPw');
 
-    //validation 처리 (데이터 유효성 검사)
-    if (memberPw_tag.value == '') {
-        //현재 input 태그에 에러메세지가 있는지 검사
-        const error_span = memberPw_tag.closest('tr').querySelector('.error');
+    // //validation 처리 (데이터 유효성 검사)
+    // if (memberPw_tag.value == '') {
+    //     //현재 input 태그에 에러메세지가 있는지 검사
+    //     const error_span = memberPw_tag.closest('tr').querySelector('.error');
 
-        //만약 기존의 에러메세지가 있다면 지워줌
-        if (error_span != null) {
-            error_span.remove();
-        }
+    //     //만약 기존의 에러메세지가 있다면 지워줌
+    //     if (error_span != null) {
+    //         error_span.remove();
+    //     }
 
-        const error_str = '<span class="error" style="color:red; font-style:italic; font-size:0.8rem;">비밀번호는 필수입력입니다.</span>';
-        memberPw_tag.insertAdjacentHTML('afterend', error_str);
-    }
+    //     const error_str = '<span class="error" style="color:red; font-style:italic; font-size:0.8rem;">비밀번호는 필수입력입니다.</span>';
+    //     memberPw_tag.insertAdjacentHTML('afterend', error_str);
+    // }
 
 
-    const memberPwChk=document.querySelector('#update_memberPwChk')
+    // const memberPwChk=document.querySelector('#update_memberPwChk')
 
-    if(memberPwChk.value==''){
-        const error_span=memberPwChk.closest('tr').querySelector('.error')
+    // if(memberPwChk.value==''){
+    //     const error_span=memberPwChk.closest('tr').querySelector('.error')
 
-        if (error_span != null) {
-            error_span.remove();
-        }
+    //     if (error_span != null) {
+    //         error_span.remove();
+    //     }
 
-        const error_str = '<span class="error" style="color:red; font-style:italic; font-size:0.8rem;">비밀번호 확인은 필수입력입니다.</span>';
-        memberPwChk.insertAdjacentHTML('afterend', error_str);
+    //     const error_str = '<span class="error" style="color:red; font-style:italic; font-size:0.8rem;">비밀번호 확인은 필수입력입니다.</span>';
+    //     memberPwChk.insertAdjacentHTML('afterend', error_str);
 
-    }
+    // }
 
     const memberName= document.querySelector('#update_memberName')
 
@@ -121,7 +122,8 @@ function reviseChk() {
     //위의 조건이 다 맞다면 submit
 
     if (memberName.value != '' && memberPw_tag.value != '' && memberEmail.value !='') {
-        document.querySelector('#update-member-form').submit();    
+        document.querySelector('#update-member-form').submit(); 
+        alert('수정이 완료되었습니다.');
     }
 
 

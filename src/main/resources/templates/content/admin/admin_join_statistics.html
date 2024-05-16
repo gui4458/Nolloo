@@ -10,7 +10,7 @@
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
-    <div class="mb-20">
+    <div class="mb-20 mt-3">
         참여통계
         <div class="flex">
             <div>
@@ -20,46 +20,35 @@
                 <canvas id="mixed-chart" style="width: 500px; height: 500px;"></canvas>
             </div>
         </div>
-
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-[80%]">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            NO.
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            참여 파티
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            ID
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            파티명
-                        </th>
+        <div class="mb-[10%] ml-20">
+            <table class="border-collapse mt-3 w-[80%]">
+                <caption class="text-left text-red-400 text-[19px]">공지사항</caption>
+                <colgroup>
+                    <col width="8%">
+                    <col width="25%">
+                    <col width="20%">
+                    <col width="15%">
+                </colgroup>
+                <thead>
+                    <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300 text-center">
+                        <td>NO.</td>
+                        <td>참여 파티</td>
+                        <td>ID</td>
+                        <td>파티명</td>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                        th:each="reserve, state : ${reserveList}">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            [[${#lists.size(reserveList)-state.index}]]
-                        </th>
-                        <td class="px-6 py-4">
-                            [[${reserve.cateName}]]
-                        </td>
-                        <td class="px-6 py-4">
-                            [[${reserve.memberId}]]
-                        </td>
-                        <td class="px-6 py-4">
-                            [[${reserve.itemTitle}]]
-                        </td>
-
+                    <tr  class="[&>td]:p-2 font-semibold border-b-2 text-center" th:each="reserve, state : ${reserveList}">
+                        <td>[[${#lists.size(reserveList)-state.index}]]</td>
+                        <td>[[${reserve.cateName}]]</td>
+                        <td>[[${reserve.memberId}]]</td>
+                        <td>[[${reserve.itemTitle}]]</td>
                     </tr>
-
                 </tbody>
+
             </table>
         </div>
+
     </div>
 </th:block>
 

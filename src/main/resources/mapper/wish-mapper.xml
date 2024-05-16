@@ -24,6 +24,7 @@
         <result column="JOIN_DATE" property="joinDate"/>
         <result column="WISH_CODE" property="wishCode"/>
         <result column="WISH_DATE" property="wishDate"/>
+        <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
     </resultMap>
 	<insert id="insertWish">
         INSERT INTO ITEM_WISH(
@@ -37,18 +38,22 @@
 
     <select id="selectWish" resultMap="wish">
         SELECT WISH_CODE
-            ,ITEM_CODE
-            ,WISH_DATE
-            ,ITEM_TITLE
-            ,ITEM_CONTENT
-            ,ITEM_PRICE
-            ,ITEM_PEOPLE
-            ,PEOPLE_CNT
-            ,ITEM_PLACE
-            ,PLACE_DETAIL
-        FROM WISH_VIEW
-
+        ,I.ITEM_CODE
+        ,WISH_DATE
+        ,ITEM_TITLE
+        ,ITEM_CONTENT
+        ,ITEM_PRICE
+        ,ITEM_PEOPLE
+        ,PEOPLE_CNT
+        ,ITEM_PLACE
+        ,PLACE_DETAIL
+        ,ATTACHED_FILE_NAME
+        ,CATE_CODE
+        FROM wish_view W
+        JOIN item_image I
+        ON W.ITEM_CODE = I.ITEM_CODE
         WHERE MEMBER_ID = #{memberId}
+        GROUP BY I.ITEM_CODE;
 
     </select>
 

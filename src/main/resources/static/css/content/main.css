@@ -101,6 +101,33 @@
     height: 30px;
 }
 
-.p-tag::-webkit-scrollbar-track-piece{
-    border-top-right-radius: 2em;
+.my-scroll {
+    padding: 0 0.5em;
+    max-width: 360px;
+    height: 150px;
+    overflow-y: auto;
+}
+.my-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+.my-scroll::-webkit-scrollbar-track { 
+    background-color: white;
+}
+.my-scroll::-webkit-scrollbar-thumb { 
+    background-color: #dddddd;
+}
+.my-scroll::-webkit-scrollbar-button {
+    display: none;
+}
+
+/* hover 효과 */
+.my-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: blue;
+    transition: all 0.2s; /* 작동 안 됨 */
+}
+
+/* 코너에 라운드 효과 */
+.my-scroll::-webkit-scrollbar-track,
+.my-scroll::-webkit-scrollbar-thumb {
+    border-radius: 5px;
 }

@@ -2,16 +2,46 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <th:block th:fragment="headerFragment">
+    <style>
+        .my-scroll {
+            /* padding: 0 0.5em; */
+            overflow-y: auto;
+        }
+        .my-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .my-scroll::-webkit-scrollbar-track { 
+            background-color: white;
+        }
+        .my-scroll::-webkit-scrollbar-thumb { 
+            background-color: #dddddd;
+        }
+        .my-scroll::-webkit-scrollbar-button {
+            display: none;
+        }
+
+        /* hover 효과 */
+        .my-scroll::-webkit-scrollbar-thumb:hover {
+            background-color: blue;
+            transition: all 0.2s; /* 작동 안 됨 */
+        }
+
+        /* 코너에 라운드 효과 */
+        .my-scroll::-webkit-scrollbar-track,
+        .my-scroll::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+        }
+    </style>
 
     <section class="flex flex-wrap h-full items-center">
 
         <!--Overlay-->
-        <div class="overflow-auto fixed inset-0 z-50" style="background-color: rgba(0,0,0,0.5)" x-show="showModal"
+        <div class="fixed inset-0 z-50" style="background-color: rgba(0,0,0,0.5)" x-show="showModal"
             :class="{ '': showModal }" x-transition:leave="ease-out duration-300"
             x-transition:leave-start="opacity-50" x-transition:leave-end="opacity-0">
 
             <!--Dialog-->
-            <div class="bg-white w-11/12 md:max-w-md mx-auto my-4 md:my-8 px-6 py-4 rounded-lg shadow-lg text-left "
+            <div class="my-scroll h-4/5 overflow-auto bg-white w-11/12 md:max-w-md mx-auto my-4 md:my-8 px-6 py-4 rounded-lg shadow-lg text-left "
                 x-show="showModal" @click.away="showModal = false" x-transition:enter="ease-in duration-300"
                 x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100"
                 x-transition:leave="ease-out duration-300" x-transition:leave-start="opacity-100 scale-100"
