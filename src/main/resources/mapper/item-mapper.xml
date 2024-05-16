@@ -459,7 +459,6 @@
             OR ITEM_START_DATE LIKE CONCAT ('%',#{searchText},'%')
             OR ITEM_END_DATE LIKE CONCAT ('%',#{searchText},'%')
             OR MEMBER_ID LIKE CONCAT ('%',#{searchText},'%')
-
     </select>
     <select id="contentSearch" resultMap="item">
     SELECT ITEM_CONTENT

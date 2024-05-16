@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // 초기 아이템 가져오는 함수
-function fetchInitialItems() { 
+function fetchInitialItems() {
     limit = 9;
     offset = 0;
     fetch('/item/list', { //요청경로
@@ -184,7 +184,7 @@ function displayItems(items) {
 // 하트 추가 및 삭제 함수
 // 하트 누르면 추가
 
-
+window.heart = heart;
 //하트 누르면 삭제
 function heart(divTag, itemCode, wishchk, e) {
     let heartDiv = divTag.parentElement;

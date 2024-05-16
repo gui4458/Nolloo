@@ -292,7 +292,7 @@ function goChat(itemCode) {
     const windowFeatures = "left=1500,top=100,width=750,height=750,popup";
     window.open(chatRoomUrl, "_blank", windowFeatures);
 }
-
+window.selectItemCode = selectItemCode;
 // modal Detail에 itemCode 보내주기
 function selectItemCode(itemCode) {
 
@@ -398,23 +398,23 @@ function selectItemCode(itemCode) {
                 modalHtml += ` <span onclick="goLogin()">채팅바로가기</span>`;
             }
             modalHtml += `</div>
-                <!-------- 도시/제목 ------------>
+                
         <div class="bg-white p-6 p-tag text-center" >
                 <div class="text-2xl">
                     <span class="text-red-300">[${data.item.itemPlace}]</span> 
                     <span class="font-extralight">${data.item.itemTitle}</span>
                 </div>
-                <!------------- 개최자 ----------->
+                
                 <div class="text-right mb-5">
                     ${data.item.memberId}
                 </div>
-                <!------------ 내용 ------------>
+                
                 <div class="">
                     <p class="px-3 my-3">
                         ${data.item.itemContent}
                     </p>
                 </div>
-                <!-------- 날짜 ------------>
+                
                 <span
                 class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">
                         개최기간</span>

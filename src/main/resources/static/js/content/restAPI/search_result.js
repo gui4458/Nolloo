@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     let searchText = document.querySelector('.searchText').value.toLowerCase();
-    let items = document.querySelectorAll('.item-title');
+    let items = document.querySelectorAll('.search-color');
 
     items.forEach(function(item) {
         let text = item.textContent.toLowerCase();
@@ -15,3 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+const heartTag = document.querySelector('#heart-div');
+let heartStr = `
+                
+                `
+heartTag.insertAdjacentHTML("afterbegin",)
