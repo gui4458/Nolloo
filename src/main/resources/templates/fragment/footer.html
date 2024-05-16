@@ -63,27 +63,26 @@
                             <div class="w-full inline-block border- align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
                                 role="dialog" aria-modal="true" aria-labelledby="modal-headline">
                                 <div id="alert-border-1"
-                                    class="flex items-center  p-4 mb-4 text-black-800 border-blue-300 border-t-4 dark:border-blue-50 bg-white dark:text-blue-400 dark:bg-gray-800 "
+                                    class="flex items-center  p-4 mb-4 text-black-800 border-red-300 border-t-4 dark:border-red-50 bg-white dark:text-red-400 dark:bg-gray-800 "
                                     role="alert">
 
-                                    <div class="ms-[35%] mt-[8%] text-xl font-thin ">
-                                        <div>
-                                            <table>
+                                    <div class=" text-xl font-thin w-full ">
+                                        <div class="w-full">
+                                            <table class="border-collapse w-full">
+                                                <caption class="text-center text-red-400 text-[19px]">MY chat</caption>
                                                 <thead>
-                                                    <tr>
-                                                        <td>채팅방 이름</td>
+                                                    <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-300 bg-red-300 text-center">
+                                                        <td>번호</td>
                                                         <td></td>
-
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr th:each="reserve : ${session.reserveList}">
+                                                    <tr class="[&>td]:p-2 font-semibold border-b-2 text-center" th:each="reserve : ${session.reserveList}">
                                                         <td>[[${reserve.itemVO.itemTitle}]]</td>
-                                                        <td th:onclick="goChat([[${reserve.itemVO.itemCode}]])">입장하기
-                                                        </td>
+                                                        <td class="text-white bg-red-300 hover:bg-red-500" th:onclick="goChat([[${reserve.itemVO.itemCode}]])">입장하기
                                                     </tr>
                                                 </tbody>
-
+                                    
                                             </table>
                                         </div>
 
@@ -92,7 +91,7 @@
                                 <div
                                     class=" text-blue-800 borde rounded-lg bg-white dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                     <button @click="showModal = false" type="button"
-                                        class="text-white bg-blue-600 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-200 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                                        class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-white-200 font-medium rounded-lg text-xs px-3 py-1.5 me-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                                         data-dismiss-target="#alert-additional-content-1" aria-label="Close">
                                         Cancel
 

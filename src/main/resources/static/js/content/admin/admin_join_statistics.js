@@ -90,7 +90,7 @@ fetch('/admin/adminJoinStatistics1', { //요청경로
                 {
                     label: "월별 등록된 총 상품수",
                     type: "bar",
-                    backgroundColor: "rgba(0,0,0,0.2)",
+                    backgroundColor: "#ffe4c4",
                     data: cntList.reverse() ,
                 }, 
                 // {
