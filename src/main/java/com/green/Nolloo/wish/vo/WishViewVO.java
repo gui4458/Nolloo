@@ -28,4 +28,5 @@ public class WishViewVO {
     private String joinDate;
     private int wishCode;
     private String wishDate;
+    private String attachedFileName;
 }
