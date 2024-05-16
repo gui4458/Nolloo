@@ -21,7 +21,7 @@ public class pwChange {
         //$2a$10$PAk6jq4SrO03q0ozjm3AheQDYqYa3KpSAtVmyGD/0psmXM1Hfk.Ve
         MemberVO memberVO = new MemberVO();
         String pw = "123";
-        memberVO.setMemberId("aaa");
+        memberVO.setMemberId("b");
         MemberVO memberVO2 = memberService.memberInfo(memberVO);
         memberVO2.setMemberPw(encoder.encode(pw));
         memberService.revise(memberVO2);

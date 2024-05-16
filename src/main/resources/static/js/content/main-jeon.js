@@ -129,7 +129,7 @@ function displayItems(items) {
                     
                         <div class="flex flex-row p-3 lg:flex-col">
                             <div class="image-container relative w-24 h-24 lg:w-full lg:h-56 bg-cover bg-center rounded-full lg:rounded-lg overflow-hidden">`
-            if (item.cateCode == 1) {
+            if (item.cateCode != 2) {
 
                 itemHtml += `<img class="object-cover w-full h-full group-hover:scale-110 transition-all duration-[500ms]" src="/upload/itemSolo/${item.imgList[0].attachedFileName}">
                             `
@@ -173,7 +173,7 @@ function displayItems(items) {
                             <div class="ml-5 lg:ml-0 lg:mt-3">
                                 <figcaption class="font-medium">
                                     <div class="text-dark-600">
-                                        <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">${item.cateName}</span><strong class="inline-flex text-xs py-1 pl-1">${item.itemPlace}</strong>
+                                        <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">rrrrr${item.cateName}</span><strong class="inline-flex text-xs py-1 pl-1">${item.itemPlace}</strong>
                                     </div>
                                     <div class="text-dark-600 font-bold mt-1">
                                     ${item.itemTitle}
@@ -359,7 +359,7 @@ function selectItemCode(itemCode, selectedTag, items) {
             modalHtml += `
         <!-------- 메인이미지 ------->
             `;
-            if (data.item.cateCode == 1) {
+            if (data.item.cateCode != 2) {
                 data.item.imgList.forEach(function (img, i) {
                     if (img.isMain == 'Y') {
                         modalHtml += `

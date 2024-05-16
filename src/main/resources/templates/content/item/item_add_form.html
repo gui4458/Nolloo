@@ -34,7 +34,7 @@
                             <div class="sm:col-span-2">
                                 <label for="itemPeople" class="block text-sm font-medium leading-6 text-gray-900">카테고리</label>
                                 <select name="cateCode" >
-                                    <option value="1">파티</option>
+                                    <option th:each="cate : ${session.cateList}" th:value="[[${cate.cateCode}]]">[[${cate.cateName}]]</option>
                                 </select>
                             </div>
 

@@ -160,10 +160,11 @@
         , ATTACHED_FILE_NAME
         , READ_CNT
         , PEOPLE_CNT
-        ,TEST_ORDER, ROWNUM
+        ,TEST_ORDER
+        , GROWNUP
         FROM
         (
-        SELECT * , @ROWNUM_1:=@ROWNUM_1+1 AS ROWNUM
+        SELECT * , @GROWNUP_1:=@GROWNUP_1+1 AS GROWNUP
         FROM
         (
         SELECT
@@ -194,12 +195,12 @@
             AND INFO.CATE_CODE = #{cateCode}
 
         </if>
-        ORDER BY ITEM_START_DATE LIMIT 10000
+        ORDER BY ITEM_START_DATE
         <if test='limit != 0'>
             LIMIT ${limit} OFFSET ${offset}
 
         </if>
-        ) AA,(select @ROWNUM_1:=0) temp
+        ) AA,(select @GROWNUP_1:=0) temp
         ) A
         UNION ALL
         SELECT
@@ -218,10 +219,10 @@
         , ATTACHED_FILE_NAME
         , READ_CNT
         , PEOPLE_CNT
-        ,TEST_ORDER, ROWNUM
+        ,TEST_ORDER, GROWNUP
         FROM
         (
-        SELECT * , @ROWNUM_2:=@ROWNUM_2+1 AS ROWNUM
+        SELECT * , @GROWNUP_2:=@GROWNUP_2+1 AS GROWNUP
         FROM
         (
         SELECT
@@ -253,14 +254,18 @@
             AND INFO.CATE_CODE = #{cateCode}
 
         </if>
-        ORDER BY ITEM_START_DATE DESC LIMIT 10000
+        ORDER BY ITEM_START_DATE DESC
         <if test='limit != 0'>
             LIMIT ${limit} OFFSET ${offset}
 
         </if>
-        ) BB,  (select @ROWNUM_2:=0) temp
+        ) BB,  (select @GROWNUP_2:=0) temp
         ) B
-        ORDER BY TEST_ORDER, ROWNUM
+        ORDER BY TEST_ORDER, GROWNUP
+        <if test='limit != 0'>
+            LIMIT ${limit} OFFSET ${offset}
+
+        </if>
     </select>
 
     <select id="selectByDistance" resultMap="item">
