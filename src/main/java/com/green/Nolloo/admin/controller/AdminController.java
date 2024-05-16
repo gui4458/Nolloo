@@ -117,8 +117,9 @@ public class AdminController {
     }
 
     @GetMapping("/adminJoinStatistics")
-    public String adminJoinStatistics(){
+    public String adminJoinStatistics(Model model){
         //System.out.println("admin!!:"+ adminService.selectDate());
+
         return "content/admin/admin_join_statistics";
     }
 
