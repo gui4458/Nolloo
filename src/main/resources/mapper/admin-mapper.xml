@@ -298,6 +298,15 @@
         </if>
 
     </select>
+    <select id="selectItemCate" resultMap="itemMapper.item">
+        SELECT
+        MEMBER_ID
+        , CATE_NAME
+        , ITEM_TITLE
+        FROM item_info INNER JOIN cate
+        ON cate.CATE_CODE = item_info.CATE_CODE
+        WHERE CATE_NAME= #{cateName}
+    </select>
 
 
 
