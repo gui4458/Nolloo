@@ -78,7 +78,7 @@
             </table>
 
         </div>
-        <div>
+        <div class="text-center mb-[15px]">
             <div class="mb-[12]">
                 <!-- ${searchVO.beginPage} -->
                 <!-- ${searchVO.endPage} -->
@@ -101,12 +101,12 @@
             </div>
         </div>
         <div>
-            <div>
+            <div class="text-center">
                 <form action="/admin/adminBoardManage" method="post">
 
                     <span><input type="date" name="from" value="from"></span>
                     <span><input type="date" name="to" value="to"></span>
-                    <span>
+                    <span >
                         <select name="cateCode">
                             <option value="0" th:selected="${adminPageVO.cateCode} == 0">전체</option>
                             <th:block th:each="cate : ${session.cateList}">

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{fragment/user_layout}" >
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{fragment/user_layout}">
 
 <th:block layout:fragment="content_css">
     <!-- html 파일이 열릴때 같이 실행되는 css -->
@@ -10,18 +9,55 @@
 
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
-    <div class="w-full">
-        <table class="">
-            <caption class="text-[20px] text-red-400">장바구니</caption>
+    <div class="w-[80%] h-500px ml-[10%]">
+        <table class=" border-collapse w-[100%] text-center mt-[60px]">
+            <caption class="text-left text-red-400 text-[19px]">관심목록</caption>
+
+            <colgroup>
+                <col width="20%">
+                <col width="20%">
+                <col width="20%">
+                <col width="20%">
+                <col width="20%">
+            </colgroup>
+
+
+            <thead class="[&>tr>td]:border-b  text-center">
+                <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300">
+                    <td>파티명</td>
+                    <td>사진</td>
+                    <td>지역</td>
+                    <td>상세주소</td>
+                    <td>날짜</td>
+                </tr>
+            </thead>
             <tbody>
-                
+                <tr class="[&>td]:p-2 font-semibold border-b-2 text-center" th:if='${#lists.isEmpty(wishList)}'>
+                    <td>
+                        관심목록이 비었습니다.
+                    </td>
+                </tr>
+                <tr class="[&>td]:p-2 font-semibold border-b-2 text-center" style="max-height:20px;" th:if="${!#lists.isEmpty(wishList)}" th:each="wish : ${wishList}">
+                    <td>[[${wish.itemTitle}]]</td>
+                    <td th:if="${wish.cateCode == 1}">
+                        <img class="w-[60px] inline-block" th:src="@{'/upload/itemSolo/' + ${wish.attachedFileName}}" alt="...">
+                    </td>
+                    <td th:if="${wish.cateCode == 2}">
+                        <img class="w-[60px] inline-block " th:src="@{'/upload/item/' + ${wish.attachedFileName}}" alt="...">
+                    </td>
+                    <td>[[${wish.itemPlace}]]</td>
+                    <td>[[${wish.placeDetail}]]</td>
+                    <td>[[${wish.wishDate}]]</td>
+                </tr>
+
             </tbody>
         </table>
     </div>
 
 
-<th:block layout:fragment="content_js">
-    <!-- html 파일이 열릴때 같이 실행되는 js -->
-    <script src="/js/content/wish/wish_list.js"></script>
-</th:block>
+    <th:block layout:fragment="content_js">
+        <!-- html 파일이 열릴때 같이 실행되는 js -->
+        <script src="/js/content/wish/wish_list.js"></script>
+    </th:block>
+
 </html>
