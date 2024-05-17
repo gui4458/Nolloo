@@ -1,5 +1,7 @@
 package com.green.Nolloo.item.controller;
 
+import com.green.Nolloo.admin.service.AdminService;
+import com.green.Nolloo.admin.vo.NoticeVO;
 import com.green.Nolloo.chat.service.ChatService;
 import com.green.Nolloo.chat.vo.ChatVO;
 import com.green.Nolloo.item.service.ItemService;
@@ -65,6 +67,9 @@ public class ItemController {
     @Resource(name = "chatService")
     private ChatService chatService;
 
+    @Resource(name = "adminService")
+    private AdminService adminService;
+
     @Autowired
     private KakaoApiService kakaoApiService;
 
@@ -72,7 +77,7 @@ public class ItemController {
     @GetMapping("/list")
     public String list(Model model, Authentication authentication, ItemVO itemVO
                         , @RequestParam(name="cateCode",required = false,defaultValue = "0")int cateCode
-                        ,SearchVO searchVO,HttpSession session){
+                        , SearchVO searchVO, HttpSession session, NoticeVO noticeVO){
 //        searchVO.setCateCode(cateCode);
 //        List<ItemVO> itemList = itemService.selectPartyList(searchVO);
 //        model.addAttribute("itemList",itemList);
@@ -110,7 +115,7 @@ public class ItemController {
 //
 //        }
 
-
+        model.addAttribute("noticeList",adminService.selectNotice(noticeVO.getNoticeCode()));
 
 
 
