@@ -77,38 +77,67 @@
                             <div class="space-y-8 lg:flex lg:space-x-12 lg:space-y-0">
                                 <div class="space-y-8 lg:w-3/4 md:flex md:space-x-6 md:space-y-0">
                                     <div class="md:w-1/2">
-                                        <div class="text-xs uppercase font-semibold text-red-400 mb-3">카테고리</div>
-                                        <ul class="space-y-1">
-                                            <li th:each="cate : ${session.cateList}">
-                                                <span
-                                                    class="flex space-x-4 px-3 py-2.5 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition"
-                                                    th:onclick="goParty([[${cate.cateCode}]])">
-                                                    <div
-                                                        class="shrink-0 flex items-center justify-center h-9 w-9 rounded bg-white border border-slate-200">
-                                                        <div th:class="'icon-' +${cate.cateCode}"></div>
-                                                    </div>
-
-                                                    <div>
-                                                        <div class="text-sm font-semibold text-slate-800 mb-0.5">
-                                                            [[${cate.cateName}]]
+                                        <div>
+                                            <div class="text-xs uppercase font-semibold text-red-400 mb-3">
+                                                카테고리
+                                            </div>
+                                            <ul class="space-y-1">
+                                                <li th:each="cate : ${session.cateList}">
+                                                    <span
+                                                        class="flex space-x-4 px-3 py-2.5 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition"
+                                                        th:onclick="goParty([[${cate.cateCode}]])">
+                                                        <div
+                                                            class="shrink-0 flex items-center justify-center h-9 w-9 rounded bg-white border border-slate-200">
+                                                            <div th:class="'icon-' +${cate.cateCode}"></div>
                                                         </div>
-                                                        <!-- <div class="text-slate-500">Everything counts. And everything that counts — shapes us.</div> -->
-                                                    </div>
-                                                </span>
-                                            </li>
-                                            <li>
-                                                <div class="border-t-2">
-                                                    일정 살펴보기
-                                                    <div>
-                                                        <span onclick="goCalendar()">달력</span>
-                                                    </div>
-                                                </div>
-                                            </li>
+
+                                                        <div>
+                                                            <div class="text-sm font-semibold text-slate-800 mb-0.5">
+                                                                [[${cate.cateName}]]
+                                                            </div>
+                                                            <!-- <div class="text-slate-500">Everything counts. And everything that counts — shapes us.</div> -->
+                                                        </div>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="border-t-2">
+
+                                            <div class="mt-6 text-xs uppercase font-semibold text-red-400 mb-3">
+                                                일정 살펴보기
+                                            </div>
+                                            <ul class="space-y-1">
+
+                                                <li>
+                                                    <span
+                                                        class="flex space-x-4 px-3 py-2.5 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition">
+                                                        <div
+                                                            class="shrink-0 flex items-center justify-center h-9 w-9 rounded bg-white border border-slate-200">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="#fca5a5"
+                                                                viewBox="0 0 24 24" stroke-width="1.5"
+                                                                stroke="currentColor" class="w-6 h-6">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z" />
+                                                            </svg>
+
+                                                        </div>
+                                                        <div>
+
+
+                                                            <span class="text-sm font-semibold text-slate-800 mb-0.5"
+                                                                onclick="goCalendar()">달력</span>
+                                                        </div>
+                                                    </span>
+                                                </li>
 
 
 
-                                        </ul>
+
+
+                                            </ul>
+                                        </div>
                                     </div>
+
                                     <div class="md:w-1/2">
                                         <div class="text-xs uppercase font-semibold text-red-400 mb-3">추천목록</div>
                                         <ul class="space-y-1">

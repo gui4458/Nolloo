@@ -32,12 +32,12 @@
                 <thead>
                     <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300 text-center">
                         <td>NO.</td>
-                        <td>참여 파티</td>
+                        <td>카테고리</td>
                         <td>ID</td>
                         <td>파티명</td>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="tbody-tag">
                     <tr  class="[&>td]:p-2 font-semibold border-b-2 text-center" th:each="reserve, state : ${reserveList}">
                         <td>[[${#lists.size(reserveList)-state.index}]]</td>
                         <td>[[${reserve.cateName}]]</td>

@@ -470,7 +470,9 @@ function selectItemCode(itemCode, selectedTag, items) {
             p_tag.insertAdjacentHTML('afterbegin', modalHtml);
 
             //상품에 대한 지도 붙이기
-
+            if(loginId != ''){
+                document.querySelector('.reserve-btn').setAttribute('onclick', `reserveInsert(${data.item.itemCode},${data.reserveCnt},${data.item.cateCode})`);
+            } 
 
 
             modalToggle();

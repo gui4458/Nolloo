@@ -35,7 +35,7 @@ public class ReserveController{
         //reserveService.reserveDone(reserveVO);
         User user = (User)authentication.getPrincipal();
         reserveVO.setMemberId(user.getUsername());
-        System.out.println(reserveVO);
+
         reserveService.insertReserve(reserveVO);
 
     }
@@ -46,7 +46,7 @@ public class ReserveController{
         User user = (User)authentication.getPrincipal();
         reserveVO.setMemberId(user.getUsername());
         List<ReserveVO> reserveList = reserveService.selectReserve(reserveVO);
-        System.out.println(reserveList);
+
         model.addAttribute("reserveList",reserveList);
 
 
@@ -69,13 +69,13 @@ public class ReserveController{
     @GetMapping("/reserveDelete")
     public String reserveDelete(@RequestParam(name = "reserveCodeList") ArrayList<Integer> reserveCodeList){
         //삭제하려는 reserveCode 들
-        System.out.println(reserveCodeList);
+
 
         //삭제 쿼리가 실행될때 위에서 받은 데이타를 같이 넘겨준다 (쿼리의 빈값을 채우기 위해서)
         ReserveVO vo = new ReserveVO();
         vo.setReserveCodeList(reserveCodeList);;
 
-        System.out.println("vo = " + vo);
+
         reserveService.deleteReserve(vo);
 
 

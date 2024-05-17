@@ -8,6 +8,7 @@ import java.util.List;
 public interface ReserveService {
     void insertReserve(ReserveVO reserveVO);
 
+    List<ReserveVO> chartReserveList();
 
     List<ReserveVO> selectReserve(ReserveVO reserveVO);
 

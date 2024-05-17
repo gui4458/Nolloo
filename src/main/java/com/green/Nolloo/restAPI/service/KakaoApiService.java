@@ -40,7 +40,7 @@ public class KakaoApiService {
                 if (!documents.isEmpty()) {
                     Map<String, Object> firstDocument = documents.get(0);
 
-                    System.out.println(firstDocument);
+
 
                     addressVO.setRegion1depthName((String) firstDocument.get("region_1depth_name"));
                     addressVO.setRegion2depthName((String) firstDocument.get("region_2depth_name"));

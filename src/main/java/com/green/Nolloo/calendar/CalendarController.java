@@ -26,7 +26,7 @@ public class CalendarController {
     @PostMapping("/getCalendarInfo")
     public List<ItemVO> getCalendarInfo(){
         List<ItemVO> itemList = itemService.selectCalendarPartyList();
-        System.out.println(itemList);
+
         return itemList;
     }
 }

@@ -108,30 +108,43 @@
 
 <!--   추천목록 조회-->
     <select id="selectByReadCnt" resultMap="item">
-        SELECT IT.ITEM_CODE
-        ,IT.ITEM_TITLE
-        ,IT.PEOPLE_CNT
-        ,ATTACHED_FILE_NAME
+        SELECT IT.ITEM_CODE,
+        IT.ITEM_TITLE,
+        IT.PEOPLE_CNT,
+        ATTACHED_FILE_NAME
         FROM item_info IT
         JOIN ITEM_IMAGE IMG
         ON IT.ITEM_CODE = IMG.ITEM_CODE
-        WHERE 1 = 1
-        AND IT.CATE_CODE = (
-        SELECT maxCnt.CATE_CODE
-        FROM (
-        SELECT IT.CATE_CODE,
-        COUNT(IT.CATE_CODE) AS cnt
-        FROM reserve RE
-        JOIN item_info IT ON RE.ITEM_CODE = IT.ITEM_CODE
-        WHERE RE.MEMBER_ID = 'bbb'
-        GROUP BY IT.CATE_CODE
-        ORDER BY cnt DESC
-        LIMIT 1
-        ) AS maxCnt
-        )
-        ORDER BY IT.PEOPLE_CNT DESC
+        <where>
+            <if test="memberId != null and memberId != ''">
+                AND IT.CATE_CODE = (
+                SELECT maxCnt.CATE_CODE
+                FROM (
+                SELECT IT.CATE_CODE,
+                COUNT(IT.CATE_CODE) AS cnt
+                FROM reserve RE
+                JOIN item_info IT
+                ON RE.ITEM_CODE = IT.ITEM_CODE
+                WHERE RE.MEMBER_ID = #{memberId}
+                GROUP BY IT.CATE_CODE
+                ORDER BY cnt DESC
+                LIMIT 1
+                ) AS maxCnt
+                )
+            </if>
+        </where>
+        GROUP BY IT.ITEM_CODE
+        ORDER BY
+        <if test="memberId != null and memberId != ''">
+            IT.PEOPLE_CNT DESC
+        </if>
+        <if test="memberId == null or memberId == ''">
+            (SELECT COUNT(*)
+            FROM reserve RE
+            WHERE RE.ITEM_CODE = IT.ITEM_CODE) DESC,
+            IT.PEOPLE_CNT DESC
+        </if>
         LIMIT 5;
-
     </select>
 
 

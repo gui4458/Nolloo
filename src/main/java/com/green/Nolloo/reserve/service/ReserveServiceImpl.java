@@ -21,6 +21,11 @@ public class ReserveServiceImpl implements ReserveService{
     }
 
     @Override
+    public List<ReserveVO> chartReserveList() {
+        return sqlSession.selectList("reserveMapper.chartReserveList");
+    }
+
+    @Override
     public List<ReserveVO> selectReserve(ReserveVO reserveVO) {
         return sqlSession.selectList("reserveMapper.selectReserve",reserveVO);
     }

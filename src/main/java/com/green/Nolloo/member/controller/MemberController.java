@@ -91,26 +91,26 @@ public class MemberController {
         //security에 로그인한 사람의 정보를 user에 저장
 
         //세션에 있는 로그인한 사람의 id를 가져온다.
-        System.out.println("user = " + user.getUsername());
+
         memberVO.setMemberId(user.getUsername()); //id
 
         MemberVO memberInfo = memberService.memberInfo(memberVO);
         model.addAttribute("memberInfo",memberInfo);
-        System.out.println("dddddddddddddddddddddddddddddddddddmemberInfo = " + memberInfo);
+
 
         return "content/member/my_page";
     }
 
     @PostMapping("/myPage")
     public String myPage1(MemberVO memberVO,Authentication authentication,Model model){
-        System.out.println("dddddddddddddddddddddddd"+memberVO);
+
         memberVO.setMemberTel(memberVO.getMemberTel().replace(",","-"));
         User user = (User)authentication.getPrincipal();
         memberVO.setMemberPw(encoder.encode(memberVO.getMemberPw()));
         memberVO.setMemberId(user.getUsername());
         memberService.revise(memberVO);
         MemberVO memberInfo = memberService.memberInfo(memberVO);
-        System.out.println(memberInfo);
+
         model.addAttribute("memberInfo",memberInfo);
 //        return "content/member/my_page";
 

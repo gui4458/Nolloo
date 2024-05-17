@@ -37,6 +37,18 @@
         , #{cateCode}
         )
     </insert>
+    <select id="chartReserveList" resultMap="reserve">
+        SELECT CATE_NAME
+        , RE.MEMBER_ID
+        , RE.ITEM_CODE
+        , ITEM_TITLE
+        FROM reserve RE
+        INNER JOIN item_info FO
+        ON RE.ITEM_CODE = FO.ITEM_CODE
+        JOIN cate CA
+        ON FO.CATE_CODE = CA.CATE_CODE
+    </select>
+
 <!--예약 내역 조회-->
     <select id="selectReserve" resultMap="reserve">
         SELECT

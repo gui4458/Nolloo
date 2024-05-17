@@ -73,7 +73,7 @@ public class Address {
     public List<AddressFormVO> addressResult(@RequestParam(name="query") String query) {
         //문자열을  스페이스 기준으로 분리 // "aa bb"   "aaa"
         String[] data =  query.split(" ");
-        System.out.println(Arrays.toString(data));
+
         return  restAPIService.searchAddress(data);
     }
 
@@ -108,7 +108,7 @@ public class Address {
             model.addAttribute("contentSearch",contentSearch);
         }
         model.addAttribute("searchText",searchVO.getSearchText());
-        System.out.println(searchItemList);
+
         List<WishViewVO> wishList = wishService.selectWish((String) session.getAttribute("memberId"));
         model.addAttribute("wishList",wishList);
         return "/content/restAPI/search_result";

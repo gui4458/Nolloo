@@ -50,11 +50,11 @@ public class Map {
 //        model.addAttribute("itemList",itemList);
 
         List<String> sidoList = restAPIService.selectSido();
-        System.out.println(sidoList);
+
         model.addAttribute("sidoList",sidoList);
 
         List<CategoryVO> catList = itemService.selectAllCategory();
-        System.out.println("------"+catList);
+
         model.addAttribute("catList",catList);
         return "/content/member/my-pos";
     }
@@ -63,16 +63,16 @@ public class Map {
     @ResponseBody
     public List<AddressFormVO> getSigungu(@RequestParam(name="sido") String sido){
         List<AddressFormVO> sigungu = restAPIService.selectSigungu(sido);
-        System.out.println(sigungu);
+
         return sigungu;
     }
 
     @ResponseBody
     @PostMapping("/now")
     public List<ItemVO> nowPos(SearchVO searchVO) {
-        System.out.println("dddddddddddddddddddddddddd"+searchVO);
+
         List<ItemVO> nowPos = itemService.selectByDistance(searchVO);
-        System.out.println(nowPos);
+
         return nowPos;
     }
 

@@ -90,7 +90,7 @@ public class ItemController {
         model.addAttribute("cateCode",cateCode);
         List<ItemVO> recommendList ;
         Integer reserveCnt = (Integer) session.getAttribute("reserveCnt");
-        System.out.println("1111111111111111111111111111111"+reserveCnt);
+
         if (reserveCnt == null || reserveCnt == 0){
             recommendList = itemService.searchByReadCnt("");
         }else {
@@ -181,10 +181,10 @@ public class ItemController {
         }
         imgList.add(mainImg);
         itemVO.setImgList(imgList);
-        System.out.println(itemVO);
+
         MapVO mapVO = kakaoApiService.getGeoFromAddress(addr);
 
-        System.out.println(mapVO);
+
 
         double lat = mapVO.getItemX();
         double lng = mapVO.getItemY();
@@ -193,7 +193,7 @@ public class ItemController {
 
         AddressVO addressVO = kakaoApiService.getAddressFromGeolocation(lat,lng);
 
-        System.out.println(addressVO);
+
         itemVO.setRegion1(addressVO.getRegion1depthName());
         itemVO.setRegion2(addressVO.getRegion2depthName());
         itemVO.setRegion3(addressVO.getRegion3depthName());
@@ -223,7 +223,7 @@ public class ItemController {
         data.put("reserveCnt",reserveService.reserveDone(reserveVO));
 
 
-        System.out.println(data);
+
 
 
        // model.addAttribute("chkCode",chkCode);
@@ -293,8 +293,7 @@ public class ItemController {
     @PostMapping("/selectItemDetail")
     public ItemVO selectItemDetail(@RequestParam(name="itemCode") int itemCode,ItemVO itemVO){
         ItemVO detail=itemService.selectItemDetail(itemCode);
-        System.out.println(itemCode);
-        System.out.println(detail);
+
 
 
         return detail;
@@ -320,7 +319,7 @@ public class ItemController {
     @ResponseBody
     @PostMapping("/deleteImg")
     public void deleteImg(ImgVO imgVO){
-        System.out.println(imgVO);
+
         //첨부파일명 조회
         String attachedFileName = itemService.findAttachedFileNameByImgCode(imgVO);
 

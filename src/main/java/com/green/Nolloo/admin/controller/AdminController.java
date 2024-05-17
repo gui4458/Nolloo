@@ -102,7 +102,7 @@ public class AdminController {
         adminPageVO.setTotalDataCnt(totalDataCnt);
         adminPageVO.setPageInfo();
         model.addAttribute("itemList",itemList);
-        System.out.println(itemList);
+
         return "content/admin/admin_board_manage";
     }
 
@@ -112,7 +112,7 @@ public class AdminController {
 
         List<ReserveVO> reserveList = reserveService.selectReserve(reserveVO);
         model.addAttribute("reserveList",reserveList);
-        System.out.println(reserveList);
+
         return "content/admin/admin_buy_list";
     }
 // 참여 통계 이동
@@ -132,9 +132,17 @@ public class AdminController {
         data.put("month",adminService.selectDate());
         data.put("items",adminService.selectListAdminStatistics());
         data.put("itemsTrue",adminService.selectListDoughnutTrueCnt());
-        System.out.println(data);
+
         return data;
     }
+    @ResponseBody
+    @PostMapping("/getReserveList")
+    public List<ReserveVO> getReserveList(){
+
+        return  reserveService.chartReserveList();
+    }
+
+
 
    @GetMapping("/noticeForm")
    public String noticeForm(){
@@ -153,7 +161,7 @@ public class AdminController {
         noticeVO.setNoticeCode(noticeCode);
         noticeVO.setNoticeImgList(imgList);
 
-       System.out.println(noticeVO);
+
            adminService.insertNotice(noticeVO);
 
        List<NoticeVO> noticeList= adminService.selectNotice(0);
@@ -215,7 +223,7 @@ public class AdminController {
     public String adminDelete(NoticeVO noticeVO,Model model){
         //삭제
         adminService.deleteNotice(noticeVO);
-        System.out.println(noticeVO);
+
         //삭제 후 리스트 조회
         List<NoticeVO> noticeList= adminService.selectNotice(0);
         model.addAttribute("noticeList",noticeList);
@@ -233,7 +241,7 @@ public class AdminController {
         String writer = (String)session.getAttribute("memberId");
         replyVO.setWriter(writer);
 
-        System.out.println(replyVO);
+
         adminService.insertReply(replyVO);
 
 
@@ -243,7 +251,7 @@ public class AdminController {
     @GetMapping("/deleteReply")
     public String deleteReply(ReplyVO replyVO ){
         adminService.deleteReply(replyVO);
-        System.out.println(replyVO);
+
         return "redirect:/admin/noticeDetail?noticeCode="+replyVO.getNoticeCode();
     }
 
