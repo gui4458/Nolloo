@@ -358,7 +358,12 @@
         FROM ITEM_INFO
         WHERE ITEM_CODE = #{itemCode}
     </delete>
-
+    <delete id="deleteReserve">
+        DELETE
+        FROM RESERVE
+        WHERE ITEM_CODE = #{itemCode}
+        AND MEMBER_ID=#{memberId}
+    </delete>
     <delete id="deleteImg">
         DELETE
         FROM ITEM_IMAGE

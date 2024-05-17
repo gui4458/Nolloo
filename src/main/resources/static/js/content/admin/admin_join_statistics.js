@@ -86,7 +86,7 @@ fetch('/admin/adminJoinStatistics1', { //요청경로
                         })
                         .then((data) => {
                             let i = elements[0].index;
-                            alert(`2=${chart.data.labels[i]}`);
+                           
                             const tbodyTag = document.querySelector('.tbody-tag');
                             let newTbodyStr = ``;
                             let newIndex = 0;

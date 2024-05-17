@@ -329,6 +329,15 @@ public class ItemController {
         //첨부파일 삭제
         UploadUtil.deleteUploadFile(PathVariable.ITEM_UPLOAD_PATH + attachedFileName);
     }
+    @ResponseBody
+    @PostMapping("/deleteBoard")
+    public void deleteBoard(@RequestBody ItemVO itemVO, HttpSession session) {
+        System.out.println(itemVO);
+        String memberId = (String) session.getAttribute("memberId");
+        itemVO.setMemberId(memberId);
+
+        itemService.deleteParty(itemVO);
+    }
 
     //상품 정보 수정에서 메인 이미지를 변경하는 메서드
     @ResponseBody

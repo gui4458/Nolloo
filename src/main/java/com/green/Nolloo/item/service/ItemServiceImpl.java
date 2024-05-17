@@ -154,6 +154,8 @@ public class ItemServiceImpl implements ItemService {
     @Override
     @Transactional(rollbackFor =  Exception.class)
     public void deleteParty(ItemVO itemVO) {
+        sqlSession.delete("itemMapper.deleteReserve",itemVO);
+        sqlSession.delete("wishMapper.wishDelete",itemVO);
         sqlSession.delete("itemMapper.deleteImg",itemVO);
         sqlSession.delete("itemMapper.deleteChatRoom",itemVO);
         sqlSession.delete("itemMapper.deleteParty",itemVO);

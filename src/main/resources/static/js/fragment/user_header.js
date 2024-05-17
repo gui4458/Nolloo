@@ -69,12 +69,12 @@ function searchAddress(){
 
   // 회원가입 모달창이 닫힐 때 실행되는 이벤트
   // 1.모달창을 선택한다
-  const joinModal = document.querySelector('#join-modal');
+  //const joinModal = document.querySelector('#join-modal');
   // 2.선택한 태그에 이벤트 달아주기
   // hidden.bs.modal : 모달창이 닫힐 때 실행
-  joinModal.addEventListener('hidden.bs.modal',function(event){
-    document.querySelector('#join-form').reset();
-  });
+  //joinModal.addEventListener('hidden.bs.modal',function(event){
+  //  document.querySelector('#join-form').reset();
+  //});
 
   function goLogout(){
     const result = confirm('로그아웃 하시겠습니까?');
