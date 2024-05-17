@@ -116,7 +116,7 @@
                                                 <a class="flex space-x-4 px-3 py-2.5 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition"
                                                     href="#0">
                                                     <div
-                                                        class="shrink-0 flex items-center justify-center h-9 w-9 rounded bg-white border border-slate-200">
+                                                        class="text-red-400 shrink-0 flex items-center justify-center h-9 w-9 rounded bg-white border border-slate-200">
                                                         [[${state.count}]]
                                                     </div>
                                                     <div>
@@ -137,14 +137,15 @@
                                     <th:block sec:authorize="isAuthenticated()">
                                         <div class="text-xs uppercase font-semibold text-red-400 mb-5">내 계정</div>
                                         <div class="text-xs uppercase font-semibold text-red-400 mb-5">
-                                            [[${#authentication.name}]]님 환영합니다.</div>
+                                            <span>
+                                                <th:block sec:authorize="isAuthenticated()">
+                                                    <img th:src="@{'/upload/profile/'}+${session.memberImg.attachedFileName}" alt="mdo"
+                                                        width="32" height="32" class="rounded-full">
+                                                </th:block>
+                                            </span>
+                                            <span>[[${#authentication.name}]]님 환영합니다.</span>
+                                        </div>
                                         <ul class="space-y-1 -mx-3">
-                                            <li>
-                                                <span
-                                                    class="flex text-sm font-semibold text-slate-800 px-3 py-1 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition"
-                                                    href="/admin/regItemForm">Settings</span>
-                                            </li>
-
                                             <!-- <th:block sec:authorize="hasRole('ROLE_ADMIN')"> -->
                                             <li>
                                                 <a class="flex text-sm font-semibold text-slate-800 px-3 py-1 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition"
@@ -165,7 +166,6 @@
                                                 <a class="flex text-sm font-semibold text-slate-800 px-3 py-1 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition"
                                                     href="/member/myPage">내 계정</a>
                                             </li>
-                                          
                                         </ul>
                                     </th:block>
 
@@ -191,7 +191,7 @@
                                 </div>
 
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>

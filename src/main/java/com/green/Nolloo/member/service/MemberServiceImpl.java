@@ -30,6 +30,11 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
+    public MemberImageVO selectMemberImg(String memberId) {
+        return sqlSession.selectOne("memberMapper.selectMemberImg",memberId);
+    }
+
+    @Override
     public MemberVO memberInfo(MemberVO memberVO) {
         return sqlSession.selectOne("memberMapper.memberInfo",memberVO);
     }

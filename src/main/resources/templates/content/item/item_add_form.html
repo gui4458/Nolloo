@@ -11,7 +11,7 @@
 <th:block layout:fragment="contentFragment">
     <!-- html 코드 작성 -->
 
-    <div class="mx-auto max-w-7xl py-1 px-4 md:px-6 ">
+    <div class="mx-auto max-w-7xl py-1 px-4 md:px-6 mb-20">
 
         <div class="bg-white w-11/12 md:max-w-md mx-auto my-4 md:my-8 px-6 py-4 rounded-lg shadow-lg text-left ">
         
@@ -34,7 +34,7 @@
                             <div class="sm:col-span-2">
                                 <label for="itemPeople" class="block text-sm font-medium leading-6 text-gray-900">카테고리</label>
                                 <select name="cateCode" >
-                                    <option th:each="cate : ${session.cateList}" th:value="[[${cate.cateCode}]]">[[${cate.cateName}]]</option>
+                                    <option th:each="cate : ${session.cateList}" th:value="${cate.cateCode}">[[${cate.cateName}]]</option>
                                 </select>
                             </div>
 

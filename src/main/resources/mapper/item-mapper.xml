@@ -68,6 +68,7 @@
             , REGION_1
             , REGION_2
             , REGION_3
+            , CATE_CODE
 
         )
         VALUES(
@@ -86,7 +87,7 @@
             , #{region1}
             , #{region2}
             , #{region3}
-
+            , #{cateCode}
         )
     </insert>
 
@@ -107,37 +108,30 @@
 
 <!--   추천목록 조회-->
     <select id="selectByReadCnt" resultMap="item">
-    SELECT IT.ITEM_CODE
+        SELECT IT.ITEM_CODE
         ,IT.ITEM_TITLE
         ,IT.PEOPLE_CNT
-    FROM item_info IT
-    WHERE 1 = 1
-    <if test='memberId != null and !memberId.equals("")'>
-        AND IT.CATE_CODE =
-        (SELECT maxCnt.CATE_CODE
-        FROM
-            (SELECT IT.CATE_CODE,
-                COUNT(IT.CATE_CODE) AS cnt
-            FROM reserve RE
-            JOIN item_info IT ON RE.ITEM_CODE = IT.ITEM_CODE
-            WHERE RE.MEMBER_ID = #{memberId}
-            GROUP BY IT.CATE_CODE
-            ) AS maxCnt
-        JOIN cate CA ON maxCnt.CATE_CODE = CA.CATE_CODE
-        WHERE maxCnt.cnt =
-            (SELECT MAX(cnt)
-            FROM
-                (SELECT COUNT(IT.CATE_CODE) AS cnt
-                FROM reserve RE
-                JOIN item_info IT ON RE.ITEM_CODE = IT.ITEM_CODE
-                WHERE RE.MEMBER_ID = #{memberId}
-                GROUP BY IT.CATE_CODE
-                ) AS max_subquery
-            )
+        ,ATTACHED_FILE_NAME
+        FROM item_info IT
+        JOIN ITEM_IMAGE IMG
+        ON IT.ITEM_CODE = IMG.ITEM_CODE
+        WHERE 1 = 1
+        AND IT.CATE_CODE = (
+        SELECT maxCnt.CATE_CODE
+        FROM (
+        SELECT IT.CATE_CODE,
+        COUNT(IT.CATE_CODE) AS cnt
+        FROM reserve RE
+        JOIN item_info IT ON RE.ITEM_CODE = IT.ITEM_CODE
+        WHERE RE.MEMBER_ID = 'bbb'
+        GROUP BY IT.CATE_CODE
+        ORDER BY cnt DESC
+        LIMIT 1
+        ) AS maxCnt
         )
-    </if>
-    ORDER BY IT.PEOPLE_CNT DESC
-    LIMIT 5
+        ORDER BY IT.PEOPLE_CNT DESC
+        LIMIT 5;
+
     </select>
 
 
@@ -195,11 +189,8 @@
             AND INFO.CATE_CODE = #{cateCode}
 
         </if>
-        ORDER BY ITEM_START_DATE
-        <if test='limit != 0'>
-            LIMIT ${limit} OFFSET ${offset}
+        ORDER BY ITEM_START_DATE LIMIT 10000
 
-        </if>
         ) AA,(select @GROWNUP_1:=0) temp
         ) A
         UNION ALL
@@ -254,11 +245,8 @@
             AND INFO.CATE_CODE = #{cateCode}
 
         </if>
-        ORDER BY ITEM_START_DATE DESC
-        <if test='limit != 0'>
-            LIMIT ${limit} OFFSET ${offset}
+        ORDER BY ITEM_START_DATE DESC LIMIT 10000
 
-        </if>
         ) BB,  (select @GROWNUP_2:=0) temp
         ) B
         ORDER BY TEST_ORDER, GROWNUP

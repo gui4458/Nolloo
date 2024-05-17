@@ -13,6 +13,8 @@ public interface MemberService {
 
     //로그인
     MemberVO login(String memberId);
+    //프로필
+    MemberImageVO selectMemberImg(String memberId);
 
     //회원정보조회
     MemberVO memberInfo(MemberVO memberVO);

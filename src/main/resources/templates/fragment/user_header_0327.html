@@ -337,20 +337,6 @@
                                                 [[${#authentication.name}]]님 환영합니다.</div>
                                             <ul class="space-y-1 -mx-3">
                                                 <li>
-                                                    <span
-                                                        class="flex text-sm font-semibold text-slate-800 px-3 py-1 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition"
-                                                        href="/admin/regItemForm">Settings</span>
-                                                </li>
-
-                                                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-                                                    <li>
-                                                        <span
-                                                            class="flex text-sm font-semibold text-slate-800 px-3 py-1 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition"
-                                                            href="/admin/regItemForm">Settings</span>
-                                                    </li>
-                                                </th:block>
-
-                                                <li>
                                                     <a class="flex text-sm font-semibold text-slate-800 px-3 py-1 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition"
                                                         href="/now">Area</a>
                                                 </li>
@@ -363,7 +349,6 @@
                                                     <a class="flex text-sm font-semibold text-slate-800 px-3 py-1 rounded hover:bg-slate-50 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition"
                                                         href="/member/myPage">내 계정</a>
                                                 </li>
-                                               
                                             </ul>
                                         </th:block>
 

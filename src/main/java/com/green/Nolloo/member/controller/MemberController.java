@@ -65,6 +65,8 @@ public class MemberController {
         if (authentication != null){
             User user = (User)authentication.getPrincipal();
             session.setAttribute("memberId",user.getUsername());
+            MemberImageVO memberImg = memberService.selectMemberImg(user.getUsername());
+            session.setAttribute("memberImg",memberImg);
             reserveVO.setMemberId(user.getUsername());
             List<ReserveVO> reserveList = reserveService.selectReserve(reserveVO);
             session.setAttribute("reserveList",reserveList);

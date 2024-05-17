@@ -27,6 +27,16 @@
         <result column="ATTACHED_FILE_NAME" property="attachedFileName"/>
         <result column="MEMBER_ID" property="memberId"/>
     </resultMap>
+
+    <select id="selectMemberImg" resultMap="memberImg">
+        SELECT MEMBER_IMG_CODE
+            ,ORIGIN_FILE_NAME
+            ,ATTACHED_FILE_NAME
+        FROM MEMBER_IMAGE
+        WHERE MEMBER_ID = #{memberId}
+    </select>
+
+
     <insert id="join">
         INSERT INTO NOLLOO_MEMBER(
         MEMBER_ID

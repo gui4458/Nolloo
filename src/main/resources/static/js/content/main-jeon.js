@@ -173,7 +173,7 @@ function displayItems(items) {
                             <div class="ml-5 lg:ml-0 lg:mt-3">
                                 <figcaption class="font-medium">
                                     <div class="text-dark-600">
-                                        <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">rrrrr${item.cateName}</span><strong class="inline-flex text-xs py-1 pl-1">${item.itemPlace}</strong>
+                                        <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">${item.cateName}</span><strong class="inline-flex text-xs py-1 pl-1">${item.itemPlace}</strong>
                                     </div>
                                     <div class="text-dark-600 font-bold mt-1">
                                     ${item.itemTitle}

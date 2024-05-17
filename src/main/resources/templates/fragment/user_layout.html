@@ -15,7 +15,10 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="/css/fragment/btn.css">
-    <th:block layout:fragment="content_css"></th:block>
+    <link href="/css/content/main.css" rel="stylesheet">
+    <th:block layout:fragment="content_css">
+
+    </th:block>
 </head>
 
 <body class="bg-zinc-50/100 " x-data="{ 'showModal': false }" @keydown.escape="showModal = false" x-cloak>
