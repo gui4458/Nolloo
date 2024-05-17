@@ -511,7 +511,7 @@ function modalToggle() {
 }
 
 
-function reserveInsert(itemCode, reserveCnt) {
+function reserveInsert(itemCode, reserveCnt,cateCode) {
 
     if (reserveCnt == 0) {
         fetch('/reserve/partyReserve', { //요청경로
@@ -524,6 +524,7 @@ function reserveInsert(itemCode, reserveCnt) {
             body: JSON.stringify({
                 // 데이터명 : 데이터값
                 itemCode: itemCode
+                ,cateCode:cateCode
             })
         })
             .then((response) => {
