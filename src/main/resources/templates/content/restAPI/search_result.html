@@ -9,19 +9,17 @@
 </th:block>
 <th:block layout:fragment="contentFragment">
     <input class="searchText" type="hidden" th:value="${searchText}">
-    <div class="container">
-        <div class="row">
+    <div class="w-full mb-20">
+        <div class="row ">
             <div class="col">
                 <div class="row">
-                    <div class="col">
-                        '[[${searchText}]]'의 검색결과
+                    <div class="col text-center mt-3 mb-5">
+                        <span class="text-red-600">'[[${searchText}]]'</span> 의 대한 검색결과 입니다
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <div class="mt-10">
-                            -아이템목록-
-                        </div>
+
                         <div class="mx-auto max-w-7xl py-1 px-4 md:px-3 ">
                             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 container"
                                 id="itemListContainer">
@@ -100,25 +98,24 @@
 
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <div>-공지사항-</div>
-                        <div>
-                            <table class="table">
-                                <thead>
-                                    <tr>
+                <div class="mt-5 mb-5">
+                    <div class="text-center">
+                        <div class="text-red-400 text-[19px]" >-공지사항-</div>
+                        <div class="ms-80">
+                            <table class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300 text-center">
+                                    <tr th:each="notice,state:${noticeList}" class="[&>td]:p-2 font-semibold border-b-2 text-center"
+                                        th:onclick="|location.href='@{/admin/noticeDetail(noticeCode=${notice.noticeCode},noticeNo=${#lists.size(noticeList)-state.index})}'|">
                                         <td>
-                                            제목
+                                            [[${#lists.size(noticeList)-state.index}]]
+                                        </td>
+                                        <td>
+                                            [[${notice.noticeTitle}]]
+                                        </td>
+                                        <td>
+                                            [[${notice.noticeDate}]]
                                         </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                
                             </table>
                         </div>
                     </div>
