@@ -120,7 +120,7 @@ function displayItems(items) {
 
         const itemListContainer = document.getElementById('itemListContainer');
         items.itemList.forEach(item => {
-            console.log(dateString,item.itemStartDate)
+            console.log(dateString, item.itemStartDate)
             console.log(dateString > item.itemStartDate)
             let wishchk = items.wishCodeList.includes(item.itemCode)
             itemHtml = itemHtml + `
@@ -143,9 +143,9 @@ function displayItems(items) {
             }
 
 
-            if(dateString > item.itemStartDate && dateString > item.itemEndDate){
+            if (dateString > item.itemStartDate && dateString > item.itemEndDate) {
                 itemHtml += `<div class="justify-center" style="padding: 90px; font-size : 1.5rem; height:100%; position: absolute; left: 50%; top: 50%; background-color: rgba(165, 165, 165, 0.8); font-weight: bold; width: 100%; text-align: center; transform: translate(-50%,-50%);">종료된 ${item.cateName} 입니다.</div>`
-            }else if(item.cateCode != 2 && item.peopleCnt == item.itemPeople){
+            } else if (item.cateCode != 2 && item.peopleCnt == item.itemPeople) {
                 itemHtml += `<div class="justify-center" style="padding: 100px; font-size : 1.5rem; height:100%; position: absolute; left: 50%; top: 50%; background-color: rgba(165, 165, 165, 0.8); font-weight: bold; width: 100%; text-align: center; transform: translate(-50%,-50%);">인원마감</div>`
             }
 
@@ -174,18 +174,18 @@ function displayItems(items) {
                                 <figcaption class="font-medium">
                                     <div class="text-dark-600">
                                         <span class="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10">${item.cateName}</span><strong class="inline-flex text-xs py-1 pl-1">`
-                                        if(item.cateCode==2){
-                                            if(item.itemNumPlace!=''){
-                                                itemHtml += `${item.itemNumPlace}`
-                                            }
-                                            else if(item.itemRoadPlace!=''){
-                                                itemHtml += `${item.itemRoadPlace}`
-                                            }
-                                        }else{
-                                            itemHtml += ` ${item.itemPlace}`
+            if (item.cateCode == 2) {
+                if (item.itemNumPlace != '') {
+                    itemHtml += `${item.itemNumPlace}`
+                }
+                else if (item.itemRoadPlace != '') {
+                    itemHtml += `${item.itemRoadPlace}`
+                }
+            } else {
+                itemHtml += ` ${item.itemPlace}`
 
-                                        }
-                                        itemHtml += `</strong>
+            }
+            itemHtml += `</strong>
                                     </div>
                                     <div class="text-dark-600 font-bold mt-1">
                                     ${item.itemTitle}
@@ -433,7 +433,18 @@ function selectItemCode(itemCode, selectedTag, items) {
                 <!-------- 도시/제목 ------------>
         <div class="bg-white p-6 p-tag text-center" >
                 <div class="text-2xl">
-                    <span class="text-red-300">[${data.item.itemPlace}]</span> 
+                    <span class="text-red-300">[`
+            if (data.item.cateCode != 2) {
+                modalHtml += `${data.item.itemPlace}`
+            }else{
+                if(data.item.itemNumPlace!=''){
+                    modalHtml += `${data.item.itemNumPlace}`
+                }else if(data.item.itemRoadPlace!=''){
+                    modalHtml += `${data.item.itemRoadPlace}`
+                }
+            }
+
+            modalHtml += `]</span> 
                     <span class="font-extralight">${data.item.itemTitle}</span>
                 </div>
                 <!------------- 개최자 ----------->
@@ -454,12 +465,22 @@ function selectItemCode(itemCode, selectedTag, items) {
                     ${data.item.itemStartDate}~${data.item.itemEndDate}
                 </span>
                 <div class=" my-3 itemPrice-div">`;
-            if (data.item.itemPrice == 0) {
-                modalHtml += `무료입장`
+            if (data.item.cateCode == 2) {
+                if (data.item.itemPrice == 0) {
+                    modalHtml += `현장문의`
+                }
+                else {
+                    modalHtml += `￦ ${data.item.itemPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원`
+                }
+            } else {
+                if (data.item.itemPrice == 0) {
+                    modalHtml += `무료`
+                }
+                else {
+                    modalHtml += `￦ ${data.item.itemPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원`
+                }
             }
-            else {
-                { data.item.itemPrice }
-            }
+
 
             modalHtml += `</div>
                 <div>
@@ -482,9 +503,9 @@ function selectItemCode(itemCode, selectedTag, items) {
             p_tag.insertAdjacentHTML('afterbegin', modalHtml);
 
             //상품에 대한 지도 붙이기
-            if(loginId != ''){
+            if (loginId != '') {
                 document.querySelector('.reserve-btn').setAttribute('onclick', `reserveInsert(${data.item.itemCode},${data.reserveCnt},${data.item.cateCode})`);
-            } 
+            }
 
 
             modalToggle();
@@ -511,7 +532,7 @@ function modalToggle() {
 }
 
 
-function reserveInsert(itemCode, reserveCnt,cateCode) {
+function reserveInsert(itemCode, reserveCnt, cateCode) {
 
     if (reserveCnt == 0) {
         fetch('/reserve/partyReserve', { //요청경로
@@ -524,7 +545,7 @@ function reserveInsert(itemCode, reserveCnt,cateCode) {
             body: JSON.stringify({
                 // 데이터명 : 데이터값
                 itemCode: itemCode
-                ,cateCode:cateCode
+                , cateCode: cateCode
             })
         })
             .then((response) => {

@@ -35,7 +35,7 @@ selectBox.addEventListener('change', function () {
                         ${e.itemTitle}
                         </td>
 
-                        <td>${e.itemPrice == '0' ? '-' : e.itemPrice}</td>
+                        <td>${e.itemPrice == '0' ? '-' : '￦ '+e.itemPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")+'원'}</td>
                         <td>
                             ${e.itemCode == 2 ? '-' : e.itemPeople +'/'+ e.peopleCnt}
                         </td>

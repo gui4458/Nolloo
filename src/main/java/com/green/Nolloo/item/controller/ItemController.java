@@ -215,10 +215,10 @@ public class ItemController {
 
 
 
-        Map<String,Object> data = (Map<String, Object>) session.getAttribute("data");
+        Map<String,Object> data = (Map<String, Object>)session.getAttribute("data");
         data.put("item",itemService.selectPartyDetail(itemVO));
         data.put("wishCnt",itemService.wishCount(itemVO.getItemCode()));
-
+        System.out.println(data.get("item"));
         reserveVO.setMemberId((String) session.getAttribute("memberId"));
         data.put("reserveCnt",reserveService.reserveDone(reserveVO));
 
