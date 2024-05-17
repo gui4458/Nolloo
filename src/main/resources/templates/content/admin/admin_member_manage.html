@@ -20,9 +20,9 @@
                 <col width="10%">
                 <col width="10%">
                 <col width="15%">
-                <col width="15%">
+                <col width="5%">
                 <col width="10%">
-                
+                <col width="10%">
             </colgroup>
             <thead>
                 <tr class="[&>td]:p-2 text-white font-semibold border-b-2  border-t-red-500 bg-red-300 text-center">
@@ -33,7 +33,7 @@
                     <td>주소</td>
                     <td>전화번호</td>
                     <td>가입일</td>
-                    
+                    <td>탈퇴</td>
                 </tr>
             </thead>
             <tbody>
@@ -60,7 +60,11 @@
                     </td>
                     <td>[[${member.memberTel}]]</td>
                     <td>[[${member.joinDate}]]</td>
-                    
+                    <td>
+                        <div>
+                            <button class="w-[70%] h-[32px] text-[16px] border rounded-lg bg-red-300 text-white" th:onclick="deleteMember([[${member.memberId}]])" >강제탈퇴</button>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
 
