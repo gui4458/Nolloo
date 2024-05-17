@@ -485,8 +485,8 @@ function goLogin(e) {
     e.stopPropagation();
 }
 
-function reserveInsert(itemCode, reserveCnt, cateCode) {
-    
+function reserveInsert(itemCode, reserveCnt,cateCode) {
+
     if (reserveCnt == 0) {
         fetch('/reserve/partyReserve', { //요청경로
             method: 'POST',
@@ -497,8 +497,8 @@ function reserveInsert(itemCode, reserveCnt, cateCode) {
             //컨트롤러로 전달할 데이터
             body: JSON.stringify({
                 // 데이터명 : 데이터값
-                'itemCode' : itemCode,
-                'cateCode' : cateCode
+                itemCode: itemCode
+                ,cateCode : cateCode
             })
         })
             .then((response) => {
