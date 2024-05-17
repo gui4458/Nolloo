@@ -167,6 +167,8 @@
         , ATTACHED_FILE_NAME
         , READ_CNT
         , PEOPLE_CNT
+        , ITEM_NUM_PLACE
+        , ITEM_ROAD_PLACE
         ,TEST_ORDER
         , GROWNUP
         FROM
@@ -190,6 +192,8 @@
         , ATTACHED_FILE_NAME
         , READ_CNT
         , PEOPLE_CNT
+        , ITEM_NUM_PLACE
+        , ITEM_ROAD_PLACE
         , 1 AS TEST_ORDER
         FROM ITEM_INFO INFO
         INNER JOIN ITEM_IMAGE IMG
@@ -223,6 +227,8 @@
         , ATTACHED_FILE_NAME
         , READ_CNT
         , PEOPLE_CNT
+        , ITEM_NUM_PLACE
+        , ITEM_ROAD_PLACE
         ,TEST_ORDER, GROWNUP
         FROM
         (
@@ -245,6 +251,8 @@
         , ATTACHED_FILE_NAME
         , READ_CNT
         , PEOPLE_CNT
+        , ITEM_NUM_PLACE
+        , ITEM_ROAD_PLACE
         , 2 AS TEST_ORDER
 
         FROM ITEM_INFO INFO
