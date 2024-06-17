@@ -56,7 +56,7 @@
 #####
 ##### 
 ##### 시연 영상
-##### [PROJECT "NOLLOO" VIDEO](https://img.youtube.com/vi/JWlUZIfDFEld5eIQ/0.jpg)](https://www.youtube.com/watch?v=JWlUZIfDFEld5eIQ)
+##### [PROJECT "NOLLOO" VIDEO][JWlUZIfDFEld5eIQ](https://youtu.be/QYfmaQWF8Ow?si=JWlUZIfDFEld5eIQ)
 
 
 
