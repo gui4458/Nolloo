@@ -53,9 +53,10 @@
 #### 5. 회원정보관리 
 ##### - 회원정보수정, 예약내역, 나의 파티를 설정할 수 있는 기능 구현
 
+#####
+##### 
+##### 시연 영상
+##### [PROJECT "NOLLOO" VIDEO](https://img.youtube.com/vi/JWlUZIfDFEld5eIQ/0.jpg)](https://www.youtube.com/watch?v=JWlUZIfDFEld5eIQ)
 
- 
-
- 
 
 
